@@ -1,0 +1,108 @@
+﻿using System;
+using System.Windows.Forms;
+using salary.impl;
+using salary.utilities;
+
+namespace salary.main.employee
+{
+    public partial class EmployeePropertyControl : UserControl
+    {
+        public EmployeePropertyControl()
+        {
+            InitializeComponent();
+        }
+
+        public EditPurpose Purpose { get; set; }
+        public IEmployee Employee { get; set; }
+
+        private void fill()
+        {
+            textBoxId.Text = Employee.Id;
+            textBoxName.Text = Employee.Name;
+            dateTimePickerEntryTime.Value = Employee.EntryTime;
+            comboBoxPosition.SelectedItem = Employee.Position;
+            comboBoxLeader.SelectedItem = Employee.Leader;
+            comboBoxSalaryLevel.SelectedItem = Employee.SalaryLevel;
+        }
+
+        private void readonlyAll()
+        {
+            textBoxId.ReadOnly = true;
+            textBoxName.ReadOnly = true;
+            dateTimePickerEntryTime.Enabled = false;
+            comboBoxPosition.Enabled = false;
+            comboBoxLeader.Enabled = false;
+            comboBoxSalaryLevel.Enabled = false;
+        }
+
+        void fillLeader(string leaderPositionId)
+        {
+            comboBoxLeader.Items.Clear();
+            comboBoxLeader.Items.AddRange(DataHolder.Employees.FindAll(item=>item.Position!=null && item.Position.Id==leaderPositionId).ToArray());
+        }
+
+        void fillPosition()
+        {
+            comboBoxPosition.Items.AddRange(DataHolder.Positions.ToArray());
+        }
+
+        void fillSalayLevel(string positionId)
+        {
+            comboBoxSalaryLevel.Items.Clear();
+            comboBoxSalaryLevel.Items.AddRange(DataHolder.SalaryLevels.FindAll(item=>item.Position!=null && item.Position.Id==positionId).ToArray());
+        }
+
+        public void Retrive()
+        {
+            Employee.Id = textBoxId.Text.Trim();
+            Employee.Name = textBoxName.Text.Trim();
+            Employee.Position = comboBoxPosition.SelectedItem as IPosition;
+            Employee.Leader = comboBoxLeader.SelectedItem as IEmployee;
+            Employee.SalaryLevel = comboBoxSalaryLevel.SelectedItem as IPositionSalaryLevel;
+            Employee.EntryTime = dateTimePickerEntryTime.Value;
+
+        }
+
+        private void EmployeePropertyControl_Load(object sender, EventArgs e)
+        {
+            fillPosition();
+            switch (Purpose)
+            {
+                case EditPurpose.FOR_NEW:
+                    if (Employee == null)
+                    {
+                        Employee = new Employee("","", DateTime.Now, null, null);
+                    }
+                    break;
+                case EditPurpose.FOR_EDIT:
+                    if (Employee == null)
+                    {
+                        throw new Exception("null employee");
+                    }
+                    fill();
+                    break;
+                case EditPurpose.FOR_VIEW:
+                    fill();
+                    readonlyAll();
+                    break;
+            }
+        }
+
+        private void comboBoxPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxPosition.SelectedItem != null)
+            {
+                Position position=comboBoxPosition.SelectedItem as Position;
+                if (position != null)
+                {
+                    if (position.LeaderPosition != null)
+                    {
+                        fillLeader(position.LeaderPosition.Id);
+                    }
+                    fillSalayLevel(position.Id);
+                }
+            }
+        }
+
+    }
+}
