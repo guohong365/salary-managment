@@ -41,7 +41,7 @@ namespace salary.main
 
            #region init employee
            Employees.Add(new Employee("001", "张三", new DateTime(2010, 1, 31), Positions.Find(item=> item.Id=="1000"), SalaryLevels.Find(item=>item.Id=="001")));
-           Employees.Add(new Employee("002", "李四", new DateTime(2016, 2, 1), Positions.Find(item=>item.Id=="1001"), SalaryLevels.Find(item=>item.Id=="003")));
+           Employees.Add(new Employee("002", "李四", new DateTime(2016, 2, 1), Positions.Find(item=>item.Id=="1001"), SalaryLevels.Find(item=>item.Id=="003"), Employees.Find(item=>item.Id=="001")));
            #endregion
 
        }

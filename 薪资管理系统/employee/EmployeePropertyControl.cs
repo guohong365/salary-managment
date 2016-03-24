@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using salary.impl;
 using salary.utilities;
 
 namespace salary.main.employee
 {
-    public partial class EmployeePropertyControl : UserControl
+    public partial class EmployeePropertyControl : XtraUserControl
     {
         public EmployeePropertyControl()
         {
@@ -19,7 +19,7 @@ namespace salary.main.employee
         {
             textBoxId.Text = Employee.Id;
             textBoxName.Text = Employee.Name;
-            dateTimePickerEntryTime.Value = Employee.EntryTime;
+            dateTimePickerEntryTime.EditValue = Employee.EntryTime;
             comboBoxPosition.SelectedItem = Employee.Position;
             comboBoxLeader.SelectedItem = Employee.Leader;
             comboBoxSalaryLevel.SelectedItem = Employee.SalaryLevel;
@@ -27,8 +27,8 @@ namespace salary.main.employee
 
         private void readonlyAll()
         {
-            textBoxId.ReadOnly = true;
-            textBoxName.ReadOnly = true;
+            textBoxId.Properties.ReadOnly = true;
+            textBoxName.Properties.ReadOnly = true;
             dateTimePickerEntryTime.Enabled = false;
             comboBoxPosition.Enabled = false;
             comboBoxLeader.Enabled = false;
@@ -37,19 +37,19 @@ namespace salary.main.employee
 
         void fillLeader(string leaderPositionId)
         {
-            comboBoxLeader.Items.Clear();
-            comboBoxLeader.Items.AddRange(DataHolder.Employees.FindAll(item=>item.Position!=null && item.Position.Id==leaderPositionId).ToArray());
+            comboBoxLeader.Properties.Items.Clear();
+            comboBoxLeader.Properties.Items.AddRange(DataHolder.Employees.FindAll(item=>item.Position!=null && item.Position.Id==leaderPositionId).ToArray());
         }
 
         void fillPosition()
         {
-            comboBoxPosition.Items.AddRange(DataHolder.Positions.ToArray());
+            comboBoxPosition.Properties.Items.AddRange(DataHolder.Positions.ToArray());
         }
 
         void fillSalayLevel(string positionId)
         {
-            comboBoxSalaryLevel.Items.Clear();
-            comboBoxSalaryLevel.Items.AddRange(DataHolder.SalaryLevels.FindAll(item=>item.Position!=null && item.Position.Id==positionId).ToArray());
+            comboBoxSalaryLevel.Properties.Items.Clear();
+            comboBoxSalaryLevel.Properties.Items.AddRange(DataHolder.SalaryLevels.FindAll(item=>item.Position!=null && item.Position.Id==positionId).ToArray());
         }
 
         public void Retrive()
@@ -59,7 +59,7 @@ namespace salary.main.employee
             Employee.Position = comboBoxPosition.SelectedItem as IPosition;
             Employee.Leader = comboBoxLeader.SelectedItem as IEmployee;
             Employee.SalaryLevel = comboBoxSalaryLevel.SelectedItem as IPositionSalaryLevel;
-            Employee.EntryTime = dateTimePickerEntryTime.Value;
+            Employee.EntryTime = dateTimePickerEntryTime.DateTime;
 
         }
 

@@ -1,4 +1,6 @@
-﻿namespace salary.main.employee
+﻿using DevExpress.XtraEditors;
+
+namespace salary.main.employee
 {
     partial class EmployeeManagerControl
     {
@@ -28,19 +30,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLeave = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.panel1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnLeave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumnPosition = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumnEntryTime = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumnSalaryLevel = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.panel1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -48,118 +48,105 @@
             this.panel1.Controls.Add(this.btnLeave);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 496);
+            this.panel1.Location = new System.Drawing.Point(0, 579);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(668, 44);
+            this.panel1.Size = new System.Drawing.Size(779, 51);
             this.panel1.TabIndex = 1;
             // 
             // btnLeave
             // 
-            this.btnLeave.Location = new System.Drawing.Point(105, 11);
+            this.btnLeave.Location = new System.Drawing.Point(122, 13);
             this.btnLeave.Name = "btnLeave";
-            this.btnLeave.Size = new System.Drawing.Size(75, 23);
+            this.btnLeave.Size = new System.Drawing.Size(87, 27);
             this.btnLeave.TabIndex = 1;
             this.btnLeave.Text = "离职";
-            this.btnLeave.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(24, 11);
+            this.btnAdd.Location = new System.Drawing.Point(28, 13);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(87, 27);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "添加";
-            this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // listView1
+            // treeList1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(285, 496);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumnName,
+            this.treeListColumnPosition,
+            this.treeListColumnEntryTime,
+            this.treeListColumnSalaryLevel});
+            this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeList1.KeyFieldName = "Id";
+            this.treeList1.Location = new System.Drawing.Point(0, 0);
+            this.treeList1.Name = "treeList1";
+            this.treeList1.ParentFieldName = "LeaderId";
+            this.treeList1.RootValue = "";
+            this.treeList1.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.ShowForFocusedRow;
+            this.treeList1.Size = new System.Drawing.Size(779, 579);
+            this.treeList1.TabIndex = 3;
             // 
-            // columnHeader1
+            // treeListColumnName
             // 
-            this.columnHeader1.Text = "编号";
+            this.treeListColumnName.Caption = "姓名";
+            this.treeListColumnName.FieldName = "Name";
+            this.treeListColumnName.Name = "treeListColumnName";
+            this.treeListColumnName.Visible = true;
+            this.treeListColumnName.VisibleIndex = 0;
             // 
-            // columnHeader2
+            // treeListColumnPosition
             // 
-            this.columnHeader2.Text = "姓名";
-            this.columnHeader2.Width = 94;
+            this.treeListColumnPosition.Caption = "岗位";
+            this.treeListColumnPosition.FieldName = "Position";
+            this.treeListColumnPosition.Name = "treeListColumnPosition";
+            this.treeListColumnPosition.Visible = true;
+            this.treeListColumnPosition.VisibleIndex = 1;
             // 
-            // columnHeader3
+            // treeListColumnEntryTime
             // 
-            this.columnHeader3.Text = "岗位";
-            this.columnHeader3.Width = 108;
+            this.treeListColumnEntryTime.Caption = "入职时间";
+            this.treeListColumnEntryTime.FieldName = "EntryTime";
+            this.treeListColumnEntryTime.Format.FormatString = "yyyy年MM月dd日";
+            this.treeListColumnEntryTime.Format.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.treeListColumnEntryTime.Name = "treeListColumnEntryTime";
+            this.treeListColumnEntryTime.Visible = true;
+            this.treeListColumnEntryTime.VisibleIndex = 2;
             // 
-            // columnHeader4
+            // treeListColumnSalaryLevel
             // 
-            this.columnHeader4.Text = "入职时间";
-            this.columnHeader4.Width = 117;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "工龄";
-            this.columnHeader5.Width = 100;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "主管";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "当前岗位级别";
-            this.columnHeader7.Width = 94;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(285, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(383, 496);
-            this.treeView1.TabIndex = 3;
+            this.treeListColumnSalaryLevel.Caption = "工资级别";
+            this.treeListColumnSalaryLevel.FieldName = "SalaryLevel";
+            this.treeListColumnSalaryLevel.Name = "treeListColumnSalaryLevel";
+            this.treeListColumnSalaryLevel.Visible = true;
+            this.treeListColumnSalaryLevel.VisibleIndex = 3;
             // 
             // EmployeeManagerControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.treeList1);
             this.Controls.Add(this.panel1);
             this.Name = "EmployeeManagerControl";
-            this.Size = new System.Drawing.Size(668, 540);
+            this.Size = new System.Drawing.Size(779, 630);
             this.Load += new System.EventHandler(this.EmployeeManagerControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.panel1)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnLeave;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.TreeView treeView1;
+        private SimpleButton btnLeave;
+        private SimpleButton btnAdd;
+        private PanelControl panel1;
+        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnName;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnPosition;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnEntryTime;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnSalaryLevel;
 
     }
 }

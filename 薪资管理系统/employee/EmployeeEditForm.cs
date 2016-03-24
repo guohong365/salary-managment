@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using salary.utilities;
 
 namespace salary.main.employee
 {
-    public partial class EmployeeEditForm : Form
+    public partial class EmployeeEditForm : XtraForm
     {
         public IEmployee Employee
         {

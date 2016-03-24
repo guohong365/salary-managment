@@ -6,6 +6,19 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public IPosition LeaderPosition { get; set; }
+        public string LeaderPositionId
+        {
+            get
+            {
+                if (LeaderPosition != null)
+                {
+                    return LeaderPosition.Id;
+                }
+                return null;
+            }
+        }
+
+        public bool Enabled { get; set; }
 
         public Position(string id,string name, string desc, IPosition leaderPosition)
         {
@@ -13,6 +26,7 @@
             Name = name;
             Description = desc;
             LeaderPosition = leaderPosition;
+            Enabled = true;
         }
 
         public Position(string id,string name, string desc) : this(id,name, desc, null)

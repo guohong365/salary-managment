@@ -6,5 +6,7 @@
         string Name { get; set; }
         string Description { get; set; }
         IPosition LeaderPosition { get; set; }
+        string LeaderPositionId { get; }
+        bool Enabled { get; set; }
     }
 }

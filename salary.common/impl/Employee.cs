@@ -7,6 +7,18 @@ namespace salary.impl
         public string Id { get; set; }
         public string Name { get; set; }
         public IPosition Position { get; set; }
+        public string LeaderId
+        {
+            get
+            {
+                if (Leader != null)
+                {
+                    return Leader.Id;
+                }
+                return null;
+            }
+        }
+
         public IEmployee Leader { get; set; }
         public DateTime EntryTime { get; set; }
         public int Seniority

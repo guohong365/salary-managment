@@ -1,4 +1,6 @@
-﻿namespace salary.main.position
+﻿using DevExpress.XtraTab;
+
+namespace salary.main.position
 {
     partial class PostManagerControl
     {
@@ -28,89 +30,129 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("服务主管");
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPageEmployee = new System.Windows.Forms.TabPage();
-            this.tabPageLevel = new System.Windows.Forms.TabPage();
-            this.tabPageAppraisal = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             this.SuspendLayout();
             // 
-            // treeView1
+            // panelControl1
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "服务主管";
-            treeNode1.Text = "服务主管";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            this.treeView1.Size = new System.Drawing.Size(205, 516);
-            this.treeView1.TabIndex = 0;
+            this.panelControl1.Controls.Add(this.simpleButton3);
+            this.panelControl1.Controls.Add(this.simpleButton2);
+            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(0, 562);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(968, 40);
+            this.panelControl1.TabIndex = 0;
             // 
-            // tabControl1
+            // simpleButton1
             // 
-            this.tabControl1.Controls.Add(this.tabPageEmployee);
-            this.tabControl1.Controls.Add(this.tabPageAppraisal);
-            this.tabControl1.Controls.Add(this.tabPageLevel);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(205, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(625, 516);
-            this.tabControl1.TabIndex = 1;
+            this.simpleButton1.Location = new System.Drawing.Point(28, 9);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 0;
+            this.simpleButton1.Text = "新增";
             // 
-            // tabPageEmployee
+            // simpleButton2
             // 
-            this.tabPageEmployee.Location = new System.Drawing.Point(4, 22);
-            this.tabPageEmployee.Name = "tabPageEmployee";
-            this.tabPageEmployee.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEmployee.Size = new System.Drawing.Size(617, 490);
-            this.tabPageEmployee.TabIndex = 0;
-            this.tabPageEmployee.Text = "员工";
-            this.tabPageEmployee.UseVisualStyleBackColor = true;
+            this.simpleButton2.Location = new System.Drawing.Point(109, 9);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton2.TabIndex = 1;
+            this.simpleButton2.Text = "修改";
             // 
-            // tabPageLevel
+            // simpleButton3
             // 
-            this.tabPageLevel.Location = new System.Drawing.Point(4, 22);
-            this.tabPageLevel.Name = "tabPageLevel";
-            this.tabPageLevel.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLevel.Size = new System.Drawing.Size(617, 490);
-            this.tabPageLevel.TabIndex = 1;
-            this.tabPageLevel.Text = "岗位薪资级别定义";
-            this.tabPageLevel.UseVisualStyleBackColor = true;
+            this.simpleButton3.Location = new System.Drawing.Point(190, 9);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton3.TabIndex = 2;
+            this.simpleButton3.Text = "停用";
             // 
-            // tabPageAppraisal
+            // treeList1
             // 
-            this.tabPageAppraisal.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAppraisal.Name = "tabPageAppraisal";
-            this.tabPageAppraisal.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAppraisal.Size = new System.Drawing.Size(617, 490);
-            this.tabPageAppraisal.TabIndex = 2;
-            this.tabPageAppraisal.Text = "考核指标";
-            this.tabPageAppraisal.ToolTipText = "考核指标";
-            this.tabPageAppraisal.UseVisualStyleBackColor = true;
+            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn1,
+            this.treeListColumn2,
+            this.treeListColumn3,
+            this.treeListColumn4});
+            this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeList1.KeyFieldName = "Id";
+            this.treeList1.Location = new System.Drawing.Point(0, 0);
+            this.treeList1.Name = "treeList1";
+            this.treeList1.ParentFieldName = "LeaderPositionId";
+            this.treeList1.Size = new System.Drawing.Size(968, 562);
+            this.treeList1.TabIndex = 1;
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "岗位名称";
+            this.treeListColumn1.FieldName = "Name";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 1;
+            // 
+            // treeListColumn2
+            // 
+            this.treeListColumn2.Caption = "岗位描述";
+            this.treeListColumn2.FieldName = "Description";
+            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.Visible = true;
+            this.treeListColumn2.VisibleIndex = 2;
+            // 
+            // treeListColumn3
+            // 
+            this.treeListColumn3.Caption = "上级岗位";
+            this.treeListColumn3.FieldName = "上级岗位";
+            this.treeListColumn3.Name = "treeListColumn3";
+            // 
+            // treeListColumn4
+            // 
+            this.treeListColumn4.Caption = "有效";
+            this.treeListColumn4.FieldName = "Enabled";
+            this.treeListColumn4.Name = "treeListColumn4";
+            this.treeListColumn4.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Boolean;
+            this.treeListColumn4.Visible = true;
+            this.treeListColumn4.VisibleIndex = 2;
             // 
             // PostManagerControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.treeList1);
+            this.Controls.Add(this.panelControl1);
             this.Name = "PostManagerControl";
-            this.Size = new System.Drawing.Size(830, 516);
-            this.tabControl1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(968, 602);
+            this.Load += new System.EventHandler(this.PostManagerControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPageEmployee;
-        private System.Windows.Forms.TabPage tabPageLevel;
-        private System.Windows.Forms.TabPage tabPageAppraisal;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn4;
+
+
     }
 }
