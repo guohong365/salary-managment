@@ -1,9 +1,7 @@
 ﻿namespace salary
 {
-    public interface ISalaryElement
+    public interface ISalaryElement : IElement
     {
-        string Name { get; set; }
-        string Description { get; set; }
-        ISalaryCalculator Calculator { get; set; }
+       
     }
 }

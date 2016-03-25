@@ -38,6 +38,8 @@
     <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,6 +90,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="performance\AppraisalElementManagmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="performance\AppraisalElementManagmentControl.Designer.cs">
+      <DependentUpon>AppraisalElementManagmentControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="position\AppraisalIndicatorSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="performance\AppraisalElementManagmentControl.resx">
+      <DependentUpon>AppraisalElementManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="position\AppraisalIndicatorSelectForm.resx">
       <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>

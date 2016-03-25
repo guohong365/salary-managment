@@ -2,15 +2,16 @@
 
 namespace salary
 {
-    public interface IEmployee
+    public interface IEmployee : IItem
     {
-        string Id { get; set; }
-        string Name { get; set; }
         IPosition Position { get; set; }
         string LeaderId { get; }
         IEmployee Leader { get; set; }
         DateTime EntryTime { get; set; }
         int Seniority { get; }
-        IPositionSalaryLevel SalaryLevel { get; set; }
+        ISalaryLevel SalaryLevel { get; set; }
+        bool Dimission { get; set; }
+        DateTime DimissionTime { get; set; }
+
     }
 }

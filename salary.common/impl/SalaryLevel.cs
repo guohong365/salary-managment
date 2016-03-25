@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace salary.impl
 {
-   public class SalaryLevel : IPositionSalaryLevel
+   public sealed class SalaryLevel : ElementBase, ISalaryLevel
     {
-       public string Id { get; set; }
-       public string Name { get; set; }
-       public string Description { get; set; }
        public IPosition Position { get; set; }
        public int Level { get; set; }
        public List<ISalaryElement> SalaryElements { get; set; }
@@ -32,6 +30,14 @@ namespace salary.impl
        public SalaryLevel(string id, string name) : this(id, name, null, 0)
        {
            
+       }
+
+       public override bool Ready
+       {
+           get
+           {
+               return SalaryElements.All(item=> item.Ready) && SalaryElements.Count >0;
+           }
        }
     }
 }

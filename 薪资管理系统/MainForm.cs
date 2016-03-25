@@ -47,7 +47,7 @@ namespace salary.main
             xtraTabControl1.SelectedTabPage = page;
         }
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void employeeManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (!takeCachedPage("员工管理"))
             {
@@ -65,12 +65,17 @@ namespace salary.main
             xtraTabControl1.TabPages.Remove(page);
         }
 
-        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void positionManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (!takeCachedPage("岗位管理"))
             {
                 addControl("岗位管理", new PostManagerControl());
             }
+        }
+
+        private void appraisalElementManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

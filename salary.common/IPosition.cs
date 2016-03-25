@@ -1,12 +1,8 @@
 ﻿namespace salary
 {
-    public interface IPosition
+    public interface IPosition : IElement
     {
-        string Id { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
         IPosition LeaderPosition { get; set; }
         string LeaderPositionId { get; }
-        bool Enabled { get; set; }
     }
 }

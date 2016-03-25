@@ -1,6 +1,6 @@
 ﻿namespace salary.performance.CSI
 {
-    public class CSIAppraisalCalculator: IAppraisalCalculator
+    public class CSIAppraisalCalculator
     {
         public CSIAppraisalCalculator(string id, string name, string description)
         {

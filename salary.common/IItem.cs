@@ -1,11 +1,11 @@
 ﻿namespace salary
 {
-    public interface IAppraisalElement
+    public interface IItem
     {
         string Id { get; set; }
         string Name { get; set; }
         string Description { get; set; }
-        IAppraisalCalculator Calculator { get; set; }
-        decimal Weight { get; set; }
+        bool Ready { get; }
+        bool Enabled { get; set; }
     }
 }

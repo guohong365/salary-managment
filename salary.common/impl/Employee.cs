@@ -2,10 +2,8 @@
 
 namespace salary.impl
 {
-    public class Employee : IEmployee
+    public sealed class Employee : ItemBase, IEmployee
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
         public IPosition Position { get; set; }
         public string LeaderId
         {
@@ -30,7 +28,9 @@ namespace salary.impl
             }
         }
 
-        public IPositionSalaryLevel SalaryLevel { get; set; }
+        public ISalaryLevel SalaryLevel { get; set; }
+        public bool Dimission { get; set; }
+        public DateTime DimissionTime { get; set; }
 
         public override string ToString()
         {
@@ -38,7 +38,7 @@ namespace salary.impl
         }
 
         public Employee(string id, string name, DateTime entryTime, IPosition position, 
-            IPositionSalaryLevel salaryLevel, IEmployee leader)
+            ISalaryLevel salaryLevel, IEmployee leader)
         {
             Id = id;
             Name = name;
@@ -48,7 +48,7 @@ namespace salary.impl
             SalaryLevel = salaryLevel;
         }
 
-        public Employee(string id, string name, DateTime entryTime, IPosition position, IPositionSalaryLevel salaryLevel)
+        public Employee(string id, string name, DateTime entryTime, IPosition position, ISalaryLevel salaryLevel)
             : this(id, name, entryTime, position, salaryLevel, null)
         {
 

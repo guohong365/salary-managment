@@ -42,18 +42,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="impl\AppraisalElement.cs" />
+    <Compile Include="algorithm\AddAlgorithm.cs" />
+    <Compile Include="algorithm\AlgorithmAttribute.cs" />
+    <Compile Include="AlgorithmManager.cs" />
+    <Compile Include="algorithm\AlgorithmBase.cs" />
+    <Compile Include="algorithm\AlgorithmRegister.cs" />
+    <Compile Include="binding\BindingInfo.cs" />
+    <Compile Include="binding\BindingList.cs" />
+    <Compile Include="binding\IBindingInfo.cs" />
+    <Compile Include="binding\IBindingList.cs" />
+    <Compile Include="algorithm\IAlgorithm.cs" />
+    <Compile Include="IElement.cs" />
+    <Compile Include="IItem.cs" />
+    <Compile Include="impl\ElementBase.cs" />
     <Compile Include="impl\Employee.cs" />
     <Compile Include="impl\Position.cs" />
     <Compile Include="impl\SalaryLevel.cs" />
+    <Compile Include="IParameter.cs" />
+    <Compile Include="IParameterInfo.cs" />
     <Compile Include="ISalaryCalculator.cs" />
     <Compile Include="IPositionScore.cs" />
-    <Compile Include="IAppraisalCalculator.cs" />
-    <Compile Include="IAppraisalElement.cs" />
     <Compile Include="IEmployee.cs" />
     <Compile Include="IPosition.cs" />
-    <Compile Include="IPositionSalaryLevel.cs" />
+    <Compile Include="ISalaryLevel.cs" />
     <Compile Include="ISetup.cs" />
+    <Compile Include="ItemBase.cs" />
+    <Compile Include="ITypeConverter.cs" />
+    <Compile Include="ParameterAttribute.cs" />
+    <Compile Include="ParameterInfo.cs" />
     <Compile Include="SalaryCalcularorAttribute.cs" />
     <Compile Include="ISalaryElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +79,7 @@
     <Compile Include="SetUpForm.Designer.cs">
       <DependentUpon>SetUpForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="utilities\TypeHelpper.cs" />
     <Compile Include="utilities\Class1.cs" />
   </ItemGroup>
   <ItemGroup>

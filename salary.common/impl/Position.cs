@@ -1,24 +1,15 @@
 ﻿namespace salary.impl
 {
-    public class Position :IPosition
+    public sealed class Position : ElementBase, IPosition
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
         public IPosition LeaderPosition { get; set; }
         public string LeaderPositionId
         {
             get
             {
-                if (LeaderPosition != null)
-                {
-                    return LeaderPosition.Id;
-                }
-                return null;
+                return LeaderPosition != null ? LeaderPosition.Id : null;
             }
         }
-
-        public bool Enabled { get; set; }
 
         public Position(string id,string name, string desc, IPosition leaderPosition)
         {
@@ -47,6 +38,11 @@
         public override string ToString()
         {
             return Name;
+        }
+
+        public override bool Ready
+        {
+            get { return Enabled; }
         }
     }
 }

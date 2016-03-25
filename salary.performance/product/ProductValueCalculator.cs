@@ -1,6 +1,6 @@
 ﻿namespace salary.performance.product
 {
-    public class ProductValueCalculator: IAppraisalCalculator
+    public class ProductValueCalculator
     {
         public ProductValueCalculator(string id, string name, string description)
         {
