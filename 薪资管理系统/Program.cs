@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace salary.main
+namespace SalarySystem
 {
     static class Program
     {

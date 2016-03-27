@@ -1,6 +1,7 @@
 ﻿using System;
+using SalarySystem.Core;
 
-namespace salary
+namespace SalarySystem
 {
     public interface IEmployee : IItem
     {
@@ -12,6 +13,5 @@ namespace salary
         ISalaryLevel SalaryLevel { get; set; }
         bool Dimission { get; set; }
         DateTime DimissionTime { get; set; }
-
     }
 }

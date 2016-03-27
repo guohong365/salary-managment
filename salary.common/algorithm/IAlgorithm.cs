@@ -1,25 +1,19 @@
-﻿using salary.binding;
+﻿using SalarySystem.Binding;
+using SalarySystem.Core;
 
-namespace salary.algorithm
+namespace SalarySystem.Algorithm
 {
     public interface IAlgorithm : IItem
     {
         object Calculate(IElement element, IBindingList bindingList);
     }
-    public interface IAlgorithm<out T>
+    public interface IAlgorithm<T>
     {
-        T Calculate(IElement element, IBindingList bindingList);
+        T Calculate(IElement<T> element, IBindingList bindingList);
     }
 
     public interface ILevelAlgorithm : IAlgorithm<int>
     {
         
-    }
-    public interface IArithmeticAlgorithm : IAlgorithm<decimal>
-    {
-    }
-
-    public interface ILogicAlogrithm : IAlgorithm<bool>
-    {
     }
 }

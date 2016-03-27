@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "薪资管理系统", "薪资管理系统\薪资管理系统.csproj", "{42B76747-4E8E-4DAC-8E4D-328CBE0A93C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "salary", "salary.common\salary.csproj", "{388084F8-E14B-4B60-9580-20A74B1A5979}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalarySystem.Core", "salary.common\SalarySystem.Core.csproj", "{388084F8-E14B-4B60-9580-20A74B1A5979}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "salary.calculator.fix", "salary.calcularor.fix\salary.calculator.fix.csproj", "{A1CC8102-C5CE-4531-B8B6-DCEC15E338A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "salary.performance", "salary.performance\salary.performance.csproj", "{FD23C054-0F5E-4251-8281-0820319F2C0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalarySystem.Performance", "salary.performance\SalarySystem.Performance.csproj", "{FD23C054-0F5E-4251-8281-0820319F2C0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

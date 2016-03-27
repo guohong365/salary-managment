@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using SalarySystem;
 
 namespace salary.calculator.fix
 {

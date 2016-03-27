@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\salary.common\salary.csproj">
+    <ProjectReference Include="..\salary.common\SalarySystem.Core.csproj">
       <Project>{388084F8-E14B-4B60-9580-20A74B1A5979}</Project>
-      <Name>salary</Name>
+      <Name>SalarySystem.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using salary.binding;
+﻿using SalarySystem.Binding;
+using SalarySystem.Core;
 
-namespace salary.algorithm
+namespace SalarySystem.Algorithm
 {
     [Algorithm(Name = "加法", Description = "两个数相加")]
     [Parameter(Name = "被加数", Type = typeof(decimal))]
     [Parameter(Name = "加数", Type = typeof(decimal))]
     public class AddAlgorithm : AlgorithmBase, IArithmeticAlgorithm
     {
-        public new decimal Calculate(IElement element, IBindingList bindingList)
+        public decimal Calculate(IArithmeticAlgorithm element, IBindingList bindingList)
         {
-            BindingInfo bindingInfo1=bindingList.FindByPropertyName("被加数");
-            BindingInfo bindingInfo2 = bindingList.FindByPropertyName("加数");
-            if (bindingInfo1 == null || bindingInfo2 == null)
-            {
-                throw new NoNullAllowedException();
-            }
-            decimal v1 = element.GetValue<decimal>(bindingInfo1.DataMemberName);
-            decimal v2 = element.GetValue<decimal>(bindingInfo2.DataMemberName);
-            return v1 + v2;
+            return 0;
+        }
+
+        public decimal Calculate(IElement<decimal> element, IBindingList bindingList)
+        {
+            return 0;
         }
     }
 }

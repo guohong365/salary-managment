@@ -1,4 +1,4 @@
-﻿namespace salary
+﻿namespace SalarySystem
 {
     partial class SetUpForm
     {

@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace salary
+namespace SalarySystem
 {
     public partial class SetUpForm : Form
     {

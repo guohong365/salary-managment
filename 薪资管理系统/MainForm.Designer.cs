@@ -1,4 +1,4 @@
-﻿namespace salary.main
+﻿namespace SalarySystem
 {
     partial class MainForm
     {
@@ -142,7 +142,7 @@
             this.barButtonItem3.Caption = "绩效考核";
             this.barButtonItem3.Id = 4;
             this.barButtonItem3.Name = "barButtonItem3";
-            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.appraisalElementManagment);
             // 
             // barButtonItem4
             // 

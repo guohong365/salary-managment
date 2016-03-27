@@ -1,4 +1,6 @@
-﻿namespace salary
+﻿using SalarySystem.Core;
+
+namespace SalarySystem
 {
     public interface IPositionScore
     {

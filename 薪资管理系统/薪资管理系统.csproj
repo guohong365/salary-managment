@@ -8,7 +8,7 @@
     <ProjectGuid>{42B76747-4E8E-4DAC-8E4D-328CBE0A93C2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>salary.main</RootNamespace>
+    <RootNamespace>SalarySystem</RootNamespace>
     <AssemblyName>薪资管理系统</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -54,35 +55,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHolder.cs" />
-    <Compile Include="employee\EmployeeEditForm.cs">
+    <Compile Include="Managment\Employee\EmployeeEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="employee\EmployeeEditForm.Designer.cs">
+    <Compile Include="Managment\Employee\EmployeeEditForm.Designer.cs">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="employee\EmployeeManagerControl.cs">
+    <Compile Include="Managment\Employee\EmployeeManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="employee\EmployeeManagerControl.Designer.cs">
+    <Compile Include="Managment\Employee\EmployeeManagerControl.Designer.cs">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="employee\EmployeePropertyControl.cs">
+    <Compile Include="Managment\Employee\EmployeePropertyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="employee\EmployeePropertyControl.Designer.cs">
+    <Compile Include="Managment\Employee\EmployeePropertyControl.Designer.cs">
       <DependentUpon>EmployeePropertyControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="employee\XtraForm1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="employee\XtraForm1.Designer.cs">
-      <DependentUpon>XtraForm1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="employee\XtraUserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="employee\XtraUserControl1.Designer.cs">
-      <DependentUpon>XtraUserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -90,75 +79,78 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="performance\AppraisalElementManagmentControl.cs">
+    <Compile Include="Managment\Performance\AppraisalElementManagmentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="performance\AppraisalElementManagmentControl.Designer.cs">
+    <Compile Include="Managment\Performance\AppraisalElementManagmentControl.Designer.cs">
       <DependentUpon>AppraisalElementManagmentControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="position\AppraisalIndicatorSelectForm.cs">
+    <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="position\AppraisalIndicatorSelectForm.Designer.cs">
+    <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.Designer.cs">
       <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="position\EmployeeControl.cs">
+    <Compile Include="Managment\Position\EmployeeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="position\EmployeeControl.Designer.cs">
+    <Compile Include="Managment\Position\EmployeeControl.Designer.cs">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="position\PositionAppraisalControl.cs">
+    <Compile Include="Managment\Position\PositionAppraisalControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="position\PositionAppraisalControl.Designer.cs">
+    <Compile Include="Managment\Position\PositionAppraisalControl.Designer.cs">
       <DependentUpon>PositionAppraisalControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="position\PositionSalaryLevelControl.cs">
+    <Compile Include="Managment\Position\PositionSalaryLevelControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="position\PositionSalaryLevelControl.Designer.cs">
+    <Compile Include="Managment\Position\PositionSalaryLevelControl.Designer.cs">
       <DependentUpon>PositionSalaryLevelControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="position\PostManagerControl.cs">
+    <Compile Include="Managment\Position\PostManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="position\PostManagerControl.Designer.cs">
+    <Compile Include="Managment\Position\PostManagerControl.Designer.cs">
       <DependentUpon>PostManagerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="employee\EmployeeEditForm.resx">
+    <Compile Include="Managment\Salary\SalaryManagmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Salary\SalaryManagmentControl.Designer.cs">
+      <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Managment\Employee\EmployeeEditForm.resx">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="employee\EmployeeManagerControl.resx">
+    <EmbeddedResource Include="Managment\Employee\EmployeeManagerControl.resx">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="employee\EmployeePropertyControl.resx">
+    <EmbeddedResource Include="Managment\Employee\EmployeePropertyControl.resx">
       <DependentUpon>EmployeePropertyControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="employee\XtraUserControl1.resx">
-      <DependentUpon>XtraUserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="performance\AppraisalElementManagmentControl.resx">
+    <EmbeddedResource Include="Managment\Performance\AppraisalElementManagmentControl.resx">
       <DependentUpon>AppraisalElementManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="position\AppraisalIndicatorSelectForm.resx">
+    <EmbeddedResource Include="Managment\Position\AppraisalIndicatorSelectForm.resx">
       <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="position\EmployeeControl.resx">
+    <EmbeddedResource Include="Managment\Position\EmployeeControl.resx">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="position\PositionAppraisalControl.resx">
+    <EmbeddedResource Include="Managment\Position\PositionAppraisalControl.resx">
       <DependentUpon>PositionAppraisalControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="position\PositionSalaryLevelControl.resx">
+    <EmbeddedResource Include="Managment\Position\PositionSalaryLevelControl.resx">
       <DependentUpon>PositionSalaryLevelControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="position\PostManagerControl.resx">
+    <EmbeddedResource Include="Managment\Position\PostManagerControl.resx">
       <DependentUpon>PostManagerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -172,6 +164,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Managment\Salary\SalaryManagmentControl.resx">
+      <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -183,19 +178,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\salary.calcularor.fix\salary.calculator.fix.csproj">
-      <Project>{A1CC8102-C5CE-4531-B8B6-DCEC15E338A1}</Project>
-      <Name>salary.calculator.fix</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\salary.common\salary.csproj">
+    <ProjectReference Include="..\salary.common\SalarySystem.Core.csproj">
       <Project>{388084F8-E14B-4B60-9580-20A74B1A5979}</Project>
-      <Name>salary</Name>
+      <Name>SalarySystem.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\salary.performance\salary.performance.csproj">
+    <ProjectReference Include="..\salary.performance\SalarySystem.Performance.csproj">
       <Project>{FD23C054-0F5E-4251-8281-0820319F2C0A}</Project>
-      <Name>salary.performance</Name>
+      <Name>SalarySystem.Performance</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

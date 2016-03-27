@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Reflection;
 
-namespace salary.utilities
+namespace SalarySystem.Utilities
 {
     public static class TypeHelpper
     {

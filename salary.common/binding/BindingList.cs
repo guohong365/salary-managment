@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using SalarySystem.Core;
 
-namespace salary.binding
+namespace SalarySystem.Binding
 {
     public  class BindingList : IBindingList
     {

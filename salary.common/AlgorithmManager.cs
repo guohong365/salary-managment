@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using salary.algorithm;
+using SalarySystem.Algorithm;
 
-namespace salary
+namespace SalarySystem
 {
     public class AlgorithmInfo
     {

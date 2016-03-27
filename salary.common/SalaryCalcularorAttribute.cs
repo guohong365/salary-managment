@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace salary
+namespace SalarySystem
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class SalaryCalcularorAttribute : Attribute

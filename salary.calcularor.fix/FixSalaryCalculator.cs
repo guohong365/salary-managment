@@ -1,4 +1,6 @@
-﻿namespace salary.calculator.fix
+﻿using SalarySystem;
+
+namespace salary.calculator.fix
 {
     [SalaryCalcularor(Name = "固定金额项目", Description = "工资构成为正负固定金额。", SettingControl = typeof(FixSalaryCalculatorSettingControl))]
     public class FixSalaryCalculator : ISalaryCalculator

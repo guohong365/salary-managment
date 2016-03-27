@@ -1,4 +1,6 @@
-﻿namespace salary.binding
+﻿using SalarySystem.Core;
+
+namespace SalarySystem.Binding
 {
    public interface IBindingInfo
     {

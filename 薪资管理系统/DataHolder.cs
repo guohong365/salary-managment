@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using salary.impl;
-using salary.performance.CSI;
-using salary.performance.product;
+﻿using System.Collections.Generic;
+using SalarySystem.Core;
 
-namespace salary.main
+namespace SalarySystem
 {
    public static class DataHolder
    {

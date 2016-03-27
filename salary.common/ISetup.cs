@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace salary
+namespace SalarySystem
 {
     public interface ISetup
     {

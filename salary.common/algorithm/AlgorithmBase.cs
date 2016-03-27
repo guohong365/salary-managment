@@ -1,6 +1,7 @@
-﻿using salary.binding;
+﻿using SalarySystem.Binding;
+using SalarySystem.Core;
 
-namespace salary.algorithm
+namespace SalarySystem.Algorithm
 {
     public abstract class AlgorithmBase : ItemBase, IAlgorithm
     {

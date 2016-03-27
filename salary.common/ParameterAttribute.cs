@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using salary.utilities;
+using SalarySystem.Core;
+using SalarySystem.Utilities;
 
-namespace salary
+namespace SalarySystem
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class ParameterAttribute: Attribute, IItem

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using SalarySystem.Core;
 
-namespace salary
+namespace SalarySystem
 {
    public interface ISalaryLevel : IElement
     {

@@ -3,10 +3,10 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
-using salary.main.employee;
-using salary.main.position;
+using SalarySystem.Management.Employee;
+using SalarySystem.Management.Position;
 
-namespace salary.main
+namespace SalarySystem
 {
     public partial class MainForm : XtraForm
     {

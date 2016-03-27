@@ -1,4 +1,4 @@
-﻿namespace salary.algorithm
+﻿namespace SalarySystem.Algorithm
 {
     class AlgorithmRegister
     {

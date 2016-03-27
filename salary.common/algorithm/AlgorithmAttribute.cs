@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace salary.algorithm
+namespace SalarySystem.Algorithm
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class AlgorithmAttribute : Attribute

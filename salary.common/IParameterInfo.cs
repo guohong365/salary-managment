@@ -1,6 +1,7 @@
 ﻿using System;
+using SalarySystem.Core;
 
-namespace salary
+namespace SalarySystem
 {
     public interface IParameterInfo : IItem
     {

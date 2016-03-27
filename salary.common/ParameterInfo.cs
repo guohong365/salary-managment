@@ -1,7 +1,8 @@
 ﻿using System;
-using salary.utilities;
+using SalarySystem.Core;
+using SalarySystem.Utilities;
 
-namespace salary
+namespace SalarySystem
 {
     public class ParameterInfo : ItemBase, IParameterInfo
     {
