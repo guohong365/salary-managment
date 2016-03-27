@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using SalarySystem.Management.Position;
+using SalarySystem.Managment.Editor;
+using SalarySystem.Managment.Employee.Editor;
 using SalarySystem.Utilities;
 
-namespace SalarySystem.Management.Employee
+namespace SalarySystem.Managment.Employee
 {
     public partial class EmployeeManagerControl : XtraUserControl
     {
@@ -15,18 +16,23 @@ namespace SalarySystem.Management.Employee
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            EmployeeEditForm form=new EmployeeEditForm(EditPurpose.FOR_NEW);
+            ItemEditForm form=new ItemEditForm(EmployeePropertyControl.GetFactory(), "新增员工", new SalarySystem.Employee(),  (int) EditPurpose.FOR_NEW);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                DataHolder.Employees.Add(form.Employee);
-                treeList1.RefreshDataSource();
+                DataHolder.Employees.Add((IEmployee) form.Item);
+                gridControlEmployee.RefreshDataSource();
             }
+        }
+
+        void modifyEmployee_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void EmployeeManagerControl_Load(object sender, EventArgs e)
         {
-            treeList1.DataSource = DataHolder.Employees;
-            treeList1.ExpandAll();
+            gridControlEmployee.DataSource = DataHolder.Employees;
         }
+
     }
 }

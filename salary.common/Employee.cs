@@ -3,24 +3,33 @@ using SalarySystem.Core;
 
 namespace SalarySystem
 {
-    public sealed class Employee : ItemBase, IEmployee
+    public class Employee : ItemBase, IEmployee
     {
-        public IPosition Position { get; set; }
-        public string LeaderId
+        private IPosition _position;
+        private IEmployee _leader;
+        private DateTime _entryTime;
+        private ISalaryLevel _salaryLevel;
+        private DateTime _dismissionTime;
+
+        public virtual IPosition Position
         {
-            get
-            {
-                if (Leader != null)
-                {
-                    return Leader.Id;
-                }
-                return null;
-            }
+            get { return _position; }
+            set { _position = value; }
         }
 
-        public IEmployee Leader { get; set; }
-        public DateTime EntryTime { get; set; }
-        public int Seniority
+        public virtual IEmployee Leader
+        {
+            get { return _leader; }
+            set { _leader = value; }
+        }
+
+        public virtual DateTime EntryTime
+        {
+            get { return _entryTime; }
+            set { _entryTime = value; }
+        }
+
+        public virtual int Seniority
         {
             get
             {
@@ -29,30 +38,63 @@ namespace SalarySystem
             }
         }
 
-        public ISalaryLevel SalaryLevel { get; set; }
-        public bool Dimission { get; set; }
-        public DateTime DimissionTime { get; set; }
-
-        public override string ToString()
+        public virtual ISalaryLevel SalaryLevel
         {
-            return Name;
+            get { return _salaryLevel; }
+            set { _salaryLevel = value; }
         }
 
-        public Employee(string id, string name, DateTime entryTime, IPosition position, 
-            ISalaryLevel salaryLevel, IEmployee leader)
+        public virtual bool Dimission
         {
-            Id = id;
-            Name = name;
-            EntryTime = entryTime;
-            Leader = leader;
-            Position = position;
-            SalaryLevel = salaryLevel;
+            get { return _dismissionTime!=DateTime.MinValue; }
+        }
+
+        public virtual DateTime DimissionTime { get { return _dismissionTime; } set { _dismissionTime = value; } }
+
+        public Employee(string id, string name, DateTime entryTime, IPosition position, 
+            ISalaryLevel salaryLevel, IEmployee leader, bool enabled, string description):
+            base(id, name, description, enabled)
+        {
+            _entryTime = entryTime;
+            _leader = leader;
+            _position = position;
+            _salaryLevel = salaryLevel;
+            _dismissionTime = DateTime.MinValue;
         }
 
         public Employee(string id, string name, DateTime entryTime, IPosition position, ISalaryLevel salaryLevel)
-            : this(id, name, entryTime, position, salaryLevel, null)
+            : this(id, name, entryTime, position, salaryLevel, null, true, "")
         {
 
+        }
+
+        public Employee() :
+            this("", "", DateTime.Now, null, null, null, true, "")
+        {
+            
+        }
+
+        public override bool Ready
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(Id) && 
+                    !string.IsNullOrEmpty(Name) && 
+                    Position != null && 
+                    SalaryLevel != null;
+            }
+        }
+
+        public override bool Enabled
+        {
+            get
+            {
+                return !Dimission && base.Enabled;
+            }
+            set
+            {
+                base.Enabled = value;
+            }
         }
     }
 }

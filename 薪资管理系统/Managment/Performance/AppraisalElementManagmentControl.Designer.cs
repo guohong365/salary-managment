@@ -1,4 +1,4 @@
-﻿namespace SalarySystem.Management.Performance
+﻿namespace SalarySystem.Managment.Performance
 {
     partial class AppraisalElementManagmentControl
     {

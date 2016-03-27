@@ -1,4 +1,4 @@
-﻿namespace SalarySystem.Management.Position
+﻿namespace SalarySystem.Managment.Position
 {
     partial class EmployeeControl
     {

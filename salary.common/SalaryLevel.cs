@@ -9,10 +9,6 @@ namespace SalarySystem
        public IPosition Position { get; set; }
        public int Level { get; set; }
        public List<ISalaryElement> SalaryElements { get; set; }
-       public override string ToString()
-       {
-           return Name;
-       }
 
        public SalaryLevel(string id, string name, IPosition position,int level, string desc)
        {
@@ -37,7 +33,7 @@ namespace SalarySystem
        {
            get
            {
-               return SalaryElements.All(item=> item.Ready) && SalaryElements.Count >0;
+               return base.Ready && SalaryElements.All(item=> item.Ready) && SalaryElements.Count >0;
            }
        }
     }

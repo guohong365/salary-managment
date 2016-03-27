@@ -3,8 +3,8 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
-using SalarySystem.Management.Employee;
-using SalarySystem.Management.Position;
+using SalarySystem.Managment.Employee;
+using SalarySystem.Managment.Position;
 
 namespace SalarySystem
 {
@@ -69,7 +69,7 @@ namespace SalarySystem
         {
             if (!takeCachedPage("岗位管理"))
             {
-                addControl("岗位管理", new PostManagerControl());
+                addControl("岗位管理", new PositionManagerControl());
             }
         }
 

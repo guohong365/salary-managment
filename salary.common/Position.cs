@@ -2,24 +2,20 @@
 
 namespace SalarySystem
 {
-    public sealed class Position : ElementBase, IPosition
+    public class Position : ElementBase, IPosition
     {
-        public IPosition LeaderPosition { get; set; }
-        public string LeaderPositionId
+        private IPosition _leaderPosition;
+
+        public virtual IPosition LeaderPosition
         {
-            get
-            {
-                return LeaderPosition != null ? LeaderPosition.Id : null;
-            }
+            get { return _leaderPosition; }
+            set { _leaderPosition = value; }
         }
 
         public Position(string id,string name, string desc, IPosition leaderPosition)
+            :base(id, name, 0, true, desc)
         {
-            Id = id;
-            Name = name;
-            Description = desc;
-            LeaderPosition = leaderPosition;
-            Enabled = true;
+            _leaderPosition = leaderPosition;
         }
 
         public Position(string id,string name, string desc) : this(id,name, desc, null)
@@ -37,14 +33,5 @@ namespace SalarySystem
             
         }
 
-        public override string ToString()
-        {
-            return Name;
-        }
-
-        public override bool Ready
-        {
-            get { return Enabled; }
-        }
     }
 }

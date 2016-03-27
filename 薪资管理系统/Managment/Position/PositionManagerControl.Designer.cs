@@ -1,6 +1,6 @@
-﻿namespace SalarySystem.Management.Position
+﻿namespace SalarySystem.Managment.Position
 {
-    partial class PostManagerControl
+    partial class PositionManagerControl
     {
         /// <summary> 
         /// 必需的设计器变量。

@@ -1,10 +1,10 @@
 ﻿using DevExpress.XtraEditors;
 
-namespace SalarySystem.Management.Position
+namespace SalarySystem.Managment.Position
 {
-    public partial class PostManagerControl : XtraUserControl
+    public partial class PositionManagerControl : XtraUserControl
     {
-        public PostManagerControl()
+        public PositionManagerControl()
         {
             InitializeComponent();
         }

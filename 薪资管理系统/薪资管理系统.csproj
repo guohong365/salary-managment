@@ -55,11 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHolder.cs" />
-    <Compile Include="Managment\Employee\EmployeeEditForm.cs">
+    <Compile Include="Managment\Editor\IItemEditor.cs" />
+    <Compile Include="Managment\Editor\ItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Editor\ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Editor\ItemEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Managment\Employee\EmployeeEditForm.Designer.cs">
-      <DependentUpon>EmployeeEditForm.cs</DependentUpon>
+    <Compile Include="Managment\Editor\ItemEditForm.Designer.cs">
+      <DependentUpon>ItemEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Employee\EmployeeManagerControl.cs">
       <SubType>UserControl</SubType>
@@ -67,10 +74,10 @@
     <Compile Include="Managment\Employee\EmployeeManagerControl.Designer.cs">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Employee\EmployeePropertyControl.cs">
+    <Compile Include="Managment\Employee\Editor\EmployeePropertyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Employee\EmployeePropertyControl.Designer.cs">
+    <Compile Include="Managment\Employee\Editor\EmployeePropertyControl.Designer.cs">
       <DependentUpon>EmployeePropertyControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -91,6 +98,12 @@
     <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.Designer.cs">
       <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Managment\Position\Editor\PositionPropertyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Position\Editor\PositionPropertyControl.Designer.cs">
+      <DependentUpon>PositionPropertyControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Managment\Position\EmployeeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,11 +122,11 @@
     <Compile Include="Managment\Position\PositionSalaryLevelControl.Designer.cs">
       <DependentUpon>PositionSalaryLevelControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Position\PostManagerControl.cs">
+    <Compile Include="Managment\Position\PositionManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Position\PostManagerControl.Designer.cs">
-      <DependentUpon>PostManagerControl.cs</DependentUpon>
+    <Compile Include="Managment\Position\PositionManagerControl.Designer.cs">
+      <DependentUpon>PositionManagerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,13 +136,16 @@
     <Compile Include="Managment\Salary\SalaryManagmentControl.Designer.cs">
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Managment\Employee\EmployeeEditForm.resx">
-      <DependentUpon>EmployeeEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Managment\Editor\ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Editor\ItemEditForm.resx">
+      <DependentUpon>ItemEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Employee\EmployeeManagerControl.resx">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Employee\EmployeePropertyControl.resx">
+    <EmbeddedResource Include="Managment\Employee\Editor\EmployeePropertyControl.resx">
       <DependentUpon>EmployeePropertyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -141,6 +157,9 @@
     <EmbeddedResource Include="Managment\Position\AppraisalIndicatorSelectForm.resx">
       <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Position\Editor\PositionPropertyControl.resx">
+      <DependentUpon>PositionPropertyControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Managment\Position\EmployeeControl.resx">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,8 +169,8 @@
     <EmbeddedResource Include="Managment\Position\PositionSalaryLevelControl.resx">
       <DependentUpon>PositionSalaryLevelControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\PostManagerControl.resx">
-      <DependentUpon>PostManagerControl.cs</DependentUpon>
+    <EmbeddedResource Include="Managment\Position\PositionManagerControl.resx">
+      <DependentUpon>PositionManagerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

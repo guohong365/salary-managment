@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace SalarySystem.Management.Position
+namespace SalarySystem.Managment.Position
 {
     public partial class PositionAppraisalControl : UserControl
     {
