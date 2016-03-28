@@ -5,7 +5,7 @@ using SalarySystem.Utilities;
 namespace SalarySystem
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class ParameterAttribute: Attribute, IItem
+    public class ParameterAttribute: Attribute
     {
         public ParameterAttribute()
         {

@@ -1,6 +1,8 @@
-﻿namespace SalarySystem.Core
+﻿using System;
+
+namespace SalarySystem.Core
 {
-    public abstract class ItemBase :IItem
+    public class ItemBase :IItem, ICopyable<IItem>
     {
         private string _id;
         private string _name;
@@ -42,9 +44,30 @@
         public virtual string Description { get { return _description; } set { _description = value; } }
         public virtual bool Ready { get { return !string.IsNullOrEmpty(Id) && !string.IsNullOrEmpty(Name); }}
         public virtual bool Enabled { get { return _enabled; } set { _enabled = value; } }
+        
+        public virtual IItem CopyFrom(IItem anther)
+        {
+            _id = anther.Id;
+            _name = anther.Name;
+            _description = anther.Description;
+            _enabled = anther.Enabled;
+            return this;
+        }
+
         public override string ToString()
         {
             return Name;
+        }
+
+        public virtual object CopyFrom(object another)
+        {
+            return CopyFrom((IItem)another);
+        }
+
+        public virtual object Clone()
+        {
+            ItemBase item = (ItemBase)Activator.CreateInstance(GetType());
+            return item.CopyFrom(this);
         }
     }
 }

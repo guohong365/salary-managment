@@ -4,9 +4,10 @@ using SalarySystem.Algorithm;
 
 namespace SalarySystem.Core
 {
-    public abstract class ElementBase : ItemBase, IElement
+    public abstract class ElementBase : ItemBase, IElement, ICopyable<IElement>
     {
         private decimal _weight;
+        private object _value;
 
         protected ElementBase()
         {
@@ -35,7 +36,7 @@ namespace SalarySystem.Core
             set { _weight = value; }
         }
 
-        public virtual object Value { get; set; }
+        public virtual object Value { get { return _value; } set { _value = value; } }
 
         protected ElementBase(string id, string name, decimal weight, bool enabled, string desc)
             : base(id, name, desc, enabled)
@@ -56,6 +57,24 @@ namespace SalarySystem.Core
         public override bool Ready
         {
             get { return base.Ready && (Parameters.Count <= 0 || Parameters.All(item=>item.Ready)); }
+        }
+
+        public override IItem CopyFrom(IItem anther)
+        {
+            return CopyFrom((IElement) anther);
+        }
+
+        public override object CopyFrom(object another)
+        {
+            return CopyFrom((IElement)another);
+        }
+
+        public IElement CopyFrom(IElement anther)
+        {
+            base.CopyFrom(anther);
+            _weight = anther.Weight;
+            _value = anther.Value;
+            return this;
         }
     }
 }

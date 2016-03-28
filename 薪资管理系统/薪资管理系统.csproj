@@ -186,6 +186,7 @@
     <EmbeddedResource Include="Managment\Salary\SalaryManagmentControl.resx">
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Position.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -61,6 +61,7 @@
     <Compile Include="Core\BooleanParameter.cs" />
     <Compile Include="Core\ElementGroupBase.cs" />
     <Compile Include="Core\IBooleanElement.cs" />
+    <Compile Include="Core\ICopyable.cs" />
     <Compile Include="Core\IElement.cs" />
     <Compile Include="Core\IElementGroup.cs" />
     <Compile Include="Core\IItem.cs" />
@@ -73,6 +74,14 @@
     <Compile Include="Core\OrLogicElementGroup.cs" />
     <Compile Include="Core\ParameterBase.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Performance\EvaluationElementBase.cs" />
+    <Compile Include="Performance\EvaluationForm.cs" />
+    <Compile Include="Performance\EvaluationFormItem.cs" />
+    <Compile Include="Performance\IEvaluationElementGroup.cs" />
+    <Compile Include="Performance\IEvaluationForm.cs" />
+    <Compile Include="Performance\IEaluationElement.cs" />
+    <Compile Include="Performance\EvaluateionElementGroupBase.cs" />
+    <Compile Include="Performance\IEvaluationFormItem.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="SalaryLevel.cs" />
     <Compile Include="Core\IParameter.cs" />
@@ -101,7 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="calculator\" />
-    <Folder Include="Performance\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SetUpForm.resx">
