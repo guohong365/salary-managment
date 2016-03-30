@@ -6,11 +6,11 @@
         {
             get
             {
-                return (bool) base.Value;
+                return base.Value!=0;
             }
             set
             {
-                base.Value = value;
+                base.Value = value?1:0;
             }
         }
     }

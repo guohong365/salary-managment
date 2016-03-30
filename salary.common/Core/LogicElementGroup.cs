@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 
 namespace SalarySystem.Core
 {
@@ -16,6 +17,6 @@ namespace SalarySystem.Core
             base.Remove(element);
         }
 
-        public new abstract bool Value { get; set; }
+        public virtual new bool Value { get; set; }
     }
 }

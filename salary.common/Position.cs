@@ -124,5 +124,10 @@ namespace SalarySystem
             
         }
 
+        public string LeaderPositionId
+        {
+            get { return LeaderPosition == null ? "" : LeaderPosition.Id; }
+        }
+
     }
 }

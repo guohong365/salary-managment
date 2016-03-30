@@ -6,6 +6,6 @@ namespace SalarySystem.Core
     {
         void Add(IElement element);
         void Remove(IElement element);
-        List<IElement> Elements { get; }
+        IEnumerable<IElement> GetEnumerable();
     }
 }

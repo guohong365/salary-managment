@@ -8,9 +8,8 @@ namespace SalarySystem.Core
         {
             get
             {
-                return Elements.All(element => (bool) element.Value);
+                return GetEnumerable().All(item => item.Value!=0);
             }
-            set { }
         }
 
     }

@@ -2,7 +2,7 @@
 
 namespace SalarySystem.Core
 {
-    public interface IItem : ICloneable, ICopyable
+    public interface IItem : ICloneable, ICopyable, IComparable
     {
         string Id { get; set; }
         string Name { get; set; }

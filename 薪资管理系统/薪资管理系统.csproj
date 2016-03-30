@@ -110,6 +110,18 @@
     <Compile Include="Managment\Position\EmployeeControl.Designer.cs">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Managment\Position\EmployeeListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Position\EmployeeListControl.Designer.cs">
+      <DependentUpon>EmployeeListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Position\EvaluationItemsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Position\EvaluationItemsControl.Designer.cs">
+      <DependentUpon>EvaluationItemsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Managment\Position\PositionAppraisalControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +139,12 @@
     </Compile>
     <Compile Include="Managment\Position\PositionManagerControl.Designer.cs">
       <DependentUpon>PositionManagerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Position\SalaryStructureControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Position\SalaryStructureControl.Designer.cs">
+      <DependentUpon>SalaryStructureControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +181,12 @@
     <EmbeddedResource Include="Managment\Position\EmployeeControl.resx">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Position\EmployeeListControl.resx">
+      <DependentUpon>EmployeeListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Position\EvaluationItemsControl.resx">
+      <DependentUpon>EvaluationItemsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Managment\Position\PositionAppraisalControl.resx">
       <DependentUpon>PositionAppraisalControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Position\PositionManagerControl.resx">
       <DependentUpon>PositionManagerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Position\SalaryStructureControl.resx">
+      <DependentUpon>SalaryStructureControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -186,7 +213,9 @@
     <EmbeddedResource Include="Managment\Salary\SalaryManagmentControl.resx">
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Employee.datasource" />
     <None Include="Properties\DataSources\Position.datasource" />
+    <None Include="Properties\DataSources\SalarySystem.Performance.EvaluationForm.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -4,7 +4,7 @@ using SalarySystem.Core;
 
 namespace SalarySystem.Performance
 {
-    public class EvaluationForm : EvaluateionElementGroupBase, IEvaluationForm, IElement<decimal>, ICopyable<EvaluationForm>
+    public class EvaluationForm : EvaluateionElementGroupBase, IEvaluationForm, ICopyable<EvaluationForm>
     {
         private readonly List<EvaluationFormItem> _items=new List<EvaluationFormItem>();
 

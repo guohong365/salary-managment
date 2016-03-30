@@ -2,7 +2,7 @@
 
 namespace SalarySystem.Core
 {
-    public class ItemBase :IItem, ICopyable<IItem>
+    public class ItemBase :IItem, ICopyable<IItem>, IComparable<IItem>
     {
         private string _id;
         private string _name;
@@ -26,12 +26,8 @@ namespace SalarySystem.Core
         {
             
         }
-        protected ItemBase()
+        protected ItemBase():this("","")
         {
-            _id = "";
-            _name = "";
-            _description = "";
-            _enabled = true;
         }
 
         public virtual string Id
@@ -54,9 +50,28 @@ namespace SalarySystem.Core
             return this;
         }
 
+        public int CompareTo(IItem other)
+        {
+            if (other == null)
+            {
+                return string.Compare(Id, null, StringComparison.Ordinal);
+            }
+            return String.Compare(Id, other.Id, StringComparison.Ordinal);
+        }
+
         public override string ToString()
         {
             return Name;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return String.Compare(Id, null, StringComparison.Ordinal);
+            }
+            IItem item = obj as IItem;
+            return CompareTo(item);
         }
 
         public virtual object CopyFrom(object another)

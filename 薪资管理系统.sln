@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "salary.calculator.fix", "sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalarySystem.Performance", "salary.performance\SalarySystem.Performance.csproj", "{FD23C054-0F5E-4251-8281-0820319F2C0A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{4E12590C-72E8-43EA-81C7-D4CD79FF2125}"
+	ProjectSection(SolutionItems) = preProject
+		intial.sql = intial.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
