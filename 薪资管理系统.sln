@@ -14,6 +14,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{4E
 		intial.sql = intial.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{AFCAE4BB-D10A-4F13-8A0B-1147B9E4C39F}"
+	ProjectSection(SolutionItems) = preProject
+		design\岗位绩效薪酬计算办法.docx = design\岗位绩效薪酬计算办法.docx
+		design\绘图1.vsd = design\绘图1.vsd
+		design\薪酬管理.cdb = design\薪酬管理.cdb
+		design\薪酬管理.cdm = design\薪酬管理.cdm
+		design\薪酬管理.ldb = design\薪酬管理.ldb
+		design\薪酬管理.ldm = design\薪酬管理.ldm
+		design\薪酬管理.pdb = design\薪酬管理.pdb
+		design\薪酬管理.pdm = design\薪酬管理.pdm
+		design\薪酬管理系统.pjb = design\薪酬管理系统.pjb
+		design\薪酬管理系统.prj = design\薪酬管理系统.prj
+		design\薪酬管理系统需求分析.docx = design\薪酬管理系统需求分析.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,5 +82,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AFCAE4BB-D10A-4F13-8A0B-1147B9E4C39F} = {4E12590C-72E8-43EA-81C7-D4CD79FF2125}
 	EndGlobalSection
 EndGlobal
