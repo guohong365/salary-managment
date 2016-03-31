@@ -45,8 +45,8 @@
             this.colEntryTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDimissionTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tpositionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemLookUpEditPosition = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.tpositionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemLookUpEditLeader = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.temployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -54,8 +54,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tpositionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tpositionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditLeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.temployeeBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -141,6 +141,9 @@
             // 
             // colEnabled
             // 
+            this.colEnabled.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEnabled.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEnabled.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colEnabled.Caption = "有效";
             this.colEnabled.FieldName = "ENABLED";
             this.colEnabled.Name = "colEnabled";
@@ -150,6 +153,9 @@
             // 
             // colId
             // 
+            this.colId.AppearanceHeader.Options.UseTextOptions = true;
+            this.colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colId.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colId.Caption = "员工编号";
             this.colId.FieldName = "ID";
             this.colId.Name = "colId";
@@ -159,6 +165,9 @@
             // 
             // colName
             // 
+            this.colName.AppearanceHeader.Options.UseTextOptions = true;
+            this.colName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colName.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colName.Caption = "姓名";
             this.colName.FieldName = "NAME";
             this.colName.Name = "colName";
@@ -168,6 +177,9 @@
             // 
             // colPosition
             // 
+            this.colPosition.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPosition.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPosition.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colPosition.Caption = "岗位";
             this.colPosition.FieldName = "POSITION_ID";
             this.colPosition.Name = "colPosition";
@@ -176,48 +188,54 @@
             // 
             // colLeader
             // 
+            this.colLeader.AppearanceHeader.Options.UseTextOptions = true;
+            this.colLeader.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colLeader.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colLeader.Caption = "主管";
             this.colLeader.FieldName = "LEADER_ID";
             this.colLeader.Name = "colLeader";
             this.colLeader.Visible = true;
-            this.colLeader.VisibleIndex = 3;
+            this.colLeader.VisibleIndex = 4;
             this.colLeader.Width = 78;
             // 
             // colEntryTime
             // 
+            this.colEntryTime.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEntryTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEntryTime.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colEntryTime.Caption = "入职时间";
             this.colEntryTime.DisplayFormat.FormatString = "yyyy-MM-dd";
             this.colEntryTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colEntryTime.FieldName = "ENTRY_TIME";
             this.colEntryTime.Name = "colEntryTime";
             this.colEntryTime.Visible = true;
-            this.colEntryTime.VisibleIndex = 4;
+            this.colEntryTime.VisibleIndex = 5;
             this.colEntryTime.Width = 78;
             // 
             // colDimissionTime
             // 
+            this.colDimissionTime.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDimissionTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDimissionTime.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colDimissionTime.Caption = "离职时间";
             this.colDimissionTime.DisplayFormat.FormatString = "yyyy-MM-dd";
             this.colDimissionTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colDimissionTime.FieldName = "DISMISSION_TIME";
             this.colDimissionTime.Name = "colDimissionTime";
             this.colDimissionTime.Visible = true;
-            this.colDimissionTime.VisibleIndex = 5;
+            this.colDimissionTime.VisibleIndex = 6;
             this.colDimissionTime.Width = 78;
             // 
             // colDescription
             // 
+            this.colDescription.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDescription.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colDescription.Caption = "备注";
             this.colDescription.FieldName = "DESCRIPTION";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 6;
+            this.colDescription.VisibleIndex = 7;
             this.colDescription.Width = 84;
-            // 
-            // tpositionBindingSource
-            // 
-            this.tpositionBindingSource.DataMember = "t_position";
-            this.tpositionBindingSource.DataSource = this.salaryDataSetBindingSource;
             // 
             // repositoryItemLookUpEditPosition
             // 
@@ -229,6 +247,11 @@
             this.repositoryItemLookUpEditPosition.ExportMode = DevExpress.XtraEditors.Repository.ExportMode.DisplayText;
             this.repositoryItemLookUpEditPosition.Name = "repositoryItemLookUpEditPosition";
             this.repositoryItemLookUpEditPosition.ValueMember = "ID";
+            // 
+            // tpositionBindingSource
+            // 
+            this.tpositionBindingSource.DataMember = "t_position";
+            this.tpositionBindingSource.DataSource = this.salaryDataSetBindingSource;
             // 
             // repositoryItemLookUpEditLeader
             // 
@@ -265,8 +288,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tpositionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tpositionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditLeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.temployeeBindingSource)).EndInit();
             this.ResumeLayout(false);

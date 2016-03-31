@@ -178,9 +178,13 @@
             this.treeList1.PreviewFieldName = "DESCRIPTION";
             this.treeList1.Size = new System.Drawing.Size(268, 558);
             this.treeList1.TabIndex = 0;
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.selected_position_changed);
             // 
             // colID
             // 
+            this.colID.AppearanceHeader.Options.UseTextOptions = true;
+            this.colID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colID.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colID.Caption = "岗位编号";
             this.colID.FieldName = "ID";
             this.colID.Name = "colID";
@@ -188,21 +192,27 @@
             // 
             // colName3
             // 
+            this.colName3.AppearanceHeader.Options.UseTextOptions = true;
+            this.colName3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colName3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colName3.Caption = "岗位名称";
             this.colName3.FieldName = "NAME";
             this.colName3.Name = "colName3";
             this.colName3.Visible = true;
             this.colName3.VisibleIndex = 0;
-            this.colName3.Width = 56;
+            this.colName3.Width = 221;
             // 
             // colEnabled3
             // 
+            this.colEnabled3.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEnabled3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEnabled3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.colEnabled3.Caption = "有效";
             this.colEnabled3.FieldName = "ENABLED";
             this.colEnabled3.Name = "colEnabled3";
             this.colEnabled3.Visible = true;
             this.colEnabled3.VisibleIndex = 1;
-            this.colEnabled3.Width = 20;
+            this.colEnabled3.Width = 45;
             // 
             // colDescription3
             // 

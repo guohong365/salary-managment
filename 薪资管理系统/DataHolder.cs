@@ -9,6 +9,12 @@ namespace SalarySystem
    public static class DataHolder
    {
        static readonly SalaryDataSet _dataSet = new SalaryDataSet();
+       static readonly TableAdapterManager _adapterManager=new TableAdapterManager();
+
+       public static TableAdapterManager AdapterManager
+       {
+           get { return _adapterManager; }
+       }
 
        public static SalaryDataSet DataSet
        {
@@ -43,8 +49,7 @@ namespace SalarySystem
        {
            #region init position
            
-           t_positionTableAdapter positionTableAdapter=new t_positionTableAdapter();
-           positionTableAdapter.Fill(_dataSet.t_position);
+           AdapterManager.t_positionTableAdapter.Fill(_dataSet.t_position);
 
            #endregion
 
