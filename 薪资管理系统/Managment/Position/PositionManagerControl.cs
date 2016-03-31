@@ -11,8 +11,8 @@ namespace SalarySystem.Managment.Position
 
         private void PostManagerControl_Load(object sender, System.EventArgs e)
         {
-            treeList1.DataSource = DataHolder.Positions;
-            
+            treeList1.DataSource = DataHolder.DataSet;
+            treeList1.ExpandAll();
         }
     }
 }

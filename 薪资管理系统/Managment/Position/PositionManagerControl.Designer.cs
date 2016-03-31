@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataHolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.colID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colName3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colEnabled3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDescription3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.positionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colLEADER_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.salaryDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageEmployee = new DevExpress.XtraTab.XtraTabPage();
+            this.employeeListControl1 = new SalarySystem.Managment.Position.EmployeeListControl();
             this.xtraTabPageEvaluation = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPageSalaryStructure = new DevExpress.XtraTab.XtraTabPage();
-            this.employeeListControl1 = new SalarySystem.Managment.Position.EmployeeListControl();
-            ((System.ComponentModel.ISupportInitialize)(this.dataHolderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.positionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -59,10 +59,6 @@
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPageEmployee.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataHolderBindingSource
-            // 
-            this.dataHolderBindingSource.DataSource = typeof(SalarySystem.Position);
             // 
             // panelControl1
             // 
@@ -164,53 +160,67 @@
             this.treeList1.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(188)))));
             this.treeList1.Appearance.VertLine.Options.UseBackColor = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.colID,
             this.colName3,
             this.colEnabled3,
-            this.colDescription3});
-            this.treeList1.DataSource = this.positionBindingSource;
+            this.colDescription3,
+            this.colLEADER_ID});
+            this.treeList1.DataMember = "t_position";
+            this.treeList1.DataSource = this.salaryDataSetBindingSource;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeList1.KeyFieldName = "Id";
             this.treeList1.Location = new System.Drawing.Point(2, 2);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsView.EnableAppearanceEvenRow = true;
             this.treeList1.OptionsView.EnableAppearanceOddRow = true;
             this.treeList1.OptionsView.ShowIndicator = false;
             this.treeList1.OptionsView.ShowPreview = true;
-            this.treeList1.ParentFieldName = "LeaderPositionId";
-            this.treeList1.PreviewFieldName = "Description";
+            this.treeList1.ParentFieldName = "LEADER_ID";
+            this.treeList1.PreviewFieldName = "DESCRIPTION";
             this.treeList1.Size = new System.Drawing.Size(268, 558);
             this.treeList1.TabIndex = 0;
+            // 
+            // colID
+            // 
+            this.colID.Caption = "岗位编号";
+            this.colID.FieldName = "ID";
+            this.colID.Name = "colID";
+            this.colID.Width = 48;
             // 
             // colName3
             // 
             this.colName3.Caption = "岗位名称";
-            this.colName3.FieldName = "Name";
+            this.colName3.FieldName = "NAME";
             this.colName3.Name = "colName3";
             this.colName3.Visible = true;
             this.colName3.VisibleIndex = 0;
-            this.colName3.Width = 84;
+            this.colName3.Width = 56;
             // 
             // colEnabled3
             // 
             this.colEnabled3.Caption = "有效";
-            this.colEnabled3.FieldName = "Enabled";
+            this.colEnabled3.FieldName = "ENABLED";
             this.colEnabled3.Name = "colEnabled3";
             this.colEnabled3.Visible = true;
             this.colEnabled3.VisibleIndex = 1;
-            this.colEnabled3.Width = 45;
+            this.colEnabled3.Width = 20;
             // 
             // colDescription3
             // 
             this.colDescription3.Caption = "说明";
-            this.colDescription3.FieldName = "Description";
+            this.colDescription3.FieldName = "DESCRIPTION";
             this.colDescription3.Name = "colDescription3";
-            this.colDescription3.Visible = true;
-            this.colDescription3.VisibleIndex = 2;
-            this.colDescription3.Width = 121;
+            this.colDescription3.Width = 94;
             // 
-            // positionBindingSource
+            // colLEADER_ID
             // 
-            this.positionBindingSource.DataSource = typeof(SalarySystem.Position);
+            this.colLEADER_ID.FieldName = "LEADER_ID";
+            this.colLEADER_ID.Name = "colLEADER_ID";
+            this.colLEADER_ID.Width = 48;
+            // 
+            // salaryDataSetBindingSource
+            // 
+            this.salaryDataSetBindingSource.DataSource = typeof(SalarySystem.Data.SalaryDataSet);
+            this.salaryDataSetBindingSource.Position = 0;
             // 
             // panelControl3
             // 
@@ -250,6 +260,14 @@
             this.xtraTabPageEmployee.Size = new System.Drawing.Size(686, 530);
             this.xtraTabPageEmployee.Text = "员工";
             // 
+            // employeeListControl1
+            // 
+            this.employeeListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.employeeListControl1.Location = new System.Drawing.Point(0, 0);
+            this.employeeListControl1.Name = "employeeListControl1";
+            this.employeeListControl1.Size = new System.Drawing.Size(686, 530);
+            this.employeeListControl1.TabIndex = 0;
+            // 
             // xtraTabPageEvaluation
             // 
             this.xtraTabPageEvaluation.Name = "xtraTabPageEvaluation";
@@ -262,14 +280,6 @@
             this.xtraTabPageSalaryStructure.Size = new System.Drawing.Size(686, 530);
             this.xtraTabPageSalaryStructure.Text = "薪资构成";
             // 
-            // employeeListControl1
-            // 
-            this.employeeListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.employeeListControl1.Location = new System.Drawing.Point(0, 0);
-            this.employeeListControl1.Name = "employeeListControl1";
-            this.employeeListControl1.Size = new System.Drawing.Size(686, 530);
-            this.employeeListControl1.TabIndex = 0;
-            // 
             // PositionManagerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -280,11 +290,10 @@
             this.Name = "PositionManagerControl";
             this.Size = new System.Drawing.Size(968, 602);
             this.Load += new System.EventHandler(this.PostManagerControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataHolderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.positionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -302,9 +311,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private System.Windows.Forms.BindingSource dataHolderBindingSource;
         private DevExpress.XtraTreeList.TreeList treeList1;
-        private System.Windows.Forms.BindingSource positionBindingSource;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colName3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colEnabled3;
@@ -315,6 +322,9 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageEvaluation;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageSalaryStructure;
         private EmployeeListControl employeeListControl1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colID;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colLEADER_ID;
+        private System.Windows.Forms.BindingSource salaryDataSetBindingSource;
 
 
     }

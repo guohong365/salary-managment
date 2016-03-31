@@ -30,7 +30,9 @@ namespace SalarySystem.Managment.Employee
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLeave = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
@@ -40,17 +42,17 @@ namespace SalarySystem.Managment.Employee
             this.gridColumnLeader = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnSalaryLevel = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnDesc = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnEnabled = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnDismissionTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnEntryTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnSeniority = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.gridColumnDismissionTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnDesc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnEnabled = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.salaryDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panel1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -64,6 +66,14 @@ namespace SalarySystem.Managment.Employee
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(779, 40);
             this.panel1.TabIndex = 1;
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(248, 9);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton2.TabIndex = 3;
+            this.simpleButton2.Text = "停用";
             // 
             // simpleButton1
             // 
@@ -93,6 +103,8 @@ namespace SalarySystem.Managment.Employee
             // 
             // gridControlEmployee
             // 
+            this.gridControlEmployee.DataMember = "t_employee";
+            this.gridControlEmployee.DataSource = this.salaryDataSetBindingSource;
             this.gridControlEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlEmployee.Location = new System.Drawing.Point(0, 0);
             this.gridControlEmployee.MainView = this.gridViewEmployee;
@@ -111,103 +123,101 @@ namespace SalarySystem.Managment.Employee
             this.gridColumnName,
             this.gridColumnEntryTime,
             this.gridColumnSeniority,
-            this.gridColumnSalaryLevel,
             this.gridColumnDismissionTime,
             this.gridColumnDesc,
             this.gridColumnEnabled});
             this.gridViewEmployee.GridControl = this.gridControlEmployee;
             this.gridViewEmployee.Name = "gridViewEmployee";
-           // 
+            // 
             // gridColumnPosition
             // 
             this.gridColumnPosition.Caption = "岗位";
-            this.gridColumnPosition.FieldName = "Position";
+            this.gridColumnPosition.FieldName = "POSITION_ID";
             this.gridColumnPosition.Name = "gridColumnPosition";
             this.gridColumnPosition.Visible = true;
-            this.gridColumnPosition.VisibleIndex = 0;
+            this.gridColumnPosition.VisibleIndex = 1;
+            this.gridColumnPosition.Width = 89;
             // 
             // gridColumnLeader
             // 
             this.gridColumnLeader.Caption = "上级主管";
-            this.gridColumnLeader.FieldName = "Leader";
+            this.gridColumnLeader.FieldName = "LEADER_ID";
             this.gridColumnLeader.Name = "gridColumnLeader";
             this.gridColumnLeader.Visible = true;
-            this.gridColumnLeader.VisibleIndex = 1;
+            this.gridColumnLeader.VisibleIndex = 2;
+            this.gridColumnLeader.Width = 89;
             // 
             // gridColumnId
             // 
             this.gridColumnId.Caption = "员工编号";
-            this.gridColumnId.FieldName = "Id";
+            this.gridColumnId.FieldName = "ID";
             this.gridColumnId.Name = "gridColumnId";
             this.gridColumnId.Visible = true;
-            this.gridColumnId.VisibleIndex = 2;
+            this.gridColumnId.VisibleIndex = 3;
+            this.gridColumnId.Width = 89;
             // 
             // gridColumnName
             // 
             this.gridColumnName.Caption = "姓名";
-            this.gridColumnName.FieldName = "Name";
+            this.gridColumnName.FieldName = "NAME";
             this.gridColumnName.Name = "gridColumnName";
             this.gridColumnName.Visible = true;
-            this.gridColumnName.VisibleIndex = 3;
-            // 
-            // gridColumnSalaryLevel
-            // 
-            this.gridColumnSalaryLevel.Caption = "工资级别";
-            this.gridColumnSalaryLevel.Name = "gridColumnSalaryLevel";
-            this.gridColumnSalaryLevel.Visible = true;
-            this.gridColumnSalaryLevel.VisibleIndex = 6;
-            // 
-            // gridColumnDesc
-            // 
-            this.gridColumnDesc.Caption = "描述";
-            this.gridColumnDesc.FieldName = "Description";
-            this.gridColumnDesc.Name = "gridColumnDesc";
-            this.gridColumnDesc.Visible = true;
-            this.gridColumnDesc.VisibleIndex = 8;
-            // 
-            // gridColumnEnabled
-            // 
-            this.gridColumnEnabled.Caption = "有效";
-            this.gridColumnEnabled.FieldName = "Enabled";
-            this.gridColumnEnabled.Name = "gridColumnEnabled";
-            this.gridColumnEnabled.Visible = true;
-            this.gridColumnEnabled.VisibleIndex = 9;
-            // 
-            // gridColumnDismissionTime
-            // 
-            this.gridColumnDismissionTime.Caption = "离职时间";
-            this.gridColumnDismissionTime.DisplayFormat.FormatString = "yyyy年MM月dd日";
-            this.gridColumnDismissionTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.gridColumnDismissionTime.FieldName = "DismissionTime";
-            this.gridColumnDismissionTime.Name = "gridColumnDismissionTime";
-            this.gridColumnDismissionTime.Visible = true;
-            this.gridColumnDismissionTime.VisibleIndex = 7;
+            this.gridColumnName.VisibleIndex = 4;
+            this.gridColumnName.Width = 89;
             // 
             // gridColumnEntryTime
             // 
             this.gridColumnEntryTime.Caption = "入职时间";
             this.gridColumnEntryTime.DisplayFormat.FormatString = "yyyy年MM月dd日";
             this.gridColumnEntryTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.gridColumnEntryTime.FieldName = "EntryTime";
+            this.gridColumnEntryTime.FieldName = "ENTRY_TIME";
             this.gridColumnEntryTime.Name = "gridColumnEntryTime";
             this.gridColumnEntryTime.Visible = true;
-            this.gridColumnEntryTime.VisibleIndex = 4;
+            this.gridColumnEntryTime.VisibleIndex = 5;
+            this.gridColumnEntryTime.Width = 89;
             // 
             // gridColumnSeniority
             // 
             this.gridColumnSeniority.Caption = "工龄";
-            this.gridColumnSeniority.FieldName = "Seniority";
             this.gridColumnSeniority.Name = "gridColumnSeniority";
+            this.gridColumnSeniority.OptionsColumn.ReadOnly = true;
             this.gridColumnSeniority.Visible = true;
-            this.gridColumnSeniority.VisibleIndex = 5;
+            this.gridColumnSeniority.VisibleIndex = 6;
+            this.gridColumnSeniority.Width = 89;
             // 
-            // simpleButton2
+            // gridColumnDismissionTime
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(248, 9);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 3;
-            this.simpleButton2.Text = "停用";
+            this.gridColumnDismissionTime.Caption = "离职时间";
+            this.gridColumnDismissionTime.DisplayFormat.FormatString = "yyyy年MM月dd日";
+            this.gridColumnDismissionTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridColumnDismissionTime.FieldName = "DISMISSION_TIME";
+            this.gridColumnDismissionTime.Name = "gridColumnDismissionTime";
+            this.gridColumnDismissionTime.Visible = true;
+            this.gridColumnDismissionTime.VisibleIndex = 7;
+            this.gridColumnDismissionTime.Width = 89;
+            // 
+            // gridColumnDesc
+            // 
+            this.gridColumnDesc.Caption = "描述";
+            this.gridColumnDesc.FieldName = "DESCRIPTION";
+            this.gridColumnDesc.Name = "gridColumnDesc";
+            this.gridColumnDesc.Visible = true;
+            this.gridColumnDesc.VisibleIndex = 8;
+            this.gridColumnDesc.Width = 95;
+            // 
+            // gridColumnEnabled
+            // 
+            this.gridColumnEnabled.Caption = "有效";
+            this.gridColumnEnabled.FieldName = "ENABLED";
+            this.gridColumnEnabled.Name = "gridColumnEnabled";
+            this.gridColumnEnabled.Visible = true;
+            this.gridColumnEnabled.VisibleIndex = 0;
+            this.gridColumnEnabled.Width = 43;
+            // 
+            // salaryDataSetBindingSource
+            // 
+            this.salaryDataSetBindingSource.DataSource = typeof(SalarySystem.Data.SalaryDataSet);
+            this.salaryDataSetBindingSource.Position = 0;
             // 
             // EmployeeManagerControl
             // 
@@ -222,6 +232,7 @@ namespace SalarySystem.Managment.Employee
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -240,11 +251,11 @@ namespace SalarySystem.Managment.Employee
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnDesc;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnEnabled;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSalaryLevel;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnDismissionTime;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnEntryTime;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnSeniority;
         private SimpleButton simpleButton2;
+        private System.Windows.Forms.BindingSource salaryDataSetBindingSource;
 
     }
 }

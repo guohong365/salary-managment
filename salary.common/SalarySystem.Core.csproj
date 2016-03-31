@@ -92,15 +92,6 @@
     <Compile Include="Core\NumericalArrayParameter.cs" />
     <Compile Include="Core\OrLogicElementGroup.cs" />
     <Compile Include="Core\ParameterBase.cs" />
-    <Compile Include="Data\DataSetPosition.cs">
-      <DependentUpon>DataSetPosition.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\DataSetPosition.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetPosition.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Data\SalaryDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,17 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Data\DataSetPosition.xsc">
-      <DependentUpon>DataSetPosition.xsd</DependentUpon>
-    </None>
-    <None Include="Data\DataSetPosition.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetPosition.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Data\DataSetPosition.xss">
-      <DependentUpon>DataSetPosition.xsd</DependentUpon>
-    </None>
     <None Include="Data\SalaryDataSet.xsc">
       <DependentUpon>SalaryDataSet.xsd</DependentUpon>
     </None>

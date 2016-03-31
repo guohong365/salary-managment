@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/3/31 2:02:37                            */
+/* Created on:     2016/3/31 10:22:17                           */
 /*==============================================================*/
 
 
@@ -41,6 +41,7 @@ CREATE TABLE T_ASSIGNMENT
    TYPE                 VARCHAR(40) NOT NULL,
    TARGET               DECIMAL(20,6) NOT NULL,
    UNIT                 VARCHAR(40) NOT NULL,
+   ENABLED              BOOL,
    PRIMARY KEY (ID)
 );
 
@@ -71,6 +72,7 @@ CREATE TABLE T_EMPLOYEE
    DESCRIPTION          VARCHAR(2000),
    ENTRY_TIME           DATE NOT NULL,
    DISMISSION_TIME      DATE,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (ID)
 );
 
@@ -96,6 +98,7 @@ CREATE TABLE T_EVALUATION_FORM
    ID                   VARCHAR(40) NOT NULL,
    NAME                 VARCHAR(100) NOT NULL,
    DESCRIPTION          VARCHAR(2000) NOT NULL,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (ID)
 );
 
@@ -106,6 +109,7 @@ CREATE TABLE T_EVALUATION_FORM_ITEMS
 (
    EVALUATION_FORM_ID   VARCHAR(40) NOT NULL,
    EVALUATION_FORM_ITEM_ID VARCHAR(40) NOT NULL,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (EVALUATION_FORM_ID, EVALUATION_FORM_ITEM_ID)
 );
 
@@ -119,6 +123,7 @@ CREATE TABLE T_EVALUATION_ITEM
    DESCRIPTION          VARCHAR(2000),
    TYPE                 VARCHAR(40) NOT NULL,
    FULL_MARK            DECIMAL(10,2) NOT NULL,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (ID)
 );
 
@@ -149,6 +154,7 @@ CREATE TABLE T_POSITION
    LEADER_ID            VARCHAR(40),
    NAME                 VARCHAR(100) NOT NULL,
    DESCRIPTION          VARCHAR(2000),
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (ID)
 );
 
@@ -159,6 +165,7 @@ CREATE TABLE T_POSITION_ASSIGNMENTS
 (
    ASSIGNMENT_ID        VARCHAR(40) NOT NULL,
    POSITION_ID          VARCHAR(40) NOT NULL,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (ASSIGNMENT_ID, POSITION_ID)
 );
 
@@ -170,6 +177,7 @@ CREATE TABLE T_POSITION_EVALUATION_FORMS
    POSITION_ID          VARCHAR(40) NOT NULL,
    EVALUATION_FORM_ID   VARCHAR(40) NOT NULL,
    WEIGHT               DECIMAL(10,2) NOT NULL,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (POSITION_ID, EVALUATION_FORM_ID)
 );
 
@@ -180,6 +188,7 @@ CREATE TABLE T_POSITION_SALARY_ITEMS
 (
    POSITION_ID          VARCHAR(40) NOT NULL,
    SALARY_ITEM_ID       VARCHAR(40) NOT NULL,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (POSITION_ID, SALARY_ITEM_ID)
 );
 
@@ -193,6 +202,7 @@ CREATE TABLE T_SALARY_ITEM
    DESCRIPTION          VARCHAR(2000),
    TYPE                 VARCHAR(40) NOT NULL,
    VALUE                VARCHAR(2000) NOT NULL,
+   ENABLED              BOOL NOT NULL,
    PRIMARY KEY (ID)
 );
 

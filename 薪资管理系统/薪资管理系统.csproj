@@ -213,11 +213,9 @@
     <EmbeddedResource Include="Managment\Salary\SalaryManagmentControl.resx">
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\Employee.datasource" />
-    <None Include="Properties\DataSources\Position.datasource" />
-    <None Include="Properties\DataSources\SalarySystem.Performance.EvaluationForm.datasource" />
+    <None Include="Properties\DataSources\SalarySystem.Data.SalaryDataSet.datasource" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
