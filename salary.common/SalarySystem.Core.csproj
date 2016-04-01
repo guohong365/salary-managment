@@ -92,6 +92,10 @@
     <Compile Include="Core\NumericalArrayParameter.cs" />
     <Compile Include="Core\OrLogicElementGroup.cs" />
     <Compile Include="Core\ParameterBase.cs" />
+    <Compile Include="Data\SalaryDataSet.cs">
+      <DependentUpon>SalaryDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data\SalaryDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

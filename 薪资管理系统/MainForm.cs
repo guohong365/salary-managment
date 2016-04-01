@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using SalarySystem.Managment.Basic;
 using SalarySystem.Managment.Employee;
 using SalarySystem.Managment.Position;
 
@@ -76,6 +77,14 @@ namespace SalarySystem
         private void appraisalElementManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+        }
+
+        private void basic_define(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!takeCachedPage("基本定义"))
+            {
+                addControl("基本定义", new BasicDefineControl());
+            }
         }
     }
 }

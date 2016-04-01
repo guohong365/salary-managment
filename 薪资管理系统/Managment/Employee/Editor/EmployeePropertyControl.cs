@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using SalarySystem.Core;
+using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using SalarySystem.Data;
 using SalarySystem.Managment.Editor;
-using SalarySystem.Utilities;
 
 namespace SalarySystem.Managment.Employee.Editor
 {
@@ -10,9 +12,9 @@ namespace SalarySystem.Managment.Employee.Editor
     {
         private class EditorFactory :IItemEditorFactory
         {
-            public ItemControl CreateEditorControl(IItem item, int editType)
+            public ItemControl CreateEditorControl(DataRow item, int editType)
             {
-                return new EmployeePropertyControl(item as SalarySystem.Employee, editType);
+                return new EmployeePropertyControl(item, editType);
             }
         }
         public new static IItemEditorFactory GetFactory()
@@ -27,37 +29,24 @@ namespace SalarySystem.Managment.Employee.Editor
             dateEditDismissionTime.Properties.NullDate = DateTime.MinValue;
         }
 
-        protected EmployeePropertyControl(SalarySystem.Employee employee, int editType)
-            :base(employee, editType)
+        protected EmployeePropertyControl(DataRow employeeRow, int editType)
+            :base(employeeRow, editType)
         {
             InitializeComponent();
             dateEditDismissionTime.Properties.NullDate = DateTime.MinValue;
+            lookUpEditPosition.Properties.DataSource = Enumerable.Where(DataHolder.DataSet.t_position, item => item.ENABLED);
         }
 
         private void readonlyAll()
         {
             dateTimePickerEntryTime.Properties.ReadOnly = true;
-            comboBoxPosition.Properties.ReadOnly = true;
-            comboBoxLeader.Properties.ReadOnly = true;
-            comboBoxSalaryLevel.Properties.ReadOnly = true;
+            lookUpEditPosition.Properties.ReadOnly = true;
+            lookUpEditLeader.Properties.ReadOnly = true;
             dateEditDismissionTime.Properties.ReadOnly = true;
         }
-
-        void fillLeader(string leaderPositionId)
-        {
-            comboBoxLeader.Properties.Items.Clear();
-            comboBoxLeader.Properties.Items.AddRange(DataHolder.Employees.FindAll(item=>item.Position!=null && item.Position.Id==leaderPositionId).ToArray());
-        }
-
         void fillPosition()
         {
-            comboBoxPosition.Properties.Items.AddRange(DataHolder.Positions.ToArray());
-        }
-
-        void fillSalayLevel(string positionId)
-        {
-            comboBoxSalaryLevel.Properties.Items.Clear();
-            comboBoxSalaryLevel.Properties.Items.AddRange(DataHolder.SalaryLevels.FindAll(item=>item.Position!=null && item.Position.Id==positionId).ToArray());
+            lookUpEditPosition.Properties.DataSource = Enumerable.Where(DataHolder.DataSet.t_position, item => item.ENABLED);
         }
 
         private void EmployeePropertyControl_Load(object sender, EventArgs e)
@@ -69,40 +58,35 @@ namespace SalarySystem.Managment.Employee.Editor
             }
         }
 
-        private void comboBoxPosition_SelectedIndexChanged(object sender, EventArgs e)
+        private void EmployeePropertyControl_FillControls(int type, DataRow row)
         {
-            if (comboBoxPosition.SelectedItem != null)
+            DataSetSalary.t_employeeRow employee = row as DataSetSalary.t_employeeRow;
+            Debug.Assert(employee != null, "employee != null");
+            dateTimePickerEntryTime.EditValue = employee.ENTRY_TIME;
+            lookUpEditPosition.EditValue = employee.POSITION_ID;
+            lookUpEditLeader.EditValue = employee.LEADER_ID;
+            dateEditDismissionTime.EditValue = employee.DISMISSION_TIME;
+        }
+
+        private void EmployeePropertyControl_Retrive(ref DataRow row)
+        {
+            DataSetSalary.t_employeeRow employee = row as DataSetSalary.t_employeeRow;
+            Debug.Assert(employee != null, "employee != null");
+            employee.ENTRY_TIME = dateTimePickerEntryTime.DateTime;
+            employee.POSITION_ID = lookUpEditPosition.EditValue as string;
+            employee.LEADER_ID = lookUpEditLeader.EditValue as string;
+            employee.DISMISSION_TIME = dateEditDismissionTime.DateTime;
+        }
+
+        private void lookUpEditPosition_EditValueChanged(object sender, EventArgs e)
+        {
+            string positionId = lookUpEditPosition.EditValue as string;
+            if (positionId != null)
             {
-                SalarySystem.Position position = comboBoxPosition.SelectedItem as SalarySystem.Position;
-                if (position != null)
-                {
-                    if (position.LeaderPosition != null)
-                    {
-                        fillLeader(position.LeaderPosition.Id);
-                    }
-                    fillSalayLevel(position.Id);
-                }
+                string leaderId = DataHolder.DataSet.t_position.FindByID(positionId).LEADER_ID;
+                lookUpEditLeader.Properties.DataSource =
+                    Enumerable.Where(DataHolder.DataSet.t_employee, item => item.ENABLED && item.POSITION_ID == leaderId);
             }
-        }
-
-        private void EmployeePropertyControl_FillControls(int type, IItem item)
-        {
-            SalarySystem.Employee employee = (SalarySystem.Employee) item;
-            dateTimePickerEntryTime.EditValue = employee.EntryTime;
-            comboBoxPosition.SelectedItem = employee.Position;
-            comboBoxLeader.SelectedItem = employee.Leader;
-            comboBoxSalaryLevel.SelectedItem = employee.SalaryLevel;
-            dateEditDismissionTime.EditValue = employee.DimissionTime;
-        }
-
-        private void EmployeePropertyControl_Retrive(ref IItem item)
-        {
-            SalarySystem.Employee employee = (SalarySystem.Employee) item;
-            employee.EntryTime = dateTimePickerEntryTime.DateTime;
-            employee.Position = (IPosition) comboBoxPosition.SelectedItem;
-            employee.Leader = (IEmployee) comboBoxLeader.SelectedItem;
-            employee.SalaryLevel = (ISalaryLevel) comboBoxSalaryLevel.SelectedItem;
-            employee.DimissionTime = dateEditDismissionTime.DateTime;
         }
 
     }

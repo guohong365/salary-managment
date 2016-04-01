@@ -147,10 +147,7 @@
             this.gridView1,
             this.gridView2,
             this.gridView3});
-            // 
-            // evaluationFormBindingSource
-            // 
-            this.evaluationFormBindingSource.DataSource = typeof(SalarySystem.Performance.EvaluationForm);
+            
             // 
             // gridView1
             // 

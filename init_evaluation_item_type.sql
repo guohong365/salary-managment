@@ -1,0 +1,10 @@
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('001', '业绩', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('002', '满意度', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('003', '服务流程', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('004', '基础工作', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('005', '工作态度', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('006', '关键事件', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('007', '岗位职责', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('008', '基础管理', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('009', '6S管理', '1');
+INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `ENABLED`) VALUES ('010', '加分项', '1');

@@ -888,7 +888,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+              <xs:element name="DESCRIPTION" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />
@@ -941,7 +941,7 @@
               <xs:element name="COMPLETED" msprop:Generator_ColumnVarNameInTable="columnCOMPLETED" msprop:Generator_ColumnPropNameInRow="COMPLETED" msprop:Generator_ColumnPropNameInTable="COMPLETEDColumn" msprop:Generator_UserColumnName="COMPLETED" type="xs:decimal" />
               <xs:element name="ASSIGNMENT_YEAR" msprop:Generator_ColumnVarNameInTable="columnASSIGNMENT_YEAR" msprop:Generator_ColumnPropNameInRow="ASSIGNMENT_YEAR" msprop:Generator_ColumnPropNameInTable="ASSIGNMENT_YEARColumn" msprop:Generator_UserColumnName="ASSIGNMENT_YEAR" type="xs:int" />
               <xs:element name="ASSIGNMENT_MONTH" msprop:Generator_ColumnVarNameInTable="columnASSIGNMENT_MONTH" msprop:Generator_ColumnPropNameInRow="ASSIGNMENT_MONTH" msprop:Generator_ColumnPropNameInTable="ASSIGNMENT_MONTHColumn" msprop:Generator_UserColumnName="ASSIGNMENT_MONTH" type="xs:int" />
-              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+              <xs:element name="DESCRIPTION" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />
@@ -961,14 +961,14 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="LEADER_ID" msprop:Generator_ColumnVarNameInTable="columnLEADER_ID" msprop:Generator_ColumnPropNameInRow="LEADER_ID" msprop:Generator_ColumnPropNameInTable="LEADER_IDColumn" msprop:Generator_UserColumnName="LEADER_ID" minOccurs="0">
+              <xs:element name="LEADER_ID" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="LEADER_ID" msprop:Generator_ColumnVarNameInTable="columnLEADER_ID" msprop:Generator_ColumnPropNameInTable="LEADER_IDColumn" msprop:Generator_UserColumnName="LEADER_ID" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="POSITION_ID" msprop:Generator_ColumnVarNameInTable="columnPOSITION_ID" msprop:Generator_ColumnPropNameInRow="POSITION_ID" msprop:Generator_ColumnPropNameInTable="POSITION_IDColumn" msprop:Generator_UserColumnName="POSITION_ID" minOccurs="0">
+              <xs:element name="POSITION_ID" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="POSITION_ID" msprop:Generator_ColumnVarNameInTable="columnPOSITION_ID" msprop:Generator_ColumnPropNameInTable="POSITION_IDColumn" msprop:Generator_UserColumnName="POSITION_ID" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
@@ -982,7 +982,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+              <xs:element name="DESCRIPTION" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />
@@ -990,7 +990,7 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ENTRY_TIME" msprop:Generator_ColumnVarNameInTable="columnENTRY_TIME" msprop:Generator_ColumnPropNameInRow="ENTRY_TIME" msprop:Generator_ColumnPropNameInTable="ENTRY_TIMEColumn" msprop:Generator_UserColumnName="ENTRY_TIME" type="xs:dateTime" />
-              <xs:element name="DISMISSION_TIME" msprop:Generator_ColumnVarNameInTable="columnDISMISSION_TIME" msprop:Generator_ColumnPropNameInRow="DISMISSION_TIME" msprop:Generator_ColumnPropNameInTable="DISMISSION_TIMEColumn" msprop:Generator_UserColumnName="DISMISSION_TIME" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DISMISSION_TIME" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="DISMISSION_TIME" msprop:Generator_ColumnVarNameInTable="columnDISMISSION_TIME" msprop:Generator_ColumnPropNameInTable="DISMISSION_TIMEColumn" msprop:Generator_UserColumnName="DISMISSION_TIME" type="xs:dateTime" minOccurs="0" />
               <xs:element name="ENABLED" msprop:Generator_ColumnVarNameInTable="columnENABLED" msprop:Generator_ColumnPropNameInRow="ENABLED" msprop:Generator_ColumnPropNameInTable="ENABLEDColumn" msprop:Generator_UserColumnName="ENABLED" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
@@ -1042,7 +1042,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION">
+              <xs:element name="DESCRIPTION" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />
@@ -1091,7 +1091,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+              <xs:element name="DESCRIPTION" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />
@@ -1120,7 +1120,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+              <xs:element name="DESCRIPTION" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />
@@ -1172,7 +1172,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="LEADER_ID" msprop:Generator_ColumnVarNameInTable="columnLEADER_ID" msprop:Generator_ColumnPropNameInRow="LEADER_ID" msprop:Generator_ColumnPropNameInTable="LEADER_IDColumn" msprop:Generator_UserColumnName="LEADER_ID" minOccurs="0">
+              <xs:element name="LEADER_ID" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="LEADER_ID" msprop:Generator_ColumnVarNameInTable="columnLEADER_ID" msprop:Generator_ColumnPropNameInTable="LEADER_IDColumn" msprop:Generator_UserColumnName="LEADER_ID" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
@@ -1278,7 +1278,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+              <xs:element name="DESCRIPTION" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2000" />

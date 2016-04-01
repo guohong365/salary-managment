@@ -216,7 +216,7 @@ namespace SalarySystem.Managment.Employee
             // 
             // salaryDataSetBindingSource
             // 
-            this.salaryDataSetBindingSource.DataSource = typeof(SalarySystem.Data.SalaryDataSet);
+            this.salaryDataSetBindingSource.DataSource = typeof(SalarySystem.Data.DataSetSalary);
             this.salaryDataSetBindingSource.Position = 0;
             // 
             // EmployeeManagerControl

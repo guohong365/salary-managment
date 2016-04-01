@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using SalarySystem.Core;
 
 namespace SalarySystem.Managment.Editor
 {
@@ -10,9 +10,9 @@ namespace SalarySystem.Managment.Editor
     {
         private readonly ItemControl _control;
         [Browsable(false)]
-        public IItem Item
+        public DataRow Row
         {
-            get { return _control.Item; }
+            get { return _control.Row; }
         }
 
         [DesignOnly(true)]
@@ -21,7 +21,7 @@ namespace SalarySystem.Managment.Editor
             InitializeComponent();
         }
 
-        public ItemEditForm(IItemEditorFactory factory,string title, IItem item, int editType)
+        public ItemEditForm(IItemEditorFactory factory,string title, DataRow item, int editType)
         {
             InitializeComponent();
             _control = factory.CreateEditorControl(item, editType);

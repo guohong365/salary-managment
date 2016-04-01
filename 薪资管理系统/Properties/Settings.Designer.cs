@@ -22,5 +22,16 @@ namespace SalarySystem.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;persistsecurityinfo=True;database=salary;password=1" +
+            "111")]
+        public string salaryConnectionString {
+            get {
+                return ((string)(this["salaryConnectionString"]));
+            }
+        }
     }
 }

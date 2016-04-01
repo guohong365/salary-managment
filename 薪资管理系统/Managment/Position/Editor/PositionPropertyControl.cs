@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using SalarySystem.Data;
 using SalarySystem.Managment.Editor;
 
 namespace SalarySystem.Managment.Position.Editor
@@ -11,21 +14,23 @@ namespace SalarySystem.Managment.Position.Editor
             InitializeComponent();
         }
 
-        protected PositionPropertyControl(IPosition position, int editType)
+        protected PositionPropertyControl(DataRow position, int editType)
             :base(position, editType)
         {
         }
 
-        private void PositionPropertyControl_FillControls(int type, Core.IItem item)
+        private void PositionPropertyControl_FillControls(int type, DataRow row)
         {
-            IPosition position = (IPosition) item;
-            comboBoxEditLeaderPosition.SelectedItem = position.LeaderPosition;
+            DataSetSalary.t_positionRow position = row as DataSetSalary.t_positionRow;
+            Debug.Assert(position != null, "position != null");
+            lookUpEditLeaderPosition.EditValue = position.ID;
         }
 
-        private void PositionPropertyControl_Retrive(ref Core.IItem item)
+        private void PositionPropertyControl_Retrive(ref DataRow item)
         {
-            IPosition position = (IPosition) item;
-            position.LeaderPosition = position.LeaderPosition;
+            DataSetSalary.t_positionRow position = item as DataSetSalary.t_positionRow;
+            Debug.Assert(position != null, "position != null");
+            position.LEADER_ID=lookUpEditLeaderPosition.EditValue as string;
         }
     }
 }

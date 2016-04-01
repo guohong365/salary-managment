@@ -49,6 +49,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
@@ -88,9 +89,10 @@
             this.barSubItem4,
             this.barButtonItem6,
             this.barSubItem5,
-            this.barButtonItem7});
+            this.barButtonItem7,
+            this.barButtonItem8});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 12;
+            this.barManager1.MaxItemId = 13;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -115,7 +117,8 @@
             this.barSubItem2.Caption = "管理体系";
             this.barSubItem2.Id = 1;
             this.barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
@@ -235,6 +238,13 @@
             this.barSubItem1.Id = 0;
             this.barSubItem1.Name = "barSubItem1";
             // 
+            // barButtonItem8
+            // 
+            this.barButtonItem8.Caption = "基本定义";
+            this.barButtonItem8.Id = 12;
+            this.barButtonItem8.Name = "barButtonItem8";
+            this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.basic_define);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -276,6 +286,7 @@
         private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarSubItem barSubItem5;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
     }
 }
 
