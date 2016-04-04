@@ -40,7 +40,6 @@
             this.colDescription1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEnabled1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.evaluationFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEnabled = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -53,7 +52,6 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evaluationFormBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -132,7 +130,6 @@
             // 
             // gridControl1
             // 
-            this.gridControl1.DataSource = this.evaluationFormBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             gridLevelNode1.LevelTemplate = this.gridView3;
             gridLevelNode1.RelationName = "Items";
@@ -147,7 +144,6 @@
             this.gridView1,
             this.gridView2,
             this.gridView3});
-            
             // 
             // gridView1
             // 
@@ -348,7 +344,6 @@
             this.Size = new System.Drawing.Size(651, 540);
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evaluationFormBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -360,7 +355,6 @@
 
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private System.Windows.Forms.BindingSource evaluationFormBindingSource;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colFullMark;
         private DevExpress.XtraGrid.Columns.GridColumn colWeight;

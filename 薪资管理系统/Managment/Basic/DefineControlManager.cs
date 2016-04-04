@@ -8,12 +8,20 @@ namespace SalarySystem.Managment.Basic
 {
     public class DefineControlManager
     {
-        public static string KeyGroupEvaluation = "绩效考核";
-        public static string KeyGroupAssignment = "任务指标";
-        public static string KeyGroupSalaryStructure = "薪资结构";
+        public const string KEY_GROUP_EVALUATION = "绩效考核";
+        public const string KEY_GROUP_ASSIGNMENT = "任务指标";
+        public const string KEY_GROUP_SALARY_STRUCTURE = "薪资结构";
 
-        public static string KeyEvaluationItemType = "考核项目类型定义";
-        public static string KeyEvaluationItem = "考核项目定义";
+        public const string KEY_EVALUATION_ITEM_TYPE = "基本考核项目类型定义";
+        public const string KEY_EVALUATION_ITEM = "基本考核项目定义";
+        public const string KEY_EVALUATION_FORM = "岗位考核表定义";
+        public const string KEY_EXECUTION_EVALUATION_FORM = "考核实施管理";
+        
+        public const string KEY_SALARY_ITEM = "基本薪资构成项目定义";
+        public const string KEY_EXECUTION_SALAY_STRUCT = "薪资结构实施管理";
+
+        public const string KEY_ASSINGMENT_ITEM = "基本任务指标定义";
+        public const string KEY_EXECUTION_ASSIGNMENT = "任务指标管理";
 
         private readonly Dictionary<string, Type> _controlDefines=new Dictionary<string, Type>();  
         public Dictionary<string, Type> ControlDefines{get { return _controlDefines; }}
@@ -26,21 +34,35 @@ namespace SalarySystem.Managment.Basic
 
         void onNavItemClicked(string itemName)
         {
-            Control control=_container.Controls.Count>0? _container.Controls[0] : null;
-            if (control != null)
+            var control=_container.Controls.Count>0? _container.Controls[0] : null;
+            try
             {
-                control.Hide();
-                _container.Controls.Remove(control);
-            }
-            if (!_controlsCache.TryGetValue(itemName, out control))
-            {
-                Type type;
-                if (!_controlDefines.TryGetValue(itemName, out type))
+                if (control != null)
                 {
-                    throw new Exception();
+                    control.Hide();
+                    _container.Controls.Remove(control);
                 }
-                control = Activator.CreateInstance(type) as Control;
-                _controlsCache.Add(itemName, control);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(_container, "卸载控件出错" + e);
+            }
+            try
+            {
+                if (!_controlsCache.TryGetValue(itemName, out control))
+                {
+                    Type type;
+                    if (!_controlDefines.TryGetValue(itemName, out type))
+                    {
+                        throw new Exception();
+                    }
+                    control = Activator.CreateInstance(type) as Control;
+                    _controlsCache.Add(itemName, control);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(_container, "创建控件失败！\n" + e);
             }
             Debug.Assert(control != null, "control != null");
             control.Dock= DockStyle.Fill;
@@ -71,6 +93,7 @@ namespace SalarySystem.Managment.Basic
                     NavBarItem navBarItem=new NavBarItem(item.Name) {Tag = item};
                     navBar.Items.Add(navBarItem);
                     navBarGroup.ItemLinks.Add(navBarItem);
+                    navBarGroup.Expanded = true;
                 });
             });
             navBar.LinkClicked +=item_clicked;
@@ -80,21 +103,40 @@ namespace SalarySystem.Managment.Basic
         {
             _container = container;
             #region 控件定义
-            _controlDefines.Add(KeyEvaluationItemType, typeof(EvaluationItemTypeControl));
-            _controlDefines.Add(KeyEvaluationItem, typeof(EvaluationItemControl));
+            _controlDefines.Add(KEY_EVALUATION_ITEM_TYPE, typeof(EvaluationItemTypeControl));
+            _controlDefines.Add(KEY_EVALUATION_ITEM, typeof(EvaluationItemControl));
+            _controlDefines.Add(KEY_EVALUATION_FORM, typeof(EvaluationFormControl));
+            _controlDefines.Add(KEY_EXECUTION_EVALUATION_FORM, typeof(ExecuttionEvaluationFormControl));
+
+            _controlDefines.Add(KEY_SALARY_ITEM, typeof(SalaryItemControl));
+            _controlDefines.Add(KEY_EXECUTION_SALAY_STRUCT, typeof(ExecutionSalaryStructControl));
+
+            _controlDefines.Add(KEY_ASSINGMENT_ITEM, typeof(AssignmentItemControl));
+            _controlDefines.Add(KEY_EXECUTION_ASSIGNMENT, typeof(ExecutionAssignmentControl));
             #endregion
 
             #region 导航栏定义
 
             _navGroupDefines.AddRange(new []
             {
-                new NavGroupDefine(KeyGroupEvaluation, new List<NavItemDefine>(new []
+                new NavGroupDefine(KEY_GROUP_EVALUATION, new List<NavItemDefine>(new []
                 {
-                    new NavItemDefine(KeyEvaluationItemType, onNavItemClicked, 0),
-                    new NavItemDefine(KeyEvaluationItem, onNavItemClicked, 1) 
-                })),
-                new NavGroupDefine(KeyGroupAssignment, new List<NavItemDefine>()),
-                new NavGroupDefine(KeyGroupSalaryStructure, new List<NavItemDefine>()) 
+                    new NavItemDefine(KEY_EVALUATION_ITEM_TYPE, onNavItemClicked, 0),
+                    new NavItemDefine(KEY_EVALUATION_ITEM, onNavItemClicked, 1), 
+                    new NavItemDefine(KEY_EVALUATION_FORM, onNavItemClicked, 2), 
+                    new NavItemDefine(KEY_EXECUTION_EVALUATION_FORM, onNavItemClicked, 3) 
+                }), 0),
+                new NavGroupDefine(KEY_GROUP_ASSIGNMENT, new List<NavItemDefine>(new []
+                {
+                    new NavItemDefine(KEY_ASSINGMENT_ITEM, onNavItemClicked, 0), 
+                    new NavItemDefine(KEY_EXECUTION_ASSIGNMENT, onNavItemClicked, 1) 
+                }), 1),
+                new NavGroupDefine(KEY_GROUP_SALARY_STRUCTURE, new List<NavItemDefine>(new []
+                {
+                    new NavItemDefine(KEY_SALARY_ITEM, onNavItemClicked, 0),
+                    new NavItemDefine(KEY_EXECUTION_SALAY_STRUCT, onNavItemClicked, 1)
+
+                }), 2) 
             });
             #endregion
         }

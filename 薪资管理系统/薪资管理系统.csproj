@@ -35,14 +35,94 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.Data.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v10.2.Core.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.RichEdit.v10.2.Core.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.Utils.v10.2.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Xpo.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraBars.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraCharts.v10.2.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraEditors.v10.2.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraGrid.v10.2.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraLayout.v10.2.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraNavBar.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraPrinting.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Extensions.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraReports.v10.2.Extensions.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraReports.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraRichEdit.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v10.2.Core.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraScheduler.v10.2.Core.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v10.2.Extensions.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraScheduler.v10.2.Extensions.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraScheduler.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraSpellChecker.v10.2.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraTreeList.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraTreeList.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraVerticalGrid.v10.2.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraWizard.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Localization\DevExpress.XtraWizard.v10.2.resources.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -66,6 +146,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Managment\Basic\AssignmentItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Basic\BasicDefineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,6 +156,12 @@
       <DependentUpon>BasicDefineControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Basic\DefineControlManager.cs" />
+    <Compile Include="Managment\Basic\EvaluationFormControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Basic\EvaluationFormControl.Designer.cs">
+      <DependentUpon>EvaluationFormControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Managment\Basic\EvaluationItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,8 +174,39 @@
     <Compile Include="Managment\Basic\EvaluationItemTypeControl.Designer.cs">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Managment\Basic\ExecutionSalaryStructControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Basic\ExecutionSalaryStructControl.Designer.cs">
+      <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Basic\ExecuttionEvaluationFormControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Basic\ExecuttionEvaluationFormControl.Designer.cs">
+      <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Basic\GridViewHelper.cs" />
     <Compile Include="Managment\Basic\NavGroupDefine.cs" />
     <Compile Include="Managment\Basic\NavItemDefine.cs" />
+    <Compile Include="Managment\Basic\SalaryItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Basic\SalaryItemControl.Designer.cs">
+      <DependentUpon>SalaryItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Basic\DefineBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Basic\DefineBaseControl.Designer.cs">
+      <DependentUpon>DefineBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Basic\ExecutionAssignmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Basic\ExecutionAssignmentControl.Designer.cs">
+      <DependentUpon>ExecutionAssignmentControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Managment\Editor\IItemEditor.cs" />
     <Compile Include="Managment\Editor\ItemControl.cs">
       <SubType>UserControl</SubType>
@@ -123,12 +243,6 @@
     <Compile Include="Managment\IManagmentContainer.cs" />
     <Compile Include="Managment\IManagmentControl.cs" />
     <Compile Include="Managment\ManagmentControl.cs" />
-    <Compile Include="Managment\Performance\EvaluationManagmentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Performance\EvaluationManagmentControl.Designer.cs">
-      <DependentUpon>EvaluationManagmentControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,14 +306,36 @@
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemInitalizer.cs" />
+    <EmbeddedResource Include="Managment\Basic\AssignmentItemControl.resx">
+      <DependentUpon>AssignmentItemControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Managment\Basic\BasicDefineControl.resx">
       <DependentUpon>BasicDefineControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Basic\EvaluationFormControl.resx">
+      <DependentUpon>EvaluationFormControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Basic\EvaluationItemControl.resx">
       <DependentUpon>EvaluationItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Basic\EvaluationItemTypeControl.resx">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Basic\ExecutionSalaryStructControl.resx">
+      <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Basic\ExecuttionEvaluationFormControl.resx">
+      <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Basic\SalaryItemControl.resx">
+      <DependentUpon>SalaryItemControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Basic\DefineBaseControl.resx">
+      <DependentUpon>DefineBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Basic\ExecutionAssignmentControl.resx">
+      <DependentUpon>ExecutionAssignmentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Editor\ItemControl.resx">
       <DependentUpon>ItemControl.cs</DependentUpon>
@@ -215,9 +351,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Performance\EvaluationManagmentControl.resx">
-      <DependentUpon>EvaluationManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Position\AppraisalIndicatorSelectForm.resx">
       <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
@@ -272,7 +405,6 @@
     <None Include="Data\DataSetSalary.xss">
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
     </None>
-    <None Include="Properties\DataSources\DataHolder.datasource" />
     <None Include="Properties\DataSources\SalarySystem.Data.SalaryDataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
@@ -284,7 +416,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Managment\Performance\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

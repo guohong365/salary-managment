@@ -4,25 +4,22 @@ namespace SalarySystem.Managment
 {
     public class ManagmentControl : IManagmentControl
     {
-        private IManagmentControlContainer _container;
-        private Control _thisControl;
+        private readonly Control _thisControl;
 
-        public ManagmentControl(Control thisControl)
+        public ManagmentControl(Control thisControl, IManagmentControlContainer container)
         {
             _thisControl = thisControl;
+            Container = container;
         }
 
         public virtual Control Control
         {
             get { return _thisControl; }
         }
-        
-        public virtual IManagmentControlContainer Container
-        {
-            get { return _container; }
-            set { _container = value; }
-        }
 
+        public bool Dirty { get; set; }
+
+        public IManagmentControlContainer Container { get; private set; }
         public event ManagmentControlPreAction Applying;
 
         protected virtual bool onApplying()
@@ -70,41 +67,48 @@ namespace SalarySystem.Managment
         }
 
         public event ManagmentControlAction Closed;
-        public virtual bool Apply()
+        public virtual void Apply()
         {
             if (onApplying())
             {
                 onApplied();
-                return true;
             }
-            return false;
         }
 
-        public bool Revert()
+        public void Revert()
         {
             if (onReverting())
             {
                 onReverted();
-                return true;
             }
-            return false;
         }
 
-        public bool Close()
+        public void Close()
         {
             if (onClosing())
             {   
                 onClosed();
-                return true;
             }
-            return false;
         }
 
-        public bool SelfClose()
+        public bool TryClose()
         {
-            bool ret=Close();
-            _container.ChildClosed();
-            return ret;
+            if (!Dirty) return true;
+            DialogResult result = MessageBox.Show(_thisControl, "数据已修改，是否保存？", "警告", MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button1);
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    Apply();
+                    return true;
+                case DialogResult.No:
+                    Revert();
+                    return true;
+                case DialogResult.Cancel:
+                    return false;
+            }
+            return true;
         }
 
         protected virtual void onClosed()
@@ -112,11 +116,5 @@ namespace SalarySystem.Managment
             ManagmentControlAction handler = Closed;
             if (handler != null) handler(this);
         }
-
-        public void Dispose()
-        {
-            _container = null;
-            _thisControl = null;
-        }
-    }
+     }
 }

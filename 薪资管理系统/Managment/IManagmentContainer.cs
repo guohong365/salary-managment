@@ -7,7 +7,6 @@ namespace SalarySystem.Managment
     {
         IManagmentControl ManagmentControl { get; }
         void CloseMangmentControl();
-        void ChildClosed();
     }
 
     public class ManagmentControlContrainer : IManagmentControlContainer

@@ -11,6 +11,7 @@ namespace SalarySystem.Managment.Basic
         {
             InitializeComponent();
             gridControlEvaluationType.DataSource = DataHolder.DataSet.t_evaluation_item_type;
+            gridViewEvaluationType.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -47,11 +48,9 @@ namespace SalarySystem.Managment.Basic
 
         private void initNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            DataRow row = gridViewEvaluationType.GetDataRow(e.RowHandle);
-            if (row != null)
-            {
-                row["ENABLED"] = true;
-            }
+            var row = gridViewEvaluationType.GetDataRow(e.RowHandle);
+            row["ID"] = Guid.NewGuid().ToString();
+            row["ENABLED"] = true;
         }
     }
 }

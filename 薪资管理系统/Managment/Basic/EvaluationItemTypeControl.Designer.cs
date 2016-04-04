@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -100,7 +99,6 @@
             this.repositoryItemMemoEdit1});
             this.gridControlEvaluationType.Size = new System.Drawing.Size(519, 371);
             this.gridControlEvaluationType.TabIndex = 0;
-            this.gridControlEvaluationType.UseEmbeddedNavigator = true;
             this.gridControlEvaluationType.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewEvaluationType});
             // 
@@ -213,18 +211,9 @@
             this.colID,
             this.colNAME,
             this.colDESCRIPTION});
-            styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Strikeout);
-            styleFormatCondition1.Appearance.ForeColor = System.Drawing.Color.LightCoral;
-            styleFormatCondition1.Appearance.Options.UseFont = true;
-            styleFormatCondition1.Appearance.Options.UseForeColor = true;
-            styleFormatCondition1.ApplyToRow = true;
-            styleFormatCondition1.Column = this.colENABLED;
-            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.NotEqual;
-            styleFormatCondition1.Expression = "[ENABLED]";
-            styleFormatCondition1.Value1 = true;
-            this.gridViewEvaluationType.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1});
             this.gridViewEvaluationType.GridControl = this.gridControlEvaluationType;
+            this.gridViewEvaluationType.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "ID", null, "")});
             this.gridViewEvaluationType.Name = "gridViewEvaluationType";
             this.gridViewEvaluationType.NewItemRowText = "点击新增";
             this.gridViewEvaluationType.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -244,8 +233,6 @@
             this.colID.FieldName = "ID";
             this.colID.MaxWidth = 100;
             this.colID.Name = "colID";
-            this.colID.Visible = true;
-            this.colID.VisibleIndex = 1;
             this.colID.Width = 100;
             // 
             // colNAME
@@ -255,7 +242,7 @@
             this.colNAME.MaxWidth = 200;
             this.colNAME.Name = "colNAME";
             this.colNAME.Visible = true;
-            this.colNAME.VisibleIndex = 2;
+            this.colNAME.VisibleIndex = 1;
             this.colNAME.Width = 200;
             // 
             // colDESCRIPTION
@@ -265,7 +252,7 @@
             this.colDESCRIPTION.FieldName = "DESCRIPTION";
             this.colDESCRIPTION.Name = "colDESCRIPTION";
             this.colDESCRIPTION.Visible = true;
-            this.colDESCRIPTION.VisibleIndex = 3;
+            this.colDESCRIPTION.VisibleIndex = 2;
             this.colDESCRIPTION.Width = 166;
             // 
             // repositoryItemMemoEdit1

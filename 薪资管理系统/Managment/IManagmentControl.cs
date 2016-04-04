@@ -6,8 +6,9 @@ namespace SalarySystem.Managment
 
     public delegate bool ManagmentControlPreAction(object sender);
 
-    public interface IManagmentControl: IDisposable
+    public interface IManagmentControl
     {
+        bool Dirty { get; set; }
         IManagmentControlContainer Container { get; }
         event ManagmentControlPreAction Applying;
         event ManagmentControlAction Applied;
@@ -15,9 +16,9 @@ namespace SalarySystem.Managment
         event ManagmentControlAction Reverted;
         event ManagmentControlPreAction Closing;
         event ManagmentControlAction Closed;
-        bool Apply();
-        bool Revert();
-        bool Close();
-        bool SelfClose();
+        void Apply();
+        void Revert();
+        void Close();
+        bool TryClose();
     }
 }

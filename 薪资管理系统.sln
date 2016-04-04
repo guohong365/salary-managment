@@ -29,6 +29,36 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{AFCAE4
 		design\薪酬管理系统需求分析.docx = design\薪酬管理系统需求分析.docx
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Localization", "Localization", "{90B29D18-89E0-4900-8A88-8C7CE7420E93}"
+	ProjectSection(SolutionItems) = preProject
+		Localization\DevExpress.Data.v10.2.resources.dll = Localization\DevExpress.Data.v10.2.resources.dll
+		Localization\DevExpress.PivotGrid.v10.2.Core.resources.dll = Localization\DevExpress.PivotGrid.v10.2.Core.resources.dll
+		Localization\DevExpress.RichEdit.v10.2.Core.resources.dll = Localization\DevExpress.RichEdit.v10.2.Core.resources.dll
+		Localization\DevExpress.Utils.v10.2.resources.dll = Localization\DevExpress.Utils.v10.2.resources.dll
+		Localization\DevExpress.Xpf.Grid.v10.2.resources.dll = Localization\DevExpress.Xpf.Grid.v10.2.resources.dll
+		Localization\DevExpress.Xpf.LayoutControl.v10.2.resources.dll = Localization\DevExpress.Xpf.LayoutControl.v10.2.resources.dll
+		Localization\DevExpress.Xpf.NavBar.v10.2.resources.dll = Localization\DevExpress.Xpf.NavBar.v10.2.resources.dll
+		Localization\DevExpress.Xpf.RichEdit.v10.2.resources.dll = Localization\DevExpress.Xpf.RichEdit.v10.2.resources.dll
+		Localization\DevExpress.Xpo.v10.2.resources.dll = Localization\DevExpress.Xpo.v10.2.resources.dll
+		Localization\DevExpress.XtraBars.v10.2.resources.dll = Localization\DevExpress.XtraBars.v10.2.resources.dll
+		Localization\DevExpress.XtraCharts.v10.2.resources.dll = Localization\DevExpress.XtraCharts.v10.2.resources.dll
+		Localization\DevExpress.XtraEditors.v10.2.resources.dll = Localization\DevExpress.XtraEditors.v10.2.resources.dll
+		Localization\DevExpress.XtraGrid.v10.2.resources.dll = Localization\DevExpress.XtraGrid.v10.2.resources.dll
+		Localization\DevExpress.XtraLayout.v10.2.resources.dll = Localization\DevExpress.XtraLayout.v10.2.resources.dll
+		Localization\DevExpress.XtraNavBar.v10.2.resources.dll = Localization\DevExpress.XtraNavBar.v10.2.resources.dll
+		Localization\DevExpress.XtraPrinting.v10.2.resources.dll = Localization\DevExpress.XtraPrinting.v10.2.resources.dll
+		Localization\DevExpress.XtraReports.v10.2.Extensions.resources.dll = Localization\DevExpress.XtraReports.v10.2.Extensions.resources.dll
+		Localization\DevExpress.XtraReports.v10.2.resources.dll = Localization\DevExpress.XtraReports.v10.2.resources.dll
+		Localization\DevExpress.XtraRichEdit.v10.2.resources.dll = Localization\DevExpress.XtraRichEdit.v10.2.resources.dll
+		Localization\DevExpress.XtraScheduler.v10.2.Core.resources.dll = Localization\DevExpress.XtraScheduler.v10.2.Core.resources.dll
+		Localization\DevExpress.XtraScheduler.v10.2.Extensions.resources.dll = Localization\DevExpress.XtraScheduler.v10.2.Extensions.resources.dll
+		Localization\DevExpress.XtraScheduler.v10.2.resources.dll = Localization\DevExpress.XtraScheduler.v10.2.resources.dll
+		Localization\DevExpress.XtraSpellChecker.v10.2.resources.dll = Localization\DevExpress.XtraSpellChecker.v10.2.resources.dll
+		Localization\DevExpress.XtraTreeList.v10.2.resources.dll = Localization\DevExpress.XtraTreeList.v10.2.resources.dll
+		Localization\DevExpress.XtraVerticalGrid.v10.2.resources.dll = Localization\DevExpress.XtraVerticalGrid.v10.2.resources.dll
+		Localization\DevExpress.XtraWizard.v10.2.resources.dll = Localization\DevExpress.XtraWizard.v10.2.resources.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -33,6 +33,7 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
@@ -49,7 +50,6 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
@@ -125,6 +125,13 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem5)});
             this.barSubItem2.Name = "barSubItem2";
+            // 
+            // barButtonItem8
+            // 
+            this.barButtonItem8.Caption = "基本定义";
+            this.barButtonItem8.Id = 12;
+            this.barButtonItem8.Name = "barButtonItem8";
+            this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.basic_define);
             // 
             // barButtonItem1
             // 
@@ -238,13 +245,6 @@
             this.barSubItem1.Id = 0;
             this.barSubItem1.Name = "barSubItem1";
             // 
-            // barButtonItem8
-            // 
-            this.barButtonItem8.Caption = "基本定义";
-            this.barButtonItem8.Id = 12;
-            this.barButtonItem8.Name = "barButtonItem8";
-            this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.basic_define);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -258,6 +258,7 @@
             this.Name = "MainForm";
             this.Text = "薪资管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.onLoad);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
