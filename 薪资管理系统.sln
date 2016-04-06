@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{AFCAE4
 		design\薪酬管理.cdm = design\薪酬管理.cdm
 		design\薪酬管理.ldb = design\薪酬管理.ldb
 		design\薪酬管理.ldm = design\薪酬管理.ldm
+		design\薪酬管理.pdb = design\薪酬管理.pdb
+		design\薪酬管理.pdm = design\薪酬管理.pdm
 		design\薪酬管理系统.prj = design\薪酬管理系统.prj
 		design\薪酬管理系统需求分析.docx = design\薪酬管理系统需求分析.docx
 	EndProjectSection
