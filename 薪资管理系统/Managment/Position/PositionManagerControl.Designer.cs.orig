@@ -1,0 +1,344 @@
+﻿namespace SalarySystem.Managment.Position
+{
+    partial class PositionManagerControl
+    {
+        /// <summary> 
+        /// 必需的设计器变量。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// 清理所有正在使用的资源。
+        /// </summary>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region 组件设计器生成的代码
+
+        /// <summary> 
+        /// 设计器支持所需的方法 - 不要
+        /// 使用代码编辑器修改此方法的内容。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.colID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colName3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colEnabled3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colDescription3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colLEADER_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPageEmployee = new DevExpress.XtraTab.XtraTabPage();
+            this.employeeListControl1 = new SalarySystem.Managment.Position.EmployeeListControl();
+            this.xtraTabPageEvaluation = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPageSalaryStructure = new DevExpress.XtraTab.XtraTabPage();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.xtraTabPageEmployee.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.simpleButton3);
+            this.panelControl1.Controls.Add(this.simpleButton2);
+            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(0, 562);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(968, 40);
+            this.panelControl1.TabIndex = 0;
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(167, 9);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton3.TabIndex = 2;
+            this.simpleButton3.Text = "停用";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(86, 9);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton2.TabIndex = 1;
+            this.simpleButton2.Text = "修改";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(5, 9);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 0;
+            this.simpleButton1.Text = "新增";
+            // 
+            // treeList1
+            // 
+            this.treeList1.Appearance.Empty.BackColor = System.Drawing.Color.White;
+            this.treeList1.Appearance.Empty.Options.UseBackColor = true;
+            this.treeList1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(250)))));
+            this.treeList1.Appearance.EvenRow.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.EvenRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.EvenRow.Options.UseForeColor = true;
+            this.treeList1.Appearance.FocusedRow.BackColor = System.Drawing.Color.Cyan;
+            this.treeList1.Appearance.FocusedRow.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.FocusedRow.Options.UseForeColor = true;
+            this.treeList1.Appearance.FooterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(250)))));
+            this.treeList1.Appearance.FooterPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(153)))), ((int)(((byte)(182)))));
+            this.treeList1.Appearance.FooterPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(250)))));
+            this.treeList1.Appearance.FooterPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.treeList1.Appearance.FooterPanel.Options.UseBackColor = true;
+            this.treeList1.Appearance.FooterPanel.Options.UseBorderColor = true;
+            this.treeList1.Appearance.GroupButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.treeList1.Appearance.GroupButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.treeList1.Appearance.GroupButton.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.GroupButton.Options.UseBackColor = true;
+            this.treeList1.Appearance.GroupButton.Options.UseBorderColor = true;
+            this.treeList1.Appearance.GroupButton.Options.UseForeColor = true;
+            this.treeList1.Appearance.GroupFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.treeList1.Appearance.GroupFooter.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.treeList1.Appearance.GroupFooter.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.GroupFooter.Options.UseBackColor = true;
+            this.treeList1.Appearance.GroupFooter.Options.UseBorderColor = true;
+            this.treeList1.Appearance.GroupFooter.Options.UseForeColor = true;
+            this.treeList1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(250)))));
+            this.treeList1.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(153)))), ((int)(((byte)(182)))));
+            this.treeList1.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(250)))));
+            this.treeList1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.HeaderPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.treeList1.Appearance.HeaderPanel.Options.UseBackColor = true;
+            this.treeList1.Appearance.HeaderPanel.Options.UseBorderColor = true;
+            this.treeList1.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.treeList1.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(226)))));
+            this.treeList1.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(131)))), ((int)(((byte)(161)))));
+            this.treeList1.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            this.treeList1.Appearance.HorzLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(188)))));
+            this.treeList1.Appearance.HorzLine.Options.UseBackColor = true;
+            this.treeList1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            this.treeList1.Appearance.OddRow.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.OddRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.OddRow.Options.UseForeColor = true;
+            this.treeList1.Appearance.Preview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(253)))));
+            this.treeList1.Appearance.Preview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(165)))), ((int)(((byte)(177)))));
+            this.treeList1.Appearance.Preview.Options.UseBackColor = true;
+            this.treeList1.Appearance.Preview.Options.UseForeColor = true;
+            this.treeList1.Appearance.Row.BackColor = System.Drawing.Color.White;
+            this.treeList1.Appearance.Row.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.Row.Options.UseBackColor = true;
+            this.treeList1.Appearance.Row.Options.UseForeColor = true;
+            this.treeList1.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(197)))), ((int)(((byte)(205)))));
+            this.treeList1.Appearance.SelectedRow.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.treeList1.Appearance.TreeLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(124)))), ((int)(((byte)(148)))));
+            this.treeList1.Appearance.TreeLine.Options.UseBackColor = true;
+            this.treeList1.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(188)))));
+            this.treeList1.Appearance.VertLine.Options.UseBackColor = true;
+            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.colID,
+            this.colName3,
+            this.colEnabled3,
+            this.colDescription3,
+            this.colLEADER_ID});
+            this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeList1.Location = new System.Drawing.Point(2, 2);
+            this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsView.EnableAppearanceEvenRow = true;
+            this.treeList1.OptionsView.EnableAppearanceOddRow = true;
+            this.treeList1.OptionsView.ShowIndicator = false;
+            this.treeList1.OptionsView.ShowPreview = true;
+            this.treeList1.ParentFieldName = "LEADER_ID";
+            this.treeList1.PreviewFieldName = "DESCRIPTION";
+            this.treeList1.RootValue = "0000000000";
+            this.treeList1.Size = new System.Drawing.Size(268, 558);
+            this.treeList1.TabIndex = 0;
+<<<<<<< HEAD
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.selected_position_changed);
+=======
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.position_focused_changed);
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
+            // 
+            // colID
+            // 
+            this.colID.AppearanceHeader.Options.UseTextOptions = true;
+            this.colID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colID.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
+            this.colID.Caption = "岗位编号";
+            this.colID.FieldName = "ID";
+            this.colID.Name = "colID";
+            this.colID.Width = 48;
+            // 
+            // colName3
+            // 
+            this.colName3.AppearanceHeader.Options.UseTextOptions = true;
+            this.colName3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colName3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
+            this.colName3.Caption = "岗位名称";
+            this.colName3.FieldName = "NAME";
+            this.colName3.Name = "colName3";
+            this.colName3.Visible = true;
+            this.colName3.VisibleIndex = 0;
+<<<<<<< HEAD
+            this.colName3.Width = 221;
+=======
+            this.colName3.Width = 230;
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
+            // 
+            // colEnabled3
+            // 
+            this.colEnabled3.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEnabled3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEnabled3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
+            this.colEnabled3.Caption = "有效";
+            this.colEnabled3.FieldName = "ENABLED";
+            this.colEnabled3.Name = "colEnabled3";
+            this.colEnabled3.Visible = true;
+            this.colEnabled3.VisibleIndex = 1;
+<<<<<<< HEAD
+            this.colEnabled3.Width = 45;
+=======
+            this.colEnabled3.Width = 36;
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
+            // 
+            // colDescription3
+            // 
+            this.colDescription3.Caption = "说明";
+            this.colDescription3.FieldName = "DESCRIPTION";
+            this.colDescription3.Name = "colDescription3";
+            this.colDescription3.Width = 94;
+            // 
+            // colLEADER_ID
+            // 
+            this.colLEADER_ID.FieldName = "LEADER_ID";
+            this.colLEADER_ID.Name = "colLEADER_ID";
+            this.colLEADER_ID.Width = 48;
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.treeList1);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelControl3.Location = new System.Drawing.Point(0, 0);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(272, 562);
+            this.panelControl3.TabIndex = 2;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.xtraTabControl1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(272, 0);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(696, 562);
+            this.panelControl2.TabIndex = 3;
+            // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(2, 2);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPageEmployee;
+            this.xtraTabControl1.Size = new System.Drawing.Size(692, 558);
+            this.xtraTabControl1.TabIndex = 0;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageEvaluation,
+            this.xtraTabPageSalaryStructure,
+            this.xtraTabPageEmployee});
+            // 
+            // xtraTabPageEmployee
+            // 
+            this.xtraTabPageEmployee.Controls.Add(this.employeeListControl1);
+            this.xtraTabPageEmployee.Name = "xtraTabPageEmployee";
+            this.xtraTabPageEmployee.Size = new System.Drawing.Size(686, 530);
+            this.xtraTabPageEmployee.Text = "员工";
+            // 
+            // employeeListControl1
+            // 
+            this.employeeListControl1.CurrentPosition = null;
+         
+            this.employeeListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.employeeListControl1.Location = new System.Drawing.Point(0, 0);
+            this.employeeListControl1.Name = "employeeListControl1";
+            this.employeeListControl1.Size = new System.Drawing.Size(686, 530);
+            this.employeeListControl1.TabIndex = 0;
+            // 
+            // xtraTabPageEvaluation
+            // 
+            this.xtraTabPageEvaluation.Name = "xtraTabPageEvaluation";
+            this.xtraTabPageEvaluation.Size = new System.Drawing.Size(686, 530);
+            this.xtraTabPageEvaluation.Text = "考核项目";
+            // 
+            // xtraTabPageSalaryStructure
+            // 
+            this.xtraTabPageSalaryStructure.Name = "xtraTabPageSalaryStructure";
+            this.xtraTabPageSalaryStructure.Size = new System.Drawing.Size(686, 530);
+            this.xtraTabPageSalaryStructure.Text = "薪资构成";
+            // 
+            // PositionManagerControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.panelControl3);
+            this.Controls.Add(this.panelControl1);
+            this.Name = "PositionManagerControl";
+            this.Size = new System.Drawing.Size(968, 602);
+            this.Load += new System.EventHandler(this.PostManagerControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPageEmployee.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colName3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colEnabled3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colDescription3;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageEmployee;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageEvaluation;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageSalaryStructure;
+        private EmployeeListControl employeeListControl1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colID;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colLEADER_ID;
+
+
+    }
+}

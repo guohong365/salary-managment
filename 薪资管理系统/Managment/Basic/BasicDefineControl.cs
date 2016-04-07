@@ -9,8 +9,8 @@ namespace SalarySystem.Managment.Basic
         public BasicDefineControl()
         {
             InitializeComponent();
-            _manager=new DefineControlManager(splitContainerControl1.Panel2);
-            _manager.BuildNavBar(navBarControl1);
+            _manager=new DefineControlManager(splitContainerControl1.Panel2, navBarControl1);
+            _manager.InitNavBar();
         }
         public DefineControlManager Manager{get { return _manager; }}
     }

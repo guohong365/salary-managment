@@ -50,16 +50,27 @@
             this.repositoryItemLookUpEditLeader = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colEntryTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+<<<<<<< HEAD
+            this.repositoryItemLookUpEditPosition = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.tpositionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.repositoryItemLookUpEditLeader = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.temployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+=======
             this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).BeginInit();
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+<<<<<<< HEAD
+=======
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tpositionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditLeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).BeginInit();
             this.SuspendLayout();
@@ -298,6 +309,20 @@
             styleFormatCondition2});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+<<<<<<< HEAD
+            // 
+            // colEnabled
+            // 
+            this.colEnabled.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEnabled.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEnabled.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
+            this.colEnabled.Caption = "有效";
+            this.colEnabled.FieldName = "ENABLED";
+            this.colEnabled.Name = "colEnabled";
+            this.colEnabled.Visible = true;
+            this.colEnabled.VisibleIndex = 0;
+            this.colEnabled.Width = 38;
+=======
             this.gridView1.NewItemRowText = "点击新增";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
@@ -311,6 +336,7 @@
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.customDrawCell);
             this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.initNewRow);
             this.gridView1.DataSourceChanged += new System.EventHandler(this.gridDataSourceChanged);
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
             // 
             // colId
             // 
@@ -415,9 +441,23 @@
             this.colEntryTime.VisibleIndex = 5;
             this.colEntryTime.Width = 78;
             // 
+<<<<<<< HEAD
+            // colDimissionTime
+            // 
             this.colDimissionTime.AppearanceHeader.Options.UseTextOptions = true;
             this.colDimissionTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colDimissionTime.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
+            this.colDimissionTime.Caption = "离职时间";
+            this.colDimissionTime.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.colDimissionTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colDimissionTime.FieldName = "DISMISSION_TIME";
+            this.colDimissionTime.Name = "colDimissionTime";
+            this.colDimissionTime.Visible = true;
+            this.colDimissionTime.VisibleIndex = 6;
+            this.colDimissionTime.Width = 78;
+            // 
+=======
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
             // colDescription
             // 
             this.colDescription.AppearanceHeader.Options.UseTextOptions = true;
@@ -431,6 +471,27 @@
             this.colDescription.VisibleIndex = 7;
             this.colDescription.Width = 84;
             // 
+<<<<<<< HEAD
+            // repositoryItemLookUpEditPosition
+            // 
+            this.repositoryItemLookUpEditPosition.AutoHeight = false;
+            this.repositoryItemLookUpEditPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditPosition.DataSource = this.tpositionBindingSource;
+            this.repositoryItemLookUpEditPosition.DisplayMember = "NAME";
+            this.repositoryItemLookUpEditPosition.ExportMode = DevExpress.XtraEditors.Repository.ExportMode.DisplayText;
+            this.repositoryItemLookUpEditPosition.Name = "repositoryItemLookUpEditPosition";
+            this.repositoryItemLookUpEditPosition.ValueMember = "ID";
+            // 
+            // tpositionBindingSource
+            // 
+            this.tpositionBindingSource.DataMember = "t_position";
+            this.tpositionBindingSource.DataSource = this.salaryDataSetBindingSource;
+            // 
+            // repositoryItemLookUpEditLeader
+=======
+            // repositoryItemMemoExEdit1
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
             // 
             this.repositoryItemMemoExEdit1.AutoHeight = false;
             this.repositoryItemMemoExEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -452,8 +513,12 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+<<<<<<< HEAD
+=======
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tpositionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditLeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).EndInit();
             this.ResumeLayout(false);

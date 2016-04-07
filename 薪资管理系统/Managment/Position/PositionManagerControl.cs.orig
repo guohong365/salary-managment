@@ -1,0 +1,48 @@
+<<<<<<< HEAD
+﻿using DevExpress.XtraEditors;
+using SalarySystem.Data;
+using SalarySystem.Data.SalaryDataSetTableAdapters;
+=======
+﻿using System;
+using System.Data;
+using System.Linq;
+using DevExpress.XtraEditors;
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
+
+namespace SalarySystem.Managment.Position
+{
+    public partial class PositionManagerControl : XtraUserControl
+    {
+        public PositionManagerControl()
+        {
+            InitializeComponent();
+        }
+
+        private void PostManagerControl_Load(object sender, EventArgs e)
+        {
+            treeList1.DataSource = DataHolder.DataSet.t_position;
+            treeList1.ExpandAll();
+        }
+
+<<<<<<< HEAD
+        private void selected_position_changed(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        {
+            if (e.Node != null)
+            {
+                SalaryDataSet.t_positionRow currentRow = e.Node.Tag as SalaryDataSet.t_positionRow;
+                if (currentRow != null)
+                {
+                    DataHolder.AdapterManager.t_employeeTableAdapter.Fill(DataHolder.DataSet.t_employee, currentRow.ID);
+                }
+=======
+        private void position_focused_changed(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        {
+            if (e.Node != null)
+            {
+                string current= e.Node.GetValue("ID") as string;
+                employeeListControl1.CurrentPosition = current;
+>>>>>>> 2d0d3288c0c89c6a7734b7013bbfe4d7c195fd74
+            }
+        }
+    }
+}

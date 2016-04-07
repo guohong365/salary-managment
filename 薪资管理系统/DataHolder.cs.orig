@@ -10,8 +10,10 @@ namespace SalarySystem
     public static class DataHolder
     {
         private static readonly DataSetSalary _dataSet = new DataSetSalary();
-        private static readonly TableAdapterManager _adapterManager = new TableAdapterManager();
-        private static readonly List<Type> _adapterTypes = new List<Type>();
+       public static TableAdapterManager AdapterManager
+       {
+           get { return _adapterManager; }
+       }
 
         static DataHolder()
         {
@@ -105,8 +107,8 @@ namespace SalarySystem
             get { return _dataSet.t_evaluation_form_items; }
         }
 
-        public static DataSetSalary.t_evaluation_itemDataTable EvaluationItem
-        {
+           t_positionTableAdapter positionTableAdapter=new t_positionTableAdapter();
+           positionTableAdapter.Fill(_dataSet.t_position);
             get { return _dataSet.t_evaluation_item; }
         }
 
