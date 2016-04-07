@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{4E12590C-72E8-43EA-81C7-D4CD79FF2125}"
 	ProjectSection(SolutionItems) = preProject
 		20160405.sql = 20160405.sql
+		20160407.sql = 20160407.sql
 		init_employee.sql = init_employee.sql
 		init_evaluation_item_type.sql = init_evaluation_item_type.sql
 		init_position.sql = init_position.sql
