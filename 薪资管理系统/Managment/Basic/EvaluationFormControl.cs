@@ -7,6 +7,7 @@ using DevExpress.Data;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using Platform.DBHelper;
 using SalarySystem.Data;
 
 namespace SalarySystem.Managment.Basic
@@ -114,7 +115,7 @@ namespace SalarySystem.Managment.Basic
                             var itemRow = gridView.GetDataRow(i);
                             list.Add((string)itemRow["ITEM_ID"]);
                         }
-                        inStr = string.Join("','", list);
+                        inStr = string.Join("','", list.ToArray());
                     }
                     var preFilter = getItemsFilter(((string)row["POSITION_ID"]) ?? "");
                     var filter = string.IsNullOrEmpty(inStr) ? preFilter : string.Format("{0} AND [ID] NOT IN ('{1}')", preFilter, inStr);
@@ -131,7 +132,10 @@ namespace SalarySystem.Managment.Basic
 
         private void save_forms(object sender, EventArgs e)
         {
-            DataHolder.EvaluationFormTableAdapter.Update(DataHolder.EvaluationForm);
+            DBHandler handler = DBHandler.GetBuffer();
+            handler.BeginTransaction();
+            handler.Update(DataHolder.EvaluationForm.GetChanges());
+            //DataHolder.EvaluationFormTableAdapter.Update(DataHolder.EvaluationForm);
             var table=DataHolder.EvaluationFormDetail.GetChanges();
             if (table == null || table.Rows.Count==0) return;
             foreach (DataRow row in table.Rows)
@@ -157,7 +161,10 @@ namespace SalarySystem.Managment.Basic
                 }
 
             }
-            DataHolder.EvaluationFormItemsTableAdapter.Update(DataHolder.EvaluationFormItems);
+            handler.Update(DataHolder.EvaluationFormItems.GetChanges());
+            handler.EndTransaction(true);
+            handler.FreeBuffer();
+            //DataHolder.EvaluationFormItemsTableAdapter.Update(DataHolder.EvaluationFormItems);
             DataHolder.EvaluationFormDetail.AcceptChanges();
             simpleButtonSave.Enabled = false;
             simpleButtonRevert.Enabled = false;

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using Platform.DBHelper;
 
 namespace SalarySystem.Managment.Basic
 {
@@ -10,18 +11,17 @@ namespace SalarySystem.Managment.Basic
         public EvaluationItemTypeControl()
         {
             InitializeComponent();
-            gridControlEvaluationType.DataSource = DataHolder.DataSet.t_evaluation_item_type;
+            gridControlEvaluationType.DataSource = DataHolder.EvaluationItemType;
             gridViewEvaluationType.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
         }
 
         private void save_Click(object sender, EventArgs e)
         {
-            DataHolder.AdapterManager.t_evaluation_item_typeTableAdapter.Update(
-                DataHolder.DataSet.t_evaluation_item_type);
+            DBHandler.UpdateOnce(DataHolder.EvaluationItemType);
         }
         private void abandon_Click(object sender, EventArgs e)
         {
-            DataHolder.DataSet.t_evaluation_item_type.RejectChanges();
+            DataHolder.EvaluationItemType.RejectChanges();
             gridControlEvaluationType.RefreshDataSource();
         }
 
@@ -37,8 +37,7 @@ namespace SalarySystem.Managment.Basic
                 MessageBox.Show("数据已修改，是否保存？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                DataHolder.AdapterManager.t_evaluation_item_typeTableAdapter.Update(
-                    DataHolder.DataSet.t_evaluation_item_type);
+                DBHandler.UpdateOnce(DataHolder.EvaluationItemType);
             }
             else
             {

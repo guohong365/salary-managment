@@ -9,10 +9,11 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using Platform.DBHelper;
 
 namespace SalarySystem.Managment.Basic
 {
-    public class AssignmentItemControl : DefineBaseControl
+    public class AssignmentItemControl : BaseControl
     {
         #region default init by desinger
         private IContainer components;
@@ -290,7 +291,7 @@ namespace SalarySystem.Managment.Basic
         protected override void onSave()
         {
             base.onSave();
-            DataHolder.AssignmentItemTableAdapter.Update(DataHolder.AssignmentItem);
+            DBHandler.UpdateOnce(DataHolder.AssignmentItem);
         }
 
         protected override void onRevert()

@@ -4,11 +4,12 @@ using System.Diagnostics;
 using System.Data;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
+using Platform.DBHelper;
 using SalarySystem.Data;
 
 namespace SalarySystem.Managment.Basic
 {
-    public partial class ExecutionAssignmentControl : DefineBaseControl
+    public partial class ExecutionAssignmentControl : BaseControl
     {
         public ExecutionAssignmentControl()
         {
@@ -89,7 +90,7 @@ namespace SalarySystem.Managment.Basic
                         DataHolder.PositionAssignments.Addt_position_assignmentsRow(detail);
                     }
                 }
-                DataHolder.PositionAssignmentsTableAdapter.Update(DataHolder.PositionAssignments);
+                DBHandler.UpdateOnce(DataHolder.PositionAssignments);
                 DataHolder.AssignmentDetail.AcceptChanges();
             }
         }

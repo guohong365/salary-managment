@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using DevExpress.XtraEditors;
+using Platform.DBHelper;
 
 namespace SalarySystem.Managment.Basic
 {
@@ -60,7 +61,7 @@ namespace SalarySystem.Managment.Basic
 
         private void save_items(object sender, EventArgs e)
         {
-            DataHolder.SalaryItemTableAdapter.Update(DataHolder.SalaryItem);
+            DBHandler.UpdateOnce(DataHolder.SalaryItem);
             simpleButtonSave.Enabled = false;
             simpleButtonRevert.Enabled = false;
         }

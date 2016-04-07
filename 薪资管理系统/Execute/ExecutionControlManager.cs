@@ -1,7 +1,8 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraNavBar;
+using SalarySystem.Managment.Basic;
 
-namespace SalarySystem.Managment.Basic
+namespace SalarySystem.Execute
 {
     public class ExecutionControlManager: NavBarControlManagerBase
     {

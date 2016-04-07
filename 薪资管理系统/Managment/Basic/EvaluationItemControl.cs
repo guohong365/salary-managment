@@ -2,6 +2,7 @@
 using System.Data;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using Platform.DBHelper;
 
 namespace SalarySystem.Managment.Basic
 {
@@ -36,7 +37,8 @@ namespace SalarySystem.Managment.Basic
 
         private void save_clicked(object sender, EventArgs e)
         {
-            DataHolder.EvaluationItemTableAdapter.Update(DataHolder.EvaluationItem);
+            DBHandler.UpdateOnce(DataHolder.EvaluationItem);
+            //DataHolder.EvaluationItemTableAdapter.Update(DataHolder.EvaluationItem);
             simpleButton1.Enabled = false;
             simpleButton2.Enabled = false;
         }

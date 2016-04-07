@@ -1,33 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace SalarySystem.Managment.Basic
 {
     public class NavGroupDefine
     {
-        public NavGroupDefine(string name, IEnumerable<INavItemDefine> items, int order, string toolTip)
+        public NavGroupDefine(string name, IEnumerable<INavItemDefine> items, int order)
         {
-            Items.AddRange(items);
-            Order = order;
-            Name = name;
-            ToolTip = string.IsNullOrEmpty(toolTip)? name :toolTip;
+            _items.AddRange(items);
+            _order = order;
+            _name = name;
         }
 
-        public NavGroupDefine(string name, IEnumerable<NavItemDefine> items, int order)
-            : this(name, items, order, null)
-        {
-        }
-
-        public NavGroupDefine(string name, IEnumerable<NavItemDefine> items)
+        public NavGroupDefine(string name, IEnumerable<INavItemDefine> items)
             : this(name, items, 0)
         {
             
         }
 
-        
-        public string Name { get; private set; }
-        public string ToolTip { get; private set; }
-        public int Order { get; private set; }
-        public List<INavItemDefine> Items { get; private set; } 
+        private readonly string _name;
+        private readonly int _order;
+        private readonly List<INavItemDefine> _items=new List<INavItemDefine>(); 
+        public string Name { get { return _name; }}
+        public int Order { get { return _order; }}
+        public List<INavItemDefine> Items { get { return _items; }} 
     }
 }

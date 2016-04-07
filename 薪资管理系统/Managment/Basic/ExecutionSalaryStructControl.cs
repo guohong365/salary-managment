@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Data;
 using DevExpress.XtraEditors.Controls;
+using Platform.DBHelper;
 using SalarySystem.Data;
 
 namespace SalarySystem.Managment.Basic
@@ -93,7 +94,8 @@ namespace SalarySystem.Managment.Basic
                         DataHolder.PositionSalaryItems.Addt_position_salary_itemsRow(detail);
                     }
                 }
-                DataHolder.PositionSalaryItemsTableAdapter.Update(DataHolder.PositionSalaryItems);
+                DBHandler.UpdateOnce(DataHolder.PositionSalaryItems);
+                //DataHolder.PositionSalaryItemsTableAdapter.Update(DataHolder.PositionSalaryItems);
                 DataHolder.SalaryStructDetail.AcceptChanges();
             }
             simpleButtonSave.Enabled = false;

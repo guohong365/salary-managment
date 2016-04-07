@@ -8,7 +8,7 @@ namespace SalarySystem.Managment.Basic
          string Name { get;}
          int Order { get;  }
          string ToolTip { get;  }
-         Action<NavItemDefine> Action { get; }
+         Action<INavItemDefine> Action { get; }
          Control ThisControl { get; }
     }
 
@@ -38,7 +38,7 @@ namespace SalarySystem.Managment.Basic
         public string Name { get; private set; }
         public int Order { get; private set; }
         public string ToolTip { get; private set; }
-        public Action<NavItemDefine> Action { get; private set; }
+        public Action<INavItemDefine> Action { get; private set; }
         private Control _thisControl;
         public Control ThisControl
         {

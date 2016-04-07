@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
+﻿using SalarySystem.Managment.Basic;
 
-namespace SalarySystem
+namespace SalarySystem.Execute
 {
     public partial class ExecutionControl : DevExpress.XtraEditors.XtraUserControl
     {
+        private readonly ExecutionControlManager _manager;
+        protected ExecutionControlManager Manager{get { return _manager; }}
         public ExecutionControl()
         {
             InitializeComponent();
+            _manager=new ExecutionControlManager(splitContainerControl1.Panel2, navBarControl1);
+            _manager.InitNavBar();
         }
     }
 }

@@ -8,9 +8,9 @@ namespace SalarySystem.Managment.Basic
 {
     public class NavBarControlManagerBase : INavBarContorlManager
     {   
-        private class _itemComparer : IComparer<INavItemDefine>, IComparer<NavGroupDefine>
+        private class ItemComparer : IComparer<INavItemDefine>, IComparer<NavGroupDefine>
         {
-            public static readonly _itemComparer Comparer=new _itemComparer();
+            public static readonly ItemComparer Comparer=new ItemComparer();
             public int Compare(INavItemDefine x, INavItemDefine y)
             {
                 return x.Order - y.Order;
@@ -77,8 +77,8 @@ namespace SalarySystem.Managment.Basic
         }
         protected virtual void onBuildNavBar(NavBarControl navBarControl)
         {
-            _navGroupDefines.Sort(_itemComparer.Comparer);
-            _navGroupDefines.ForEach(item => item.Items.Sort(_itemComparer.Comparer));
+            _navGroupDefines.Sort(ItemComparer.Comparer);
+            _navGroupDefines.ForEach(item => item.Items.Sort(ItemComparer.Comparer));
             navBarControl.Items.Clear();
             navBarControl.Groups.Clear();
             _navGroupDefines.ForEach(group =>

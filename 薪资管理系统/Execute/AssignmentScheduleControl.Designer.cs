@@ -1,6 +1,6 @@
-﻿namespace SalarySystem.Managment.Basic
+﻿namespace SalarySystem.Execute
 {
-    partial class ExecutionEvaluationControl
+    partial class AssignmentScheduleControl
     {
         /// <summary> 
         /// Required designer variable.

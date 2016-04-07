@@ -1,4 +1,4 @@
-﻿namespace SalarySystem.Managment.Basic
+﻿namespace SalarySystem.Execute
 {
     partial class SalaryDetailControl
     {

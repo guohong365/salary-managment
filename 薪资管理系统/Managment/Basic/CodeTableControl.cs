@@ -9,7 +9,7 @@ using DevExpress.XtraEditors;
 
 namespace SalarySystem.Managment.Basic
 {
-    public partial class CodeTableControl : DefineBaseControl
+    public partial class CodeTableControl : BaseControl
     {
         public CodeTableControl()
         {

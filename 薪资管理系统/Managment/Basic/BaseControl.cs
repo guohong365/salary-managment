@@ -3,10 +3,10 @@ using DevExpress.XtraEditors;
 
 namespace SalarySystem.Managment.Basic
 {
-    public partial class DefineBaseControl : XtraUserControl
+    public partial class BaseControl : XtraUserControl
     {
         private bool _virtualUnload = true;
-        public DefineBaseControl()
+        public BaseControl()
         {
             InitializeComponent();
             if (VirtualUnload)

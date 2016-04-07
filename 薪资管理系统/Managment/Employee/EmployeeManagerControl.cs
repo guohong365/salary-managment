@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Platform.DBHelper;
 using SalarySystem.Managment.Editor;
 using SalarySystem.Managment.Employee.Editor;
 
@@ -18,7 +19,7 @@ namespace SalarySystem.Managment.Employee
             ItemEditForm form=new ItemEditForm(EmployeePropertyControl.GetFactory(), "新增员工", DataHolder.DataSet.t_employee.NewRow(),  (int) EditPurpose.FOR_NEW);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                DataHolder.AdapterManager.t_employeeTableAdapter.Update(form.Row);
+                DBHandler.UpdateOnce(form.Row);
                 gridControlEmployee.RefreshDataSource();
             }
             else
