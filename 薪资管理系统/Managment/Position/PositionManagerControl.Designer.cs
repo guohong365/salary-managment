@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
@@ -39,7 +38,6 @@
             this.colEnabled3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDescription3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colLEADER_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.salaryDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
@@ -50,7 +48,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -103,7 +100,7 @@
             this.treeList1.Appearance.EvenRow.ForeColor = System.Drawing.Color.Black;
             this.treeList1.Appearance.EvenRow.Options.UseBackColor = true;
             this.treeList1.Appearance.EvenRow.Options.UseForeColor = true;
-            this.treeList1.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(180)))), ((int)(((byte)(191)))));
+            this.treeList1.Appearance.FocusedRow.BackColor = System.Drawing.Color.Cyan;
             this.treeList1.Appearance.FocusedRow.ForeColor = System.Drawing.Color.Black;
             this.treeList1.Appearance.FocusedRow.Options.UseBackColor = true;
             this.treeList1.Appearance.FocusedRow.Options.UseForeColor = true;
@@ -165,8 +162,6 @@
             this.colEnabled3,
             this.colDescription3,
             this.colLEADER_ID});
-            this.treeList1.DataMember = "t_position";
-            this.treeList1.DataSource = this.salaryDataSetBindingSource;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(2, 2);
             this.treeList1.Name = "treeList1";
@@ -176,9 +171,10 @@
             this.treeList1.OptionsView.ShowPreview = true;
             this.treeList1.ParentFieldName = "LEADER_ID";
             this.treeList1.PreviewFieldName = "DESCRIPTION";
+            this.treeList1.RootValue = "0000000000";
             this.treeList1.Size = new System.Drawing.Size(268, 558);
             this.treeList1.TabIndex = 0;
-            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.selected_position_changed);
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.position_focused_changed);
             // 
             // colID
             // 
@@ -200,7 +196,7 @@
             this.colName3.Name = "colName3";
             this.colName3.Visible = true;
             this.colName3.VisibleIndex = 0;
-            this.colName3.Width = 221;
+            this.colName3.Width = 230;
             // 
             // colEnabled3
             // 
@@ -212,7 +208,7 @@
             this.colEnabled3.Name = "colEnabled3";
             this.colEnabled3.Visible = true;
             this.colEnabled3.VisibleIndex = 1;
-            this.colEnabled3.Width = 45;
+            this.colEnabled3.Width = 36;
             // 
             // colDescription3
             // 
@@ -226,11 +222,6 @@
             this.colLEADER_ID.FieldName = "LEADER_ID";
             this.colLEADER_ID.Name = "colLEADER_ID";
             this.colLEADER_ID.Width = 48;
-            // 
-            // salaryDataSetBindingSource
-            // 
-            this.salaryDataSetBindingSource.DataSource = typeof(SalarySystem.Data.SalaryDataSet);
-            this.salaryDataSetBindingSource.Position = 0;
             // 
             // panelControl3
             // 
@@ -272,6 +263,8 @@
             // 
             // employeeListControl1
             // 
+            this.employeeListControl1.CurrentPosition = null;
+         
             this.employeeListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employeeListControl1.Location = new System.Drawing.Point(0, 0);
             this.employeeListControl1.Name = "employeeListControl1";
@@ -303,7 +296,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salaryDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -334,7 +326,6 @@
         private EmployeeListControl employeeListControl1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colID;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colLEADER_ID;
-        private System.Windows.Forms.BindingSource salaryDataSetBindingSource;
 
 
     }

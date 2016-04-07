@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Windows.Forms;
+using System.Data;
 using DevExpress.XtraEditors;
-using SalarySystem.Core;
 
 namespace SalarySystem.Managment.Editor
 {
@@ -13,74 +12,74 @@ namespace SalarySystem.Managment.Editor
             InitializeComponent();
         }
 
-        protected ItemControl(IItem item, int editType)
+        protected ItemControl(DataRow item, int editType)
         {
             EditType = editType;
             InitializeComponent();
             FillControls += fillControls;
             Retrive += retriveData;
-            Item = item;
+            Row = item;
         }
 
-        private void fillControls(int editype, IItem item)
+        private void fillControls(int editype, DataRow row)
         {
-            textEditId.Text = item.Id;
-            textEditName.Text = item.Name;
-            memoEditDesc.Text = item.Description;
+            textEditId.Text = row["ID"] as string;
+            textEditName.Text = row["NAME"] as string;
+            memoEditDesc.Text = row["DESCRIPTION"] as string;
 
         }
 
-        private void retriveData(ref IItem item)
+        private void retriveData(ref DataRow row)
         {
-            item.Id = textEditId.Text.Trim();
-            item.Name = textEditName.Text.Trim();
-            item.Description = memoEditDesc.Text.Trim();
+            row["ID"] = textEditId.Text.Trim();
+            row["NAME"] = textEditName.Text.Trim();
+            row["DESCRIPTION"] = memoEditDesc.Text.Trim();
         }
 
         public int EditType { get; set; }
-        private IItem _item;
+        private DataRow _row;
 
         [Browsable(false)]
-        public IItem Item
+        public DataRow Row
         {
             get
             {
-                onRetrive(ref _item);
-                return _item;
+                onRetrive(ref _row);
+                return _row;
             }
             set
             {
-                _item = value;
-                onFillControls(EditType, _item);
+                _row = value;
+                onFillControls(EditType, _row);
             }
         }
 
         public virtual bool ValidateItem()
         {
-            return string.IsNullOrEmpty(Item.Id) && string.IsNullOrEmpty(Item.Name);
+            return true;
         }
 
         public event FillControls FillControls;
 
-        protected virtual void onFillControls(int type, IItem item)
+        protected virtual void onFillControls(int type, DataRow row)
         {
             FillControls handler = FillControls;
-            if (handler != null) handler(type, item);
+            if (handler != null) handler(type, row);
         }
 
         public event Retrive Retrive;
 
-        protected virtual void onRetrive(ref IItem item)
+        protected virtual void onRetrive(ref DataRow row)
         {
             Retrive handler = Retrive;
-            if (handler != null) handler(ref item);
+            if (handler != null) handler(ref row);
         }
 
         private class FactoryClass : IItemEditorFactory
         {
-            public ItemControl CreateEditorControl(IItem item, int editType)
+            public ItemControl CreateEditorControl(DataRow row, int editType)
             {
-                return new ItemControl(item, editType);
+                return new ItemControl(row, editType);
             }
         }
 

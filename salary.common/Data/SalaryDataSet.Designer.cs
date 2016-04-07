@@ -5008,11 +5008,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DESCRIPTION {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_assignment.DESCRIPTIONColumn]));
+                    if (this.IsDESCRIPTIONNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_assignment”中列“DESCRIPTION”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_assignment.DESCRIPTIONColumn]));
                     }
                 }
                 set {
@@ -5178,11 +5178,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DESCRIPTION {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_assignment_performance.DESCRIPTIONColumn]));
+                    if (this.IsDESCRIPTIONNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_assignment_performance”中列“DESCRIPTION”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_assignment_performance.DESCRIPTIONColumn]));
                     }
                 }
                 set {
@@ -5232,11 +5232,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string LEADER_ID {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_employee.LEADER_IDColumn]));
+                    if (this.IsLEADER_IDNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_employee”中列“LEADER_ID”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_employee.LEADER_IDColumn]));
                     }
                 }
                 set {
@@ -5248,11 +5248,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string POSITION_ID {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_employee.POSITION_IDColumn]));
+                    if (this.IsPOSITION_IDNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_employee”中列“POSITION_ID”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_employee.POSITION_IDColumn]));
                     }
                 }
                 set {
@@ -5275,11 +5275,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DESCRIPTION {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_employee.DESCRIPTIONColumn]));
+                    if (this.IsDESCRIPTIONNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_employee”中列“DESCRIPTION”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_employee.DESCRIPTIONColumn]));
                     }
                 }
                 set {
@@ -5602,11 +5602,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DESCRIPTION {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_evaluation_item.DESCRIPTIONColumn]));
+                    if (this.IsDESCRIPTIONNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_evaluation_item”中列“DESCRIPTION”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_evaluation_item.DESCRIPTIONColumn]));
                     }
                 }
                 set {
@@ -5689,11 +5689,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DESCRIPTION {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_evalueation_results.DESCRIPTIONColumn]));
+                    if (this.IsDESCRIPTIONNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_evalueation_results”中列“DESCRIPTION”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_evalueation_results.DESCRIPTIONColumn]));
                     }
                 }
                 set {
@@ -5865,11 +5865,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string LEADER_ID {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_position.LEADER_IDColumn]));
+                    if (this.IsLEADER_IDNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_position”中列“LEADER_ID”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_position.LEADER_IDColumn]));
                     }
                 }
                 set {
@@ -6135,11 +6135,11 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DESCRIPTION {
                 get {
-                    try {
-                        return ((string)(this[this.tablet_salary_item.DESCRIPTIONColumn]));
+                    if (this.IsDESCRIPTIONNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“t_salary_item”中列“DESCRIPTION”的值为 DBNull。", e);
+                    else {
+                        return ((string)(this[this.tablet_salary_item.DESCRIPTIONColumn]));
                     }
                 }
                 set {

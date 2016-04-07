@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace SalarySystem
@@ -11,9 +12,15 @@ namespace SalarySystem
         [STAThread]
         static void Main()
         {
-            DataHolder.Init();
+            System.Threading.Thread.CurrentThread.CurrentCulture=new CultureInfo("zh-CHS");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (!SystemInitalizer.Init())
+            {
+                MessageBox.Show("初始化失败，系统终止！");
+                return;
+            }
+
             Application.Run(new MainForm());
         }
     }

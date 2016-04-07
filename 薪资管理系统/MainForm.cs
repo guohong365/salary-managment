@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using SalarySystem.Managment;
+using SalarySystem.Managment.Basic;
 using SalarySystem.Managment.Employee;
 using SalarySystem.Managment.Position;
 
@@ -14,6 +17,14 @@ namespace SalarySystem
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void onLoad(object sender, EventArgs e)
+        {
+            Text = string.Format("薪酬管理系统 绩效考核版本：[{0}] 任务指标版本：[{1}] 薪资构成版本：[{2}]", 
+                GlobalSettings.EvaluationFullVersion,
+                GlobalSettings.AssignmentFullVersion,
+                GlobalSettings.SalaryFullVersion);
         }
 
         bool takeCachedPage(string name)
@@ -55,7 +66,7 @@ namespace SalarySystem
             }
         }
 
-        private void xtraTabControl1_CloseButtonClick(object sender, System.EventArgs e)
+        private void xtraTabControl1_CloseButtonClick(object sender, EventArgs e)
         {
             XtraTabPage page = xtraTabControl1.SelectedTabPage;
             if (!_pages.ContainsKey(page.Text))
@@ -76,6 +87,14 @@ namespace SalarySystem
         private void appraisalElementManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+        }
+
+        private void basic_define(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!takeCachedPage("基本定义"))
+            {
+                addControl("基本定义", new BasicDefineControl());
+            }
         }
     }
 }
