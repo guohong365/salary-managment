@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using SalarySystem.Data;
-using SalarySystem.DBHelper;
 using SalarySystem.Managment.Basic;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Execute
 {

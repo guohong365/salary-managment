@@ -9,8 +9,8 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using SalarySystem.DBHelper;
 using SalarySystem.Managment.Basic;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Assignment
 {

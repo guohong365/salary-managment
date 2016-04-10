@@ -6,6 +6,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
 using SalarySystem.Managment.Basic;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Assignment
 {

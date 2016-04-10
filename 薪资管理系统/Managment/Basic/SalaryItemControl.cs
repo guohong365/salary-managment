@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using DevExpress.XtraEditors;
-using SalarySystem.DBHelper;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Basic
 {

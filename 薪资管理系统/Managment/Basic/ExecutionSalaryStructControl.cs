@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Data;
 using DevExpress.XtraEditors.Controls;
 using SalarySystem.Data;
-using SalarySystem.DBHelper;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Basic
 {

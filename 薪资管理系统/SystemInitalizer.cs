@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using SalarySystem.Data;
-using SalarySystem.DBHelper;
 using SalarySystem.Managment;
 using SalarySystem.Managment.Editor;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem
 {

@@ -2,8 +2,8 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using SalarySystem.DBHelper;
 using SalarySystem.Managment.Basic;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Evaluation
 {

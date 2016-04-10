@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using SalarySystem.DBHelper;
 using SalarySystem.Managment.Editor;
 using SalarySystem.Managment.Employee.Editor;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Employee
 {

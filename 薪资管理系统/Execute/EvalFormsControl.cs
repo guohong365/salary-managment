@@ -2,8 +2,8 @@
 using System.Data;
 using System.Windows.Forms;
 using SalarySystem.Data;
-using SalarySystem.DBHelper;
 using SalarySystem.Managment;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Execute
 {

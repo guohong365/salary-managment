@@ -9,21 +9,21 @@ namespace UC.Platform.Data.DBHelper
 {
     public sealed class SQLBuilderManager
     {
-        private Type m_ConditionType = typeof(SQLCondition);
-        private Hashtable m_MapSQLCondition = new Hashtable();
-        private Hashtable m_MapSQLRelation = new Hashtable();
-        private Hashtable m_MapSQLResult = new Hashtable();
-        private Hashtable m_MapSQLResultItem = new Hashtable();
-        private Hashtable m_MapSQLSection = new Hashtable();
-        private Type m_RelationType = typeof(SQLRelation);
-        private Type m_ResultItemType = typeof(SQLResultItem);
-        private Type m_ResultType = typeof(SQLResult);
+        private Type _conditionType = typeof(SQLCondition);
+        private readonly Hashtable _MapSQLCondition = new Hashtable();
+        private readonly Hashtable _MapSQLRelation = new Hashtable();
+        private readonly Hashtable _MapSQLResult = new Hashtable();
+        private readonly Hashtable _MapSQLResultItem = new Hashtable();
+        private readonly Hashtable m_MapSQLSection = new Hashtable();
+        private Type _relationType = typeof(SQLRelation);
+        private Type _resultItemType = typeof(SQLResultItem);
+        private Type _resultType = typeof(SQLResult);
         internal Hashtable m_Sections = new Hashtable();
         private Type m_SectionType = typeof(SQLSection);
-        private static string[] MapSQLCondition;
-        private static string[] MapSQLRelation;
-        private static string[] MapSQLResult;
-        private static string[] MapSQLResultItem;
+        private static readonly string[] _mapSQLCondition;
+        private static readonly string[] _mapSQLRelation;
+        private static readonly string[] _mapSQLResult;
+        private static readonly string[] _mapSQLResultItem;
 
         static SQLBuilderManager()
         {
@@ -36,7 +36,7 @@ namespace UC.Platform.Data.DBHelper
                     list.Add(info.Name);
                 }
             }
-            MapSQLResult = list.ToArray(typeof(string)) as string[];
+            _mapSQLResult = list.ToArray(typeof(string)) as string[];
             list.Clear();
             fields = typeof(SQLResultItem).GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             list = new ArrayList();
@@ -47,7 +47,7 @@ namespace UC.Platform.Data.DBHelper
                     list.Add(info2.Name);
                 }
             }
-            MapSQLResultItem = list.ToArray(typeof(string)) as string[];
+            _mapSQLResultItem = list.ToArray(typeof(string)) as string[];
             list.Clear();
             fields = typeof(SQLRelation).GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             list = new ArrayList();
@@ -58,7 +58,7 @@ namespace UC.Platform.Data.DBHelper
                     list.Add(info3.Name);
                 }
             }
-            MapSQLRelation = list.ToArray(typeof(string)) as string[];
+            _mapSQLRelation = list.ToArray(typeof(string)) as string[];
             list.Clear();
             fields = typeof(SQLCondition).GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             list = new ArrayList();
@@ -69,7 +69,7 @@ namespace UC.Platform.Data.DBHelper
                     list.Add(info4.Name);
                 }
             }
-            MapSQLCondition = list.ToArray(typeof(string)) as string[];
+            _mapSQLCondition = list.ToArray(typeof(string)) as string[];
         }
 
         public SQLSection GetSection(string sectionName)
@@ -95,7 +95,7 @@ namespace UC.Platform.Data.DBHelper
             {
                 return null;
             }
-            if ((section.ADDEND != null) && (section.ADDEND != ""))
+            if (!string.IsNullOrEmpty(section.ADDEND))
             {
                 return (text + text2 + " " + section.ADDEND);
             }
@@ -122,7 +122,7 @@ namespace UC.Platform.Data.DBHelper
             {
                 return null;
             }
-            if ((section.ADDEND != null) && (section.ADDEND != ""))
+            if (!string.IsNullOrEmpty(section.ADDEND))
             {
                 sql = text + text2 + " " + section.ADDEND;
                 return condition;
@@ -148,7 +148,7 @@ namespace UC.Platform.Data.DBHelper
             {
                 return null;
             }
-            if ((section.ADDEND != null) && (section.ADDEND != ""))
+            if (!string.IsNullOrEmpty(section.ADDEND))
             {
                 return (text + text2 + " " + section.ADDEND);
             }
@@ -174,7 +174,7 @@ namespace UC.Platform.Data.DBHelper
             {
                 return null;
             }
-            if ((section.ADDEND != null) && (section.ADDEND != ""))
+            if (!string.IsNullOrEmpty(section.ADDEND))
             {
                 sql = text + text2 + " " + section.ADDEND;
                 return condition;
@@ -191,7 +191,7 @@ namespace UC.Platform.Data.DBHelper
                 return false;
             }
             FillUtility.FillFields(section, sectionRow, false, m_MapSQLSection);
-            if ((section.SNAME == null) || (section.SNAME == ""))
+            if (string.IsNullOrEmpty(section.SNAME))
             {
                 return false;
             }
@@ -199,38 +199,35 @@ namespace UC.Platform.Data.DBHelper
             section.OnBeforeInitialize();
             foreach (DataRow row in sectionRow.GetChildRows(relations[0]))
             {
-                SQLResult result = Activator.CreateInstance(m_ResultType) as SQLResult;
+                SQLResult result = Activator.CreateInstance(_resultType) as SQLResult;
                 result.m_Section = section;
-                if (result != null)
+                FillUtility.FillFields(result, row, false, _MapSQLResult);
+                if (!string.IsNullOrEmpty(result.DFIELD))
                 {
-                    FillUtility.FillFields(result, row, false, m_MapSQLResult);
-                    if ((result.DFIELD != null) && (result.DFIELD != ""))
+                    section.m_Results[result.DFIELD] = result;
+                    section.m_ResultsList.Add(result);
+                    foreach (DataRow row2 in row.GetChildRows(relations[3]))
                     {
-                        section.m_Results[result.DFIELD] = result;
-                        section.m_ResultsList.Add(result);
-                        foreach (DataRow row2 in row.GetChildRows(relations[3]))
+                        SQLResultItem item = Activator.CreateInstance(_resultItemType) as SQLResultItem;
+                        if (item != null)
                         {
-                            SQLResultItem item = Activator.CreateInstance(m_ResultItemType) as SQLResultItem;
-                            if (item != null)
+                            FillUtility.FillFields(item, row2, false, _MapSQLResultItem);
+                            if (!string.IsNullOrEmpty(item.STABLE) && ((!string.IsNullOrEmpty(item.SFIELD))))
                             {
-                                FillUtility.FillFields(item, row2, false, m_MapSQLResultItem);
-                                if (((item.STABLE != null) && (item.STABLE != "")) && ((item.SFIELD != null) && (item.SFIELD != "")))
-                                {
-                                    result.m_Results.Add(item);
-                                }
+                                result.m_Results.Add(item);
                             }
                         }
-                        result.MakeSQLTemplate();
                     }
+                    result.MakeSQLTemplate();
                 }
             }
             foreach (DataRow row3 in sectionRow.GetChildRows(relations[1]))
             {
-                SQLRelation relation = Activator.CreateInstance(m_RelationType) as SQLRelation;
+                SQLRelation relation = Activator.CreateInstance(_relationType) as SQLRelation;
                 if (relation != null)
                 {
-                    FillUtility.FillFields(relation, row3, false, m_MapSQLRelation);
-                    if (((relation.TABLES != null) && (relation.TABLES != "")) && ((relation.RELATION != null) && (relation.RELATION != "")))
+                    FillUtility.FillFields(relation, row3, false, _MapSQLRelation);
+                    if (!string.IsNullOrEmpty(relation.TABLES) && ((!string.IsNullOrEmpty(relation.RELATION))))
                     {
                         relation.Regular();
                         section.m_Relations.Add(relation);
@@ -239,11 +236,11 @@ namespace UC.Platform.Data.DBHelper
             }
             foreach (DataRow row4 in sectionRow.GetChildRows(relations[2]))
             {
-                SQLCondition condition = Activator.CreateInstance(m_ConditionType) as SQLCondition;
+                SQLCondition condition = Activator.CreateInstance(_conditionType) as SQLCondition;
                 if (condition != null)
                 {
-                    FillUtility.FillFields(condition, row4, false, m_MapSQLCondition);
-                    if (((condition.CNAME != null) && (condition.CNAME != "")) && ((condition.CONDITIONSTRING != null) && (condition.CONDITIONSTRING != "")))
+                    FillUtility.FillFields(condition, row4, false, _MapSQLCondition);
+                    if (!string.IsNullOrEmpty(condition.CNAME) && ((!string.IsNullOrEmpty(condition.CONDITIONSTRING))))
                     {
                         condition.Regular();
                         section.m_Conditions[condition.CNAME] = condition;
@@ -300,9 +297,9 @@ namespace UC.Platform.Data.DBHelper
             string text = sectionRow[sectionIndex].ToString();
             foreach (DataRow row in resultTable.Select(string.Format(toResultCondition, text), resultOrder))
             {
-                SQLResult result = Activator.CreateInstance(m_ResultType) as SQLResult;
+                SQLResult result = Activator.CreateInstance(_resultType) as SQLResult;
                 result.m_Section = section;
-                FillUtility.FillFields(result, row, false, m_MapSQLResult);
+                FillUtility.FillFields(result, row, false, _MapSQLResult);
                 if (!string.IsNullOrEmpty(result.DFIELD))
                 {
                     section.m_Results[result.DFIELD] = result;
@@ -310,11 +307,11 @@ namespace UC.Platform.Data.DBHelper
                     string text2 = row[resultIndex].ToString();
                     foreach (DataRow row2 in resultItemTable.Select(string.Format(toResultItemCondition, text, text2), resultItemOrder))
                     {
-                        SQLResultItem item = Activator.CreateInstance(m_ResultItemType) as SQLResultItem;
+                        SQLResultItem item = Activator.CreateInstance(_resultItemType) as SQLResultItem;
                         if (item != null)
                         {
-                            FillUtility.FillFields(item, row2, false, m_MapSQLResultItem);
-                            if (!string.IsNullOrEmpty(item.STABLE) && ((item.SFIELD != null) && (item.SFIELD != "")))
+                            FillUtility.FillFields(item, row2, false, _MapSQLResultItem);
+                            if (!string.IsNullOrEmpty(item.STABLE) && ((!string.IsNullOrEmpty(item.SFIELD))))
                             {
                                 result.m_Results.Add(item);
                             }
@@ -325,11 +322,11 @@ namespace UC.Platform.Data.DBHelper
             }
             foreach (DataRow row3 in relationTable.Select(string.Format(toRelationCondition, text)))
             {
-                SQLRelation relation = Activator.CreateInstance(m_RelationType) as SQLRelation;
+                SQLRelation relation = Activator.CreateInstance(_relationType) as SQLRelation;
                 if (relation != null)
                 {
-                    FillUtility.FillFields(relation, row3, false, m_MapSQLRelation);
-                    if (!string.IsNullOrEmpty(relation.TABLES) && ((relation.RELATION != null) && (relation.RELATION != "")))
+                    FillUtility.FillFields(relation, row3, false, _MapSQLRelation);
+                    if (!string.IsNullOrEmpty(relation.TABLES) && ((!string.IsNullOrEmpty(relation.RELATION))))
                     {
                         relation.Regular();
                         section.m_Relations.Add(relation);
@@ -338,10 +335,10 @@ namespace UC.Platform.Data.DBHelper
             }
             foreach (DataRow row4 in conditionTable.Select(string.Format(toConditionCondition, text)))
             {
-                SQLCondition condition = Activator.CreateInstance(m_ConditionType) as SQLCondition;
+                SQLCondition condition = Activator.CreateInstance(_conditionType) as SQLCondition;
                 if (condition != null)
                 {
-                    FillUtility.FillFields(condition, row4, false, m_MapSQLCondition);
+                    FillUtility.FillFields(condition, row4, false, _MapSQLCondition);
                     if (!string.IsNullOrEmpty(condition.CNAME) && ((!string.IsNullOrEmpty(condition.CONDITIONSTRING))))
                     {
                         condition.Regular();
@@ -365,7 +362,7 @@ namespace UC.Platform.Data.DBHelper
 
         public string MakeConditionTemplate(string sectionName, string conditionName, string[] parameters)
         {
-            if ((conditionName != null) && (conditionName != ""))
+            if (!string.IsNullOrEmpty(conditionName))
             {
                 SQLSection section = m_Sections[sectionName] as SQLSection;
                 if (section != null)
@@ -375,7 +372,7 @@ namespace UC.Platform.Data.DBHelper
                     {
                         return null;
                     }
-                    if ((condition.CONDITIONSTRING != null) && (condition.CONDITIONSTRING != ""))
+                    if (!string.IsNullOrEmpty(condition.CONDITIONSTRING))
                     {
                         return string.Format(condition.CONDITIONSTRING, (object[])parameters);
                     }
@@ -387,7 +384,7 @@ namespace UC.Platform.Data.DBHelper
         public SQLCondition MakeConditionTemplate(string sectionName, string conditionName, string[] parameters, out string conditionResult)
         {
             conditionResult = null;
-            if ((conditionName == null) || (conditionName == ""))
+            if (string.IsNullOrEmpty(conditionName))
             {
                 return null;
             }
@@ -401,11 +398,11 @@ namespace UC.Platform.Data.DBHelper
             {
                 return null;
             }
-            if ((condition.CONDITIONSTRING == null) || (condition.CONDITIONSTRING == ""))
+            if (string.IsNullOrEmpty(condition.CONDITIONSTRING))
             {
                 return null;
             }
-            conditionResult = string.Format(condition.CONDITIONSTRING, (object[])parameters);
+            conditionResult = string.Format(condition.CONDITIONSTRING, parameters);
             return condition;
         }
 
@@ -533,7 +530,7 @@ namespace UC.Platform.Data.DBHelper
                     builder.Length--;
                 }
                 builder.Append(" FROM ");
-                if ((conditionName != null) && (conditionName != ""))
+                if (!string.IsNullOrEmpty(conditionName))
                 {
                     SQLCondition condition = section.Conditions[conditionName] as SQLCondition;
                     if (condition != null)
@@ -559,7 +556,7 @@ namespace UC.Platform.Data.DBHelper
                 {
                     builder.Length--;
                 }
-                builder.Append(builder2.ToString());
+                builder.Append(builder2);
                 foreach (SQLRelation relation in section.m_Relations)
                 {
                     bool flag2 = true;
@@ -589,66 +586,66 @@ namespace UC.Platform.Data.DBHelper
 
         public bool SetupFieldMap(SQLResultMap resultFields, SQLResultItemMap resultItemFields, SQLRelationMap relationFields, SQLConditionMap conditionFields)
         {
-            m_MapSQLResult.Clear();
-            m_MapSQLResultItem.Clear();
-            m_MapSQLRelation.Clear();
-            m_MapSQLCondition.Clear();
-            for (int i = 0; i < MapSQLResult.Length; i++)
+            _MapSQLResult.Clear();
+            _MapSQLResultItem.Clear();
+            _MapSQLRelation.Clear();
+            _MapSQLCondition.Clear();
+            foreach (string t in _mapSQLResult)
             {
-                m_MapSQLResult[MapSQLResult[i]] = typeof(SQLResultMap).GetField(MapSQLResult[i]).GetValue(resultFields);
+                _MapSQLResult[t] = typeof(SQLResultMap).GetField(t).GetValue(resultFields);
             }
-            for (int j = 0; j < MapSQLResultItem.Length; j++)
+            foreach (string t in _mapSQLResultItem)
             {
-                m_MapSQLResultItem[MapSQLResultItem[j]] = typeof(SQLResultItemMap).GetField(MapSQLResultItem[j]).GetValue(resultItemFields);
+                _MapSQLResultItem[t] = typeof(SQLResultItemMap).GetField(t).GetValue(resultItemFields);
             }
-            for (int k = 0; k < MapSQLRelation.Length; k++)
+            foreach (string t in _mapSQLRelation)
             {
-                m_MapSQLRelation[MapSQLRelation[k]] = typeof(SQLRelationMap).GetField(MapSQLRelation[k]).GetValue(relationFields);
+                _MapSQLRelation[t] = typeof(SQLRelationMap).GetField(t).GetValue(relationFields);
             }
-            for (int m = 0; m < MapSQLCondition.Length; m++)
+            foreach (string t in _mapSQLCondition)
             {
-                m_MapSQLCondition[MapSQLCondition[m]] = typeof(SQLConditionMap).GetField(MapSQLCondition[m]).GetValue(conditionFields);
+                _MapSQLCondition[t] = typeof(SQLConditionMap).GetField(t).GetValue(conditionFields);
             }
             return true;
         }
 
         public bool SetupFieldMap(string[] resultFields, string[] resultItemFields, string[] relationFields, string[] conditionFields)
         {
-            if (resultFields.Length != MapSQLResult.Length)
+            if (resultFields.Length != _mapSQLResult.Length)
             {
                 return false;
             }
-            if (resultItemFields.Length != MapSQLResultItem.Length)
+            if (resultItemFields.Length != _mapSQLResultItem.Length)
             {
                 return false;
             }
-            if (relationFields.Length != MapSQLRelation.Length)
+            if (relationFields.Length != _mapSQLRelation.Length)
             {
                 return false;
             }
-            if (conditionFields.Length != MapSQLCondition.Length)
+            if (conditionFields.Length != _mapSQLCondition.Length)
             {
                 return false;
             }
-            m_MapSQLResult.Clear();
-            m_MapSQLResultItem.Clear();
-            m_MapSQLRelation.Clear();
-            m_MapSQLCondition.Clear();
-            for (int i = 0; i < MapSQLResult.Length; i++)
+            _MapSQLResult.Clear();
+            _MapSQLResultItem.Clear();
+            _MapSQLRelation.Clear();
+            _MapSQLCondition.Clear();
+            for (int i = 0; i < _mapSQLResult.Length; i++)
             {
-                m_MapSQLResult[MapSQLResult[i]] = resultFields[i];
+                _MapSQLResult[_mapSQLResult[i]] = resultFields[i];
             }
-            for (int j = 0; j < MapSQLResultItem.Length; j++)
+            for (int j = 0; j < _mapSQLResultItem.Length; j++)
             {
-                m_MapSQLResultItem[MapSQLResultItem[j]] = resultItemFields[j];
+                _MapSQLResultItem[_mapSQLResultItem[j]] = resultItemFields[j];
             }
-            for (int k = 0; k < MapSQLRelation.Length; k++)
+            for (int k = 0; k < _mapSQLRelation.Length; k++)
             {
-                m_MapSQLRelation[MapSQLRelation[k]] = relationFields[k];
+                _MapSQLRelation[_mapSQLRelation[k]] = relationFields[k];
             }
-            for (int m = 0; m < MapSQLCondition.Length; m++)
+            for (int m = 0; m < _mapSQLCondition.Length; m++)
             {
-                m_MapSQLCondition[MapSQLCondition[m]] = conditionFields[m];
+                _MapSQLCondition[_mapSQLCondition[m]] = conditionFields[m];
             }
             return true;
         }
@@ -657,17 +654,17 @@ namespace UC.Platform.Data.DBHelper
         {
             get
             {
-                return m_ConditionType;
+                return _conditionType;
             }
             set
             {
                 if (value == null)
                 {
-                    m_ConditionType = typeof(SQLCondition);
+                    _conditionType = typeof(SQLCondition);
                 }
                 else if (value.IsSubclassOf(typeof(SQLCondition)) || (value == typeof(SQLCondition)))
                 {
-                    m_ConditionType = value;
+                    _conditionType = value;
                 }
             }
         }
@@ -676,17 +673,17 @@ namespace UC.Platform.Data.DBHelper
         {
             get
             {
-                return m_RelationType;
+                return _relationType;
             }
             set
             {
                 if (value == null)
                 {
-                    m_RelationType = typeof(SQLRelation);
+                    _relationType = typeof(SQLRelation);
                 }
                 else if (!value.IsSubclassOf(typeof(SQLRelation)) && (value != typeof(SQLRelation)))
                 {
-                    m_RelationType = value;
+                    _relationType = value;
                 }
             }
         }
@@ -695,17 +692,17 @@ namespace UC.Platform.Data.DBHelper
         {
             get
             {
-                return m_ResultItemType;
+                return _resultItemType;
             }
             set
             {
                 if (value == null)
                 {
-                    m_ResultItemType = typeof(SQLResultItem);
+                    _resultItemType = typeof(SQLResultItem);
                 }
                 else if (value.IsSubclassOf(typeof(SQLResultItem)) || (value == typeof(SQLResultItem)))
                 {
-                    m_ResultItemType = value;
+                    _resultItemType = value;
                 }
             }
         }
@@ -714,17 +711,17 @@ namespace UC.Platform.Data.DBHelper
         {
             get
             {
-                return m_ResultType;
+                return _resultType;
             }
             set
             {
                 if (value == null)
                 {
-                    m_ResultType = typeof(SQLResult);
+                    _resultType = typeof(SQLResult);
                 }
                 else if (value.IsSubclassOf(typeof(SQLResult)) || (value == typeof(SQLResult)))
                 {
-                    m_ResultType = value;
+                    _resultType = value;
                 }
             }
         }
@@ -881,10 +878,10 @@ namespace UC.Platform.Data.DBHelper
 
             internal void MakeSQLTemplate()
             {
-                if ((DFIELD != null) && (DFIELD != ""))
+                if (!string.IsNullOrEmpty(DFIELD))
                 {
                     string format = "{0}";
-                    if ((DFIELDCUSTOM != null) && (DFIELDCUSTOM != ""))
+                    if (!string.IsNullOrEmpty(DFIELDCUSTOM))
                     {
                         format = DFIELDCUSTOM;
                     }
@@ -918,10 +915,10 @@ namespace UC.Platform.Data.DBHelper
                     string dMTABLE = "";
                     string dDMFIELDCUSTOM = "{0}";
                     bool flag = false;
-                    if ((((DMTABLE != null) && (DMTABLE != "")) && ((DMSFIELD != null) && (DMSFIELD != ""))) && ((DMDFIELD != null) && (DMDFIELD != "")))
+                    if ((!string.IsNullOrEmpty(DMTABLE) && ((!string.IsNullOrEmpty(DMSFIELD)))) && ((!string.IsNullOrEmpty(DMDFIELD))))
                     {
                         flag = true;
-                        if ((DDMFIELDCUSTOM != null) && (DDMFIELDCUSTOM != ""))
+                        if (!string.IsNullOrEmpty(DDMFIELDCUSTOM))
                         {
                             dDMFIELDCUSTOM = DDMFIELDCUSTOM;
                         }
@@ -959,7 +956,7 @@ namespace UC.Platform.Data.DBHelper
                         {
                             dMTABLE = DMTABLE.Substring(index + 1).Trim();
                         }
-                        if ((DMDFIELDCUSTOM != null) && (DMDFIELDCUSTOM != ""))
+                        if (!string.IsNullOrEmpty(DMDFIELDCUSTOM))
                         {
                             dMDFIELDCUSTOM = DMDFIELDCUSTOM;
                         }
@@ -988,7 +985,7 @@ namespace UC.Platform.Data.DBHelper
                                 dMDFIELDCUSTOM = string.Concat(new object[] { obj4, ",", DMDFIELDLENGTH, ")" });
                             }
                         }
-                        if ((DMSFIELDCUSTOM != null) && (DMSFIELDCUSTOM != ""))
+                        if (!string.IsNullOrEmpty(DMSFIELDCUSTOM))
                         {
                             dMSFIELDCUSTOM = DMSFIELDCUSTOM;
                         }
@@ -1025,52 +1022,44 @@ namespace UC.Platform.Data.DBHelper
                     int num2 = 0;
                     foreach (SQLResultItem item in m_Results)
                     {
-                        string sTABLE;
-                        if (((item.STABLE == null) || (item.STABLE == "")) || ((item.SFIELD == null) || (item.SFIELD == "")))
+                        if (string.IsNullOrEmpty(item.STABLE) || ((string.IsNullOrEmpty(item.SFIELD))))
                         {
                             continue;
                         }
                         num2++;
                         int num3 = item.STABLE.IndexOf(' ');
-                        if (num3 < 0)
+                        string sTable = num3 < 0 ? item.STABLE : item.STABLE.Substring(num3 + 1).Trim();
+                        string sFieldcustom = "";
+                        if (!string.IsNullOrEmpty(item.SFIELDCUSTOM))
                         {
-                            sTABLE = item.STABLE;
-                        }
-                        else
-                        {
-                            sTABLE = item.STABLE.Substring(num3 + 1).Trim();
-                        }
-                        string sFIELDCUSTOM = "";
-                        if ((item.SFIELDCUSTOM != null) && (item.SFIELDCUSTOM != ""))
-                        {
-                            sFIELDCUSTOM = item.SFIELDCUSTOM;
+                            sFieldcustom = item.SFIELDCUSTOM;
                         }
                         else if ((item.SFIELDSTART < 0) && (item.SFIELDLENGTH < 0))
                         {
-                            sFIELDCUSTOM = "{0}";
+                            sFieldcustom = "{0}";
                         }
                         else
                         {
-                            sFIELDCUSTOM = m_Section.m_SUBSTSTRING + "({0}";
+                            sFieldcustom = m_Section.m_SUBSTSTRING + "({0}";
                             if (item.SFIELDSTART < 0)
                             {
-                                sFIELDCUSTOM = sFIELDCUSTOM + ",1";
+                                sFieldcustom = sFieldcustom + ",1";
                             }
                             else
                             {
-                                sFIELDCUSTOM = sFIELDCUSTOM + "," + item.SFIELDSTART;
+                                sFieldcustom = sFieldcustom + "," + item.SFIELDSTART;
                             }
                             if (item.SFIELDLENGTH < 0)
                             {
-                                sFIELDCUSTOM = sFIELDCUSTOM + ")";
+                                sFieldcustom = sFieldcustom + ")";
                             }
                             else
                             {
-                                object obj6 = sFIELDCUSTOM;
-                                sFIELDCUSTOM = string.Concat(new object[] { obj6, ",", item.SFIELDLENGTH, ")" });
+                                object obj6 = sFieldcustom;
+                                sFieldcustom = string.Concat(new object[] { obj6, ",", item.SFIELDLENGTH, ")" });
                             }
                         }
-                        if ((((item.DMTABLE != null) && (item.DMTABLE != "")) && ((item.DMSFIELD != null) && (item.DMSFIELD != ""))) && ((item.DMDFIELD != null) && (item.DMDFIELD != "")))
+                        if ((!string.IsNullOrEmpty(item.DMTABLE) && ((!string.IsNullOrEmpty(item.DMSFIELD)))) && ((!string.IsNullOrEmpty(item.DMDFIELD))))
                         {
                             string text9;
                             int num4 = item.DMTABLE.IndexOf(' ');
@@ -1083,7 +1072,7 @@ namespace UC.Platform.Data.DBHelper
                                 text9 = item.DMTABLE.Substring(num4 + 1).Trim();
                             }
                             string text10 = "";
-                            if ((item.DMDFIELDCUSTOM != null) && (item.DMDFIELDCUSTOM != ""))
+                            if (!string.IsNullOrEmpty(item.DMDFIELDCUSTOM))
                             {
                                 text10 = item.DMDFIELDCUSTOM;
                             }
@@ -1113,7 +1102,7 @@ namespace UC.Platform.Data.DBHelper
                                 }
                             }
                             string text11 = "";
-                            if ((item.DMSFIELDCUSTOM != null) && (item.DMSFIELDCUSTOM != ""))
+                            if (!string.IsNullOrEmpty(item.DMSFIELDCUSTOM))
                             {
                                 text11 = item.DMSFIELDCUSTOM;
                             }
@@ -1142,13 +1131,13 @@ namespace UC.Platform.Data.DBHelper
                                     text11 = string.Concat(new object[] { obj8, ",", item.DMSFIELDLENGTH, ")" });
                                 }
                             }
-                            sFIELDCUSTOM = string.Format(sFIELDCUSTOM, sTABLE + "." + item.SFIELD);
+                            sFieldcustom = string.Format(sFieldcustom, sTable + "." + item.SFIELD);
                             text11 = string.Format(text11, text9 + "." + item.DMSFIELD);
                             text10 = string.Format(text10, text9 + "." + item.DMDFIELD);
                             string text12 = "";
                             if ((m_Section.VERSION & BuildSQLVersion.SQLSERVER) == BuildSQLVersion.SQLSERVER)
                             {
-                                text12 = " LEFT OUTER JOIN " + item.DMTABLE + " ON (" + text11 + "=" + sFIELDCUSTOM + ")";
+                                text12 = " LEFT OUTER JOIN " + item.DMTABLE + " ON (" + text11 + "=" + sFieldcustom + ")";
                                 if (M_DMFORMSQL.ContainsKey(item.STABLE))
                                 {
                                     M_DMFORMSQL[item.STABLE] = (M_DMFORMSQL[item.STABLE] as string) + text12;
@@ -1162,7 +1151,7 @@ namespace UC.Platform.Data.DBHelper
                             else if ((m_Section.VERSION & BuildSQLVersion.ORACLE) == BuildSQLVersion.ORACLE)
                             {
                                 string text13 = M_CONDITION;
-                                M_CONDITION = text13 + sFIELDCUSTOM + "=" + text11 + "(+) AND ";
+                                M_CONDITION = text13 + sFieldcustom + "=" + text11 + "(+) AND ";
                                 if (!M_DMFORMSQL.ContainsKey(item.STABLE))
                                 {
                                     M_DMFORMSQL[item.STABLE] = "";
@@ -1185,26 +1174,19 @@ namespace UC.Platform.Data.DBHelper
                         }
                         if ((m_Section.VERSION & BuildSQLVersion.SQLSERVER) == BuildSQLVersion.SQLSERVER)
                         {
-                            text6 = text6 + string.Format(sFIELDCUSTOM, sTABLE + "." + item.SFIELD) + "+";
+                            text6 = text6 + string.Format(sFieldcustom, sTable + "." + item.SFIELD) + "+";
                             continue;
                         }
                         if ((m_Section.VERSION & BuildSQLVersion.ORACLE) == BuildSQLVersion.ORACLE)
                         {
-                            text6 = text6 + string.Format(sFIELDCUSTOM, sTABLE + "." + item.SFIELD) + "||";
+                            text6 = text6 + string.Format(sFieldcustom, sTable + "." + item.SFIELD) + "||";
                             continue;
                         }
-                        text6 = text6 + string.Format(sFIELDCUSTOM, sTABLE + "." + item.SFIELD) + "+";
+                        text6 = text6 + string.Format(sFieldcustom, sTable + "." + item.SFIELD) + "+";
                     }
                     if (num2 == 0)
                     {
-                        if (DATATYPE == DataType.B)
-                        {
-                            M_RESULTSQL = string.Format(format, "NULL");
-                        }
-                        else
-                        {
-                            M_RESULTSQL = string.Format(format, "''");
-                        }
+                        M_RESULTSQL = string.Format(format, DATATYPE == DataType.B ? "NULL" : "''");
                     }
                     else if (num2 == 1)
                     {
