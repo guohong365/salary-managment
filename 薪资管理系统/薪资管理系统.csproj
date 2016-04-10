@@ -130,13 +130,11 @@
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Platform">
-      <HintPath>..\..\Library\Platform.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -156,13 +154,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Execute\EvaluationControl.cs">
+    <Compile Include="Execute\EvalFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Execute\EvaluationControl.Designer.cs">
-      <DependentUpon>EvaluationControl.cs</DependentUpon>
+    <Compile Include="Execute\EvalFormControl.Designer.cs">
+      <DependentUpon>EvalFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\AssignmentItemControl.cs">
+    <Compile Include="Execute\EvalFormsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Execute\EvalFormsControl.Designer.cs">
+      <DependentUpon>EvalFormsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Execute\EmployeePerformance.cs" />
+    <Compile Include="Execute\ExecutionPerformanceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Execute\ExecutionPerformanceControl.Designer.cs">
+      <DependentUpon>ExecutionPerformanceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Assignment\AssignmentItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Execute\AssignmentScheduleControl.cs">
@@ -171,10 +182,10 @@
     <Compile Include="Execute\AssignmentScheduleControl.Designer.cs">
       <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\BasicDefineControl.cs">
+    <Compile Include="Managment\BasicDefineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\BasicDefineControl.Designer.cs">
+    <Compile Include="Managment\BasicDefineControl.Designer.cs">
       <DependentUpon>BasicDefineControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Basic\CodeTableControl.cs">
@@ -184,41 +195,35 @@
       <DependentUpon>CodeTableControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Basic\DefineControlManager.cs" />
-    <Compile Include="Managment\Basic\EvaluationFormControl.cs">
+    <Compile Include="Managment\Evaluation\EvaluationFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\EvaluationFormControl.Designer.cs">
+    <Compile Include="Managment\Evaluation\EvaluationFormControl.Designer.cs">
       <DependentUpon>EvaluationFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\EvaluationItemControl.cs">
+    <Compile Include="Managment\Evaluation\EvaluationItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\EvaluationItemControl.Designer.cs">
+    <Compile Include="Managment\Evaluation\EvaluationItemControl.Designer.cs">
       <DependentUpon>EvaluationItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\EvaluationItemTypeControl.cs">
+    <Compile Include="Managment\Evaluation\EvaluationItemTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\EvaluationItemTypeControl.Designer.cs">
+    <Compile Include="Managment\Evaluation\EvaluationItemTypeControl.Designer.cs">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Execute\ExecutionControlManager.cs" />
-    <Compile Include="Execute\ExecutionEvaluationControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Execute\ExecutionEvaluationControl.Designer.cs">
-      <DependentUpon>ExecutionEvaluationControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Managment\Basic\ExecutionSalaryStructControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Managment\Basic\ExecutionSalaryStructControl.Designer.cs">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\ExecuttionEvaluationFormControl.cs">
+    <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\ExecuttionEvaluationFormControl.Designer.cs">
+    <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.Designer.cs">
       <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Basic\GridViewHelper.cs" />
@@ -244,10 +249,10 @@
     <Compile Include="Managment\Basic\BaseControl.Designer.cs">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\ExecutionAssignmentControl.cs">
+    <Compile Include="Managment\Assignment\ExecutionAssignmentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\ExecutionAssignmentControl.Designer.cs">
+    <Compile Include="Managment\Assignment\ExecutionAssignmentControl.Designer.cs">
       <DependentUpon>ExecutionAssignmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Editor\IItemEditor.cs" />
@@ -283,7 +288,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\GlobalSettings.cs" />
-    <Compile Include="Managment\IManagmentContainer.cs" />
+    <Compile Include="Execute\IManagmentContainer.cs" />
     <Compile Include="Managment\IManagmentControl.cs" />
     <Compile Include="Managment\ManagmentControl.cs" />
     <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.cs">
@@ -349,32 +354,38 @@
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemInitalizer.cs" />
-    <EmbeddedResource Include="Execute\EvaluationControl.resx">
-      <DependentUpon>EvaluationControl.cs</DependentUpon>
+    <EmbeddedResource Include="Execute\AssignmentScheduleControl.resx">
+      <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\AssignmentItemControl.resx">
+    <EmbeddedResource Include="Execute\EvalFormControl.resx">
+      <DependentUpon>EvalFormControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Execute\EvalFormsControl.resx">
+      <DependentUpon>EvalFormsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Execute\ExecutionPerformanceControl.resx">
+      <DependentUpon>ExecutionPerformanceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Assignment\AssignmentItemControl.resx">
       <DependentUpon>AssignmentItemControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\BasicDefineControl.resx">
+    <EmbeddedResource Include="Managment\BasicDefineControl.resx">
       <DependentUpon>BasicDefineControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\EvaluationFormControl.resx">
+    <EmbeddedResource Include="Managment\Evaluation\EvaluationFormControl.resx">
       <DependentUpon>EvaluationFormControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\EvaluationItemControl.resx">
+    <EmbeddedResource Include="Managment\Evaluation\EvaluationItemControl.resx">
       <DependentUpon>EvaluationItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\EvaluationItemTypeControl.resx">
+    <EmbeddedResource Include="Managment\Evaluation\EvaluationItemTypeControl.resx">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Execute\ExecutionEvaluationControl.resx">
-      <DependentUpon>ExecutionEvaluationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Basic\ExecutionSalaryStructControl.resx">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\ExecuttionEvaluationFormControl.resx">
+    <EmbeddedResource Include="Managment\Evaluation\ExecuttionEvaluationFormControl.resx">
       <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Basic\SalaryItemControl.resx">
@@ -383,7 +394,7 @@
     <EmbeddedResource Include="Managment\Basic\BaseControl.resx">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\ExecutionAssignmentControl.resx">
+    <EmbeddedResource Include="Managment\Assignment\ExecutionAssignmentControl.resx">
       <DependentUpon>ExecutionAssignmentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Editor\ItemControl.resx">
@@ -467,7 +478,10 @@
     <None Include="薪资管理系统.csproj.DotSettings" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Managment\Performance\" />
+    <ProjectReference Include="..\UC.Platform.Data\UC.Platform.Data.csproj">
+      <Project>{76CFDBE4-EC84-42BE-B69C-087BF16D6BF1}</Project>
+      <Name>UC.Platform.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

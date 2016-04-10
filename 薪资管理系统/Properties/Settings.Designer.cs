@@ -33,5 +33,16 @@ namespace SalarySystem.Properties {
                 return ((string)(this["salaryConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;persistsecurityinfo=True;database=salary;allowuserv" +
+            "ariables=True")]
+        public string salaryConnectionString1 {
+            get {
+                return ((string)(this["salaryConnectionString1"]));
+            }
+        }
     }
 }

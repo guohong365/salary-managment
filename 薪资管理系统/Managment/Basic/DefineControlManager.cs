@@ -1,5 +1,7 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraNavBar;
+using SalarySystem.Managment.Assignment;
+using SalarySystem.Managment.Evaluation;
 
 namespace SalarySystem.Managment.Basic
 {

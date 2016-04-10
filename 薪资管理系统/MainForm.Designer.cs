@@ -50,6 +50,9 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
@@ -90,9 +93,12 @@
             this.barButtonItem6,
             this.barSubItem5,
             this.barButtonItem7,
-            this.barButtonItem8});
+            this.barButtonItem8,
+            this.barButtonItem9,
+            this.barButtonItem10,
+            this.barButtonItem11});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 13;
+            this.barManager1.MaxItemId = 16;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -119,11 +125,7 @@
             this.barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem5)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
             this.barSubItem2.Name = "barSubItem2";
             // 
             // barButtonItem8
@@ -182,8 +184,11 @@
             // 
             // barSubItem3
             // 
-            this.barSubItem3.Caption = "数据管理";
+            this.barSubItem3.Caption = "工资管理";
             this.barSubItem3.Id = 7;
+            this.barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10)});
             this.barSubItem3.Name = "barSubItem3";
             // 
             // barSubItem4
@@ -245,6 +250,25 @@
             this.barSubItem1.Id = 0;
             this.barSubItem1.Name = "barSubItem1";
             // 
+            // barButtonItem9
+            // 
+            this.barButtonItem9.Caption = "员工表现录入";
+            this.barButtonItem9.Id = 13;
+            this.barButtonItem9.Name = "barButtonItem9";
+            this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.employee_performance);
+            // 
+            // barButtonItem10
+            // 
+            this.barButtonItem10.Caption = "工资明细查询";
+            this.barButtonItem10.Id = 14;
+            this.barButtonItem10.Name = "barButtonItem10";
+            // 
+            // barButtonItem11
+            // 
+            this.barButtonItem11.Caption = "barButtonItem11";
+            this.barButtonItem11.Id = 15;
+            this.barButtonItem11.Name = "barButtonItem11";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -288,6 +312,9 @@
         private DevExpress.XtraBars.BarSubItem barSubItem5;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
     }
 }
 

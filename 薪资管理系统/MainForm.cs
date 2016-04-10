@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using SalarySystem.Execute;
 using SalarySystem.Managment;
 using SalarySystem.Managment.Basic;
 using SalarySystem.Managment.Employee;
@@ -54,7 +55,14 @@ namespace SalarySystem
             control.Dock = DockStyle.Fill;
             page.Controls.Add(control);
             _pages.Add(name, page);
-            xtraTabControl1.TabPages.Add(page);
+            try
+            {
+                xtraTabControl1.TabPages.Add(page);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
             xtraTabControl1.SelectedTabPage = page;
         }
 
@@ -94,6 +102,14 @@ namespace SalarySystem
             if (!takeCachedPage("基本定义"))
             {
                 addControl("基本定义", new BasicDefineControl());
+            }
+        }
+
+        private void employee_performance(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!takeCachedPage("员工表现"))
+            {
+                addControl("员工表现",new ExecutionPerformanceControl());
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace SalarySystem
@@ -12,7 +11,6 @@ namespace SalarySystem
         [STAThread]
         static void Main()
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture=new CultureInfo("zh-CN");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (!SystemInitalizer.Init())

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Platform.DBHelper;
 using SalarySystem.Data;
+using SalarySystem.DBHelper;
 using SalarySystem.Managment;
 using SalarySystem.Managment.Editor;
 
@@ -13,10 +13,10 @@ namespace SalarySystem
         private static bool loadSettings()
         {
             DataHolder.InitAdapter();
-            DBHandler.FillOnce(DataHolder.Settings, "select * from t_settings");
-            DBHandler.FillOnce(DataHolder.RepositoryEvaluation, "select * from t_repository_evaluation");
-            DBHandler.FillOnce(DataHolder.RepositoryAssignment, "select * from t_repository_assignment");
-            DBHandler.FillOnce(DataHolder.RepositorySalaryStruct, "select * from t_repository_salary_struct");
+            DBHandlerEx.FillOnce(DataHolder.Settings, "select * from t_settings");
+            DBHandlerEx.FillOnce(DataHolder.RepositoryEvaluation, "select * from t_repository_evaluation");
+            DBHandlerEx.FillOnce(DataHolder.RepositoryAssignment, "select * from t_repository_assignment");
+            DBHandlerEx.FillOnce(DataHolder.RepositorySalaryStruct, "select * from t_repository_salary_struct");
             #region 加载当前考核版本
             var settingRow = DataHolder.Settings.FindByNAME(GlobalSettings.KEY_EVALUATION_VERSION);
             if (settingRow != null)
@@ -39,7 +39,7 @@ namespace SalarySystem
                     DataHolder.Settings.RejectChanges();
                     return false;
                 }
-                DBHandler.UpdateOnce(settingRow);
+                DBHandlerEx.UpdateOnce(settingRow);
             }
             #endregion
             #region 加载当前工资结构版本
@@ -64,7 +64,7 @@ namespace SalarySystem
                     DataHolder.Settings.RejectChanges();
                     return false;
                 }
-                DBHandler.UpdateOnce(settingRow);
+                DBHandlerEx.UpdateOnce(settingRow);
             }
             #endregion
             #region 加载当前任务版本
@@ -90,7 +90,7 @@ namespace SalarySystem
                     DataHolder.Settings.RejectChanges();
                     return false;
                 }
-                DBHandler.UpdateOnce(settingRow);
+                DBHandlerEx.UpdateOnce(settingRow);
             }
             #endregion
 
@@ -109,7 +109,7 @@ namespace SalarySystem
             newRow.ENABLED = true;
             DataHolder.RepositoryAssignment.Addt_repository_assignmentRow(newRow);
             settingRow.VALUE = newRow.ID;
-            DBHandler.UpdateOnce(newRow);
+            DBHandlerEx.UpdateOnce(newRow);
             return true;
         }
 
@@ -125,7 +125,7 @@ namespace SalarySystem
             newRow.ENABLED = true;
             DataHolder.RepositorySalaryStruct.Addt_repository_salary_structRow(newRow);
             settingRow.VALUE = newRow.ID;
-            DBHandler.UpdateOnce(newRow);
+            DBHandlerEx.UpdateOnce(newRow);
             return true;
         }
 
@@ -142,7 +142,7 @@ namespace SalarySystem
             newRow.ENABLED = true;
             DataHolder.RepositoryEvaluation.Addt_repository_evaluationRow(newRow);
             row.VALUE = newRow.ID;
-            DBHandler.UpdateOnce(newRow);
+            DBHandlerEx.UpdateOnce(newRow);
             return true;
         }
 
@@ -157,8 +157,8 @@ namespace SalarySystem
         {
             #region 基本
 
-            DBHandler.FillOnce(DataHolder.Employee, "select * from t_employee");
-            DBHandler.FillOnce(DataHolder.Position, "select * from t_position");
+            DBHandlerEx.FillOnce(DataHolder.Employee, "select * from t_employee");
+            DBHandlerEx.FillOnce(DataHolder.Position, "select * from t_position");
             //DataHolder.EmployeeTableAdapter.Fill(DataHolder.Employee);
             //DataHolder.PositionTableAdapter.Fill(DataHolder.Position);
             
@@ -166,31 +166,31 @@ namespace SalarySystem
 
             #region 绩效相关
 
-            DBHandler.FillOnce(DataHolder.EvaluationForm, "select * from t_evaluation_form");
-            DBHandler.FillOnce(DataHolder.EvaluationFormItems, "select * from t_evaluation_form_items");
-            DBHandler.FillOnce(DataHolder.EvaluationItem, "select * from t_evaluation_item");
-            DBHandler.FillOnce(DataHolder.EvaluationItemType, "select * from t_evaluation_item_type");
-            DBHandler.FillOnce(DataHolder.PositionEvaluationForms, "select * from t_position_evaluation_forms");
-            DBHandler.FillOnce(DataHolder.EvaluationFormDetail, "select * from v_evaluation_form_detail");
-            DBHandler.FillOnce(DataHolder.EvaluationStandard, "select * from t_evaluation_standard");
+            DBHandlerEx.FillOnce(DataHolder.EvaluationForm, "select * from t_evaluation_form");
+            DBHandlerEx.FillOnce(DataHolder.EvaluationFormItems, "select * from t_evaluation_form_items");
+            DBHandlerEx.FillOnce(DataHolder.EvaluationItem, "select * from t_evaluation_item");
+            DBHandlerEx.FillOnce(DataHolder.EvaluationItemType, "select * from t_evaluation_item_type");
+            DBHandlerEx.FillOnce(DataHolder.PositionEvaluationForms, "select * from t_position_evaluation_forms");
+            DBHandlerEx.FillOnce(DataHolder.EvaluationFormDetail, "select * from v_evaluation_form_detail");
+            DBHandlerEx.FillOnce(DataHolder.EvaluationStandard, "select * from t_evaluation_standard");
             #endregion
 
             #region 任务相关
 
-            DBHandler.FillOnce(DataHolder.AssignmentItem, "select * from t_assignment_item");
-            DBHandler.FillOnce(DataHolder.AssignmentItemType, "select * from t_assignment_item_type");
-            DBHandler.FillOnce(DataHolder.PositionAssignments, "select * from t_position_assignments");
-            DBHandler.FillOnce(DataHolder.AssignmentDetail,"select * from v_assignment_detail");
-            DBHandler.FillOnce(DataHolder.Unit, "select * from t_unit");
+            DBHandlerEx.FillOnce(DataHolder.AssignmentItem, "select * from t_assignment_item");
+            DBHandlerEx.FillOnce(DataHolder.AssignmentItemType, "select * from t_assignment_item_type");
+            DBHandlerEx.FillOnce(DataHolder.PositionAssignments, "select * from t_position_assignments");
+            DBHandlerEx.FillOnce(DataHolder.AssignmentDetail,"select * from v_assignment_detail");
+            DBHandlerEx.FillOnce(DataHolder.Unit, "select * from t_unit");
             #endregion
             #region 薪资相关
 
-            DBHandler.FillOnce(DataHolder.SalaryDataSourceType, "select * from t_salary_data_source_type");
-            DBHandler.FillOnce(DataHolder.SalaryItem, "select * from t_salary_item");
-            DBHandler.FillOnce(DataHolder.SalaryItemType, "select * from t_salary_item_type");
-            DBHandler.FillOnce(DataHolder.PositionSalaryItems, "select * from t_position_salary_items");
+            DBHandlerEx.FillOnce(DataHolder.SalaryDataSourceType, "select * from t_salary_data_source_type");
+            DBHandlerEx.FillOnce(DataHolder.SalaryItem, "select * from t_salary_item");
+            DBHandlerEx.FillOnce(DataHolder.SalaryItemType, "select * from t_salary_item_type");
+            DBHandlerEx.FillOnce(DataHolder.PositionSalaryItems, "select * from t_position_salary_items");
 
-            DBHandler.FillOnce(DataHolder.SalaryStructDetail, "select * from v_salary_struct_detail");
+            DBHandlerEx.FillOnce(DataHolder.SalaryStructDetail, "select * from v_salary_struct_detail");
 
             #endregion
         }
