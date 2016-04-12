@@ -13,89 +13,89 @@ namespace UC.Platform.Data.Utils
         public static readonly Type DataSetType = typeof(DataSet);
         public static readonly Type DataTableType = typeof(DataTable);
         public static readonly Type DBAdapterType = typeof(DbDataAdapter);
-        private static readonly Hashtable m_OleDataTypeMap = new Hashtable();
-        private static readonly Hashtable m_SqlDataTypeMap = new Hashtable();
-        private static readonly Hashtable m_TypeMap = new Hashtable();
+        private static readonly Hashtable _oleDataTypeMap = new Hashtable();
+        private static readonly Hashtable _sqlDataTypeMap = new Hashtable();
+        private static readonly Hashtable _typeMap = new Hashtable();
 
         static TypeUtility()
         {
-            m_TypeMap[typeof(bool).ToString()] = "bool";
-            m_TypeMap[typeof(byte).ToString()] = "byte";
-            m_TypeMap[typeof(char).ToString()] = "char";
-            m_TypeMap[typeof(decimal).ToString()] = "decimal";
-            m_TypeMap[typeof(double).ToString()] = "double";
-            m_TypeMap[typeof(float).ToString()] = "float";
-            m_TypeMap[typeof(int).ToString()] = "int";
-            m_TypeMap[typeof(long).ToString()] = "long";
-            m_TypeMap[typeof(object).ToString()] = "object";
-            m_TypeMap[typeof(sbyte).ToString()] = "sbyte";
-            m_TypeMap[typeof(short).ToString()] = "short";
-            m_TypeMap[typeof(string).ToString()] = "string";
-            m_TypeMap[typeof(ulong).ToString()] = "ulong";
-            m_TypeMap[typeof(uint).ToString()] = "uint";
-            m_TypeMap[typeof(ushort).ToString()] = "ushort";
-            m_TypeMap[typeof(void).ToString()] = "void";
-            m_OleDataTypeMap[OleDbType.BigInt] = typeof(long);
-            m_OleDataTypeMap[OleDbType.Binary] = typeof(byte[]);
-            m_OleDataTypeMap[OleDbType.Boolean] = typeof(bool);
-            m_OleDataTypeMap[OleDbType.BSTR] = typeof(string);
-            m_OleDataTypeMap[OleDbType.Char] = typeof(string);
-            m_OleDataTypeMap[OleDbType.Currency] = typeof(decimal);
-            m_OleDataTypeMap[OleDbType.Date] = typeof(DateTime);
-            m_OleDataTypeMap[OleDbType.DBDate] = typeof(DateTime);
-            m_OleDataTypeMap[OleDbType.DBTime] = typeof(TimeSpan);
-            m_OleDataTypeMap[OleDbType.DBTimeStamp] = typeof(DateTime);
-            m_OleDataTypeMap[OleDbType.Decimal] = typeof(decimal);
-            m_OleDataTypeMap[OleDbType.Double] = typeof(double);
-            m_OleDataTypeMap[OleDbType.Empty] = typeof(void);
-            m_OleDataTypeMap[OleDbType.Error] = typeof(Exception);
-            m_OleDataTypeMap[OleDbType.Filetime] = typeof(DateTime);
-            m_OleDataTypeMap[OleDbType.Guid] = typeof(Guid);
-            m_OleDataTypeMap[OleDbType.IDispatch] = typeof(object);
-            m_OleDataTypeMap[OleDbType.Integer] = typeof(int);
-            m_OleDataTypeMap[OleDbType.IUnknown] = typeof(object);
-            m_OleDataTypeMap[OleDbType.LongVarBinary] = typeof(byte[]);
-            m_OleDataTypeMap[OleDbType.LongVarChar] = typeof(string);
-            m_OleDataTypeMap[OleDbType.LongVarWChar] = typeof(string);
-            m_OleDataTypeMap[OleDbType.Numeric] = typeof(decimal);
-            m_OleDataTypeMap[OleDbType.PropVariant] = typeof(object);
-            m_OleDataTypeMap[OleDbType.Single] = typeof(float);
-            m_OleDataTypeMap[OleDbType.SmallInt] = typeof(short);
-            m_OleDataTypeMap[OleDbType.TinyInt] = typeof(sbyte);
-            m_OleDataTypeMap[OleDbType.UnsignedBigInt] = typeof(ulong);
-            m_OleDataTypeMap[OleDbType.UnsignedInt] = typeof(uint);
-            m_OleDataTypeMap[OleDbType.UnsignedSmallInt] = typeof(ushort);
-            m_OleDataTypeMap[OleDbType.UnsignedTinyInt] = typeof(byte);
-            m_OleDataTypeMap[OleDbType.VarBinary] = typeof(byte[]);
-            m_OleDataTypeMap[OleDbType.VarChar] = typeof(string);
-            m_OleDataTypeMap[OleDbType.Variant] = typeof(object);
-            m_OleDataTypeMap[OleDbType.VarNumeric] = typeof(decimal);
-            m_OleDataTypeMap[OleDbType.VarWChar] = typeof(string);
-            m_OleDataTypeMap[OleDbType.WChar] = typeof(string);
-            m_SqlDataTypeMap[SqlDbType.BigInt] = typeof(long);
-            m_SqlDataTypeMap[SqlDbType.Binary] = typeof(byte[]);
-            m_SqlDataTypeMap[SqlDbType.Bit] = typeof(bool);
-            m_SqlDataTypeMap[SqlDbType.Char] = typeof(string);
-            m_SqlDataTypeMap[SqlDbType.DateTime] = typeof(DateTime);
-            m_SqlDataTypeMap[SqlDbType.Decimal] = typeof(decimal);
-            m_SqlDataTypeMap[SqlDbType.Float] = typeof(double);
-            m_SqlDataTypeMap[SqlDbType.Image] = typeof(byte[]);
-            m_SqlDataTypeMap[SqlDbType.Int] = typeof(int);
-            m_SqlDataTypeMap[SqlDbType.Money] = typeof(decimal);
-            m_SqlDataTypeMap[SqlDbType.NChar] = typeof(string);
-            m_SqlDataTypeMap[SqlDbType.NText] = typeof(string);
-            m_SqlDataTypeMap[SqlDbType.NVarChar] = typeof(string);
-            m_SqlDataTypeMap[SqlDbType.Real] = typeof(float);
-            m_SqlDataTypeMap[SqlDbType.SmallDateTime] = typeof(DateTime);
-            m_SqlDataTypeMap[SqlDbType.SmallInt] = typeof(short);
-            m_SqlDataTypeMap[SqlDbType.SmallMoney] = typeof(decimal);
-            m_SqlDataTypeMap[SqlDbType.Text] = typeof(string);
-            m_SqlDataTypeMap[SqlDbType.Timestamp] = typeof(byte[]);
-            m_SqlDataTypeMap[SqlDbType.TinyInt] = typeof(byte);
-            m_SqlDataTypeMap[SqlDbType.UniqueIdentifier] = typeof(Guid);
-            m_SqlDataTypeMap[SqlDbType.VarBinary] = typeof(byte[]);
-            m_SqlDataTypeMap[SqlDbType.VarChar] = typeof(string);
-            m_SqlDataTypeMap[SqlDbType.Variant] = typeof(object);
+            _typeMap[typeof(bool).ToString()] = "bool";
+            _typeMap[typeof(byte).ToString()] = "byte";
+            _typeMap[typeof(char).ToString()] = "char";
+            _typeMap[typeof(decimal).ToString()] = "decimal";
+            _typeMap[typeof(double).ToString()] = "double";
+            _typeMap[typeof(float).ToString()] = "float";
+            _typeMap[typeof(int).ToString()] = "int";
+            _typeMap[typeof(long).ToString()] = "long";
+            _typeMap[typeof(object).ToString()] = "object";
+            _typeMap[typeof(sbyte).ToString()] = "sbyte";
+            _typeMap[typeof(short).ToString()] = "short";
+            _typeMap[typeof(string).ToString()] = "string";
+            _typeMap[typeof(ulong).ToString()] = "ulong";
+            _typeMap[typeof(uint).ToString()] = "uint";
+            _typeMap[typeof(ushort).ToString()] = "ushort";
+            _typeMap[typeof(void).ToString()] = "void";
+            _oleDataTypeMap[OleDbType.BigInt] = typeof(long);
+            _oleDataTypeMap[OleDbType.Binary] = typeof(byte[]);
+            _oleDataTypeMap[OleDbType.Boolean] = typeof(bool);
+            _oleDataTypeMap[OleDbType.BSTR] = typeof(string);
+            _oleDataTypeMap[OleDbType.Char] = typeof(string);
+            _oleDataTypeMap[OleDbType.Currency] = typeof(decimal);
+            _oleDataTypeMap[OleDbType.Date] = typeof(DateTime);
+            _oleDataTypeMap[OleDbType.DBDate] = typeof(DateTime);
+            _oleDataTypeMap[OleDbType.DBTime] = typeof(TimeSpan);
+            _oleDataTypeMap[OleDbType.DBTimeStamp] = typeof(DateTime);
+            _oleDataTypeMap[OleDbType.Decimal] = typeof(decimal);
+            _oleDataTypeMap[OleDbType.Double] = typeof(double);
+            _oleDataTypeMap[OleDbType.Empty] = typeof(void);
+            _oleDataTypeMap[OleDbType.Error] = typeof(Exception);
+            _oleDataTypeMap[OleDbType.Filetime] = typeof(DateTime);
+            _oleDataTypeMap[OleDbType.Guid] = typeof(Guid);
+            _oleDataTypeMap[OleDbType.IDispatch] = typeof(object);
+            _oleDataTypeMap[OleDbType.Integer] = typeof(int);
+            _oleDataTypeMap[OleDbType.IUnknown] = typeof(object);
+            _oleDataTypeMap[OleDbType.LongVarBinary] = typeof(byte[]);
+            _oleDataTypeMap[OleDbType.LongVarChar] = typeof(string);
+            _oleDataTypeMap[OleDbType.LongVarWChar] = typeof(string);
+            _oleDataTypeMap[OleDbType.Numeric] = typeof(decimal);
+            _oleDataTypeMap[OleDbType.PropVariant] = typeof(object);
+            _oleDataTypeMap[OleDbType.Single] = typeof(float);
+            _oleDataTypeMap[OleDbType.SmallInt] = typeof(short);
+            _oleDataTypeMap[OleDbType.TinyInt] = typeof(sbyte);
+            _oleDataTypeMap[OleDbType.UnsignedBigInt] = typeof(ulong);
+            _oleDataTypeMap[OleDbType.UnsignedInt] = typeof(uint);
+            _oleDataTypeMap[OleDbType.UnsignedSmallInt] = typeof(ushort);
+            _oleDataTypeMap[OleDbType.UnsignedTinyInt] = typeof(byte);
+            _oleDataTypeMap[OleDbType.VarBinary] = typeof(byte[]);
+            _oleDataTypeMap[OleDbType.VarChar] = typeof(string);
+            _oleDataTypeMap[OleDbType.Variant] = typeof(object);
+            _oleDataTypeMap[OleDbType.VarNumeric] = typeof(decimal);
+            _oleDataTypeMap[OleDbType.VarWChar] = typeof(string);
+            _oleDataTypeMap[OleDbType.WChar] = typeof(string);
+            _sqlDataTypeMap[SqlDbType.BigInt] = typeof(long);
+            _sqlDataTypeMap[SqlDbType.Binary] = typeof(byte[]);
+            _sqlDataTypeMap[SqlDbType.Bit] = typeof(bool);
+            _sqlDataTypeMap[SqlDbType.Char] = typeof(string);
+            _sqlDataTypeMap[SqlDbType.DateTime] = typeof(DateTime);
+            _sqlDataTypeMap[SqlDbType.Decimal] = typeof(decimal);
+            _sqlDataTypeMap[SqlDbType.Float] = typeof(double);
+            _sqlDataTypeMap[SqlDbType.Image] = typeof(byte[]);
+            _sqlDataTypeMap[SqlDbType.Int] = typeof(int);
+            _sqlDataTypeMap[SqlDbType.Money] = typeof(decimal);
+            _sqlDataTypeMap[SqlDbType.NChar] = typeof(string);
+            _sqlDataTypeMap[SqlDbType.NText] = typeof(string);
+            _sqlDataTypeMap[SqlDbType.NVarChar] = typeof(string);
+            _sqlDataTypeMap[SqlDbType.Real] = typeof(float);
+            _sqlDataTypeMap[SqlDbType.SmallDateTime] = typeof(DateTime);
+            _sqlDataTypeMap[SqlDbType.SmallInt] = typeof(short);
+            _sqlDataTypeMap[SqlDbType.SmallMoney] = typeof(decimal);
+            _sqlDataTypeMap[SqlDbType.Text] = typeof(string);
+            _sqlDataTypeMap[SqlDbType.Timestamp] = typeof(byte[]);
+            _sqlDataTypeMap[SqlDbType.TinyInt] = typeof(byte);
+            _sqlDataTypeMap[SqlDbType.UniqueIdentifier] = typeof(Guid);
+            _sqlDataTypeMap[SqlDbType.VarBinary] = typeof(byte[]);
+            _sqlDataTypeMap[SqlDbType.VarChar] = typeof(string);
+            _sqlDataTypeMap[SqlDbType.Variant] = typeof(object);
         }
 
         public static object CreateInstanceFromName(string typeName)
@@ -132,7 +132,7 @@ namespace UC.Platform.Data.Utils
 
         public static Type GetOleDataTypeMap(OleDbType dbType)
         {
-            return (m_OleDataTypeMap[dbType] as Type);
+            return (_oleDataTypeMap[dbType] as Type);
         }
 
         public static string GetSimpleDataTypeString(Type type)
@@ -150,7 +150,7 @@ namespace UC.Platform.Data.Utils
                 return "";
             }
             string text = type.ToString();
-            string text2 = m_TypeMap[text] as string;
+            string text2 = _typeMap[text] as string;
             if (text2 == null)
             {
                 return text;

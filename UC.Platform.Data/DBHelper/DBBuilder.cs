@@ -1,284 +1,113 @@
 using System;
-using System.Collections;
 using System.Data;
-using System.Data.Odbc;
-using System.Data.OleDb;
-using System.Data.OracleClient;
-using System.Data.SqlClient;
+using System.Data.Common;
 using System.Reflection;
-using MySql.Data.MySqlClient;
 
 namespace UC.Platform.Data.DBHelper
 {
     internal sealed class DBBuilder
     {
-        private static readonly Hashtable _connectionTypeMap = new Hashtable();
-        private static readonly DBBuilder.DBTypeInfo[] _dbTypeInfos =
+        public static DbDataAdapter CreateAdapter(IDatabaseProviderFactory factory)
         {
-            new DBTypeInfo(typeof(OdbcDataAdapter), typeof(OdbcCommand), typeof(OdbcCommandBuilder), typeof(OdbcParameter)),
-            new DBTypeInfo(typeof(OleDbDataAdapter), typeof(OleDbCommand), typeof(OleDbCommandBuilder), typeof(OleDbParameter)),
-            new DBTypeInfo(typeof(OracleDataAdapter), typeof(OracleCommand), typeof(OracleCommandBuilder), typeof(OracleParameter)),
-            new DBTypeInfo(typeof(SqlDataAdapter), typeof(SqlCommand), typeof(SqlCommandBuilder), typeof(SqlParameter)),
-            new DBTypeInfo(typeof(MySqlDataAdapter), typeof(MySqlCommand), typeof(MySqlCommandBuilder), typeof(MySqlParameter))
-        };
-
-        static DBBuilder()
-        {
-            _connectionTypeMap[typeof(OdbcConnection)] = DBType.ODBC;
-            _connectionTypeMap[typeof(OleDbConnection)] = DBType.OLEDB;
-            _connectionTypeMap[typeof(OracleConnection)] = DBType.ORACLE;
-            _connectionTypeMap[typeof(SqlConnection)] = DBType.SQLSERVER;
-            _connectionTypeMap[typeof (MySqlConnection)] = DBType.MYSQL;
-        }
-
-        public static IDbDataAdapter CreateAdapter(IDbConnection connection)
-        {
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            IDbDataAdapter adapter = Activator.CreateInstance(info.AdapterType) as IDbDataAdapter;
-            if (adapter == null)
-            {
-                throw new NullReferenceException(string.Format("创建DBAdapter失败[{0}]", info.AdapterType.Name));
-            }
-            adapter.SelectCommand = Activator.CreateInstance(info.CommandType) as IDbCommand;
-            if (adapter.SelectCommand == null)
-            {
-                throw new NullReferenceException("创建SelectCommand失败！");
-            }
-            adapter.SelectCommand.Connection = connection;
-            Activator.CreateInstance(info.BuilderType, new object[] { adapter });
+            var adapter = factory.CreateDataAdapter();
             return adapter;
         }
 
-        public static IDbDataAdapter CreateAdapter(IDbConnection connection, string tableName)
+        public static DbDataAdapter CreateAdapter(IDatabaseProviderFactory factory, string tableName)
         {
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            IDbDataAdapter adapter = Activator.CreateInstance(info.AdapterType) as IDbDataAdapter;
+            var adapter = CreateAdapter(factory);
             if (adapter == null) throw new DataException();
-            adapter.SelectCommand = Activator.CreateInstance(info.CommandType) as IDbCommand;
-            if(adapter.SelectCommand==null) throw new DataException();
-            adapter.SelectCommand.Connection = connection;
+            adapter.SelectCommand = CreateCommand(factory);
             adapter.SelectCommand.CommandText = "SELECT * FROM " + tableName;
-            if ((connection.GetType() != typeof(OracleConnection)) && !connection.GetType().IsSubclassOf(typeof(OracleConnection)))
-            {
-                adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            }
-            object obj2 = Activator.CreateInstance(info.BuilderType, new object[] { adapter });
-            try
-            {
-                adapter.InsertCommand = info.GetInsertCommand.Invoke(obj2, new object[] { true }) as IDbCommand;
-            }
-            catch
-            {
-                adapter.InsertCommand = null;
-            }
-            try
-            {
-                adapter.UpdateCommand = info.GetUpdateCommand.Invoke(obj2, new object[] { true }) as IDbCommand;
-            }
-            catch
-            {
-                adapter.UpdateCommand = null;
-            }
-            try
-            {
-                adapter.DeleteCommand = info.GetDeleteCommand.Invoke(obj2, new object[] { true }) as IDbCommand;
-            }
-            catch
-            {
-                adapter.DeleteCommand = null;
-            }
+            adapter.MissingSchemaAction = MissingSchemaAction.Add;
+            DbCommandBuilder builder = factory.CreateCommandBuilder(adapter);
+            adapter.InsertCommand = builder.GetInsertCommand(true);
+            adapter.UpdateCommand = builder.GetUpdateCommand(true);
+            adapter.DeleteCommand = builder.GetDeleteCommand(true);
             return adapter;
         }
 
-        public static IDbDataAdapter CreateAdapter(IDbConnection connection, string tableName, IDbTransaction transaction)
+        public static DbDataAdapter CreateAdapter(IDatabaseProviderFactory factory, string tableName, DbTransaction transaction)
         {
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            IDbDataAdapter adapter = Activator.CreateInstance(info.AdapterType) as IDbDataAdapter;
-            if (adapter == null) throw new DataException();
-
-            adapter.SelectCommand = Activator.CreateInstance(info.CommandType) as IDbCommand;
-            if (adapter.SelectCommand == null) throw new DataException();
-            
-                adapter.SelectCommand.Connection = connection;
-                adapter.SelectCommand.Transaction = transaction;
-                adapter.SelectCommand.CommandText = "SELECT * FROM " + tableName;
-            
-            if ((connection.GetType() != typeof(OracleConnection)) && !connection.GetType().IsSubclassOf(typeof(OracleConnection)))
-            {
-                adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            }
-            object obj2 = Activator.CreateInstance(info.BuilderType, new object[] { adapter });
-            try
-            {
-                adapter.InsertCommand = info.GetInsertCommand.Invoke(obj2, new object[] { true }) as IDbCommand;
-            }
-            catch
-            {
-                adapter.InsertCommand = null;
-            }
-            try
-            {
-                adapter.UpdateCommand = info.GetUpdateCommand.Invoke(obj2, new object[] { true }) as IDbCommand;
-            }
-            catch
-            {
-                adapter.UpdateCommand = null;
-            }
-            try
-            {
-                adapter.DeleteCommand = info.GetDeleteCommand.Invoke(obj2, new object[] { true }) as IDbCommand;
-            }
-            catch
-            {
-                adapter.DeleteCommand = null;
-            }
+            DbDataAdapter adapter = CreateAdapter(factory);
+            adapter.SelectCommand = CreateCommand(factory);
+            adapter.SelectCommand.Transaction = transaction;
+            adapter.SelectCommand.CommandText = "SELECT * FROM " + tableName;
+            adapter.MissingSchemaAction = MissingSchemaAction.Add;
+            DbCommandBuilder builder = factory.CreateCommandBuilder(adapter);
+            adapter.InsertCommand = builder.GetInsertCommand(true);
+            adapter.UpdateCommand = builder.GetUpdateCommand(true);
+            adapter.DeleteCommand = builder.GetDeleteCommand(true);
             return adapter;
         }
 
-        public static IDbCommand CreateCommand(IDbConnection connection)
+        public static DbCommand CreateCommand(IDatabaseProviderFactory factory)
         {
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            IDbCommand command = Activator.CreateInstance(info.CommandType) as IDbCommand;
-            if (command != null)
-            {
-                command.Connection = connection;
-                return command;
-            }
-            return null;
+            DbCommand command = factory.CreateCommand();
+            command.Connection = factory.CreateConnection();
+            return command;
         }
 
-        public static IDbCommand CreateCommand(IDbConnection connection, IDbTransaction transaction)
+        public static DbCommand CreateCommand(IDatabaseProviderFactory factory, DbTransaction transaction)
         {
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            IDbCommand command = Activator.CreateInstance(info.CommandType) as IDbCommand;
-            if (command != null)
-            {
-                command.Connection = connection;
-                command.Transaction = transaction;
-                return command;
-            }
-            return null;
+            var command = CreateCommand(factory);
+            command.Transaction = transaction;
+            return command;
         }
 
-        public static IDbDataParameter CreateParameter(IDbConnection connection)
+        public static DbParameter CreateParameter(IDatabaseProviderFactory factory)
         {
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            return (Activator.CreateInstance(info.ParameterType) as IDbDataParameter);
+            return factory.CreateParameter();
         }
 
-        public static IDbDataParameter[] CreateParameter(IDbConnection connection, int count)
-        {
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            IDbDataParameter[] parameterArray = new IDbDataParameter[count];
-            for (int i = 0; i < count; i++)
+        public static DbParameter[] CreateParameter(IDatabaseProviderFactory factory, int count)
+        {   
+            var parameterArray = new DbParameter[count];
+            for (var i = 0; i < count; i++)
             {
-                parameterArray[i] = Activator.CreateInstance(info.ParameterType) as IDbDataParameter;
+                parameterArray[i] = factory.CreateParameter();
             }
             return parameterArray;
         }
 
-        public static bool DeriveParameters(IDbCommand cmd)
+        public static bool DeriveParameters(IDatabaseProviderFactory factory, DbCommand cmd)
         {
-            bool flag2;
-            if ((cmd == null) || (cmd.Connection == null))
+            if ((cmd == null) || (cmd.Connection == null) || cmd.CommandType!= CommandType.StoredProcedure)
             {
                 return false;
             }
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(cmd.Connection)];
-            bool flag = false;
+            DbCommandBuilder builder = factory.CreateCommandBuilder();
+            MethodInfo methodInfo = builder.GetType().GetMethod("DeriveParameters", new []{typeof(DbCommand)});
+            if (methodInfo == null) return false;
+            bool isOpened = cmd.Connection.State == ConnectionState.Open;
             try
             {
-                if (cmd.Connection.State != ConnectionState.Open)
-                {
-                    cmd.Connection.Open();
-                    flag = true;
-                }
-                info.DerivedParameters.Invoke(null, new object[] { cmd });
-                flag2 = true;
+                if(!isOpened) cmd.Connection.Open();
+                methodInfo.Invoke(null, new object[] {cmd});
+                return true;
             }
             catch (Exception)
             {
-                flag2 = false;
+                return false;
             }
             finally
             {
-                if (flag)
-                {
-                    cmd.Connection.Close();
-                }
+                if(!isOpened)cmd.Connection.Close();
             }
-            return flag2;
         }
 
-        public static IDbCommand DeriveParameters(IDbConnection connection, string procName)
+        public static DbCommand DeriveParameters(IDatabaseProviderFactory factory, string procName)
         {
-            IDbCommand command2;
-            DBTypeInfo info = _dbTypeInfos[(int) GetDBType(connection)];
-            IDbCommand command = Activator.CreateInstance(info.CommandType) as IDbCommand;
+            DbCommand command = factory.CreateCommand();
             if (command == null) return null;
-            command.Connection = connection;
+            command.Connection = factory.CreateConnection();
             command.CommandText = procName;
             command.CommandType = CommandType.StoredProcedure;
-            bool flag = false;
-            try
+            if (DeriveParameters(factory, command))
             {
-                if (connection.State != ConnectionState.Open)
-                {
-                    connection.Open();
-                    flag = true;
-                }
-                info.DerivedParameters.Invoke(null, new object[] { command });
-                command2 = command;
+                return command;
             }
-            catch (Exception)
-            {
-                command2 = null;
-            }
-            finally
-            {
-                if (flag)
-                {
-                    connection.Close();
-                }
-            }
-            return command2;
-        }
-
-        public static DBType GetDBType(IDbConnection connection)
-        {
-            if (connection != null)
-            {
-                Type key = connection.GetType();
-                if (_connectionTypeMap.ContainsKey(key))
-                {
-                    return (DBType) _connectionTypeMap[key];
-                }
-            }
-            return DBType.ERROR;
-        }
-
-        internal sealed class DBTypeInfo
-        {
-            public Type AdapterType;
-            public Type BuilderType;
-            public Type CommandType;
-            public MethodInfo DerivedParameters;
-            public MethodInfo GetDeleteCommand;
-            public MethodInfo GetInsertCommand;
-            public MethodInfo GetUpdateCommand;
-            public Type ParameterType;
-
-            public DBTypeInfo(Type adapterType, Type commandType, Type builderType, Type paramType)
-            {
-                AdapterType = adapterType;
-                CommandType = commandType;
-                BuilderType = builderType;
-                ParameterType = paramType;
-                GetDeleteCommand = BuilderType.GetMethod("GetDeleteCommand", new[] { typeof(bool) });
-                GetInsertCommand = BuilderType.GetMethod("GetInsertCommand", new[] { typeof(bool) });
-                GetUpdateCommand = BuilderType.GetMethod("GetUpdateCommand", new[] { typeof(bool) });
-                DerivedParameters = BuilderType.GetMethod("DeriveParameters", new[] { CommandType });
-            }
+            return null;
         }
     }
 }

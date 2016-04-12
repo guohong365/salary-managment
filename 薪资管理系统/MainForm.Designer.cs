@@ -36,12 +36,9 @@
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
-            this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem4 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -50,8 +47,11 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -149,39 +149,6 @@
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.positionManagment);
             // 
-            // barButtonItem3
-            // 
-            this.barButtonItem3.Caption = "绩效考核";
-            this.barButtonItem3.Id = 4;
-            this.barButtonItem3.Name = "barButtonItem3";
-            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.appraisalElementManagment);
-            // 
-            // barButtonItem4
-            // 
-            this.barButtonItem4.Caption = "薪酬体系";
-            this.barButtonItem4.Id = 5;
-            this.barButtonItem4.Name = "barButtonItem4";
-            // 
-            // barButtonItem5
-            // 
-            this.barButtonItem5.Caption = "其他";
-            this.barButtonItem5.Id = 6;
-            this.barButtonItem5.Name = "barButtonItem5";
-            // 
-            // barSubItem5
-            // 
-            this.barSubItem5.Caption = "绩效考核";
-            this.barSubItem5.Id = 10;
-            this.barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7)});
-            this.barSubItem5.Name = "barSubItem5";
-            // 
-            // barButtonItem7
-            // 
-            this.barButtonItem7.Caption = "考核单元管理";
-            this.barButtonItem7.Id = 11;
-            this.barButtonItem7.Name = "barButtonItem7";
-            // 
             // barSubItem3
             // 
             this.barSubItem3.Caption = "工资管理";
@@ -190,6 +157,19 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10)});
             this.barSubItem3.Name = "barSubItem3";
+            // 
+            // barButtonItem9
+            // 
+            this.barButtonItem9.Caption = "员工表现录入";
+            this.barButtonItem9.Id = 13;
+            this.barButtonItem9.Name = "barButtonItem9";
+            this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.employee_performance);
+            // 
+            // barButtonItem10
+            // 
+            this.barButtonItem10.Caption = "工资明细查询";
+            this.barButtonItem10.Id = 14;
+            this.barButtonItem10.Name = "barButtonItem10";
             // 
             // barSubItem4
             // 
@@ -203,6 +183,7 @@
             this.barButtonItem6.Caption = "系统设置";
             this.barButtonItem6.Id = 9;
             this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.onSystemConfig);
             // 
             // bar3
             // 
@@ -250,18 +231,38 @@
             this.barSubItem1.Id = 0;
             this.barSubItem1.Name = "barSubItem1";
             // 
-            // barButtonItem9
+            // barButtonItem3
             // 
-            this.barButtonItem9.Caption = "员工表现录入";
-            this.barButtonItem9.Id = 13;
-            this.barButtonItem9.Name = "barButtonItem9";
-            this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.employee_performance);
+            this.barButtonItem3.Caption = "绩效考核";
+            this.barButtonItem3.Id = 4;
+            this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.appraisalElementManagment);
             // 
-            // barButtonItem10
+            // barButtonItem4
             // 
-            this.barButtonItem10.Caption = "工资明细查询";
-            this.barButtonItem10.Id = 14;
-            this.barButtonItem10.Name = "barButtonItem10";
+            this.barButtonItem4.Caption = "薪酬体系";
+            this.barButtonItem4.Id = 5;
+            this.barButtonItem4.Name = "barButtonItem4";
+            // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "其他";
+            this.barButtonItem5.Id = 6;
+            this.barButtonItem5.Name = "barButtonItem5";
+            // 
+            // barSubItem5
+            // 
+            this.barSubItem5.Caption = "绩效考核";
+            this.barSubItem5.Id = 10;
+            this.barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7)});
+            this.barSubItem5.Name = "barSubItem5";
+            // 
+            // barButtonItem7
+            // 
+            this.barButtonItem7.Caption = "考核单元管理";
+            this.barButtonItem7.Id = 11;
+            this.barButtonItem7.Name = "barButtonItem7";
             // 
             // barButtonItem11
             // 

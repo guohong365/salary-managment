@@ -177,10 +177,10 @@ namespace SalarySystem
 
             #region 任务相关
 
-            DBHandlerEx.FillOnce(DataHolder.AssignmentItem, "select * from t_assignment_item");
+            DBHandlerEx.FillOnce(DataHolder.AssignmentDefine, "select * from t_assignment_define");
             DBHandlerEx.FillOnce(DataHolder.AssignmentItemType, "select * from t_assignment_item_type");
             DBHandlerEx.FillOnce(DataHolder.PositionAssignments, "select * from t_position_assignments");
-            DBHandlerEx.FillOnce(DataHolder.AssignmentDetail,"select * from v_assignment_detail");
+            //DBHandlerEx.FillOnce(DataHolder.AssignmentDetail,"select * from v_assignment_detail");
             DBHandlerEx.FillOnce(DataHolder.Unit, "select * from t_unit");
             #endregion
             #region 薪资相关

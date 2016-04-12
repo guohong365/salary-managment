@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using SalarySystem.Config;
 using SalarySystem.Execute;
 using SalarySystem.Managment;
 using SalarySystem.Managment.Basic;
@@ -110,6 +111,14 @@ namespace SalarySystem
             if (!takeCachedPage("员工表现"))
             {
                 addControl("员工表现",new ExecutionPerformanceControl());
+            }
+        }
+
+        private void onSystemConfig(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!takeCachedPage("系统设置"))
+            {
+                addControl("系统配置", new ConfigManagmentControl());
             }
         }
     }

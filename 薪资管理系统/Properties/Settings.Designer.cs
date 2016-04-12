@@ -38,10 +38,21 @@ namespace SalarySystem.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;persistsecurityinfo=True;database=salary;allowuserv" +
-            "ariables=True")]
+            "ariables=True;password=1111")]
         public string salaryConnectionString1 {
             get {
                 return ((string)(this["salaryConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;persistsecurityinfo=True;database=salary;allowuserv" +
+            "ariables=True")]
+        public string salaryConnectionString2 {
+            get {
+                return ((string)(this["salaryConnectionString2"]));
             }
         }
     }

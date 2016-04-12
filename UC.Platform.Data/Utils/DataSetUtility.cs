@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using UC.Platform.Data.DBHelper;
 
 namespace UC.Platform.Data.Utils
 {
     public sealed class DataSetUtility
     {
-        private static string m_DefaultNamespace;
+        private static string _defaultNamespace;
         private static readonly Hashtable _namespaceTable = new Hashtable();
 
         public static void AddDataSetType(Type type)
@@ -20,13 +20,16 @@ namespace UC.Platform.Data.Utils
                 {
                     if (info.PropertyType.IsSubclassOf(TypeUtility.DataTableType))
                     {
-                        DataSetNamespaceData data = _namespaceTable[type.Namespace] as DataSetNamespaceData;
-                        if (data == null)
+                        if (type.Namespace != null)
                         {
-                            data = new DataSetNamespaceData(type.Namespace);
-                            _namespaceTable[type.Namespace] = data;
+                            DataSetNamespaceData data = _namespaceTable[type.Namespace] as DataSetNamespaceData;
+                            if (data == null)
+                            {
+                                data = new DataSetNamespaceData(type.Namespace);
+                                _namespaceTable[type.Namespace] = data;
+                            }
+                            data.AddDataSetType(info.Name, type);
                         }
-                        data.AddDataSetType(info.Name, type);
                     }
                 }
             }
@@ -45,18 +48,17 @@ namespace UC.Platform.Data.Utils
                         if (info.PropertyType.IsSubclassOf(TypeUtility.DataTableType))
                         {
                             DataTable table = info.GetValue(ds, null) as DataTable;
-                            if (table.Rows.Count >= 1)
+                            if (table != null && table.Rows.Count >= 1)
                             {
                                 DataTable table2 = info.GetValue(set, null) as DataTable;
                                 Type type2 = table.Rows[0].GetType();
                                 MethodInfo method = info.PropertyType.GetMethod("New" + info.Name + "Row", new Type[0]);
-                                MethodInfo info3 = info.PropertyType.GetMethod("Add" + info.Name + "Row", new Type[] { type2 });
-                                type2.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                                MethodInfo info3 = info.PropertyType.GetMethod("Add" + info.Name + "Row", new[] { type2 });
                                 for (int i = 0; i < table.Rows.Count; i++)
                                 {
                                     object dest = method.Invoke(table2, null);
                                     ObjectUtility.PropertiesCopy(table.Rows[i], dest, false);
-                                    info3.Invoke(table2, new object[] { dest });
+                                    info3.Invoke(table2, new[] { dest });
                                 }
                             }
                         }
@@ -66,6 +68,7 @@ namespace UC.Platform.Data.Utils
                 {
                     for (int j = 0; j < ds.Tables.Count; j++)
                     {
+                        if (set == null) continue;
                         DataTable table3 = set.Tables.Add();
                         if (!type.IsSubclassOf(TypeUtility.DataSetType))
                         {
@@ -91,7 +94,7 @@ namespace UC.Platform.Data.Utils
 
         public static DataSet GetDataSetByName(string name)
         {
-            return GetDataSetByName(m_DefaultNamespace, name);
+            return GetDataSetByName(_defaultNamespace, name);
         }
 
         public static DataSet GetDataSetByName(string strNamespace, string name)
@@ -201,11 +204,11 @@ namespace UC.Platform.Data.Utils
                     DataSet changes = sourceDataSet.GetChanges();
                     if (sourceDataSet.GetType() == TypeUtility.DataSetType)
                     {
-                        changes.WriteXml(writer);
+                        if (changes != null) changes.WriteXml(writer);
                     }
                     else
                     {
-                        changes.WriteXml(writer, XmlWriteMode.DiffGram);
+                        if (changes != null) changes.WriteXml(writer, XmlWriteMode.DiffGram);
                     }
                 }
                 else if (sourceDataSet.GetType() == TypeUtility.DataSetType)
@@ -246,7 +249,7 @@ namespace UC.Platform.Data.Utils
 
         public static bool HasDataSet(string name)
         {
-            return HasDataSet(m_DefaultNamespace, name);
+            return HasDataSet(_defaultNamespace, name);
         }
 
         public static bool HasDataSet(string strNamespace, string name)
@@ -283,7 +286,7 @@ namespace UC.Platform.Data.Utils
             }
         }
 
-        public static bool InitializeDataSetTable(Assembly asm, string NameSpace)
+        public static bool InitializeDataSetTable(Assembly asm, string nameSpace)
         {
             if (asm == null)
             {
@@ -293,7 +296,7 @@ namespace UC.Platform.Data.Utils
             {
                 foreach (Type type in asm.GetTypes())
                 {
-                    if (type.IsSubclassOf(TypeUtility.DataSetType) && (type.Namespace == NameSpace))
+                    if (type.IsSubclassOf(TypeUtility.DataSetType) && (type.Namespace == nameSpace))
                     {
                         AddDataSetType(type);
                     }
@@ -308,20 +311,12 @@ namespace UC.Platform.Data.Utils
 
         public static void RegisterDefaultDataSetNamespace(string name)
         {
-            m_DefaultNamespace = name;
+            _defaultNamespace = name;
         }
 
         public static DataSet SearchDataSetByName(string name)
         {
-            foreach (DataSetNamespaceData data in _namespaceTable.Values)
-            {
-                Type dataSetType = data.GetDataSetType(name);
-                if (dataSetType != null)
-                {
-                    return (Activator.CreateInstance(dataSetType) as DataSet);
-                }
-            }
-            return null;
+            return (from DataSetNamespaceData data in _namespaceTable.Values select data.GetDataSetType(name) into dataSetType where dataSetType != null select (Activator.CreateInstance(dataSetType) as DataSet)).FirstOrDefault();
         }
 
         public static bool SetDataSetXml(byte[] xmls, DataSet[] desertDataSets)
@@ -337,14 +332,7 @@ namespace UC.Platform.Data.Utils
                 {
                     return false;
                 }
-                for (int i = 0; i < textArray.Length; i++)
-                {
-                    if (!SetDataSetXml(textArray[i], desertDataSets[i]))
-                    {
-                        return false;
-                    }
-                }
-                return true;
+                return !textArray.Where((t, i) => !SetDataSetXml(t, desertDataSets[i])).Any();
             }
             catch (Exception)
             {
@@ -393,7 +381,7 @@ namespace UC.Platform.Data.Utils
             {
                 return false;
             }
-            object obj2 = (valueForNull == null) ? DBNull.Value : valueForNull;
+            object obj2 = valueForNull ?? DBNull.Value;
             if (value == null)
             {
                 row[fieldName] = obj2;
@@ -401,13 +389,10 @@ namespace UC.Platform.Data.Utils
             }
             if (nullValues != null)
             {
-                for (int i = 0; i < nullValues.Length; i++)
+                if (nullValues.Contains(value))
                 {
-                    if (value.Equals(nullValues[i]))
-                    {
-                        row[fieldName] = obj2;
-                        return true;
-                    }
+                    row[fieldName] = obj2;
+                    return true;
                 }
             }
             row[fieldName] = value;
@@ -438,22 +423,22 @@ namespace UC.Platform.Data.Utils
 
             public DataSetNamespaceData(string name)
             {
-                this.Namespace = name;
+                Namespace = name;
             }
 
             public void AddDataSetType(string name, Type type)
             {
-                this.DataSetTypeTable[name.ToUpper()] = type;
+                DataSetTypeTable[name.ToUpper()] = type;
             }
 
             public Type GetDataSetType(string name)
             {
-                return (this.DataSetTypeTable[name.ToUpper()] as Type);
+                return (DataSetTypeTable[name.ToUpper()] as Type);
             }
 
             public bool HasDataSetType(string name)
             {
-                return this.DataSetTypeTable.ContainsKey(name.ToUpper());
+                return DataSetTypeTable.ContainsKey(name.ToUpper());
             }
         }
     }

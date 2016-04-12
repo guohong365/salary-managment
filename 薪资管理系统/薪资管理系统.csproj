@@ -95,6 +95,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraRichEdit.v10.2.resources.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v10.2.Core, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraScheduler.v10.2.Core.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraScheduler.v10.2.Core.resources.dll</HintPath>
@@ -145,6 +147,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\AutoAssignmentWeightControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\AutoAssignmentWeightControl.Designer.cs">
+      <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ConfigManagmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Config\ConfigManagmentControl.Designer.cs">
+      <DependentUpon>ConfigManagmentControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataHolder.cs" />
     <Compile Include="Data\DataSetSalary.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -170,14 +184,23 @@
     <Compile Include="Execute\ExecutionPerformanceControl.Designer.cs">
       <DependentUpon>ExecutionPerformanceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\AssignmentItemControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Execute\AssignmentScheduleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Execute\AssignmentScheduleControl.Designer.cs">
       <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Assignment\PositionAssignmentDefineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Assignment\PositionAssignmentDefineControl.Designer.cs">
+      <DependentUpon>PositionAssignmentDefineControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Assignment\TeamAssignmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Assignment\TeamAssignmentControl.Designer.cs">
+      <DependentUpon>TeamAssignmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\BasicDefineControl.cs">
       <SubType>UserControl</SubType>
@@ -246,11 +269,11 @@
     <Compile Include="Managment\Basic\BaseControl.Designer.cs">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\ExecutionAssignmentControl.cs">
+    <Compile Include="Managment\Assignment\AssignmentDefineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Assignment\ExecutionAssignmentControl.Designer.cs">
-      <DependentUpon>ExecutionAssignmentControl.cs</DependentUpon>
+    <Compile Include="Managment\Assignment\AssignmentDefineControl.Designer.cs">
+      <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Editor\IItemEditor.cs" />
     <Compile Include="Managment\Editor\ItemControl.cs">
@@ -351,6 +374,12 @@
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemInitalizer.cs" />
+    <EmbeddedResource Include="Config\AutoAssignmentWeightControl.resx">
+      <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ConfigManagmentControl.resx">
+      <DependentUpon>ConfigManagmentControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Execute\AssignmentScheduleControl.resx">
       <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,9 +392,11 @@
     <EmbeddedResource Include="Execute\ExecutionPerformanceControl.resx">
       <DependentUpon>ExecutionPerformanceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Assignment\AssignmentItemControl.resx">
-      <DependentUpon>AssignmentItemControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Managment\Assignment\PositionAssignmentDefineControl.resx">
+      <DependentUpon>PositionAssignmentDefineControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Assignment\TeamAssignmentControl.resx">
+      <DependentUpon>TeamAssignmentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\BasicDefineControl.resx">
       <DependentUpon>BasicDefineControl.cs</DependentUpon>
@@ -391,8 +422,8 @@
     <EmbeddedResource Include="Managment\Basic\BaseControl.resx">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Assignment\ExecutionAssignmentControl.resx">
-      <DependentUpon>ExecutionAssignmentControl.cs</DependentUpon>
+    <EmbeddedResource Include="Managment\Assignment\AssignmentDefineControl.resx">
+      <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Editor\ItemControl.resx">
       <DependentUpon>ItemControl.cs</DependentUpon>

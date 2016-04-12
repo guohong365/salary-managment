@@ -19,8 +19,9 @@ namespace SalarySystem.Managment.Basic
         protected const string KEY_SALARY_ITEM = "基本薪资构成项目定义";
         protected const string KEY_EXECUTION_SALAY_STRUCT = "薪资结构实施管理";
 
-        protected const string KEY_ASSINGMENT_ITEM = "基本任务指标定义";
-        protected const string KEY_EXECUTION_ASSIGNMENT = "任务指标管理";
+        protected const string KEY_ASSIGNMENT_DEFINE = "基本任务指标定义";
+        protected const string KEY_TEAM_ASSIGNMENT_DEFINE = "团队任务指标定义";
+        protected const string KEY_EXECUTION_ASSIGNMENT = "岗位任务指标定义";
         
         
         public DefineControlManager(Control container, NavBarControl navBarControl)
@@ -39,13 +40,14 @@ namespace SalarySystem.Managment.Basic
                 }, 0),
                 new NavGroupDefine(KEY_GROUP_ASSIGNMENT, new[]
                 {
-                    new NavItemDefine(KEY_ASSINGMENT_ITEM, typeof(AssignmentItemControl), onNavItemClicked, 0), 
-                    new NavItemDefine(KEY_EXECUTION_ASSIGNMENT, typeof(ExecutionAssignmentControl), onNavItemClicked, 1) 
+                    new NavItemDefine(KEY_ASSIGNMENT_DEFINE, typeof(AssignmentDefineControl), onNavItemClicked, 0), 
+                    new NavItemDefine(KEY_TEAM_ASSIGNMENT_DEFINE, typeof(TeamAssignmentControl), onNavItemClicked, 1), 
+                    new NavItemDefine(KEY_EXECUTION_ASSIGNMENT, typeof(PositionAssignmentDefineControl), onNavItemClicked, 2) 
                 }, 1),
                 new NavGroupDefine(KEY_GROUP_SALARY_STRUCTURE, new []
                 {
                     new NavItemDefine(KEY_SALARY_ITEM, typeof(SalaryItemControl), onNavItemClicked, 0),
-                    new NavItemDefine(KEY_EXECUTION_SALAY_STRUCT, typeof(ExecutionAssignmentControl), onNavItemClicked, 1)
+                    new NavItemDefine(KEY_EXECUTION_SALAY_STRUCT, typeof(AssignmentDefineControl), onNavItemClicked, 1)
 
                 }, 2) 
             });

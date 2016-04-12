@@ -14,7 +14,7 @@ namespace SalarySystem
 
         public static void InitAdapter()
         {
-            DBHandlerEx.RegisterDBDefaultType(typeof(MySqlConnection), "server=localhost;user id=root;persistsecurityinfo=True;database=salary;password=1111");
+            DBHandlerEx.RegisterDBDefaultType("MySql.Data.MySqlClient", "server=localhost;user id=root;persistsecurityinfo=True;database=salary;password=1111");
         }
 
         public static DataSetSalary DataSet
@@ -24,15 +24,21 @@ namespace SalarySystem
 
         #region 数据表
 
-        public static DataSetSalary.t_assignment_itemDataTable AssignmentItem
+        public static DataSetSalary.t_annual_assignmentDataTable AnnualAssignment
         {
-            get { return _dataSet.t_assignment_item; }
+            get { return _dataSet.t_annual_assignment; }
+        }
+
+        public static DataSetSalary.t_assignment_defineDataTable AssignmentDefine
+        {
+            get { return _dataSet.t_assignment_define; }
         }
 
         public static DataSetSalary.t_assignment_item_typeDataTable AssignmentItemType
         {
             get { return _dataSet.t_assignment_item_type; }
         }
+
         public static DataSetSalary.t_assignment_performanceDataTable AssignmentPerformance
         {
             get { return _dataSet.t_assignment_performance; }
@@ -137,16 +143,12 @@ namespace SalarySystem
         {
             get { return _dataSet.t_unit; }
         }
-
-        public static DataSetSalary.v_assignment_detailDataTable AssignmentDetail
-        {
-            get { return _dataSet.v_assignment_detail; }
-        }
+        
         public static DataSetSalary.v_evaluation_form_detailDataTable EvaluationFormDetail
         {
             get { return _dataSet.v_evaluation_form_detail; }
         }
-
+        
         public static DataSetSalary.v_salary_struct_detailDataTable SalaryStructDetail
         {
             get { return _dataSet.v_salary_struct_detail; }

@@ -42,7 +42,7 @@ namespace UC.Platform.Data.Utils
                 int num3 = 0;
                 while (num3 < 8)
                 {
-                    flagArray[num2] = (array[index] & (((int) 1) << num3)) != 0;
+                    flagArray[num2] = (array[index] & (1 << num3)) != 0;
                     num3++;
                     num2++;
                 }
@@ -72,14 +72,13 @@ namespace UC.Platform.Data.Utils
                 return null;
             }
             ArrayList list = new ArrayList();
-            int count = 0;
             for (int i = 0; i < num4; i++)
             {
                 if ((startIndex + 4) > length)
                 {
                     return null;
                 }
-                count = BitConverter.ToInt32(input, startIndex);
+                int count = BitConverter.ToInt32(input, startIndex);
                 startIndex += 4;
                 if ((startIndex + count) > length)
                 {
@@ -137,14 +136,13 @@ namespace UC.Platform.Data.Utils
                 return null;
             }
             ArrayList list = new ArrayList();
-            int count = 0;
             for (int i = 0; i < num4; i++)
             {
                 if ((startIndex + 4) > length)
                 {
                     return null;
                 }
-                count = BitConverter.ToInt32(input, startIndex);
+                int count = BitConverter.ToInt32(input, startIndex);
                 startIndex += 4;
                 if ((startIndex + count) > length)
                 {
@@ -196,7 +194,7 @@ namespace UC.Platform.Data.Utils
                 stream.Write(buffer, 0, buffer.Length);
                 num2 += buffer.Length + 4;
             }
-            stream.Seek((long) 0, SeekOrigin.Begin);
+            stream.Seek(0, SeekOrigin.Begin);
             bytes = BitConverter.GetBytes(num2);
             stream.Write(bytes, 0, 4);
             return stream.ToArray();
@@ -271,7 +269,7 @@ namespace UC.Platform.Data.Utils
             {
                 return false;
             }
-            return ((input[num] & (((int) 1) << num2)) != 0);
+            return ((input[num] & (1 << num2)) != 0);
         }
 
         public static byte[] HexStringToBytes(string input)
@@ -298,7 +296,7 @@ namespace UC.Platform.Data.Utils
 
         public static byte[] HexStringToBytes(string input, char splitChar)
         {
-            string[] textArray = input.ToUpper().Replace("0X", "").Replace(" ", "").Split(new char[] { splitChar });
+            string[] textArray = input.ToUpper().Replace("0X", "").Replace(" ", "").Split(new[] { splitChar });
             byte[] buffer = new byte[textArray.Length];
             for (int i = 0; i < textArray.Length; i++)
             {
@@ -331,11 +329,11 @@ namespace UC.Platform.Data.Utils
             {
                 if (val)
                 {
-                    input[num] = (byte) (input[num] | ((byte) (((int) 1) << num2)));
+                    input[num] = (byte) (input[num] | ((byte) (1 << num2)));
                 }
                 else
                 {
-                    input[num] = (byte) (input[num] & ((byte) ~(((int) 1) << num2)));
+                    input[num] = (byte) (input[num] & ((byte) ~(1 << num2)));
                 }
             }
         }
@@ -356,7 +354,7 @@ namespace UC.Platform.Data.Utils
                 stream.Write(buffer, 0, buffer.Length);
                 num2 += buffer.Length + 4;
             }
-            stream.Seek((long) 0, SeekOrigin.Begin);
+            stream.Seek(0, SeekOrigin.Begin);
             bytes = BitConverter.GetBytes(num2);
             stream.Write(bytes, 0, 4);
             return stream.ToArray();

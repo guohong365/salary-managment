@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using DevExpress.XtraEditors;
 
 namespace SalarySystem.Managment.Basic
@@ -95,6 +96,16 @@ namespace SalarySystem.Managment.Basic
         private void btn_revertChanges(object sender, EventArgs e)
         {
             onRevert();
+        }
+
+        protected virtual void onRowChanged(object sender, DataRowChangeEventArgs e)
+        {
+            if (e.Action == DataRowAction.Add || e.Action == DataRowAction.Change || e.Action == DataRowAction.Delete)
+            {
+                EnableSave(true);
+                EnableRevert(true);
+                CanClose = false;
+            }
         }
     }
 }

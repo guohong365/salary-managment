@@ -76,23 +76,14 @@ namespace UC.Platform.Data.Utils
             {
                 return false;
             }
-            PropertyInfo[] properties = null;
-            if (inhert)
-            {
-                properties = type.GetProperties();
-            }
-            else
-            {
-                properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-            }
+            PropertyInfo[] properties = inhert
+                ? type.GetProperties()
+                : type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             foreach (PropertyInfo info in properties)
             {
-                try
+                if (info.CanWrite)
                 {
                     info.SetValue(dest, info.GetValue(source, null), null);
-                }
-                catch
-                {
                 }
             }
             return true;
