@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonRevert = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButtonSave = new DevExpress.XtraEditors.SimpleButton();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gridControlExecutionForm = new DevExpress.XtraGrid.GridControl();
             this.gridViewExecutionForm = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -62,6 +58,8 @@
             this.colITEM_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlExecutionForm)).BeginInit();
@@ -77,44 +75,32 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButtonRevert);
-            this.panelControl1.Controls.Add(this.simpleButtonSave);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 545);
-            this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(795, 40);
-            this.panelControl1.TabIndex = 1;
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButtonRevert.Enabled = false;
-            this.simpleButtonRevert.Location = new System.Drawing.Point(715, 9);
-            this.simpleButtonRevert.Name = "simpleButtonRevert";
-            this.simpleButtonRevert.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonRevert.TabIndex = 1;
-            this.simpleButtonRevert.Text = "放弃";
+            this.simpleButtonRevert.Location = new System.Drawing.Point(676, 10);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButtonSave.Enabled = false;
-            this.simpleButtonSave.Location = new System.Drawing.Point(634, 9);
-            this.simpleButtonSave.Name = "simpleButtonSave";
-            this.simpleButtonSave.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonSave.TabIndex = 0;
-            this.simpleButtonSave.Text = "保存";
+            this.simpleButtonSave.Location = new System.Drawing.Point(595, 12);
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.splitContainerControl1);
+            this.panelControl2.Size = new System.Drawing.Size(795, 545);
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Location = new System.Drawing.Point(2, 2);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.gridControlExecutionForm);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControlPredifinedForms);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(795, 545);
+            this.splitContainerControl1.Size = new System.Drawing.Size(791, 541);
             this.splitContainerControl1.SplitterPosition = 313;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -128,7 +114,7 @@
             this.gridControlExecutionForm.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEditPosition,
             this.repositoryItemGridLookUpEditForm});
-            this.gridControlExecutionForm.Size = new System.Drawing.Size(313, 545);
+            this.gridControlExecutionForm.Size = new System.Drawing.Size(313, 541);
             this.gridControlExecutionForm.TabIndex = 0;
             this.gridControlExecutionForm.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewExecutionForm});
@@ -282,7 +268,7 @@
             this.gridControlPredifinedForms.Name = "gridControlPredifinedForms";
             this.gridControlPredifinedForms.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEditItemType});
-            this.gridControlPredifinedForms.Size = new System.Drawing.Size(477, 545);
+            this.gridControlPredifinedForms.Size = new System.Drawing.Size(473, 541);
             this.gridControlPredifinedForms.TabIndex = 0;
             this.gridControlPredifinedForms.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPredeinedForms});
@@ -415,14 +401,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.panelControl1);
             this.Name = "ExecuttionEvaluationFormControl";
             this.Size = new System.Drawing.Size(795, 585);
-            this.Load += new System.EventHandler(this.control_load);
-            this.VisibleChanged += new System.EventHandler(this.visibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlExecutionForm)).EndInit();
@@ -440,9 +424,6 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonRevert;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonSave;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraGrid.GridControl gridControlExecutionForm;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewExecutionForm;

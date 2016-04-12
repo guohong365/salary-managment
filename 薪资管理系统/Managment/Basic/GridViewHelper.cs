@@ -4,6 +4,7 @@ using DevExpress.Utils;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraTreeList;
 
 namespace SalarySystem.Managment.Basic
 {
@@ -16,6 +17,13 @@ namespace SalarySystem.Managment.Basic
     }
     public static class GridViewHelper
     {
+        static GridViewHelper()
+        {
+            ChangedItemBackColor = Color.Yellow;
+        }
+
+        public static Color ChangedItemBackColor { get; set; }
+
         public static void GerneralCustomCellDrawHandler(object sender, RowCellCustomDrawEventArgs e)
         {
             var gridView = sender as GridView;
@@ -26,11 +34,18 @@ namespace SalarySystem.Managment.Basic
 
             if (row == null || row.RowState == DataRowState.Unchanged) return;
 
-            e.Appearance.BackColor = Color.Yellow;
-            if ((bool)row["ENABLED"]) return;
-            e.Appearance.Font = new Font(e.Appearance.Font.FontFamily, e.Appearance.Font.Size,
-                e.Appearance.Font.Style | FontStyle.Strikeout, e.Appearance.Font.Unit);
-            e.Appearance.ForeColor = Color.LightCoral;
+            e.Appearance.BackColor = ChangedItemBackColor;
+        }
+
+        public static void CustomDrawNodeCell(object sender, CustomDrawNodeCellEventArgs e)
+        {
+            var treeList = sender as TreeList;
+            if (treeList == null) return;
+            var row= treeList.GetDataRecordByNode(e.Node) as DataRowView;
+            if (row != null && row.Row.RowState!= DataRowState.Unchanged)
+            {
+                e.Appearance.BackColor = ChangedItemBackColor;
+            }
         }
 
         public static void SetUpColumns(GridView gridView)

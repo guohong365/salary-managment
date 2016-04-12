@@ -94,8 +94,38 @@ namespace SalarySystem
             }
             #endregion
 
+            _sqlLoadEvaluationForm = string.Format("select * from t_evaluation_form where VERSION_ID='{0}'", GlobalSettings.EvaluationVersion);
+            _sqlLoadEvaluationFormItems = string.Format("select * from t_evaluation_form_items where VERSION_ID='{0}'", GlobalSettings.EvaluationVersion);
+            _sqlLoadEvaluationItem = string.Format("select * from t_evaluation_item where VERSION_ID='{0}'",
+                GlobalSettings.EvaluationVersion);
+            _sqlLoadEvaluationItemType = "select * from t_evaluation_item_type";
+            _sqlLoadPositionEvaluationForms =
+                string.Format("select * from t_position_evaluation_forms where VERSION_ID='{0}'",
+                    GlobalSettings.EvaluationVersion);
+            _sqlLoadEvaluationFormDetail = string.Format(
+                "select * from v_evaluation_form_detail where VERSION_ID='{0}'", GlobalSettings.EvaluationVersion);
+            _sqlLoadEvaluationStandard = "select * from t_evaluation_standard";
+
+            _sqlLoadAssignmentDefine = string.Format("select * from t_assignment_define where VERSION_ID='{0}'",
+                GlobalSettings.AssignmentVersion);
+            _sqlLoadPositionAssignments = string.Format("select * from t_position_assignments where VERSION_ID='{0}'",
+                GlobalSettings.AssignmentVersion);
+            _sqlLoadAssignmentItemType = "select * from t_assignment_item_type";
+            _sqlLoadAssignmentUnit = "select * from t_unit";
             return true;
         }
+
+        private static string _sqlLoadEvaluationForm;
+        private static string _sqlLoadEvaluationFormItems;
+        private static string _sqlLoadEvaluationItem;
+        private static string _sqlLoadEvaluationItemType;
+        private static string _sqlLoadPositionEvaluationForms;
+        private static string _sqlLoadEvaluationFormDetail;
+        private static string _sqlLoadEvaluationStandard;
+        private static string _sqlLoadAssignmentDefine;
+        private static string _sqlLoadPositionAssignments;
+        private static string _sqlLoadAssignmentItemType;
+        private static string _sqlLoadAssignmentUnit;
 
         private static bool createNewAssignmentVersion(DataSetSalary.t_settingsRow settingRow)
         {
@@ -159,29 +189,27 @@ namespace SalarySystem
 
             DBHandlerEx.FillOnce(DataHolder.Employee, "select * from t_employee");
             DBHandlerEx.FillOnce(DataHolder.Position, "select * from t_position");
-            //DataHolder.EmployeeTableAdapter.Fill(DataHolder.Employee);
-            //DataHolder.PositionTableAdapter.Fill(DataHolder.Position);
-            
+           
             #endregion
 
             #region 绩效相关
+            
+            DBHandlerEx.FillOnce(DataHolder.EvaluationForm, _sqlLoadEvaluationForm);
+            DBHandlerEx.FillOnce(DataHolder.EvaluationFormItems, _sqlLoadEvaluationFormItems);
 
-            DBHandlerEx.FillOnce(DataHolder.EvaluationForm, "select * from t_evaluation_form");
-            DBHandlerEx.FillOnce(DataHolder.EvaluationFormItems, "select * from t_evaluation_form_items");
-            DBHandlerEx.FillOnce(DataHolder.EvaluationItem, "select * from t_evaluation_item");
-            DBHandlerEx.FillOnce(DataHolder.EvaluationItemType, "select * from t_evaluation_item_type");
-            DBHandlerEx.FillOnce(DataHolder.PositionEvaluationForms, "select * from t_position_evaluation_forms");
-            DBHandlerEx.FillOnce(DataHolder.EvaluationFormDetail, "select * from v_evaluation_form_detail");
-            DBHandlerEx.FillOnce(DataHolder.EvaluationStandard, "select * from t_evaluation_standard");
+            DBHandlerEx.FillOnce(DataHolder.EvaluationItem, _sqlLoadEvaluationItem);
+            DBHandlerEx.FillOnce(DataHolder.EvaluationItemType, _sqlLoadEvaluationItemType);
+            DBHandlerEx.FillOnce(DataHolder.PositionEvaluationForms, _sqlLoadPositionEvaluationForms);
+            DBHandlerEx.FillOnce(DataHolder.EvaluationFormDetail, _sqlLoadEvaluationFormDetail);
+            DBHandlerEx.FillOnce(DataHolder.EvaluationStandard, _sqlLoadEvaluationStandard);
             #endregion
 
             #region 任务相关
 
-            DBHandlerEx.FillOnce(DataHolder.AssignmentDefine, "select * from t_assignment_define");
-            DBHandlerEx.FillOnce(DataHolder.AssignmentItemType, "select * from t_assignment_item_type");
-            DBHandlerEx.FillOnce(DataHolder.PositionAssignments, "select * from t_position_assignments");
-            //DBHandlerEx.FillOnce(DataHolder.AssignmentDetail,"select * from v_assignment_detail");
-            DBHandlerEx.FillOnce(DataHolder.Unit, "select * from t_unit");
+            DBHandlerEx.FillOnce(DataHolder.AssignmentDefine, _sqlLoadAssignmentDefine);
+            DBHandlerEx.FillOnce(DataHolder.AssignmentItemType, _sqlLoadAssignmentItemType);
+            DBHandlerEx.FillOnce(DataHolder.PositionAssignments, _sqlLoadPositionAssignments);
+            DBHandlerEx.FillOnce(DataHolder.Unit, _sqlLoadAssignmentUnit);
             #endregion
             #region 薪资相关
 

@@ -51,9 +51,6 @@
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVERSION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonRevert = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButtonSave = new DevExpress.XtraEditors.SimpleButton();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gridControlEvaluationItems = new DevExpress.XtraGrid.GridControl();
             this.gridViewItem = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -67,25 +64,37 @@
             this.colDESCRIPTION2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colENABLED2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVERSION_ID2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButtonRemoveItems = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonAddItems = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewFormDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPositoin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Location = new System.Drawing.Point(0, 447);
+            this.panelControl1.Size = new System.Drawing.Size(929, 40);
+            this.panelControl1.TabIndex = 0;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.simpleButtonRemoveItems);
+            this.panelControl2.Controls.Add(this.simpleButtonAddItems);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelControl2.Size = new System.Drawing.Size(40, 447);
             // 
             // gridViewFormDetail
             // 
@@ -326,38 +335,6 @@
             this.colVERSION_ID.Name = "colVERSION_ID";
             this.colVERSION_ID.OptionsColumn.ShowInCustomizationForm = false;
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.simpleButtonRevert);
-            this.panelControl1.Controls.Add(this.simpleButtonSave);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 447);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(929, 40);
-            this.panelControl1.TabIndex = 0;
-            // 
-            // simpleButtonRevert
-            // 
-            this.simpleButtonRevert.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButtonRevert.Enabled = false;
-            this.simpleButtonRevert.Location = new System.Drawing.Point(849, 9);
-            this.simpleButtonRevert.Name = "simpleButtonRevert";
-            this.simpleButtonRevert.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonRevert.TabIndex = 1;
-            this.simpleButtonRevert.Text = "放弃";
-            this.simpleButtonRevert.Click += new System.EventHandler(this.abandon_forms);
-            // 
-            // simpleButtonSave
-            // 
-            this.simpleButtonSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButtonSave.Enabled = false;
-            this.simpleButtonSave.Location = new System.Drawing.Point(768, 9);
-            this.simpleButtonSave.Name = "simpleButtonSave";
-            this.simpleButtonSave.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonSave.TabIndex = 0;
-            this.simpleButtonSave.Text = "保存";
-            this.simpleButtonSave.Click += new System.EventHandler(this.save_forms);
-            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -500,16 +477,6 @@
             this.colVERSION_ID2.Name = "colVERSION_ID2";
             this.colVERSION_ID2.OptionsColumn.ShowInCustomizationForm = false;
             // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.simpleButtonRemoveItems);
-            this.panelControl2.Controls.Add(this.simpleButtonAddItems);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(40, 447);
-            this.panelControl2.TabIndex = 0;
-            // 
             // simpleButtonRemoveItems
             // 
             this.simpleButtonRemoveItems.Enabled = false;
@@ -535,35 +502,31 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.panelControl1);
             this.Name = "EvaluationFormControl";
             this.Size = new System.Drawing.Size(929, 487);
-            this.Load += new System.EventHandler(this.control_load);
-            this.VisibleChanged += new System.EventHandler(this.visibleChanged);
+            this.Controls.SetChildIndex(this.panelControl1, 0);
+            this.Controls.SetChildIndex(this.splitContainerControl1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewFormDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPositoin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonRevert;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonSave;
         private DevExpress.XtraGrid.GridControl gridControlEvaluationForm;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewForm;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
@@ -598,7 +561,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colENABLED2;
         private DevExpress.XtraGrid.Columns.GridColumn colVERSION_ID2;
         private DevExpress.XtraGrid.Columns.GridColumn colPOSITION_ID2;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton simpleButtonRemoveItems;
         private DevExpress.XtraEditors.SimpleButton simpleButtonAddItems;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditItemPosition;

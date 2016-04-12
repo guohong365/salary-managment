@@ -18,8 +18,15 @@ namespace SalarySystem
                 MessageBox.Show("初始化失败，系统终止！");
                 return;
             }
+            try
+            {
 
-            Application.Run(new MainForm());
+                Application.Run(new MainForm());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
     }
 }

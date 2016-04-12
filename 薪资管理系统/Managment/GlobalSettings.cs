@@ -9,9 +9,9 @@ namespace SalarySystem.Managment
         public const string TYPE_SALARY_DATA_SOURCE_INLINE = "1";
         public const string TYPE_SALARY_DATA_SROUCE_FORMULA = "2";
 
-        public const string TYPE_ASSIGNMENT_FIX_VALUE = "1";
-        public const string TYPE_ASSIGNMENT_RATE_SECTION = "2";
-        public const string TYPE_ASSIGNMENT_ABSTRACT = "3";
+        public const string TYPE_ASSIGNMENT_AUTO_ASSIGN = "1";
+        public const string TYPE_ASSIGNMENT_FIX_AMOUNT = "2";
+        public const string TYPE_ASSIGNMENT_UNLIMIT = "3";
 
         public const string GENERAL_POSITION = "9999999999";
         public const string KEY_EVALUATION_VERSION = "repository.evaluation";

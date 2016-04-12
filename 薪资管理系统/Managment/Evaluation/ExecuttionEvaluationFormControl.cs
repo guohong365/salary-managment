@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using SalarySystem.Managment.Basic;
+using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Evaluation
 {
-    public partial class ExecuttionEvaluationFormControl : XtraUserControl
+    public partial class ExecuttionEvaluationFormControl : BaseControl
     {
         private readonly DataView _dataViewFormDetail;
         private readonly DataView _dataViewForm;
@@ -18,13 +18,11 @@ namespace SalarySystem.Managment.Evaluation
             GridViewHelper.SetUpEditableGridView(gridViewExecutionForm, false, "实行考核表项目", VersionType.EVALUATION);
             GridViewHelper.SetUpReadOnlyGridView(gridViewPredeinedForms, false, "预定义考核表", VersionType.EVALUATION);
             gridViewExecutionForm.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+
             repositoryItemLookUpEditItemType.DataSource = new DataView(DataHolder.EvaluationItemType);
             gridControlPredifinedForms.DataSource = null;
             _dataViewFormDetail = new DataView(DataHolder.EvaluationFormDetail);
-            gridControlExecutionForm.DataSource = new DataView(DataHolder.PositionEvaluationForms)
-            {
-                RowFilter = string.Format("[VERSION_ID]='{0}'", GlobalSettings.EvaluationVersion)
-            };
+            gridControlExecutionForm.DataSource = new DataView(DataHolder.PositionEvaluationForms);
             repositoryItemLookUpEditPosition.DataSource = new DataView(DataHolder.Position)
             {
                 RowFilter = "[ENABLED]=true"
@@ -38,15 +36,13 @@ namespace SalarySystem.Managment.Evaluation
         private string getFormFilter(string positionId)
         {
             return string.IsNullOrEmpty(positionId)
-                ? string.Format("[ENABLED]=true AND [VERSION_ID]='{0}'", GlobalSettings.EvaluationVersion)
-                : string.Format("[ENABLED]=true AND [VERSION_ID]='{0}' AND ([POSITION_ID]='{1}' OR [POSITION_ID]='{2}')", GlobalSettings.EvaluationVersion,
-                    positionId, GlobalSettings.GENERAL_POSITION);
+                ? string.Format("[ENABLED]=true")
+                : string.Format("[ENABLED]=true AND ([POSITION_ID]='{0}' OR [POSITION_ID]='{1}')", positionId, GlobalSettings.GENERAL_POSITION);
         }
 
         private string getFormDetailFilter(string formId)
         {
-            return string.Format("[FORM_ID]='{0}' AND [ENABLED]=true AND [USED]=true AND [VERSION_ID]='{1}'", formId,
-                GlobalSettings.EvaluationVersion);
+            return string.Format("[FORM_ID]='{0}' AND [ENABLED]=true AND [USED]=true", formId);
         }
 
         public void SetFormId(string formId)
@@ -131,31 +127,37 @@ namespace SalarySystem.Managment.Evaluation
             row["VERSION_ID"] = GlobalSettings.EvaluationVersion;
         }
 
-        private void onRowChanged(object sender, DataRowChangeEventArgs e)
+        protected override void onSave()
         {
-            if (e.Action == DataRowAction.Add || e.Action == DataRowAction.Change || e.Action == DataRowAction.Delete)
-            {
-                simpleButtonSave.Enabled = true;
-                simpleButtonRevert.Enabled = true;
-            }
+            base.onSave();
+            DBHandlerEx.UpdateOnce(DataHolder.PositionEvaluationForms);
         }
 
-        void control_load(object sender, EventArgs e)
+        protected override void onRevert()
         {
+            base.onRevert();
+            DataHolder.PositionEvaluationForms.RejectChanges();
+        }
+
+        protected override void onControlLoad()
+        {
+            base.onControlLoad();
             DataHolder.PositionEvaluationForms.RowChanged += onRowChanged;
             gridViewExecutionForm.ExpandAllGroups();
         }
 
-        private void visibleChanged(object sender, EventArgs e)
+        protected override void onControlReload()
         {
-            if (Visible)
-            {
-                DataHolder.PositionEvaluationForms.RowChanged += onRowChanged;
-            }
-            else
-            {
-                DataHolder.PositionEvaluationForms.RowChanged -= onRowChanged;
-            }
+            base.onControlReload();
+
+            DataHolder.PositionEvaluationForms.RowChanged += onRowChanged;
+        }
+
+        protected override void onControlUnload()
+        {
+            base.onControlUnload();
+            DataHolder.PositionEvaluationForms.RowChanged -= onRowChanged;
+
         }
     }
 }

@@ -225,13 +225,12 @@ namespace SalarySystem.Execute
                         }
                     }
                 }
-                var dataTable = new DataTable();
                 var sql = string.Format(
                     "select distinct FORM_ID, FORM_NAME " +
                     "from v_evaluation_result_detail " +
                     "where POSITION_ID='{0}'", row.POSITION_ID);
-                DBHandlerEx.FillOnce(dataTable, sql);
-                CurrentEmployeePerformance = new EmployeePerformance(row, dataTable, (string) lookUpEditEvaluator.EditValue, (int) textEditEvalYear.EditValue,
+                DataSet dataSet=DBHandlerEx.FillOnce(sql, "v_evaluation_result_detail");
+                CurrentEmployeePerformance = new EmployeePerformance(row, dataSet.Tables[0], (string) lookUpEditEvaluator.EditValue, (int) textEditEvalYear.EditValue,
                     (int) textEditEvalMonth.EditValue, dateEditEvalTIme.DateTime);
                 CurrentEmployeePerformance.DirtyChanged += dirtyChangedHandler;
             }

@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{4E
 	ProjectSection(SolutionItems) = preProject
 		20160405.sql = 20160405.sql
 		20160407.sql = 20160407.sql
+		20160413.sql = 20160413.sql
 		init_employee.sql = init_employee.sql
 		init_evaluation_item_type.sql = init_evaluation_item_type.sql
 		init_position.sql = init_position.sql
@@ -65,8 +66,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UC.Platform.Data", "UC.Platform.Data\UC.Platform.Data.csproj", "{76CFDBE4-EC84-42BE-B69C-087BF16D6BF1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{541651CA-E553-4DA6-A33F-731DBA0B2CAA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UC.Platform.Data.DbAdapter.MySQL", "UC.Platform.Data.DbAdapter.MySQL\UC.Platform.Data.DbAdapter.MySQL.csproj", "{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,16 +127,6 @@ Global
 		{76CFDBE4-EC84-42BE-B69C-087BF16D6BF1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{76CFDBE4-EC84-42BE-B69C-087BF16D6BF1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{76CFDBE4-EC84-42BE-B69C-087BF16D6BF1}.Release|x86.ActiveCfg = Release|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BC555454-BE8D-48A8-84B7-86A2CEFB8D2D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

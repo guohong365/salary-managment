@@ -20,7 +20,7 @@ namespace SalarySystem.Managment.Basic
         protected const string KEY_EXECUTION_SALAY_STRUCT = "薪资结构实施管理";
 
         protected const string KEY_ASSIGNMENT_DEFINE = "基本任务指标定义";
-        protected const string KEY_TEAM_ASSIGNMENT_DEFINE = "团队任务指标定义";
+        protected const string KEY_TEAM_ASSIGNMENT_DEFINE = "自动分配任务占比定义";
         protected const string KEY_EXECUTION_ASSIGNMENT = "岗位任务指标定义";
         
         
@@ -41,8 +41,8 @@ namespace SalarySystem.Managment.Basic
                 new NavGroupDefine(KEY_GROUP_ASSIGNMENT, new[]
                 {
                     new NavItemDefine(KEY_ASSIGNMENT_DEFINE, typeof(AssignmentDefineControl), onNavItemClicked, 0), 
-                    new NavItemDefine(KEY_TEAM_ASSIGNMENT_DEFINE, typeof(TeamAssignmentControl), onNavItemClicked, 1), 
-                    new NavItemDefine(KEY_EXECUTION_ASSIGNMENT, typeof(PositionAssignmentDefineControl), onNavItemClicked, 2) 
+                    new NavItemDefine(KEY_TEAM_ASSIGNMENT_DEFINE, typeof(AutoAssignmentRateDefineControl), onNavItemClicked, 1), 
+                    new NavItemDefine(KEY_EXECUTION_ASSIGNMENT, typeof(PersonalAssignmentDefineControl), onNavItemClicked, 2) 
                 }, 1),
                 new NavGroupDefine(KEY_GROUP_SALARY_STRUCTURE, new []
                 {

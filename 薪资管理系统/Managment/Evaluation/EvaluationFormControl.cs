@@ -4,7 +4,6 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using DevExpress.Data;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
@@ -13,13 +12,13 @@ using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem.Managment.Evaluation
 {
-    public partial class EvaluationFormControl : XtraUserControl
+    public partial class EvaluationFormControl : BaseControl
     {
-        private const string _FILTER_FORMAT = "[ENABLED]=true and ([POSITION_ID]='{0}' or [POSITION_ID]='{2}')  and [VERSION_ID]='{1}'";
+        private const string _FILTER_FORMAT = "[ENABLED]=true and ([POSITION_ID]='{0}' or [POSITION_ID]='{1}')";
 
         string getItemsFilter(string positionId)
         {
-            return string.Format(_FILTER_FORMAT, positionId, GlobalSettings.EvaluationVersion, GlobalSettings.GENERAL_POSITION);
+            return string.Format(_FILTER_FORMAT, positionId, GlobalSettings.GENERAL_POSITION);
         }
 
         private readonly DataView _itemsView;
@@ -30,13 +29,13 @@ namespace SalarySystem.Managment.Evaluation
             gridViewItem.ViewCaption = string.Format("基本考核项目（{0}）", GlobalSettings.EvaluationFullVersion);
 
             repositoryItemLookUpEditType.DataSource = new DataView(DataHolder.EvaluationItemType);
-            repositoryItemLookUpEditItemType.DataSource = new DataView(DataHolder.EvaluationItemType);            
+            repositoryItemLookUpEditItemType.DataSource = new DataView(DataHolder.EvaluationItemType);  
+          
             _itemsView = new DataView(DataHolder.EvaluationItem) { RowFilter = getItemsFilter("noId") };
+            
             gridControlEvaluationItems.DataSource = _itemsView;
-            gridControlEvaluationForm.DataSource = new DataView(DataHolder.EvaluationForm)
-            {
-                RowFilter = string.Format("[VERSION_ID]='{0}'", GlobalSettings.EvaluationVersion)
-            };
+            gridControlEvaluationForm.DataSource = new DataView(DataHolder.EvaluationForm);
+
             repositoryItemLookUpEditPositoin.DataSource = new DataView(DataHolder.Position) {RowFilter = "[ENABLED]=true"};
             repositoryItemLookUpEditItemPosition.DataSource = new DataView(DataHolder.Position);
             gridViewForm.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
@@ -90,12 +89,11 @@ namespace SalarySystem.Managment.Evaluation
             gridView.DeleteSelectedRows();
         }
 
-        private void abandon_forms(object sender, EventArgs e)
+        protected override void onRevert()
         {
+            base.onRevert();
             DataHolder.EvaluationForm.RejectChanges();
             DataHolder.EvaluationFormDetail.RejectChanges();
-            simpleButtonSave.Enabled = false;
-            simpleButtonRevert.Enabled = false;
         }
 
         void updateItemsFilter(int rowHandle)
@@ -131,8 +129,9 @@ namespace SalarySystem.Managment.Evaluation
             updateItemsFilter(e.FocusedRowHandle);
         }
 
-        private void save_forms(object sender, EventArgs e)
+        protected override void onSave()
         {
+            base.onSave();
             DBHandlerEx handler = DBHandlerEx.GetBuffer();
             handler.BeginTransaction();
             handler.Update(DataHolder.EvaluationForm.GetChanges());
@@ -165,10 +164,7 @@ namespace SalarySystem.Managment.Evaluation
             handler.Update(DataHolder.EvaluationFormItems.GetChanges());
             handler.EndTransaction(true);
             handler.FreeBuffer();
-            //DataHolder.EvaluationFormItemsTableAdapter.Update(DataHolder.EvaluationFormItems);
             DataHolder.EvaluationFormDetail.AcceptChanges();
-            simpleButtonSave.Enabled = false;
-            simpleButtonRevert.Enabled = false;
         }
 
         void setAddItemButtimEnable()
@@ -210,31 +206,25 @@ namespace SalarySystem.Managment.Evaluation
             updateItemsFilter(gridViewForm.FocusedRowHandle);
         }
 
-        private void visibleChanged(object sender, EventArgs e)
+        protected override void onControlReload()
         {
-            if (Visible)
-            {
-                DataHolder.EvaluationForm.RowChanged += onRowChanged;
-                DataHolder.EvaluationFormDetail.RowChanged += onRowChanged;
-            }
-            else
-            {
-                DataHolder.EvaluationForm.RowChanged -= onRowChanged;
-                DataHolder.EvaluationFormDetail.RowChanged -= onRowChanged;
-            }
+            base.onControlReload();
+
+            DataHolder.EvaluationForm.RowChanged += onRowChanged;
+            DataHolder.EvaluationFormDetail.RowChanged += onRowChanged;
         }
 
-        private void onRowChanged(object sender, DataRowChangeEventArgs e)
+        protected override void onControlUnload()
         {
-            if (e.Action == DataRowAction.Add || e.Action == DataRowAction.Change || e.Action == DataRowAction.Delete)
-            {
-                simpleButtonSave.Enabled = true;
-                simpleButtonRevert.Enabled = true;
-            }
+            base.onControlUnload();
+            DataHolder.EvaluationForm.RowChanged -= onRowChanged;
+            DataHolder.EvaluationFormDetail.RowChanged -= onRowChanged;
         }
 
-        void control_load(object sender, EventArgs e)
+        protected override void onControlLoad()
         {
+            base.onControlLoad();
+        
             DataHolder.EvaluationForm.RowChanged += onRowChanged;
             DataHolder.EvaluationFormDetail.RowChanged += onRowChanged;
             gridViewForm.ExpandAllGroups();
