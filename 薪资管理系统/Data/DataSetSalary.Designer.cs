@@ -32,8 +32,6 @@ namespace SalarySystem.Data {
         
         private t_assignment_performanceDataTable tablet_assignment_performance;
         
-        private t_code_tableDataTable tablet_code_table;
-        
         private t_employeeDataTable tablet_employee;
         
         private t_employee_salary_detailDataTable tablet_employee_salary_detail;
@@ -86,6 +84,8 @@ namespace SalarySystem.Data {
         
         private t_position_assignmentsDataTable tablet_position_assignments;
         
+        private t_code_tableDataTable tablet_code_table;
+        
         private global::System.Data.DataRelation relationevaluation_form_detail;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -127,9 +127,6 @@ namespace SalarySystem.Data {
                 }
                 if ((ds.Tables["t_assignment_performance"] != null)) {
                     base.Tables.Add(new t_assignment_performanceDataTable(ds.Tables["t_assignment_performance"]));
-                }
-                if ((ds.Tables["t_code_table"] != null)) {
-                    base.Tables.Add(new t_code_tableDataTable(ds.Tables["t_code_table"]));
                 }
                 if ((ds.Tables["t_employee"] != null)) {
                     base.Tables.Add(new t_employeeDataTable(ds.Tables["t_employee"]));
@@ -209,6 +206,9 @@ namespace SalarySystem.Data {
                 if ((ds.Tables["t_position_assignments"] != null)) {
                     base.Tables.Add(new t_position_assignmentsDataTable(ds.Tables["t_position_assignments"]));
                 }
+                if ((ds.Tables["t_code_table"] != null)) {
+                    base.Tables.Add(new t_code_tableDataTable(ds.Tables["t_code_table"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -264,16 +264,6 @@ namespace SalarySystem.Data {
         public t_assignment_performanceDataTable t_assignment_performance {
             get {
                 return this.tablet_assignment_performance;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public t_code_tableDataTable t_code_table {
-            get {
-                return this.tablet_code_table;
             }
         }
         
@@ -539,6 +529,16 @@ namespace SalarySystem.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public t_code_tableDataTable t_code_table {
+            get {
+                return this.tablet_code_table;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -615,9 +615,6 @@ namespace SalarySystem.Data {
                 }
                 if ((ds.Tables["t_assignment_performance"] != null)) {
                     base.Tables.Add(new t_assignment_performanceDataTable(ds.Tables["t_assignment_performance"]));
-                }
-                if ((ds.Tables["t_code_table"] != null)) {
-                    base.Tables.Add(new t_code_tableDataTable(ds.Tables["t_code_table"]));
                 }
                 if ((ds.Tables["t_employee"] != null)) {
                     base.Tables.Add(new t_employeeDataTable(ds.Tables["t_employee"]));
@@ -697,6 +694,9 @@ namespace SalarySystem.Data {
                 if ((ds.Tables["t_position_assignments"] != null)) {
                     base.Tables.Add(new t_position_assignmentsDataTable(ds.Tables["t_position_assignments"]));
                 }
+                if ((ds.Tables["t_code_table"] != null)) {
+                    base.Tables.Add(new t_code_tableDataTable(ds.Tables["t_code_table"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -752,12 +752,6 @@ namespace SalarySystem.Data {
             if ((initTable == true)) {
                 if ((this.tablet_assignment_performance != null)) {
                     this.tablet_assignment_performance.InitVars();
-                }
-            }
-            this.tablet_code_table = ((t_code_tableDataTable)(base.Tables["t_code_table"]));
-            if ((initTable == true)) {
-                if ((this.tablet_code_table != null)) {
-                    this.tablet_code_table.InitVars();
                 }
             }
             this.tablet_employee = ((t_employeeDataTable)(base.Tables["t_employee"]));
@@ -916,6 +910,12 @@ namespace SalarySystem.Data {
                     this.tablet_position_assignments.InitVars();
                 }
             }
+            this.tablet_code_table = ((t_code_tableDataTable)(base.Tables["t_code_table"]));
+            if ((initTable == true)) {
+                if ((this.tablet_code_table != null)) {
+                    this.tablet_code_table.InitVars();
+                }
+            }
             this.relationevaluation_form_detail = this.Relations["evaluation_form_detail"];
         }
         
@@ -935,8 +935,6 @@ namespace SalarySystem.Data {
             base.Tables.Add(this.tablet_assignment_item_type);
             this.tablet_assignment_performance = new t_assignment_performanceDataTable();
             base.Tables.Add(this.tablet_assignment_performance);
-            this.tablet_code_table = new t_code_tableDataTable();
-            base.Tables.Add(this.tablet_code_table);
             this.tablet_employee = new t_employeeDataTable();
             base.Tables.Add(this.tablet_employee);
             this.tablet_employee_salary_detail = new t_employee_salary_detailDataTable();
@@ -989,6 +987,8 @@ namespace SalarySystem.Data {
             base.Tables.Add(this.tablev_personal_assignment_detail);
             this.tablet_position_assignments = new t_position_assignmentsDataTable();
             base.Tables.Add(this.tablet_position_assignments);
+            this.tablet_code_table = new t_code_tableDataTable();
+            base.Tables.Add(this.tablet_code_table);
             this.relationevaluation_form_detail = new global::System.Data.DataRelation("evaluation_form_detail", new global::System.Data.DataColumn[] {
                         this.tablet_evaluation_form.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tablev_evaluation_form_detail.FORM_IDColumn}, false);
@@ -1016,12 +1016,6 @@ namespace SalarySystem.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializet_assignment_performance() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializet_code_table() {
             return false;
         }
         
@@ -1183,6 +1177,12 @@ namespace SalarySystem.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializet_code_table() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1247,9 +1247,6 @@ namespace SalarySystem.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void t_assignment_performanceRowChangeEventHandler(object sender, t_assignment_performanceRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void t_code_tableRowChangeEventHandler(object sender, t_code_tableRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void t_employeeRowChangeEventHandler(object sender, t_employeeRowChangeEvent e);
@@ -1328,6 +1325,9 @@ namespace SalarySystem.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void t_position_assignmentsRowChangeEventHandler(object sender, t_position_assignmentsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void t_code_tableRowChangeEventHandler(object sender, t_code_tableRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2755,311 +2755,6 @@ namespace SalarySystem.Data {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "t_assignment_performanceDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class t_code_tableDataTable : global::System.Data.TypedTableBase<t_code_tableRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnNAME;
-            
-            private global::System.Data.DataColumn columnDESCRIPTION;
-            
-            private global::System.Data.DataColumn columnENABLED;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_code_tableDataTable() {
-                this.TableName = "t_code_table";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal t_code_tableDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected t_code_tableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NAMEColumn {
-                get {
-                    return this.columnNAME;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DESCRIPTIONColumn {
-                get {
-                    return this.columnDESCRIPTION;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ENABLEDColumn {
-                get {
-                    return this.columnENABLED;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_code_tableRow this[int index] {
-                get {
-                    return ((t_code_tableRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_code_tableRowChangeEventHandler t_code_tableRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_code_tableRowChangeEventHandler t_code_tableRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_code_tableRowChangeEventHandler t_code_tableRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event t_code_tableRowChangeEventHandler t_code_tableRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addt_code_tableRow(t_code_tableRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_code_tableRow Addt_code_tableRow(string ID, string NAME, string DESCRIPTION, bool ENABLED) {
-                t_code_tableRow rowt_code_tableRow = ((t_code_tableRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        ID,
-                        NAME,
-                        DESCRIPTION,
-                        ENABLED};
-                rowt_code_tableRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowt_code_tableRow);
-                return rowt_code_tableRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_code_tableRow FindByID(string ID) {
-                return ((t_code_tableRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                t_code_tableDataTable cln = ((t_code_tableDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new t_code_tableDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnNAME = base.Columns["NAME"];
-                this.columnDESCRIPTION = base.Columns["DESCRIPTION"];
-                this.columnENABLED = base.Columns["ENABLED"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNAME);
-                this.columnDESCRIPTION = new global::System.Data.DataColumn("DESCRIPTION", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDESCRIPTION);
-                this.columnENABLED = new global::System.Data.DataColumn("ENABLED", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnENABLED);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.columnID.AllowDBNull = false;
-                this.columnID.Unique = true;
-                this.columnID.MaxLength = 40;
-                this.columnNAME.AllowDBNull = false;
-                this.columnNAME.MaxLength = 100;
-                this.columnDESCRIPTION.MaxLength = 2000;
-                this.columnENABLED.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_code_tableRow Newt_code_tableRow() {
-                return ((t_code_tableRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new t_code_tableRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(t_code_tableRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.t_code_tableRowChanged != null)) {
-                    this.t_code_tableRowChanged(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.t_code_tableRowChanging != null)) {
-                    this.t_code_tableRowChanging(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.t_code_tableRowDeleted != null)) {
-                    this.t_code_tableRowDeleted(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.t_code_tableRowDeleting != null)) {
-                    this.t_code_tableRowDeleting(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removet_code_tableRow(t_code_tableRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSetSalary ds = new DataSetSalary();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "t_code_tableDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -12487,6 +12182,311 @@ namespace SalarySystem.Data {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class t_code_tableDataTable : global::System.Data.TypedTableBase<t_code_tableRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnNAME;
+            
+            private global::System.Data.DataColumn columnDESCRIPTION;
+            
+            private global::System.Data.DataColumn columnENABLED;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_code_tableDataTable() {
+                this.TableName = "t_code_table";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal t_code_tableDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected t_code_tableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NAMEColumn {
+                get {
+                    return this.columnNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DESCRIPTIONColumn {
+                get {
+                    return this.columnDESCRIPTION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ENABLEDColumn {
+                get {
+                    return this.columnENABLED;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_code_tableRow this[int index] {
+                get {
+                    return ((t_code_tableRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_code_tableRowChangeEventHandler t_code_tableRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_code_tableRowChangeEventHandler t_code_tableRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_code_tableRowChangeEventHandler t_code_tableRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event t_code_tableRowChangeEventHandler t_code_tableRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Addt_code_tableRow(t_code_tableRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_code_tableRow Addt_code_tableRow(string ID, string NAME, string DESCRIPTION, bool ENABLED) {
+                t_code_tableRow rowt_code_tableRow = ((t_code_tableRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        NAME,
+                        DESCRIPTION,
+                        ENABLED};
+                rowt_code_tableRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowt_code_tableRow);
+                return rowt_code_tableRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_code_tableRow FindByID(string ID) {
+                return ((t_code_tableRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                t_code_tableDataTable cln = ((t_code_tableDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new t_code_tableDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnNAME = base.Columns["NAME"];
+                this.columnDESCRIPTION = base.Columns["DESCRIPTION"];
+                this.columnENABLED = base.Columns["ENABLED"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNAME);
+                this.columnDESCRIPTION = new global::System.Data.DataColumn("DESCRIPTION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDESCRIPTION);
+                this.columnENABLED = new global::System.Data.DataColumn("ENABLED", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnENABLED);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
+                this.columnID.MaxLength = 40;
+                this.columnNAME.AllowDBNull = false;
+                this.columnNAME.MaxLength = 100;
+                this.columnDESCRIPTION.MaxLength = 2000;
+                this.columnENABLED.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_code_tableRow Newt_code_tableRow() {
+                return ((t_code_tableRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new t_code_tableRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(t_code_tableRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.t_code_tableRowChanged != null)) {
+                    this.t_code_tableRowChanged(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.t_code_tableRowChanging != null)) {
+                    this.t_code_tableRowChanging(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.t_code_tableRowDeleted != null)) {
+                    this.t_code_tableRowDeleted(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.t_code_tableRowDeleting != null)) {
+                    this.t_code_tableRowDeleting(this, new t_code_tableRowChangeEvent(((t_code_tableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removet_code_tableRow(t_code_tableRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSetSalary ds = new DataSetSalary();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "t_code_tableDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class t_annual_assignmentRow : global::System.Data.DataRow {
@@ -12997,82 +12997,6 @@ namespace SalarySystem.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDESCRIPTIONNull() {
                 this[this.tablet_assignment_performance.DESCRIPTIONColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class t_code_tableRow : global::System.Data.DataRow {
-            
-            private t_code_tableDataTable tablet_code_table;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal t_code_tableRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablet_code_table = ((t_code_tableDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ID {
-                get {
-                    return ((string)(this[this.tablet_code_table.IDColumn]));
-                }
-                set {
-                    this[this.tablet_code_table.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string NAME {
-                get {
-                    return ((string)(this[this.tablet_code_table.NAMEColumn]));
-                }
-                set {
-                    this[this.tablet_code_table.NAMEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DESCRIPTION {
-                get {
-                    if (this.IsDESCRIPTIONNull()) {
-                        return string.Empty;
-                    }
-                    else {
-                        return ((string)(this[this.tablet_code_table.DESCRIPTIONColumn]));
-                    }
-                }
-                set {
-                    this[this.tablet_code_table.DESCRIPTIONColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool ENABLED {
-                get {
-                    return ((bool)(this[this.tablet_code_table.ENABLEDColumn]));
-                }
-                set {
-                    this[this.tablet_code_table.ENABLEDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDESCRIPTIONNull() {
-                return this.IsNull(this.tablet_code_table.DESCRIPTIONColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDESCRIPTIONNull() {
-                this[this.tablet_code_table.DESCRIPTIONColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16438,6 +16362,82 @@ namespace SalarySystem.Data {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class t_code_tableRow : global::System.Data.DataRow {
+            
+            private t_code_tableDataTable tablet_code_table;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal t_code_tableRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablet_code_table = ((t_code_tableDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ID {
+                get {
+                    return ((string)(this[this.tablet_code_table.IDColumn]));
+                }
+                set {
+                    this[this.tablet_code_table.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NAME {
+                get {
+                    return ((string)(this[this.tablet_code_table.NAMEColumn]));
+                }
+                set {
+                    this[this.tablet_code_table.NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DESCRIPTION {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_code_table.DESCRIPTIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“t_code_table”中列“DESCRIPTION”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tablet_code_table.DESCRIPTIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ENABLED {
+                get {
+                    return ((bool)(this[this.tablet_code_table.ENABLEDColumn]));
+                }
+                set {
+                    this[this.tablet_code_table.ENABLEDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDESCRIPTIONNull() {
+                return this.IsNull(this.tablet_code_table.DESCRIPTIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDESCRIPTIONNull() {
+                this[this.tablet_code_table.DESCRIPTIONColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -16559,40 +16559,6 @@ namespace SalarySystem.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public t_assignment_performanceRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class t_code_tableRowChangeEvent : global::System.EventArgs {
-            
-            private t_code_tableRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_code_tableRowChangeEvent(t_code_tableRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_code_tableRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -17477,6 +17443,40 @@ namespace SalarySystem.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public t_position_assignmentsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class t_code_tableRowChangeEvent : global::System.EventArgs {
+            
+            private t_code_tableRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_code_tableRowChangeEvent(t_code_tableRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public t_code_tableRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -18763,278 +18763,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(p8));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class t_code_tableTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::MySql.Data.MySqlClient.MySqlDataAdapter _adapter;
-        
-        private global::MySql.Data.MySqlClient.MySqlConnection _connection;
-        
-        private global::MySql.Data.MySqlClient.MySqlTransaction _transaction;
-        
-        private global::MySql.Data.MySqlClient.MySqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public t_code_tableTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::MySql.Data.MySqlClient.MySqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::MySql.Data.MySqlClient.MySqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::MySql.Data.MySqlClient.MySqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::MySql.Data.MySqlClient.MySqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::MySql.Data.MySqlClient.MySqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::MySql.Data.MySqlClient.MySqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "t_code_table";
-            tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("NAME", "NAME");
-            tableMapping.ColumnMappings.Add("DESCRIPTION", "DESCRIPTION");
-            tableMapping.ColumnMappings.Add("ENABLED", "ENABLED");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `t_code_table` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, " +
-                "@p2, @p3, @p4)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p1";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "ID";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p2";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "NAME";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "DESCRIPTION";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "ENABLED";
-            this._adapter.InsertCommand.Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
-            this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `ID`, `NAME`, `DESCRIPTION`, `ENABLED` FROM `t_code_table`";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSetSalary.t_code_tableDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSetSalary.t_code_tableDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            DataSetSalary.t_code_tableDataTable dataTable = new DataSetSalary.t_code_tableDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DataSetSalary.t_code_tableDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DataSetSalary dataSet) {
-            return this.Adapter.Update(dataSet, "t_code_table");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, string p2, string p3, byte p4) {
-            if ((p1 == null)) {
-                throw new global::System.ArgumentNullException("p1");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
-            }
-            if ((p2 == null)) {
-                throw new global::System.ArgumentNullException("p2");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
-            }
-            if ((p3 == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(p3));
-            }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((byte)(p4));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -25357,7 +25085,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString2;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25538,7 +25266,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString2;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25720,7 +25448,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString2;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25941,7 +25669,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString2;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -26052,6 +25780,278 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class t_code_tableTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::MySql.Data.MySqlClient.MySqlDataAdapter _adapter;
+        
+        private global::MySql.Data.MySqlClient.MySqlConnection _connection;
+        
+        private global::MySql.Data.MySqlClient.MySqlTransaction _transaction;
+        
+        private global::MySql.Data.MySqlClient.MySqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public t_code_tableTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::MySql.Data.MySqlClient.MySqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::MySql.Data.MySqlClient.MySqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::MySql.Data.MySqlClient.MySqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::MySql.Data.MySqlClient.MySqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::MySql.Data.MySqlClient.MySqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::MySql.Data.MySqlClient.MySqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "t_code_table";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("NAME", "NAME");
+            tableMapping.ColumnMappings.Add("DESCRIPTION", "DESCRIPTION");
+            tableMapping.ColumnMappings.Add("ENABLED", "ENABLED");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `t_code_table` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, " +
+                "@p2, @p3, @p4)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p1";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "ID";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p2";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "NAME";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p3";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "DESCRIPTION";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p4";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "ENABLED";
+            this._adapter.InsertCommand.Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
+            this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT `ID`, `NAME`, `DESCRIPTION`, `ENABLED` FROM `t_code_table`";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(DataSetSalary.t_code_tableDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual DataSetSalary.t_code_tableDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            DataSetSalary.t_code_tableDataTable dataTable = new DataSetSalary.t_code_tableDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DataSetSalary.t_code_tableDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DataSetSalary dataSet) {
+            return this.Adapter.Update(dataSet, "t_code_table");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string p1, string p2, string p3, byte p4) {
+            if ((p1 == null)) {
+                throw new global::System.ArgumentNullException("p1");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
+            }
+            if ((p2 == null)) {
+                throw new global::System.ArgumentNullException("p2");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
+            }
+            if ((p3 == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(p3));
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((byte)(p4));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -26070,8 +26070,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         private t_assignment_item_typeTableAdapter _t_assignment_item_typeTableAdapter;
         
         private t_assignment_performanceTableAdapter _t_assignment_performanceTableAdapter;
-        
-        private t_code_tableTableAdapter _t_code_tableTableAdapter;
         
         private t_employeeTableAdapter _t_employeeTableAdapter;
         
@@ -26112,6 +26110,8 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         private t_unitTableAdapter _t_unitTableAdapter;
         
         private t_position_assignmentsTableAdapter _t_position_assignmentsTableAdapter;
+        
+        private t_code_tableTableAdapter _t_code_tableTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -26181,20 +26181,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
             }
             set {
                 this._t_assignment_performanceTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public t_code_tableTableAdapter t_code_tableTableAdapter {
-            get {
-                return this._t_code_tableTableAdapter;
-            }
-            set {
-                this._t_code_tableTableAdapter = value;
             }
         }
         
@@ -26480,6 +26466,20 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public t_code_tableTableAdapter t_code_tableTableAdapter {
+            get {
+                return this._t_code_tableTableAdapter;
+            }
+            set {
+                this._t_code_tableTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -26512,10 +26512,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                 if (((this._t_assignment_performanceTableAdapter != null) 
                             && (this._t_assignment_performanceTableAdapter.Connection != null))) {
                     return this._t_assignment_performanceTableAdapter.Connection;
-                }
-                if (((this._t_code_tableTableAdapter != null) 
-                            && (this._t_code_tableTableAdapter.Connection != null))) {
-                    return this._t_code_tableTableAdapter.Connection;
                 }
                 if (((this._t_employeeTableAdapter != null) 
                             && (this._t_employeeTableAdapter.Connection != null))) {
@@ -26597,6 +26593,10 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                             && (this._t_position_assignmentsTableAdapter.Connection != null))) {
                     return this._t_position_assignmentsTableAdapter.Connection;
                 }
+                if (((this._t_code_tableTableAdapter != null) 
+                            && (this._t_code_tableTableAdapter.Connection != null))) {
+                    return this._t_code_tableTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -26620,9 +26620,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     count = (count + 1);
                 }
                 if ((this._t_assignment_performanceTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._t_code_tableTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._t_employeeTableAdapter != null)) {
@@ -26685,6 +26682,9 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                 if ((this._t_position_assignmentsTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._t_code_tableTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -26702,15 +26702,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._t_evaluation_formTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._t_salary_itemTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_salary_item.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._t_salary_itemTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26732,30 +26723,12 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._t_salary_data_source_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_salary_data_source_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._t_unitTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_unit.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._t_salary_data_source_typeTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._t_repository_assignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_repository_assignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._t_repository_assignmentTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._t_repository_evaluationTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_repository_evaluation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._t_repository_evaluationTableAdapter.Update(updatedRows));
+                    result = (result + this._t_unitTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26768,12 +26741,30 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._t_unitTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_unit.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._t_repository_evaluationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_repository_evaluation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._t_unitTableAdapter.Update(updatedRows));
+                    result = (result + this._t_repository_evaluationTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._t_salary_itemTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_salary_item.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._t_salary_itemTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._t_salary_data_source_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_salary_data_source_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._t_salary_data_source_typeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26813,6 +26804,15 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._t_evaluation_form_itemsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_evaluation_form_items.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._t_evaluation_form_itemsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._t_assignment_performanceTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.t_assignment_performance.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -26849,21 +26849,12 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._t_evaluation_form_itemsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_evaluation_form_items.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._t_evaluation_itemTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_evaluation_item.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._t_evaluation_form_itemsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._t_positionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_position.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._t_positionTableAdapter.Update(updatedRows));
+                    result = (result + this._t_evaluation_itemTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26885,21 +26876,21 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._t_evaluation_standardTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_evaluation_standard.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._t_repository_assignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_repository_assignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._t_evaluation_standardTableAdapter.Update(updatedRows));
+                    result = (result + this._t_repository_assignmentTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._t_evaluation_itemTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.t_evaluation_item.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._t_positionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_position.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._t_evaluation_itemTableAdapter.Update(updatedRows));
+                    result = (result + this._t_positionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26921,6 +26912,15 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._t_evaluation_standardTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.t_evaluation_standard.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._t_evaluation_standardTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -26936,14 +26936,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._t_evaluation_formTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._t_salary_itemTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_salary_item.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._t_salary_itemTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26963,27 +26955,11 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._t_salary_data_source_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_salary_data_source_type.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._t_unitTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_unit.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._t_salary_data_source_typeTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._t_repository_assignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_repository_assignment.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._t_repository_assignmentTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._t_repository_evaluationTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_repository_evaluation.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._t_repository_evaluationTableAdapter.Update(addedRows));
+                    result = (result + this._t_unitTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26995,11 +26971,27 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._t_unitTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_unit.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._t_repository_evaluationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_repository_evaluation.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._t_unitTableAdapter.Update(addedRows));
+                    result = (result + this._t_repository_evaluationTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._t_salary_itemTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_salary_item.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._t_salary_itemTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._t_salary_data_source_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_salary_data_source_type.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._t_salary_data_source_typeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -27035,6 +27027,14 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._t_evaluation_form_itemsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_evaluation_form_items.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._t_evaluation_form_itemsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._t_assignment_performanceTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.t_assignment_performance.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -27067,19 +27067,11 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._t_evaluation_form_itemsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_evaluation_form_items.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._t_evaluation_itemTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_evaluation_item.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._t_evaluation_form_itemsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._t_positionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_position.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._t_positionTableAdapter.Update(addedRows));
+                    result = (result + this._t_evaluation_itemTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -27099,19 +27091,19 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._t_evaluation_standardTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_evaluation_standard.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._t_repository_assignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_repository_assignment.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._t_evaluation_standardTableAdapter.Update(addedRows));
+                    result = (result + this._t_repository_assignmentTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._t_evaluation_itemTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.t_evaluation_item.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._t_positionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_position.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._t_evaluation_itemTableAdapter.Update(addedRows));
+                    result = (result + this._t_positionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -27131,6 +27123,14 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._t_evaluation_standardTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.t_evaluation_standard.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._t_evaluation_standardTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -27141,6 +27141,14 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(DataSetSalary dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._t_evaluation_standardTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_evaluation_standard.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._t_evaluation_standardTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._t_evaluation_resultsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.t_evaluation_results.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -27157,19 +27165,19 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._t_evaluation_itemTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_evaluation_item.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._t_positionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_position.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._t_evaluation_itemTableAdapter.Update(deletedRows));
+                    result = (result + this._t_positionTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._t_evaluation_standardTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_evaluation_standard.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._t_repository_assignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_repository_assignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._t_evaluation_standardTableAdapter.Update(deletedRows));
+                    result = (result + this._t_repository_assignmentTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -27189,19 +27197,11 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._t_positionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_position.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._t_evaluation_itemTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_evaluation_item.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._t_positionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._t_evaluation_form_itemsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_evaluation_form_items.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._t_evaluation_form_itemsTableAdapter.Update(deletedRows));
+                    result = (result + this._t_evaluation_itemTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -27237,6 +27237,14 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._t_evaluation_form_itemsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_evaluation_form_items.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._t_evaluation_form_itemsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._t_employee_salary_detailTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.t_employee_salary_detail.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -27269,19 +27277,19 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._t_unitTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_unit.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._t_salary_data_source_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_salary_data_source_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._t_unitTableAdapter.Update(deletedRows));
+                    result = (result + this._t_salary_data_source_typeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._t_repository_salary_structTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_repository_salary_struct.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._t_salary_itemTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_salary_item.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._t_repository_salary_structTableAdapter.Update(deletedRows));
+                    result = (result + this._t_salary_itemTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -27293,19 +27301,19 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._t_repository_assignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_repository_assignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._t_repository_salary_structTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_repository_salary_struct.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._t_repository_assignmentTableAdapter.Update(deletedRows));
+                    result = (result + this._t_repository_salary_structTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._t_salary_data_source_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_salary_data_source_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._t_unitTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.t_unit.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._t_salary_data_source_typeTableAdapter.Update(deletedRows));
+                    result = (result + this._t_unitTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -27322,14 +27330,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._t_salary_item_typeTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._t_salary_itemTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.t_salary_item.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._t_salary_itemTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -27394,10 +27394,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
             }
             if (((this._t_assignment_performanceTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._t_assignment_performanceTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
-            }
-            if (((this._t_code_tableTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._t_code_tableTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
             if (((this._t_employeeTableAdapter != null) 
@@ -27480,6 +27476,10 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                         && (this.MatchTableAdapterConnection(this._t_position_assignmentsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
+            if (((this._t_code_tableTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._t_code_tableTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager 不包含任何连接信息。请将每个 TableAdapterManager TableAdapter 属性设置为有效的 Tabl" +
@@ -27545,15 +27545,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                     if (this._t_assignment_performanceTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._t_assignment_performanceTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._t_assignment_performanceTableAdapter.Adapter);
-                    }
-                }
-                if ((this._t_code_tableTableAdapter != null)) {
-                    revertConnections.Add(this._t_code_tableTableAdapter, this._t_code_tableTableAdapter.Connection);
-                    this._t_code_tableTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(workConnection));
-                    this._t_code_tableTableAdapter.Transaction = ((global::MySql.Data.MySqlClient.MySqlTransaction)(workTransaction));
-                    if (this._t_code_tableTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._t_code_tableTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._t_code_tableTableAdapter.Adapter);
                     }
                 }
                 if ((this._t_employeeTableAdapter != null)) {
@@ -27736,6 +27727,15 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._t_position_assignmentsTableAdapter.Adapter);
                     }
                 }
+                if ((this._t_code_tableTableAdapter != null)) {
+                    revertConnections.Add(this._t_code_tableTableAdapter, this._t_code_tableTableAdapter.Connection);
+                    this._t_code_tableTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(workConnection));
+                    this._t_code_tableTableAdapter.Transaction = ((global::MySql.Data.MySqlClient.MySqlTransaction)(workTransaction));
+                    if (this._t_code_tableTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._t_code_tableTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._t_code_tableTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -27809,10 +27809,6 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                 if ((this._t_assignment_performanceTableAdapter != null)) {
                     this._t_assignment_performanceTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._t_assignment_performanceTableAdapter]));
                     this._t_assignment_performanceTableAdapter.Transaction = null;
-                }
-                if ((this._t_code_tableTableAdapter != null)) {
-                    this._t_code_tableTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._t_code_tableTableAdapter]));
-                    this._t_code_tableTableAdapter.Transaction = null;
                 }
                 if ((this._t_employeeTableAdapter != null)) {
                     this._t_employeeTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._t_employeeTableAdapter]));
@@ -27893,6 +27889,10 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
                 if ((this._t_position_assignmentsTableAdapter != null)) {
                     this._t_position_assignmentsTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._t_position_assignmentsTableAdapter]));
                     this._t_position_assignmentsTableAdapter.Transaction = null;
+                }
+                if ((this._t_code_tableTableAdapter != null)) {
+                    this._t_code_tableTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._t_code_tableTableAdapter]));
+                    this._t_code_tableTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

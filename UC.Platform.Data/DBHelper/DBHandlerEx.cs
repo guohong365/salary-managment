@@ -1657,8 +1657,10 @@ namespace UC.Platform.Data.DBHelper
                 _factory = new DatabaseFactory(providerName, connectionString);
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                string estr = e.ToString();
+                Console.WriteLine(estr);
                 _factory = null;
                 return false;
             }

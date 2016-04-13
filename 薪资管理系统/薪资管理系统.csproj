@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SalarySystem</RootNamespace>
     <AssemblyName>薪资管理系统</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -126,7 +126,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraWizard.v10.2.resources.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -157,10 +157,6 @@
       <DependentUpon>ConfigManagmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataHolder.cs" />
-    <Compile Include="Data\DataSetSalary.cs">
-      <DependentUpon>DataSetSalary.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Data\DataSetSalary.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
