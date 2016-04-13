@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `salary` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `salary`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: salary
@@ -16,6 +18,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `t_annual_assignment`
+--
+
+DROP TABLE IF EXISTS `t_annual_assignment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_annual_assignment` (
+  `ID` varchar(40) NOT NULL,
+  `ASSIGNMENT_ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ASSIGNMENT_YEAR` int(11) NOT NULL,
+  `ASSIGNMENT_MONTH` int(11) NOT NULL,
+  `TARGET` decimal(20,6) NOT NULL,
+  `CREATE_TIME` date NOT NULL,
+  `CREATOR_ID` varchar(40) DEFAULT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `EXEC_STATE` int(11) NOT NULL COMMENT '0 - 未分配\n            1 - 已分配\n            2 - 已执行\n            3 - 执行完成',
+  UNIQUE KEY `INDEX_1` (`ID`),
+  KEY `INDEX_2` (`ASSIGNMENT_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_annual_assignment`
 --
 
@@ -23,6 +49,31 @@ LOCK TABLES `t_annual_assignment` WRITE;
 /*!40000 ALTER TABLE `t_annual_assignment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_annual_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_assignment_define`
+--
+
+DROP TABLE IF EXISTS `t_assignment_define`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_assignment_define` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `TYPE` varchar(40) NOT NULL,
+  `DEFAULT_VALUE` decimal(20,6) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `UNIT_ID` varchar(40) NOT NULL,
+  `POSITION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`),
+  KEY `INDEX_2` (`TYPE`),
+  KEY `INDEX_3` (`UNIT_ID`),
+  KEY `INDEX_4` (`VERSION_ID`),
+  KEY `INDEX_5` (`POSITION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_assignment_define`
@@ -35,6 +86,22 @@ INSERT INTO `t_assignment_define` VALUES ('12cea176-2040-4116-832b-eb4a8b6032fd'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_assignment_item_type`
+--
+
+DROP TABLE IF EXISTS `t_assignment_item_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_assignment_item_type` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_assignment_item_type`
 --
 
@@ -43,6 +110,28 @@ LOCK TABLES `t_assignment_item_type` WRITE;
 INSERT INTO `t_assignment_item_type` VALUES ('1','自动分配任务','任务下达到指定岗位后，再按岗位预设比例逐级分解到下属岗位，如无预设比例则该下属岗位不分配',1),('2','定额任务','任务下达到指定岗位，具有固定任务指标',1),('3','无定额任务','任务下达到指定岗位，没有任务指标。',1);
 /*!40000 ALTER TABLE `t_assignment_item_type` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_assignment_performance`
+--
+
+DROP TABLE IF EXISTS `t_assignment_performance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_assignment_performance` (
+  `ID` varchar(40) NOT NULL,
+  `EMPLOYEE_ID` varchar(40) NOT NULL,
+  `COMPLETED` decimal(20,6) NOT NULL,
+  `TARGET` decimal(20,6) DEFAULT NULL,
+  `ASSIGNMENT_YEAR` int(11) NOT NULL,
+  `ASSIGNMENT_MONTH` int(11) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`),
+  KEY `INDEX_2` (`EMPLOYEE_ID`),
+  KEY `INDEX_4` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_assignment_performance`
@@ -54,6 +143,22 @@ LOCK TABLES `t_assignment_performance` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_code_table`
+--
+
+DROP TABLE IF EXISTS `t_code_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_code_table` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_code_table`
 --
 
@@ -61,6 +166,28 @@ LOCK TABLES `t_code_table` WRITE;
 /*!40000 ALTER TABLE `t_code_table` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_code_table` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_employee`
+--
+
+DROP TABLE IF EXISTS `t_employee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_employee` (
+  `ID` varchar(40) NOT NULL,
+  `LEADER_ID` varchar(40) DEFAULT NULL,
+  `POSITION_ID` varchar(40) DEFAULT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENTRY_TIME` date NOT NULL,
+  `DISMISSION_TIME` date DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_3` (`ID`),
+  KEY `INDEX_2` (`POSITION_ID`),
+  KEY `INDEX_4` (`LEADER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_employee`
@@ -73,6 +200,28 @@ INSERT INTO `t_employee` VALUES ('0001',NULL,'0000000000','邹伟','总经理','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_employee_salary_detail`
+--
+
+DROP TABLE IF EXISTS `t_employee_salary_detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_employee_salary_detail` (
+  `ID` varchar(40) NOT NULL,
+  `EMPLOYEE_ID` varchar(40) NOT NULL,
+  `SALARY_ITEM_ID` varchar(40) NOT NULL,
+  `SALARY_YEAR` int(11) NOT NULL,
+  `SALARY_MONTH` int(11) NOT NULL,
+  `AMOUNT` decimal(10,2) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`),
+  KEY `INDEX_2` (`EMPLOYEE_ID`),
+  KEY `INDEX_3` (`SALARY_ITEM_ID`),
+  KEY `INDEX_4` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_employee_salary_detail`
 --
 
@@ -80,6 +229,26 @@ LOCK TABLES `t_employee_salary_detail` WRITE;
 /*!40000 ALTER TABLE `t_employee_salary_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_employee_salary_detail` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_evaluation_form`
+--
+
+DROP TABLE IF EXISTS `t_evaluation_form`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_evaluation_form` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `POSITION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_2` (`ID`),
+  KEY `INDEX_3` (`VERSION_ID`),
+  KEY `INDEX_4` (`POSITION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_evaluation_form`
@@ -92,6 +261,24 @@ INSERT INTO `t_evaluation_form` VALUES ('0001','KPI','KPI',1,'20160401','0204030
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_evaluation_form_items`
+--
+
+DROP TABLE IF EXISTS `t_evaluation_form_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_evaluation_form_items` (
+  `EVALUATION_FORM_ID` varchar(40) NOT NULL,
+  `EVALUATION_FORM_ITEM_ID` varchar(40) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `SHOW_ORDER` int(11) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`EVALUATION_FORM_ID`,`EVALUATION_FORM_ITEM_ID`),
+  KEY `INDEX_3` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_evaluation_form_items`
 --
 
@@ -100,6 +287,29 @@ LOCK TABLES `t_evaluation_form_items` WRITE;
 INSERT INTO `t_evaluation_form_items` VALUES ('0001','0001','20160401',1,0),('0001','0002','20160401',1,1),('0001','0003','20160401',1,2),('0001','0004','20160401',1,3),('0001','0005','20160401',1,4),('0001','0006','20160401',1,5),('0001','0007','20160401',1,6),('0001','0008','20160401',1,7),('0001','0009','20160401',1,8),('0001','0010','20160401',1,9),('0001','0011','20160401',1,10),('0001','0012','20160401',1,11),('0001','0013','20160401',1,12),('0001','0014','20160401',1,13),('0001','0015','20160401',1,14),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0016','20160401',1,0),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0017','20160401',1,1),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0018','20160401',1,2),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0019','20160401',1,3),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0020','20160401',1,4),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0021','20160401',1,5),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0022','20160401',1,6),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0023','20160401',1,7),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0024','20160401',1,8),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0025','20160401',1,9),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0026','20160401',1,10),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0027','20160401',1,11),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0028','20160401',1,12),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0029','20160401',1,13),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0030','20160401',1,14),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0031','20160401',1,15),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0032','20160401',1,16),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0033','20160401',1,17),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0034','20160401',1,18),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0035','20160401',1,19),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0036','20160401',1,20),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0037','20160401',1,21),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0038','20160401',1,22),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0039','20160401',1,23),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0040','20160401',1,24),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0041','20160401',1,25),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0042','20160401',1,26),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0043','20160401',1,27),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0044','20160401',1,28),('6dc3c933-1863-43b7-9d91-9b76ab8c69ec','0045','20160401',1,29);
 /*!40000 ALTER TABLE `t_evaluation_form_items` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_evaluation_item`
+--
+
+DROP TABLE IF EXISTS `t_evaluation_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_evaluation_item` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `TYPE` varchar(40) NOT NULL,
+  `FULL_MARK` decimal(10,2) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `POSITION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`),
+  KEY `INDEX_2` (`VERSION_ID`),
+  KEY `INDEX_3` (`TYPE`),
+  KEY `INDEX_4` (`POSITION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_evaluation_item`
@@ -112,6 +322,22 @@ INSERT INTO `t_evaluation_item` VALUES ('0001','出勤记录','按照公司考�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_evaluation_item_type`
+--
+
+DROP TABLE IF EXISTS `t_evaluation_item_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_evaluation_item_type` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_evaluation_item_type`
 --
 
@@ -120,6 +346,34 @@ LOCK TABLES `t_evaluation_item_type` WRITE;
 INSERT INTO `t_evaluation_item_type` VALUES ('001','业绩',NULL,1),('002','满意度',NULL,1),('003','服务流程',NULL,1),('004','基础工作',NULL,1),('005','工作态度',NULL,1),('006','关键事件',NULL,1),('007','岗位职责',NULL,1),('008','基础管理',NULL,1),('009','6S管理',NULL,1),('010','加分项',NULL,1),('011','CSI',NULL,1),('143acac5-ae06-4c13-85bb-eaf9b6068f17','ff',NULL,1),('21fc4961-cb04-4cab-a099-4f94acf9e815','aaa',NULL,1);
 /*!40000 ALTER TABLE `t_evaluation_item_type` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_evaluation_results`
+--
+
+DROP TABLE IF EXISTS `t_evaluation_results`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_evaluation_results` (
+  `ID` varchar(40) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `EMPLOYEE_ID` varchar(40) NOT NULL COMMENT '被考核人',
+  `EVALUATION_YEAY` int(11) NOT NULL,
+  `EVALUATION_MONTH` int(11) NOT NULL,
+  `EVALUATOR` varchar(40) NOT NULL,
+  `EVALUATION_FORM_ID` varchar(40) NOT NULL,
+  `EVALUATION_ITEM_ID` varchar(40) NOT NULL,
+  `EVALUATION_TIME` date NOT NULL,
+  `MARK` decimal(10,2) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`),
+  KEY `INDEX_2` (`EMPLOYEE_ID`),
+  KEY `INDEX_3` (`EVALUATOR`),
+  KEY `INDEX_4` (`EVALUATION_FORM_ID`),
+  KEY `INDEX_5` (`EVALUATION_ITEM_ID`),
+  KEY `INDEX_6` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_evaluation_results`
@@ -131,6 +385,27 @@ LOCK TABLES `t_evaluation_results` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_evaluation_standard`
+--
+
+DROP TABLE IF EXISTS `t_evaluation_standard`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_evaluation_standard` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL DEFAULT '1',
+  `ITEM_ID` varchar(40) NOT NULL,
+  `SHOW_ORDER` int(11) NOT NULL DEFAULT '0',
+  `VERSION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`),
+  KEY `INDEX_2` (`ITEM_ID`),
+  KEY `INDEX_3` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_evaluation_standard`
 --
 
@@ -138,6 +413,24 @@ LOCK TABLES `t_evaluation_standard` WRITE;
 /*!40000 ALTER TABLE `t_evaluation_standard` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_evaluation_standard` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_position`
+--
+
+DROP TABLE IF EXISTS `t_position`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_position` (
+  `ID` varchar(40) NOT NULL,
+  `LEADER_ID` varchar(40) DEFAULT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `岗位表_PK` (`ID`),
+  KEY `上级岗位编号_FK` (`LEADER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_position`
@@ -150,6 +443,25 @@ INSERT INTO `t_position` VALUES ('0000000000',NULL,'总经理','',1),('010000000
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_position_assignments`
+--
+
+DROP TABLE IF EXISTS `t_position_assignments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_position_assignments` (
+  `ASSIGNMENT_ID` varchar(40) NOT NULL,
+  `POSITION_ID` varchar(40) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `WEIGHT` decimal(10,2) NOT NULL,
+  `VALUE` decimal(20,6) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ASSIGNMENT_ID`,`POSITION_ID`),
+  KEY `INDEX_2` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_position_assignments`
 --
 
@@ -158,6 +470,24 @@ LOCK TABLES `t_position_assignments` WRITE;
 INSERT INTO `t_position_assignments` VALUES ('4de125fc-020c-4aaa-9d9b-12b913f40d82','0000000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0100000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0101000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0102000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0200000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0201000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0201010000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0201020000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0202000000',1,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0202010000',1,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0202020000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0202030000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0202030100',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0202030200',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0202040000',1,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0203000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0203010000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0203020000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0203030101',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204000000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204010000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204020000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030100',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030101',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030102',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030200',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030201',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030202',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030300',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030301',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204030302',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204040000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204050000',0,'20140404',100.00,0.000000),('4de125fc-020c-4aaa-9d9b-12b913f40d82','0204060000',0,'20140404',100.00,0.000000);
 /*!40000 ALTER TABLE `t_position_assignments` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_position_evaluation_forms`
+--
+
+DROP TABLE IF EXISTS `t_position_evaluation_forms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_position_evaluation_forms` (
+  `POSITION_ID` varchar(40) NOT NULL,
+  `EVALUATION_FORM_ID` varchar(40) NOT NULL,
+  `WEIGHT` decimal(10,2) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`POSITION_ID`,`EVALUATION_FORM_ID`),
+  UNIQUE KEY `INDEX_2` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_position_evaluation_forms`
@@ -170,6 +500,23 @@ INSERT INTO `t_position_evaluation_forms` VALUES ('0204030301','6dc3c933-1863-43
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_position_salary_items`
+--
+
+DROP TABLE IF EXISTS `t_position_salary_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_position_salary_items` (
+  `POSITION_ID` varchar(40) NOT NULL,
+  `SALARY_ITEM_ID` varchar(40) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`POSITION_ID`,`SALARY_ITEM_ID`),
+  KEY `INDEX_2` (`VERSION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_position_salary_items`
 --
 
@@ -178,6 +525,24 @@ LOCK TABLES `t_position_salary_items` WRITE;
 INSERT INTO `t_position_salary_items` VALUES ('0000000000','f51b21fb-9fad-41d8-9b93-a46040ed4b25','20160401',1),('0204030100','b01668d5-ec6b-45ea-a9c2-d07ee4ea8c37','20160401',1),('0204030100','f51b21fb-9fad-41d8-9b93-a46040ed4b25','20160401',1);
 /*!40000 ALTER TABLE `t_position_salary_items` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_repository_assignment`
+--
+
+DROP TABLE IF EXISTS `t_repository_assignment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_repository_assignment` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `CREATE_TIME` date NOT NULL,
+  `CREATOR` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_repository_assignment`
@@ -190,6 +555,24 @@ INSERT INTO `t_repository_assignment` VALUES ('20140404','任务指标初始版�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_repository_evaluation`
+--
+
+DROP TABLE IF EXISTS `t_repository_evaluation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_repository_evaluation` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `CREATE_TIME` date NOT NULL,
+  `CREATOR` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_repository_evaluation`
 --
 
@@ -198,6 +581,24 @@ LOCK TABLES `t_repository_evaluation` WRITE;
 INSERT INTO `t_repository_evaluation` VALUES ('20160401','初始考核版本','',1,'2016-04-02','nobody');
 /*!40000 ALTER TABLE `t_repository_evaluation` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_repository_salary_struct`
+--
+
+DROP TABLE IF EXISTS `t_repository_salary_struct`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_repository_salary_struct` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `CREATE_TIME` date NOT NULL,
+  `CREATOR` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_repository_salary_struct`
@@ -210,6 +611,22 @@ INSERT INTO `t_repository_salary_struct` VALUES ('20160401','初始薪资版本'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_salary_data_source_type`
+--
+
+DROP TABLE IF EXISTS `t_salary_data_source_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_salary_data_source_type` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='1 行间，取VALUE字段值\n2 字段，取某字段\n3 公式，使用VALUE字段值作为公式计算';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_salary_data_source_type`
 --
 
@@ -218,6 +635,31 @@ LOCK TABLES `t_salary_data_source_type` WRITE;
 INSERT INTO `t_salary_data_source_type` VALUES ('1','行间','直接取项目记录“取值”字段',1),('2','公式','取项目记录“取值”字段作为公式，计算',0),('3','录入','录入工资表时录入',1);
 /*!40000 ALTER TABLE `t_salary_data_source_type` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_salary_item`
+--
+
+DROP TABLE IF EXISTS `t_salary_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_salary_item` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `TYPE` varchar(40) NOT NULL,
+  `VALUE` varchar(2000) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  `VERSION_ID` varchar(40) NOT NULL,
+  `POSITION_ID` varchar(40) NOT NULL,
+  `DATA_SOURCE_TYPE` varchar(40) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`),
+  UNIQUE KEY `INDEX_2` (`TYPE`),
+  KEY `INDEX_3` (`VERSION_ID`),
+  KEY `INDEX_4` (`POSITION_ID`),
+  KEY `INDEX_5` (`DATA_SOURCE_TYPE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_salary_item`
@@ -230,6 +672,22 @@ INSERT INTO `t_salary_item` VALUES ('b01668d5-ec6b-45ea-a9c2-d07ee4ea8c37','提�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_salary_item_type`
+--
+
+DROP TABLE IF EXISTS `t_salary_item_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_salary_item_type` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_salary_item_type`
 --
 
@@ -238,6 +696,22 @@ LOCK TABLES `t_salary_item_type` WRITE;
 INSERT INTO `t_salary_item_type` VALUES ('001','固定值','每次取固数值',1),('002','固定比例','取固定比例',1),('003','公式','使用公式计算',1);
 /*!40000 ALTER TABLE `t_salary_item_type` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `t_settings`
+--
+
+DROP TABLE IF EXISTS `t_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_settings` (
+  `NAME` varchar(100) NOT NULL,
+  `VALUE` varchar(2000) NOT NULL,
+  `DESCRIPTION` varchar(2000) DEFAULT NULL,
+  `TYPE` int(11) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `t_settings`
@@ -250,6 +724,21 @@ INSERT INTO `t_settings` VALUES ('assignment.schedule.01','10','1月任务默认
 UNLOCK TABLES;
 
 --
+-- Table structure for table `t_unit`
+--
+
+DROP TABLE IF EXISTS `t_unit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_unit` (
+  `ID` varchar(40) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  UNIQUE KEY `INDEX_1` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `t_unit`
 --
 
@@ -260,8 +749,261 @@ INSERT INTO `t_unit` VALUES ('1','元',1),('2','万元',1),('3','次',1),('4','�
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `v_assignment_detail`
+--
+
+DROP TABLE IF EXISTS `v_assignment_detail`;
+/*!50001 DROP VIEW IF EXISTS `v_assignment_detail`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `v_assignment_detail` AS SELECT 
+ 1 AS `ASSIGNMENT_ID`,
+ 1 AS `POSITION_ID`,
+ 1 AS `ENABLED`,
+ 1 AS `VERSION_ID`,
+ 1 AS `WEIGHT`,
+ 1 AS `NAME`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `TYPE`,
+ 1 AS `DEFAULT_VALUE`,
+ 1 AS `UNIT_ID`,
+ 1 AS `FIT_POSITION_ID`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_evaluation_form_detail`
+--
+
+DROP TABLE IF EXISTS `v_evaluation_form_detail`;
+/*!50001 DROP VIEW IF EXISTS `v_evaluation_form_detail`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `v_evaluation_form_detail` AS SELECT 
+ 1 AS `FORM_ID`,
+ 1 AS `ITEM_ID`,
+ 1 AS `NAME`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `TYPE`,
+ 1 AS `FULL_MARK`,
+ 1 AS `ENABLED`,
+ 1 AS `VERSION_ID`,
+ 1 AS `POSITION_ID`,
+ 1 AS `USED`,
+ 1 AS `SHOW_ORDER`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_evaluation_result_detail`
+--
+
+DROP TABLE IF EXISTS `v_evaluation_result_detail`;
+/*!50001 DROP VIEW IF EXISTS `v_evaluation_result_detail`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `v_evaluation_result_detail` AS SELECT 
+ 1 AS `POSITION_ID`,
+ 1 AS `FORM_ID`,
+ 1 AS `WEIGHT`,
+ 1 AS `VERSION_ID`,
+ 1 AS `FORM_NAME`,
+ 1 AS `ITEM_ID`,
+ 1 AS `SHOW_ORDER`,
+ 1 AS `ITEM_NAME`,
+ 1 AS `ITEM_DESC`,
+ 1 AS `ITEM_TYPE`,
+ 1 AS `FULL_MARK`,
+ 1 AS `EMPLOYEE_ID`,
+ 1 AS `EMPLOYEE_NAME`,
+ 1 AS `RESULT_ID`,
+ 1 AS `RESULT_DESC`,
+ 1 AS `EVALUATION_YEAY`,
+ 1 AS `EVALUATION_MONTH`,
+ 1 AS `EVALUATOR`,
+ 1 AS `EVALUATION_TIME`,
+ 1 AS `MARK`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_personal_assignment_detail`
+--
+
+DROP TABLE IF EXISTS `v_personal_assignment_detail`;
+/*!50001 DROP VIEW IF EXISTS `v_personal_assignment_detail`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `v_personal_assignment_detail` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `LEADER_ID`,
+ 1 AS `NAME`,
+ 1 AS `DEFINE_ID`,
+ 1 AS `DEFINE_NAME`,
+ 1 AS `DEFINE_DESC`,
+ 1 AS `DEFINE_TYPE`,
+ 1 AS `VERSION_ID`,
+ 1 AS `UNIT_ID`,
+ 1 AS `DEFAULT_VALUE`,
+ 1 AS `FIT_POSITION_ID`,
+ 1 AS `USED`,
+ 1 AS `WEIGHT`,
+ 1 AS `VALUE`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_salary_struct_detail`
+--
+
+DROP TABLE IF EXISTS `v_salary_struct_detail`;
+/*!50001 DROP VIEW IF EXISTS `v_salary_struct_detail`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `v_salary_struct_detail` AS SELECT 
+ 1 AS `POSITION_ID`,
+ 1 AS `ENABLED`,
+ 1 AS `VERSION_ID`,
+ 1 AS `SALARY_ITEM_ID`,
+ 1 AS `NAME`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `TYPE`,
+ 1 AS `VALUE`,
+ 1 AS `FIT_POSITION_ID`,
+ 1 AS `DATA_SOURCE_TYPE`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_team_assignment_detail`
+--
+
+DROP TABLE IF EXISTS `v_team_assignment_detail`;
+/*!50001 DROP VIEW IF EXISTS `v_team_assignment_detail`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `v_team_assignment_detail` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `LEADER_ID`,
+ 1 AS `NAME`,
+ 1 AS `DEFINE_ID`,
+ 1 AS `DEFINE_NAME`,
+ 1 AS `DEFINE_DESC`,
+ 1 AS `DEFINE_TYPE`,
+ 1 AS `VERSION_ID`,
+ 1 AS `UNIT_ID`,
+ 1 AS `FIT_POSITION_ID`,
+ 1 AS `IS_NEW`,
+ 1 AS `USED`,
+ 1 AS `WEIGHT`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Dumping routines for database 'salary'
 --
+
+--
+-- Final view structure for view `v_assignment_detail`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_assignment_detail`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_assignment_detail` AS select `t1`.`ASSIGNMENT_ID` AS `ASSIGNMENT_ID`,`t1`.`POSITION_ID` AS `POSITION_ID`,`t1`.`ENABLED` AS `ENABLED`,`t1`.`VERSION_ID` AS `VERSION_ID`,`t1`.`WEIGHT` AS `WEIGHT`,`t2`.`NAME` AS `NAME`,`t2`.`DESCRIPTION` AS `DESCRIPTION`,`t2`.`TYPE` AS `TYPE`,`t2`.`DEFAULT_VALUE` AS `DEFAULT_VALUE`,`t2`.`UNIT_ID` AS `UNIT_ID`,`t2`.`POSITION_ID` AS `FIT_POSITION_ID` from (`t_position_assignments` `t1` join `t_assignment_define` `t2`) where ((`t1`.`ASSIGNMENT_ID` = `t2`.`ID`) and `t2`.`ENABLED`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_evaluation_form_detail`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_evaluation_form_detail`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_evaluation_form_detail` AS select `t1`.`ID` AS `FORM_ID`,`t2`.`ID` AS `ITEM_ID`,`t2`.`NAME` AS `NAME`,`t2`.`DESCRIPTION` AS `DESCRIPTION`,`t2`.`TYPE` AS `TYPE`,`t2`.`FULL_MARK` AS `FULL_MARK`,`t2`.`ENABLED` AS `ENABLED`,`t2`.`VERSION_ID` AS `VERSION_ID`,`t2`.`POSITION_ID` AS `POSITION_ID`,`t3`.`ENABLED` AS `USED`,`t3`.`SHOW_ORDER` AS `SHOW_ORDER` from ((`t_evaluation_form` `t1` left join `t_evaluation_form_items` `t3` on((`t3`.`EVALUATION_FORM_ID` = `t1`.`ID`))) left join `t_evaluation_item` `t2` on((`t2`.`ID` = `t3`.`EVALUATION_FORM_ITEM_ID`))) where (`t2`.`ENABLED` = TRUE) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_evaluation_result_detail`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_evaluation_result_detail`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_evaluation_result_detail` AS select `t1`.`POSITION_ID` AS `POSITION_ID`,`t1`.`EVALUATION_FORM_ID` AS `FORM_ID`,`t1`.`WEIGHT` AS `WEIGHT`,`t1`.`VERSION_ID` AS `VERSION_ID`,`t2`.`NAME` AS `FORM_NAME`,`t3`.`EVALUATION_FORM_ITEM_ID` AS `ITEM_ID`,`t3`.`SHOW_ORDER` AS `SHOW_ORDER`,`t4`.`NAME` AS `ITEM_NAME`,`t4`.`DESCRIPTION` AS `ITEM_DESC`,`t4`.`TYPE` AS `ITEM_TYPE`,`t4`.`FULL_MARK` AS `FULL_MARK`,`t5`.`ID` AS `EMPLOYEE_ID`,`t5`.`NAME` AS `EMPLOYEE_NAME`,`t6`.`ID` AS `RESULT_ID`,`t6`.`DESCRIPTION` AS `RESULT_DESC`,`t6`.`EVALUATION_YEAY` AS `EVALUATION_YEAY`,`t6`.`EVALUATION_MONTH` AS `EVALUATION_MONTH`,`t6`.`EVALUATOR` AS `EVALUATOR`,`t6`.`EVALUATION_TIME` AS `EVALUATION_TIME`,`t6`.`MARK` AS `MARK` from (((((`t_position_evaluation_forms` `t1` join `t_evaluation_form` `t2` on((`t2`.`ID` = `t1`.`EVALUATION_FORM_ID`))) join `t_evaluation_form_items` `t3` on((`t3`.`EVALUATION_FORM_ID` = `t2`.`ID`))) join `t_evaluation_item` `t4` on((`t4`.`ID` = `t3`.`EVALUATION_FORM_ITEM_ID`))) join `t_employee` `t5` on((`t1`.`POSITION_ID` = `t5`.`POSITION_ID`))) left join `t_evaluation_results` `t6` on((`t5`.`ID` = `t6`.`EMPLOYEE_ID`))) where ((`t1`.`ENABLED` = TRUE) and (`t2`.`ENABLED` = TRUE) and (`t3`.`ENABLED` = TRUE) and (`t4`.`ENABLED` = TRUE) and (`t5`.`ENABLED` = TRUE)) order by `t2`.`NAME`,`t3`.`SHOW_ORDER` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_personal_assignment_detail`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_personal_assignment_detail`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_personal_assignment_detail` AS select `t1`.`ID` AS `ID`,`t1`.`LEADER_ID` AS `LEADER_ID`,`t1`.`NAME` AS `NAME`,`t2`.`ID` AS `DEFINE_ID`,`t2`.`NAME` AS `DEFINE_NAME`,`t2`.`DESCRIPTION` AS `DEFINE_DESC`,`t2`.`TYPE` AS `DEFINE_TYPE`,`t2`.`VERSION_ID` AS `VERSION_ID`,`t2`.`UNIT_ID` AS `UNIT_ID`,`t2`.`DEFAULT_VALUE` AS `DEFAULT_VALUE`,`t2`.`POSITION_ID` AS `FIT_POSITION_ID`,ifnull(`t3`.`ENABLED`,false) AS `USED`,ifnull(`t3`.`WEIGHT`,100) AS `WEIGHT`,ifnull(`t3`.`VALUE`,`t2`.`DEFAULT_VALUE`) AS `VALUE` from ((`t_position` `t1` join `t_assignment_define` `t2` on(((`t1`.`ID` = `t2`.`POSITION_ID`) or (`t2`.`POSITION_ID` = '9999999999')))) left join `t_position_assignments` `t3` on(((`t1`.`ID` = `t3`.`POSITION_ID`) and (`t2`.`ID` = `t3`.`ASSIGNMENT_ID`)))) where ((`t1`.`ENABLED` = TRUE) and (`t1`.`ID` <> '9999999999') and (`t2`.`ENABLED` = TRUE) and (`t2`.`TYPE` <> '1')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_salary_struct_detail`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_salary_struct_detail`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_salary_struct_detail` AS select `t1`.`POSITION_ID` AS `POSITION_ID`,`t1`.`ENABLED` AS `ENABLED`,`t1`.`VERSION_ID` AS `VERSION_ID`,`t1`.`SALARY_ITEM_ID` AS `SALARY_ITEM_ID`,`t2`.`NAME` AS `NAME`,`t2`.`DESCRIPTION` AS `DESCRIPTION`,`t2`.`TYPE` AS `TYPE`,`t2`.`VALUE` AS `VALUE`,`t2`.`POSITION_ID` AS `FIT_POSITION_ID`,`t2`.`DATA_SOURCE_TYPE` AS `DATA_SOURCE_TYPE` from (`t_position_salary_items` `t1` left join `t_salary_item` `t2` on((`t2`.`ID` = `t1`.`SALARY_ITEM_ID`))) where `t2`.`ENABLED` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `v_team_assignment_detail`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_team_assignment_detail`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_team_assignment_detail` AS select `t1`.`ID` AS `ID`,`t1`.`LEADER_ID` AS `LEADER_ID`,`t1`.`NAME` AS `NAME`,`t2`.`ID` AS `DEFINE_ID`,`t2`.`NAME` AS `DEFINE_NAME`,`t2`.`DESCRIPTION` AS `DEFINE_DESC`,`t2`.`TYPE` AS `DEFINE_TYPE`,`t2`.`VERSION_ID` AS `VERSION_ID`,`t2`.`UNIT_ID` AS `UNIT_ID`,`t2`.`POSITION_ID` AS `FIT_POSITION_ID`,(ifnull(`t3`.`ASSIGNMENT_ID`,'0') = '0') AS `IS_NEW`,ifnull(`t3`.`ENABLED`,FALSE) AS `USED`,ifnull(`t3`.`WEIGHT`,0) AS `WEIGHT` from ((`t_position` `t1` join `t_assignment_define` `t2` on(((`t1`.`ID` = `t2`.`POSITION_ID`) or (`t2`.`POSITION_ID` = '9999999999')))) left join `t_position_assignments` `t3` on((`t1`.`ID` = `t3`.`POSITION_ID`))) where ((`t1`.`ENABLED` = TRUE) and (`t1`.`ID` <> '9999999999') and (`t2`.`ENABLED` = TRUE) and (`t2`.`TYPE` = '1')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -272,4 +1014,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-13  2:18:12
+-- Dump completed on 2016-04-13 12:00:09
