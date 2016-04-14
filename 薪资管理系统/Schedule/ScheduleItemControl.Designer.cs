@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.vGridControl1 = new DevExpress.XtraVerticalGrid.VGridControl();
-            this.rowYear = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.rowId = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.rowName = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.rowAnnualValue = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.rowMonthValues = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControlUnit = new DevExpress.XtraEditors.LabelControl();
+            this.textEditAmount = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.vGridControl2 = new DevExpress.XtraVerticalGrid.VGridControl();
             this.rowMonth = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowRate = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
@@ -43,7 +41,19 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            ((System.ComponentModel.ISupportInitialize)(this.vGridControl1)).BeginInit();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage7 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage9 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage10 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage11 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage12 = new DevExpress.XtraTab.XtraTabPage();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -51,53 +61,44 @@
             this.xtraTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // vGridControl1
+            // panelControl2
             // 
-            this.vGridControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vGridControl1.LayoutStyle = DevExpress.XtraVerticalGrid.LayoutViewStyle.SingleRecordView;
-            this.vGridControl1.Location = new System.Drawing.Point(0, 0);
-            this.vGridControl1.Name = "vGridControl1";
-            this.vGridControl1.RecordWidth = 138;
-            this.vGridControl1.RowHeaderWidth = 62;
-            this.vGridControl1.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
-            this.rowYear,
-            this.rowId,
-            this.rowName,
-            this.rowAnnualValue,
-            this.rowMonthValues});
-            this.vGridControl1.Size = new System.Drawing.Size(614, 112);
-            this.vGridControl1.TabIndex = 0;
+            this.panelControl2.Controls.Add(this.labelControlUnit);
+            this.panelControl2.Controls.Add(this.textEditAmount);
+            this.panelControl2.Controls.Add(this.labelControl1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(614, 54);
+            this.panelControl2.TabIndex = 5;
             // 
-            // rowYear
+            // labelControlUnit
             // 
-            this.rowYear.Name = "rowYear";
-            this.rowYear.Properties.Caption = "年度";
-            this.rowYear.Properties.FieldName = "Year";
+            this.labelControlUnit.Location = new System.Drawing.Point(285, 20);
+            this.labelControlUnit.Name = "labelControlUnit";
+            this.labelControlUnit.Size = new System.Drawing.Size(24, 14);
+            this.labelControlUnit.TabIndex = 2;
+            this.labelControlUnit.Text = "万元";
             // 
-            // rowId
+            // textEditAmount
             // 
-            this.rowId.Name = "rowId";
-            this.rowId.Properties.Caption = "任务编号";
-            this.rowId.Properties.FieldName = "Id";
+            this.textEditAmount.Location = new System.Drawing.Point(109, 17);
+            this.textEditAmount.Name = "textEditAmount";
+            this.textEditAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.textEditAmount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.textEditAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.textEditAmount.Size = new System.Drawing.Size(170, 21);
+            this.textEditAmount.TabIndex = 1;
+            this.textEditAmount.FormatEditValue += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.amountEditValueChanged);
+            this.textEditAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.onAmountKeyDownEnter);
             // 
-            // rowName
+            // labelControl1
             // 
-            this.rowName.Name = "rowName";
-            this.rowName.Properties.Caption = "任务名称";
-            this.rowName.Properties.FieldName = "Name";
-            // 
-            // rowAnnualValue
-            // 
-            this.rowAnnualValue.Name = "rowAnnualValue";
-            this.rowAnnualValue.Properties.Caption = "任务额度";
-            this.rowAnnualValue.Properties.FieldName = "AnnualValue";
-            // 
-            // rowMonthValues
-            // 
-            this.rowMonthValues.Name = "rowMonthValues";
-            this.rowMonthValues.Properties.Caption = "Month Values";
-            this.rowMonthValues.Properties.FieldName = "MonthValues";
-            this.rowMonthValues.Properties.ReadOnly = true;
+            this.labelControl1.Location = new System.Drawing.Point(19, 20);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(84, 14);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "年度任务额度：";
             // 
             // vGridControl2
             // 
@@ -108,15 +109,15 @@
             this.vGridControl2.Appearance.ReadOnlyRow.ForeColor = System.Drawing.Color.Black;
             this.vGridControl2.Appearance.ReadOnlyRow.Options.UseForeColor = true;
             this.vGridControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vGridControl2.Location = new System.Drawing.Point(0, 112);
+            this.vGridControl2.Location = new System.Drawing.Point(0, 54);
             this.vGridControl2.Name = "vGridControl2";
             this.vGridControl2.OptionsView.FixRowHeaderPanelWidth = true;
             this.vGridControl2.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
             this.rowMonth,
             this.rowRate,
             this.rowValue});
-            this.vGridControl2.Size = new System.Drawing.Size(614, 98);
-            this.vGridControl2.TabIndex = 2;
+            this.vGridControl2.Size = new System.Drawing.Size(614, 80);
+            this.vGridControl2.TabIndex = 6;
             this.vGridControl2.CustomDrawRowValueCell += new DevExpress.XtraVerticalGrid.Events.CustomDrawRowValueCellEventHandler(this.customDrawRowValueCell);
             // 
             // rowMonth
@@ -131,6 +132,7 @@
             // 
             // rowRate
             // 
+            this.rowRate.Height = 17;
             this.rowRate.Name = "rowRate";
             this.rowRate.Properties.Caption = "占比";
             this.rowRate.Properties.FieldName = "RATE";
@@ -148,10 +150,10 @@
             // 
             this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 210);
+            this.panelControl1.Location = new System.Drawing.Point(0, 134);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(614, 40);
-            this.panelControl1.TabIndex = 3;
+            this.panelControl1.TabIndex = 7;
             // 
             // simpleButton1
             // 
@@ -159,31 +161,102 @@
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "生成任务";
+            this.simpleButton1.Text = "分配任务";
+            this.simpleButton1.Click += new System.EventHandler(this.generateAssignment);
             // 
             // xtraTabControl1
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 250);
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 174);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(614, 232);
-            this.xtraTabControl1.TabIndex = 4;
+            this.xtraTabControl1.Size = new System.Drawing.Size(614, 308);
+            this.xtraTabControl1.TabIndex = 8;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
-            this.xtraTabPage2});
+            this.xtraTabPage2,
+            this.xtraTabPage3,
+            this.xtraTabPage4,
+            this.xtraTabPage5,
+            this.xtraTabPage6,
+            this.xtraTabPage7,
+            this.xtraTabPage8,
+            this.xtraTabPage9,
+            this.xtraTabPage10,
+            this.xtraTabPage11,
+            this.xtraTabPage12});
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(608, 204);
-            this.xtraTabPage1.Text = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage1.Text = "1月";
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(608, 204);
-            this.xtraTabPage2.Text = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage2.Text = "2月";
+            // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage3.Text = "3月";
+            // 
+            // xtraTabPage4
+            // 
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage4.Text = "4月";
+            // 
+            // xtraTabPage5
+            // 
+            this.xtraTabPage5.Name = "xtraTabPage5";
+            this.xtraTabPage5.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage5.Text = "5月";
+            // 
+            // xtraTabPage6
+            // 
+            this.xtraTabPage6.Name = "xtraTabPage6";
+            this.xtraTabPage6.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage6.Text = "6月";
+            // 
+            // xtraTabPage7
+            // 
+            this.xtraTabPage7.Name = "xtraTabPage7";
+            this.xtraTabPage7.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage7.Text = "7月";
+            // 
+            // xtraTabPage8
+            // 
+            this.xtraTabPage8.Name = "xtraTabPage8";
+            this.xtraTabPage8.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage8.Text = "8月";
+            // 
+            // xtraTabPage9
+            // 
+            this.xtraTabPage9.Name = "xtraTabPage9";
+            this.xtraTabPage9.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage9.Text = "9月";
+            // 
+            // xtraTabPage10
+            // 
+            this.xtraTabPage10.Name = "xtraTabPage10";
+            this.xtraTabPage10.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage10.Text = "10月";
+            // 
+            // xtraTabPage11
+            // 
+            this.xtraTabPage11.Name = "xtraTabPage11";
+            this.xtraTabPage11.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage11.Text = "11月";
+            // 
+            // xtraTabPage12
+            // 
+            this.xtraTabPage12.Name = "xtraTabPage12";
+            this.xtraTabPage12.Size = new System.Drawing.Size(608, 280);
+            this.xtraTabPage12.Text = "12月";
             // 
             // ScheduleItemControl
             // 
@@ -192,10 +265,13 @@
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.vGridControl2);
-            this.Controls.Add(this.vGridControl1);
+            this.Controls.Add(this.panelControl2);
             this.Name = "ScheduleItemControl";
             this.Size = new System.Drawing.Size(614, 482);
-            ((System.ComponentModel.ISupportInitialize)(this.vGridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -207,12 +283,10 @@
 
         #endregion
 
-        private DevExpress.XtraVerticalGrid.VGridControl vGridControl1;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowYear;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowId;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowName;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowAnnualValue;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowMonthValues;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControlUnit;
+        private DevExpress.XtraEditors.TextEdit textEditAmount;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraVerticalGrid.VGridControl vGridControl2;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowMonth;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowRate;
@@ -222,5 +296,16 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage6;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage7;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage8;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage9;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage10;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage11;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage12;
+
     }
 }

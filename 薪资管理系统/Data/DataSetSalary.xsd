@@ -2,17 +2,15 @@
 <xs:schema id="DataSetSalary" targetNamespace="http://tempuri.org/DataSetSalary.xsd" xmlns:mstns="http://tempuri.org/DataSetSalary.xsd" xmlns="http://tempuri.org/DataSetSalary.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="3" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="salaryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="salaryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SalarySystem.Properties.Settings.GlobalReference.Default.salaryConnectionString" Provider="MySql.Data.MySqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="salaryConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="salaryConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SalarySystem.Properties.Settings.GlobalReference.Default.salaryConnectionString1" Provider="MySql.Data.MySqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="salaryConnectionString2" IsAppSettingsProperty="true" Modifier="Assembly" Name="salaryConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SalarySystem.Properties.Settings.GlobalReference.Default.salaryConnectionString2" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="salaryConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="salaryConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SalarySystem.Properties.Settings.GlobalReference.Default.salaryConnectionString1" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_annual_assignmentTableAdapter" GeneratorDataComponentClassName="t_annual_assignmentTableAdapter" Name="t_annual_assignment" UserDataComponentName="t_annual_assignmentTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_annual_assignment" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_annual_assignment" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_annual_assignment` (`ID`, `ASSIGNMENT_ID`, `NAME`, `DESCRIPTION`, `ASSIGNMENT_YEAR`, `ASSIGNMENT_MONTH`, `TARGET`, `CREATE_TIME`, `CREATOR_ID`, `VERSION_ID`, `EXEC_STATE`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11)</CommandText>
@@ -56,7 +54,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_assignment_defineTableAdapter" GeneratorDataComponentClassName="t_assignment_defineTableAdapter" Name="t_assignment_define" UserDataComponentName="t_assignment_defineTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_assignment_define" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_assignment_define" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_assignment_define` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`, `TYPE`, `DEFAULT_VALUE`, `VERSION_ID`, `UNIT_ID`, `POSITION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)</CommandText>
@@ -96,7 +94,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_assignment_item_typeTableAdapter" GeneratorDataComponentClassName="t_assignment_item_typeTableAdapter" Name="t_assignment_item_type" UserDataComponentName="t_assignment_item_typeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_assignment_item_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_assignment_item_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_assignment_item_type` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4)</CommandText>
@@ -126,7 +124,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_assignment_performanceTableAdapter" GeneratorDataComponentClassName="t_assignment_performanceTableAdapter" Name="t_assignment_performance" UserDataComponentName="t_assignment_performanceTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_assignment_performance" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_assignment_performance" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_assignment_performance` (`ID`, `EMPLOYEE_ID`, `COMPLETED`, `TARGET`, `ASSIGNMENT_YEAR`, `ASSIGNMENT_MONTH`, `DESCRIPTION`, `VERSION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)</CommandText>
@@ -164,7 +162,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_employeeTableAdapter" GeneratorDataComponentClassName="t_employeeTableAdapter" Name="t_employee" UserDataComponentName="t_employeeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_employee" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_employee" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_employee` (`ID`, `LEADER_ID`, `POSITION_ID`, `NAME`, `DESCRIPTION`, `ENTRY_TIME`, `DISMISSION_TIME`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)</CommandText>
@@ -202,7 +200,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_employee_salary_detailTableAdapter" GeneratorDataComponentClassName="t_employee_salary_detailTableAdapter" Name="t_employee_salary_detail" UserDataComponentName="t_employee_salary_detailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_employee_salary_detail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_employee_salary_detail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_employee_salary_detail` (`ID`, `EMPLOYEE_ID`, `SALARY_ITEM_ID`, `SALARY_YEAR`, `SALARY_MONTH`, `AMOUNT`, `VERSION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7)</CommandText>
@@ -238,7 +236,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_evaluation_formTableAdapter" GeneratorDataComponentClassName="t_evaluation_formTableAdapter" Name="t_evaluation_form" UserDataComponentName="t_evaluation_formTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_evaluation_form" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_evaluation_form" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_evaluation_form` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`, `VERSION_ID`, `POSITION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)</CommandText>
@@ -272,7 +270,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_evaluation_form_itemsTableAdapter" GeneratorDataComponentClassName="t_evaluation_form_itemsTableAdapter" Name="t_evaluation_form_items" UserDataComponentName="t_evaluation_form_itemsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_evaluation_form_items" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_evaluation_form_items" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_evaluation_form_items` (`EVALUATION_FORM_ID`, `EVALUATION_FORM_ITEM_ID`, `VERSION_ID`, `ENABLED`, `SHOW_ORDER`) VALUES (@p1, @p2, @p3, @p4, @p5)</CommandText>
@@ -304,7 +302,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_evaluation_itemTableAdapter" GeneratorDataComponentClassName="t_evaluation_itemTableAdapter" Name="t_evaluation_item" UserDataComponentName="t_evaluation_itemTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_evaluation_item" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_evaluation_item" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_evaluation_item` (`ID`, `NAME`, `DESCRIPTION`, `TYPE`, `FULL_MARK`, `ENABLED`, `VERSION_ID`, `POSITION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)</CommandText>
@@ -342,7 +340,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_evaluation_item_typeTableAdapter" GeneratorDataComponentClassName="t_evaluation_item_typeTableAdapter" Name="t_evaluation_item_type" UserDataComponentName="t_evaluation_item_typeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_evaluation_item_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_evaluation_item_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_evaluation_item_type` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4)</CommandText>
@@ -372,7 +370,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_evaluation_resultsTableAdapter" GeneratorDataComponentClassName="t_evaluation_resultsTableAdapter" Name="t_evaluation_results" UserDataComponentName="t_evaluation_resultsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_evaluation_results" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_evaluation_results" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_evaluation_results` (`ID`, `DESCRIPTION`, `EMPLOYEE_ID`, `EVALUATION_YEAY`, `EVALUATION_MONTH`, `EVALUATOR`, `EVALUATION_FORM_ID`, `EVALUATION_ITEM_ID`, `EVALUATION_TIME`, `MARK`, `VERSION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11)</CommandText>
@@ -416,7 +414,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_evaluation_standardTableAdapter" GeneratorDataComponentClassName="t_evaluation_standardTableAdapter" Name="t_evaluation_standard" UserDataComponentName="t_evaluation_standardTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_evaluation_standard" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_evaluation_standard" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_evaluation_standard` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`, `ITEM_ID`, `SHOW_ORDER`, `VERSION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7)</CommandText>
@@ -452,7 +450,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_positionTableAdapter" GeneratorDataComponentClassName="t_positionTableAdapter" Name="t_position" UserDataComponentName="t_positionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_position" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_position" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_position` (`ID`, `LEADER_ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4, @p5)</CommandText>
@@ -484,7 +482,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_position_evaluation_formsTableAdapter" GeneratorDataComponentClassName="t_position_evaluation_formsTableAdapter" Name="t_position_evaluation_forms" UserDataComponentName="t_position_evaluation_formsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_position_evaluation_forms" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_position_evaluation_forms" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_position_evaluation_forms` (`POSITION_ID`, `EVALUATION_FORM_ID`, `WEIGHT`, `ENABLED`, `VERSION_ID`) VALUES (@p1, @p2, @p3, @p4, @p5)</CommandText>
@@ -516,7 +514,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_position_salary_itemsTableAdapter" GeneratorDataComponentClassName="t_position_salary_itemsTableAdapter" Name="t_position_salary_items" UserDataComponentName="t_position_salary_itemsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_position_salary_items" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_position_salary_items" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_position_salary_items` (`POSITION_ID`, `SALARY_ITEM_ID`, `VERSION_ID`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4)</CommandText>
@@ -546,7 +544,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_repository_assignmentTableAdapter" GeneratorDataComponentClassName="t_repository_assignmentTableAdapter" Name="t_repository_assignment" UserDataComponentName="t_repository_assignmentTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_repository_assignment" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_repository_assignment" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_repository_assignment` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`, `CREATE_TIME`, `CREATOR`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)</CommandText>
@@ -580,7 +578,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_repository_evaluationTableAdapter" GeneratorDataComponentClassName="t_repository_evaluationTableAdapter" Name="t_repository_evaluation" UserDataComponentName="t_repository_evaluationTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_repository_evaluation" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_repository_evaluation" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_repository_evaluation` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`, `CREATE_TIME`, `CREATOR`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)</CommandText>
@@ -614,7 +612,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_repository_salary_structTableAdapter" GeneratorDataComponentClassName="t_repository_salary_structTableAdapter" Name="t_repository_salary_struct" UserDataComponentName="t_repository_salary_structTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_repository_salary_struct" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_repository_salary_struct" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_repository_salary_struct` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`, `CREATE_TIME`, `CREATOR`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)</CommandText>
@@ -648,7 +646,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_salary_data_source_typeTableAdapter" GeneratorDataComponentClassName="t_salary_data_source_typeTableAdapter" Name="t_salary_data_source_type" UserDataComponentName="t_salary_data_source_typeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_salary_data_source_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_salary_data_source_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_salary_data_source_type` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4)</CommandText>
@@ -678,7 +676,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_salary_itemTableAdapter" GeneratorDataComponentClassName="t_salary_itemTableAdapter" Name="t_salary_item" UserDataComponentName="t_salary_itemTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_salary_item" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_salary_item" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_salary_item` (`ID`, `NAME`, `DESCRIPTION`, `TYPE`, `VALUE`, `ENABLED`, `VERSION_ID`, `POSITION_ID`, `DATA_SOURCE_TYPE`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)</CommandText>
@@ -718,7 +716,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_salary_item_typeTableAdapter" GeneratorDataComponentClassName="t_salary_item_typeTableAdapter" Name="t_salary_item_type" UserDataComponentName="t_salary_item_typeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_salary_item_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_salary_item_type" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_salary_item_type` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4)</CommandText>
@@ -748,7 +746,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_settingsTableAdapter" GeneratorDataComponentClassName="t_settingsTableAdapter" Name="t_settings" UserDataComponentName="t_settingsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_settings" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_settings" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_settings` (`NAME`, `VALUE`, `DESCRIPTION`, `TYPE`) VALUES (@p1, @p2, @p3, @p4)</CommandText>
@@ -778,7 +776,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_unitTableAdapter" GeneratorDataComponentClassName="t_unitTableAdapter" Name="t_unit" UserDataComponentName="t_unitTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_unit" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_unit" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_unit` (`ID`, `NAME`, `ENABLED`) VALUES (@p1, @p2, @p3)</CommandText>
@@ -806,7 +804,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_evaluation_form_detailTableAdapter" GeneratorDataComponentClassName="v_evaluation_form_detailTableAdapter" Name="v_evaluation_form_detail" UserDataComponentName="v_evaluation_form_detailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.v_evaluation_form_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.v_evaluation_form_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT `FORM_ID`, `ITEM_ID`, `NAME`, `DESCRIPTION`, `TYPE`, `FULL_MARK`, `ENABLED`, `VERSION_ID`, `POSITION_ID`, `USED`, `SHOW_ORDER` FROM `salary`.`v_evaluation_form_detail`</CommandText>
@@ -832,7 +830,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_evaluation_result_detailTableAdapter" GeneratorDataComponentClassName="v_evaluation_result_detailTableAdapter" Name="v_evaluation_result_detail" UserDataComponentName="v_evaluation_result_detailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.v_evaluation_result_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.v_evaluation_result_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT `POSITION_ID`, `FORM_ID`, `WEIGHT`, `VERSION_ID`, `FORM_NAME`, `ITEM_ID`, `SHOW_ORDER`, `ITEM_NAME`, `ITEM_DESC`, `ITEM_TYPE`, `FULL_MARK`, `EMPLOYEE_ID`, `EMPLOYEE_NAME`, `RESULT_ID`, `RESULT_DESC`, `EVALUATION_YEAY`, `EVALUATION_MONTH`, `EVALUATOR`, `EVALUATION_TIME`, `MARK` FROM `salary`.`v_evaluation_result_detail`</CommandText>
@@ -867,7 +865,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_salary_struct_detailTableAdapter" GeneratorDataComponentClassName="v_salary_struct_detailTableAdapter" Name="v_salary_struct_detail" UserDataComponentName="v_salary_struct_detailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.v_salary_struct_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.v_salary_struct_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT `POSITION_ID`, `ENABLED`, `VERSION_ID`, `SALARY_ITEM_ID`, `NAME`, `DESCRIPTION`, `TYPE`, `VALUE`, `FIT_POSITION_ID`, `DATA_SOURCE_TYPE` FROM `salary`.`v_salary_struct_detail`</CommandText>
@@ -892,7 +890,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_assignment_detailTableAdapter" GeneratorDataComponentClassName="v_assignment_detailTableAdapter" Name="v_assignment_detail" UserDataComponentName="v_assignment_detailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString2 (Settings)" DbObjectName="salary.v_assignment_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.v_assignment_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT `ASSIGNMENT_ID`, `POSITION_ID`, `ENABLED`, `VERSION_ID`, `WEIGHT`, `NAME`, `DESCRIPTION`, `TYPE`, `DEFAULT_VALUE`, `UNIT_ID`, `FIT_POSITION_ID` FROM `salary`.`v_assignment_detail`</CommandText>
@@ -918,7 +916,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_team_assignment_detailTableAdapter" GeneratorDataComponentClassName="v_team_assignment_detailTableAdapter" Name="v_team_assignment_detail" UserDataComponentName="v_team_assignment_detailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString2 (Settings)" DbObjectName="salary.v_team_assignment_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.v_team_assignment_detail" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT `ID`, `LEADER_ID`, `NAME`, `DEFINE_ID`, `DEFINE_NAME`, `DEFINE_DESC`, `DEFINE_TYPE`, `VERSION_ID`, `UNIT_ID`, `FIT_POSITION_ID`, `IS_NEW`, `USED`, `WEIGHT` FROM `salary`.`v_team_assignment_detail`</CommandText>
@@ -975,7 +973,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_position_assignmentsTableAdapter" GeneratorDataComponentClassName="t_position_assignmentsTableAdapter" Name="t_position_assignments" UserDataComponentName="t_position_assignmentsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString2 (Settings)" DbObjectName="salary.t_position_assignments" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_position_assignments" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_position_assignments` (`ASSIGNMENT_ID`, `POSITION_ID`, `ENABLED`, `VERSION_ID`, `WEIGHT`, `VALUE`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)</CommandText>
@@ -1009,7 +1007,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="t_code_tableTableAdapter" GeneratorDataComponentClassName="t_code_tableTableAdapter" Name="t_code_table" UserDataComponentName="t_code_tableTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.t_code_table" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="salaryConnectionString (Settings)" DbObjectName="salary.t_code_table" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `t_code_table` (`ID`, `NAME`, `DESCRIPTION`, `ENABLED`) VALUES (@p1, @p2, @p3, @p4)</CommandText>
@@ -1037,6 +1035,25 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_auto_assignment_listTableAdapter" GeneratorDataComponentClassName="v_auto_assignment_listTableAdapter" Name="v_auto_assignment_list" UserDataComponentName="v_auto_assignment_listTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.v_auto_assignment_list" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `ASSIGNMENT_ID`, `NAME`, `VERSION_ID`, `UNIT_ID` FROM `salary`.`v_auto_assignment_list`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ASSIGNMENT_ID" DataSetColumn="ASSIGNMENT_ID" />
+              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
+              <Mapping SourceColumn="VERSION_ID" DataSetColumn="VERSION_ID" />
+              <Mapping SourceColumn="UNIT_ID" DataSetColumn="UNIT_ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1045,7 +1062,7 @@
   <xs:element name="DataSetSalary" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetSalary" msprop:Generator_UserDSName="DataSetSalary">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="t_annual_assignment" msprop:Generator_TableClassName="t_annual_assignmentDataTable" msprop:Generator_TableVarName="tablet_annual_assignment" msprop:Generator_RowChangedName="t_annual_assignmentRowChanged" msprop:Generator_TablePropName="t_annual_assignment" msprop:Generator_RowDeletingName="t_annual_assignmentRowDeleting" msprop:Generator_RowChangingName="t_annual_assignmentRowChanging" msprop:Generator_RowEvHandlerName="t_annual_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="t_annual_assignmentRowDeleted" msprop:Generator_RowClassName="t_annual_assignmentRow" msprop:Generator_UserTableName="t_annual_assignment" msprop:Generator_RowEvArgName="t_annual_assignmentRowChangeEvent">
+        <xs:element name="t_annual_assignment" msprop:Generator_TableClassName="t_annual_assignmentDataTable" msprop:Generator_TableVarName="tablet_annual_assignment" msprop:Generator_TablePropName="t_annual_assignment" msprop:Generator_RowDeletingName="t_annual_assignmentRowDeleting" msprop:Generator_RowChangingName="t_annual_assignmentRowChanging" msprop:Generator_RowEvHandlerName="t_annual_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="t_annual_assignmentRowDeleted" msprop:Generator_UserTableName="t_annual_assignment" msprop:Generator_RowChangedName="t_annual_assignmentRowChanged" msprop:Generator_RowEvArgName="t_annual_assignmentRowChangeEvent" msprop:Generator_RowClassName="t_annual_assignmentRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1098,7 +1115,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_assignment_define" msprop:Generator_TableClassName="t_assignment_defineDataTable" msprop:Generator_TableVarName="tablet_assignment_define" msprop:Generator_RowChangedName="t_assignment_defineRowChanged" msprop:Generator_TablePropName="t_assignment_define" msprop:Generator_RowDeletingName="t_assignment_defineRowDeleting" msprop:Generator_RowChangingName="t_assignment_defineRowChanging" msprop:Generator_RowEvHandlerName="t_assignment_defineRowChangeEventHandler" msprop:Generator_RowDeletedName="t_assignment_defineRowDeleted" msprop:Generator_RowClassName="t_assignment_defineRow" msprop:Generator_UserTableName="t_assignment_define" msprop:Generator_RowEvArgName="t_assignment_defineRowChangeEvent">
+        <xs:element name="t_assignment_define" msprop:Generator_TableClassName="t_assignment_defineDataTable" msprop:Generator_TableVarName="tablet_assignment_define" msprop:Generator_TablePropName="t_assignment_define" msprop:Generator_RowDeletingName="t_assignment_defineRowDeleting" msprop:Generator_RowChangingName="t_assignment_defineRowChanging" msprop:Generator_RowEvHandlerName="t_assignment_defineRowChangeEventHandler" msprop:Generator_RowDeletedName="t_assignment_defineRowDeleted" msprop:Generator_UserTableName="t_assignment_define" msprop:Generator_RowChangedName="t_assignment_defineRowChanged" msprop:Generator_RowEvArgName="t_assignment_defineRowChangeEvent" msprop:Generator_RowClassName="t_assignment_defineRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1155,7 +1172,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_assignment_item_type" msprop:Generator_TableClassName="t_assignment_item_typeDataTable" msprop:Generator_TableVarName="tablet_assignment_item_type" msprop:Generator_RowChangedName="t_assignment_item_typeRowChanged" msprop:Generator_TablePropName="t_assignment_item_type" msprop:Generator_RowDeletingName="t_assignment_item_typeRowDeleting" msprop:Generator_RowChangingName="t_assignment_item_typeRowChanging" msprop:Generator_RowEvHandlerName="t_assignment_item_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_assignment_item_typeRowDeleted" msprop:Generator_RowClassName="t_assignment_item_typeRow" msprop:Generator_UserTableName="t_assignment_item_type" msprop:Generator_RowEvArgName="t_assignment_item_typeRowChangeEvent">
+        <xs:element name="t_assignment_item_type" msprop:Generator_TableClassName="t_assignment_item_typeDataTable" msprop:Generator_TableVarName="tablet_assignment_item_type" msprop:Generator_TablePropName="t_assignment_item_type" msprop:Generator_RowDeletingName="t_assignment_item_typeRowDeleting" msprop:Generator_RowChangingName="t_assignment_item_typeRowChanging" msprop:Generator_RowEvHandlerName="t_assignment_item_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_assignment_item_typeRowDeleted" msprop:Generator_UserTableName="t_assignment_item_type" msprop:Generator_RowChangedName="t_assignment_item_typeRowChanged" msprop:Generator_RowEvArgName="t_assignment_item_typeRowChangeEvent" msprop:Generator_RowClassName="t_assignment_item_typeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1183,7 +1200,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_assignment_performance" msprop:Generator_TableClassName="t_assignment_performanceDataTable" msprop:Generator_TableVarName="tablet_assignment_performance" msprop:Generator_RowChangedName="t_assignment_performanceRowChanged" msprop:Generator_TablePropName="t_assignment_performance" msprop:Generator_RowDeletingName="t_assignment_performanceRowDeleting" msprop:Generator_RowChangingName="t_assignment_performanceRowChanging" msprop:Generator_RowEvHandlerName="t_assignment_performanceRowChangeEventHandler" msprop:Generator_RowDeletedName="t_assignment_performanceRowDeleted" msprop:Generator_RowClassName="t_assignment_performanceRow" msprop:Generator_UserTableName="t_assignment_performance" msprop:Generator_RowEvArgName="t_assignment_performanceRowChangeEvent">
+        <xs:element name="t_assignment_performance" msprop:Generator_TableClassName="t_assignment_performanceDataTable" msprop:Generator_TableVarName="tablet_assignment_performance" msprop:Generator_TablePropName="t_assignment_performance" msprop:Generator_RowDeletingName="t_assignment_performanceRowDeleting" msprop:Generator_RowChangingName="t_assignment_performanceRowChanging" msprop:Generator_RowEvHandlerName="t_assignment_performanceRowChangeEventHandler" msprop:Generator_RowDeletedName="t_assignment_performanceRowDeleted" msprop:Generator_UserTableName="t_assignment_performance" msprop:Generator_RowChangedName="t_assignment_performanceRowChanged" msprop:Generator_RowEvArgName="t_assignment_performanceRowChangeEvent" msprop:Generator_RowClassName="t_assignment_performanceRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1221,7 +1238,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_employee" msprop:Generator_TableClassName="t_employeeDataTable" msprop:Generator_TableVarName="tablet_employee" msprop:Generator_RowChangedName="t_employeeRowChanged" msprop:Generator_TablePropName="t_employee" msprop:Generator_RowDeletingName="t_employeeRowDeleting" msprop:Generator_RowChangingName="t_employeeRowChanging" msprop:Generator_RowEvHandlerName="t_employeeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_employeeRowDeleted" msprop:Generator_RowClassName="t_employeeRow" msprop:Generator_UserTableName="t_employee" msprop:Generator_RowEvArgName="t_employeeRowChangeEvent">
+        <xs:element name="t_employee" msprop:Generator_TableClassName="t_employeeDataTable" msprop:Generator_TableVarName="tablet_employee" msprop:Generator_TablePropName="t_employee" msprop:Generator_RowDeletingName="t_employeeRowDeleting" msprop:Generator_RowChangingName="t_employeeRowChanging" msprop:Generator_RowEvHandlerName="t_employeeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_employeeRowDeleted" msprop:Generator_UserTableName="t_employee" msprop:Generator_RowChangedName="t_employeeRowChanged" msprop:Generator_RowEvArgName="t_employeeRowChangeEvent" msprop:Generator_RowClassName="t_employeeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1265,7 +1282,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_employee_salary_detail" msprop:Generator_TableClassName="t_employee_salary_detailDataTable" msprop:Generator_TableVarName="tablet_employee_salary_detail" msprop:Generator_RowChangedName="t_employee_salary_detailRowChanged" msprop:Generator_TablePropName="t_employee_salary_detail" msprop:Generator_RowDeletingName="t_employee_salary_detailRowDeleting" msprop:Generator_RowChangingName="t_employee_salary_detailRowChanging" msprop:Generator_RowEvHandlerName="t_employee_salary_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="t_employee_salary_detailRowDeleted" msprop:Generator_RowClassName="t_employee_salary_detailRow" msprop:Generator_UserTableName="t_employee_salary_detail" msprop:Generator_RowEvArgName="t_employee_salary_detailRowChangeEvent">
+        <xs:element name="t_employee_salary_detail" msprop:Generator_TableClassName="t_employee_salary_detailDataTable" msprop:Generator_TableVarName="tablet_employee_salary_detail" msprop:Generator_TablePropName="t_employee_salary_detail" msprop:Generator_RowDeletingName="t_employee_salary_detailRowDeleting" msprop:Generator_RowChangingName="t_employee_salary_detailRowChanging" msprop:Generator_RowEvHandlerName="t_employee_salary_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="t_employee_salary_detailRowDeleted" msprop:Generator_UserTableName="t_employee_salary_detail" msprop:Generator_RowChangedName="t_employee_salary_detailRowChanged" msprop:Generator_RowEvArgName="t_employee_salary_detailRowChangeEvent" msprop:Generator_RowClassName="t_employee_salary_detailRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1302,7 +1319,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_evaluation_form" msprop:Generator_TableClassName="t_evaluation_formDataTable" msprop:Generator_TableVarName="tablet_evaluation_form" msprop:Generator_RowChangedName="t_evaluation_formRowChanged" msprop:Generator_TablePropName="t_evaluation_form" msprop:Generator_RowDeletingName="t_evaluation_formRowDeleting" msprop:Generator_RowChangingName="t_evaluation_formRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_formRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_formRowDeleted" msprop:Generator_RowClassName="t_evaluation_formRow" msprop:Generator_UserTableName="t_evaluation_form" msprop:Generator_RowEvArgName="t_evaluation_formRowChangeEvent">
+        <xs:element name="t_evaluation_form" msprop:Generator_TableClassName="t_evaluation_formDataTable" msprop:Generator_TableVarName="tablet_evaluation_form" msprop:Generator_TablePropName="t_evaluation_form" msprop:Generator_RowDeletingName="t_evaluation_formRowDeleting" msprop:Generator_RowChangingName="t_evaluation_formRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_formRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_formRowDeleted" msprop:Generator_UserTableName="t_evaluation_form" msprop:Generator_RowChangedName="t_evaluation_formRowChanged" msprop:Generator_RowEvArgName="t_evaluation_formRowChangeEvent" msprop:Generator_RowClassName="t_evaluation_formRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1344,7 +1361,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_evaluation_form_items" msprop:Generator_TableClassName="t_evaluation_form_itemsDataTable" msprop:Generator_TableVarName="tablet_evaluation_form_items" msprop:Generator_RowChangedName="t_evaluation_form_itemsRowChanged" msprop:Generator_TablePropName="t_evaluation_form_items" msprop:Generator_RowDeletingName="t_evaluation_form_itemsRowDeleting" msprop:Generator_RowChangingName="t_evaluation_form_itemsRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_form_itemsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_form_itemsRowDeleted" msprop:Generator_RowClassName="t_evaluation_form_itemsRow" msprop:Generator_UserTableName="t_evaluation_form_items" msprop:Generator_RowEvArgName="t_evaluation_form_itemsRowChangeEvent">
+        <xs:element name="t_evaluation_form_items" msprop:Generator_TableClassName="t_evaluation_form_itemsDataTable" msprop:Generator_TableVarName="tablet_evaluation_form_items" msprop:Generator_TablePropName="t_evaluation_form_items" msprop:Generator_RowDeletingName="t_evaluation_form_itemsRowDeleting" msprop:Generator_RowChangingName="t_evaluation_form_itemsRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_form_itemsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_form_itemsRowDeleted" msprop:Generator_UserTableName="t_evaluation_form_items" msprop:Generator_RowChangedName="t_evaluation_form_itemsRowChanged" msprop:Generator_RowEvArgName="t_evaluation_form_itemsRowChangeEvent" msprop:Generator_RowClassName="t_evaluation_form_itemsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EVALUATION_FORM_ID" msprop:Generator_ColumnVarNameInTable="columnEVALUATION_FORM_ID" msprop:Generator_ColumnPropNameInRow="EVALUATION_FORM_ID" msprop:Generator_ColumnPropNameInTable="EVALUATION_FORM_IDColumn" msprop:Generator_UserColumnName="EVALUATION_FORM_ID">
@@ -1373,7 +1390,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_evaluation_item" msprop:Generator_TableClassName="t_evaluation_itemDataTable" msprop:Generator_TableVarName="tablet_evaluation_item" msprop:Generator_RowChangedName="t_evaluation_itemRowChanged" msprop:Generator_TablePropName="t_evaluation_item" msprop:Generator_RowDeletingName="t_evaluation_itemRowDeleting" msprop:Generator_RowChangingName="t_evaluation_itemRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_itemRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_itemRowDeleted" msprop:Generator_RowClassName="t_evaluation_itemRow" msprop:Generator_UserTableName="t_evaluation_item" msprop:Generator_RowEvArgName="t_evaluation_itemRowChangeEvent">
+        <xs:element name="t_evaluation_item" msprop:Generator_TableClassName="t_evaluation_itemDataTable" msprop:Generator_TableVarName="tablet_evaluation_item" msprop:Generator_TablePropName="t_evaluation_item" msprop:Generator_RowDeletingName="t_evaluation_itemRowDeleting" msprop:Generator_RowChangingName="t_evaluation_itemRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_itemRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_itemRowDeleted" msprop:Generator_UserTableName="t_evaluation_item" msprop:Generator_RowChangedName="t_evaluation_itemRowChanged" msprop:Generator_RowEvArgName="t_evaluation_itemRowChangeEvent" msprop:Generator_RowClassName="t_evaluation_itemRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1423,7 +1440,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_evaluation_item_type" msprop:Generator_TableClassName="t_evaluation_item_typeDataTable" msprop:Generator_TableVarName="tablet_evaluation_item_type" msprop:Generator_RowChangedName="t_evaluation_item_typeRowChanged" msprop:Generator_TablePropName="t_evaluation_item_type" msprop:Generator_RowDeletingName="t_evaluation_item_typeRowDeleting" msprop:Generator_RowChangingName="t_evaluation_item_typeRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_item_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_item_typeRowDeleted" msprop:Generator_RowClassName="t_evaluation_item_typeRow" msprop:Generator_UserTableName="t_evaluation_item_type" msprop:Generator_RowEvArgName="t_evaluation_item_typeRowChangeEvent">
+        <xs:element name="t_evaluation_item_type" msprop:Generator_TableClassName="t_evaluation_item_typeDataTable" msprop:Generator_TableVarName="tablet_evaluation_item_type" msprop:Generator_TablePropName="t_evaluation_item_type" msprop:Generator_RowDeletingName="t_evaluation_item_typeRowDeleting" msprop:Generator_RowChangingName="t_evaluation_item_typeRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_item_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_item_typeRowDeleted" msprop:Generator_UserTableName="t_evaluation_item_type" msprop:Generator_RowChangedName="t_evaluation_item_typeRowChanged" msprop:Generator_RowEvArgName="t_evaluation_item_typeRowChangeEvent" msprop:Generator_RowClassName="t_evaluation_item_typeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1451,7 +1468,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_evaluation_results" msprop:Generator_TableClassName="t_evaluation_resultsDataTable" msprop:Generator_TableVarName="tablet_evaluation_results" msprop:Generator_RowChangedName="t_evaluation_resultsRowChanged" msprop:Generator_TablePropName="t_evaluation_results" msprop:Generator_RowDeletingName="t_evaluation_resultsRowDeleting" msprop:Generator_RowChangingName="t_evaluation_resultsRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_resultsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_resultsRowDeleted" msprop:Generator_RowClassName="t_evaluation_resultsRow" msprop:Generator_UserTableName="t_evaluation_results" msprop:Generator_RowEvArgName="t_evaluation_resultsRowChangeEvent">
+        <xs:element name="t_evaluation_results" msprop:Generator_TableClassName="t_evaluation_resultsDataTable" msprop:Generator_TableVarName="tablet_evaluation_results" msprop:Generator_TablePropName="t_evaluation_results" msprop:Generator_RowDeletingName="t_evaluation_resultsRowDeleting" msprop:Generator_RowChangingName="t_evaluation_resultsRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_resultsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_resultsRowDeleted" msprop:Generator_UserTableName="t_evaluation_results" msprop:Generator_RowChangedName="t_evaluation_resultsRowChanged" msprop:Generator_RowEvArgName="t_evaluation_resultsRowChangeEvent" msprop:Generator_RowClassName="t_evaluation_resultsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1510,7 +1527,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_evaluation_standard" msprop:Generator_TableClassName="t_evaluation_standardDataTable" msprop:Generator_TableVarName="tablet_evaluation_standard" msprop:Generator_RowChangedName="t_evaluation_standardRowChanged" msprop:Generator_TablePropName="t_evaluation_standard" msprop:Generator_RowDeletingName="t_evaluation_standardRowDeleting" msprop:Generator_RowChangingName="t_evaluation_standardRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_standardRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_standardRowDeleted" msprop:Generator_RowClassName="t_evaluation_standardRow" msprop:Generator_UserTableName="t_evaluation_standard" msprop:Generator_RowEvArgName="t_evaluation_standardRowChangeEvent">
+        <xs:element name="t_evaluation_standard" msprop:Generator_TableClassName="t_evaluation_standardDataTable" msprop:Generator_TableVarName="tablet_evaluation_standard" msprop:Generator_TablePropName="t_evaluation_standard" msprop:Generator_RowDeletingName="t_evaluation_standardRowDeleting" msprop:Generator_RowChangingName="t_evaluation_standardRowChanging" msprop:Generator_RowEvHandlerName="t_evaluation_standardRowChangeEventHandler" msprop:Generator_RowDeletedName="t_evaluation_standardRowDeleted" msprop:Generator_UserTableName="t_evaluation_standard" msprop:Generator_RowChangedName="t_evaluation_standardRowChanged" msprop:Generator_RowEvArgName="t_evaluation_standardRowChangeEvent" msprop:Generator_RowClassName="t_evaluation_standardRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1553,7 +1570,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_position" msprop:Generator_TableClassName="t_positionDataTable" msprop:Generator_TableVarName="tablet_position" msprop:Generator_RowChangedName="t_positionRowChanged" msprop:Generator_TablePropName="t_position" msprop:Generator_RowDeletingName="t_positionRowDeleting" msprop:Generator_RowChangingName="t_positionRowChanging" msprop:Generator_RowEvHandlerName="t_positionRowChangeEventHandler" msprop:Generator_RowDeletedName="t_positionRowDeleted" msprop:Generator_RowClassName="t_positionRow" msprop:Generator_UserTableName="t_position" msprop:Generator_RowEvArgName="t_positionRowChangeEvent">
+        <xs:element name="t_position" msprop:Generator_TableClassName="t_positionDataTable" msprop:Generator_TableVarName="tablet_position" msprop:Generator_TablePropName="t_position" msprop:Generator_RowDeletingName="t_positionRowDeleting" msprop:Generator_RowChangingName="t_positionRowChanging" msprop:Generator_RowEvHandlerName="t_positionRowChangeEventHandler" msprop:Generator_RowDeletedName="t_positionRowDeleted" msprop:Generator_UserTableName="t_position" msprop:Generator_RowChangedName="t_positionRowChanged" msprop:Generator_RowEvArgName="t_positionRowChangeEvent" msprop:Generator_RowClassName="t_positionRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1588,7 +1605,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_position_evaluation_forms" msprop:Generator_TableClassName="t_position_evaluation_formsDataTable" msprop:Generator_TableVarName="tablet_position_evaluation_forms" msprop:Generator_RowChangedName="t_position_evaluation_formsRowChanged" msprop:Generator_TablePropName="t_position_evaluation_forms" msprop:Generator_RowDeletingName="t_position_evaluation_formsRowDeleting" msprop:Generator_RowChangingName="t_position_evaluation_formsRowChanging" msprop:Generator_RowEvHandlerName="t_position_evaluation_formsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_position_evaluation_formsRowDeleted" msprop:Generator_RowClassName="t_position_evaluation_formsRow" msprop:Generator_UserTableName="t_position_evaluation_forms" msprop:Generator_RowEvArgName="t_position_evaluation_formsRowChangeEvent">
+        <xs:element name="t_position_evaluation_forms" msprop:Generator_TableClassName="t_position_evaluation_formsDataTable" msprop:Generator_TableVarName="tablet_position_evaluation_forms" msprop:Generator_TablePropName="t_position_evaluation_forms" msprop:Generator_RowDeletingName="t_position_evaluation_formsRowDeleting" msprop:Generator_RowChangingName="t_position_evaluation_formsRowChanging" msprop:Generator_RowEvHandlerName="t_position_evaluation_formsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_position_evaluation_formsRowDeleted" msprop:Generator_UserTableName="t_position_evaluation_forms" msprop:Generator_RowChangedName="t_position_evaluation_formsRowChanged" msprop:Generator_RowEvArgName="t_position_evaluation_formsRowChangeEvent" msprop:Generator_RowClassName="t_position_evaluation_formsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="POSITION_ID" msprop:Generator_ColumnVarNameInTable="columnPOSITION_ID" msprop:Generator_ColumnPropNameInRow="POSITION_ID" msprop:Generator_ColumnPropNameInTable="POSITION_IDColumn" msprop:Generator_UserColumnName="POSITION_ID">
@@ -1617,7 +1634,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_position_salary_items" msprop:Generator_TableClassName="t_position_salary_itemsDataTable" msprop:Generator_TableVarName="tablet_position_salary_items" msprop:Generator_RowChangedName="t_position_salary_itemsRowChanged" msprop:Generator_TablePropName="t_position_salary_items" msprop:Generator_RowDeletingName="t_position_salary_itemsRowDeleting" msprop:Generator_RowChangingName="t_position_salary_itemsRowChanging" msprop:Generator_RowEvHandlerName="t_position_salary_itemsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_position_salary_itemsRowDeleted" msprop:Generator_RowClassName="t_position_salary_itemsRow" msprop:Generator_UserTableName="t_position_salary_items" msprop:Generator_RowEvArgName="t_position_salary_itemsRowChangeEvent">
+        <xs:element name="t_position_salary_items" msprop:Generator_TableClassName="t_position_salary_itemsDataTable" msprop:Generator_TableVarName="tablet_position_salary_items" msprop:Generator_TablePropName="t_position_salary_items" msprop:Generator_RowDeletingName="t_position_salary_itemsRowDeleting" msprop:Generator_RowChangingName="t_position_salary_itemsRowChanging" msprop:Generator_RowEvHandlerName="t_position_salary_itemsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_position_salary_itemsRowDeleted" msprop:Generator_UserTableName="t_position_salary_items" msprop:Generator_RowChangedName="t_position_salary_itemsRowChanged" msprop:Generator_RowEvArgName="t_position_salary_itemsRowChangeEvent" msprop:Generator_RowClassName="t_position_salary_itemsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="POSITION_ID" msprop:Generator_ColumnVarNameInTable="columnPOSITION_ID" msprop:Generator_ColumnPropNameInRow="POSITION_ID" msprop:Generator_ColumnPropNameInTable="POSITION_IDColumn" msprop:Generator_UserColumnName="POSITION_ID">
@@ -1645,7 +1662,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_repository_assignment" msprop:Generator_TableClassName="t_repository_assignmentDataTable" msprop:Generator_TableVarName="tablet_repository_assignment" msprop:Generator_RowChangedName="t_repository_assignmentRowChanged" msprop:Generator_TablePropName="t_repository_assignment" msprop:Generator_RowDeletingName="t_repository_assignmentRowDeleting" msprop:Generator_RowChangingName="t_repository_assignmentRowChanging" msprop:Generator_RowEvHandlerName="t_repository_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="t_repository_assignmentRowDeleted" msprop:Generator_RowClassName="t_repository_assignmentRow" msprop:Generator_UserTableName="t_repository_assignment" msprop:Generator_RowEvArgName="t_repository_assignmentRowChangeEvent">
+        <xs:element name="t_repository_assignment" msprop:Generator_TableClassName="t_repository_assignmentDataTable" msprop:Generator_TableVarName="tablet_repository_assignment" msprop:Generator_TablePropName="t_repository_assignment" msprop:Generator_RowDeletingName="t_repository_assignmentRowDeleting" msprop:Generator_RowChangingName="t_repository_assignmentRowChanging" msprop:Generator_RowEvHandlerName="t_repository_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="t_repository_assignmentRowDeleted" msprop:Generator_UserTableName="t_repository_assignment" msprop:Generator_RowChangedName="t_repository_assignmentRowChanged" msprop:Generator_RowEvArgName="t_repository_assignmentRowChangeEvent" msprop:Generator_RowClassName="t_repository_assignmentRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1681,7 +1698,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_repository_evaluation" msprop:Generator_TableClassName="t_repository_evaluationDataTable" msprop:Generator_TableVarName="tablet_repository_evaluation" msprop:Generator_RowChangedName="t_repository_evaluationRowChanged" msprop:Generator_TablePropName="t_repository_evaluation" msprop:Generator_RowDeletingName="t_repository_evaluationRowDeleting" msprop:Generator_RowChangingName="t_repository_evaluationRowChanging" msprop:Generator_RowEvHandlerName="t_repository_evaluationRowChangeEventHandler" msprop:Generator_RowDeletedName="t_repository_evaluationRowDeleted" msprop:Generator_RowClassName="t_repository_evaluationRow" msprop:Generator_UserTableName="t_repository_evaluation" msprop:Generator_RowEvArgName="t_repository_evaluationRowChangeEvent">
+        <xs:element name="t_repository_evaluation" msprop:Generator_TableClassName="t_repository_evaluationDataTable" msprop:Generator_TableVarName="tablet_repository_evaluation" msprop:Generator_TablePropName="t_repository_evaluation" msprop:Generator_RowDeletingName="t_repository_evaluationRowDeleting" msprop:Generator_RowChangingName="t_repository_evaluationRowChanging" msprop:Generator_RowEvHandlerName="t_repository_evaluationRowChangeEventHandler" msprop:Generator_RowDeletedName="t_repository_evaluationRowDeleted" msprop:Generator_UserTableName="t_repository_evaluation" msprop:Generator_RowChangedName="t_repository_evaluationRowChanged" msprop:Generator_RowEvArgName="t_repository_evaluationRowChangeEvent" msprop:Generator_RowClassName="t_repository_evaluationRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1717,7 +1734,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_repository_salary_struct" msprop:Generator_TableClassName="t_repository_salary_structDataTable" msprop:Generator_TableVarName="tablet_repository_salary_struct" msprop:Generator_RowChangedName="t_repository_salary_structRowChanged" msprop:Generator_TablePropName="t_repository_salary_struct" msprop:Generator_RowDeletingName="t_repository_salary_structRowDeleting" msprop:Generator_RowChangingName="t_repository_salary_structRowChanging" msprop:Generator_RowEvHandlerName="t_repository_salary_structRowChangeEventHandler" msprop:Generator_RowDeletedName="t_repository_salary_structRowDeleted" msprop:Generator_RowClassName="t_repository_salary_structRow" msprop:Generator_UserTableName="t_repository_salary_struct" msprop:Generator_RowEvArgName="t_repository_salary_structRowChangeEvent">
+        <xs:element name="t_repository_salary_struct" msprop:Generator_TableClassName="t_repository_salary_structDataTable" msprop:Generator_TableVarName="tablet_repository_salary_struct" msprop:Generator_TablePropName="t_repository_salary_struct" msprop:Generator_RowDeletingName="t_repository_salary_structRowDeleting" msprop:Generator_RowChangingName="t_repository_salary_structRowChanging" msprop:Generator_RowEvHandlerName="t_repository_salary_structRowChangeEventHandler" msprop:Generator_RowDeletedName="t_repository_salary_structRowDeleted" msprop:Generator_UserTableName="t_repository_salary_struct" msprop:Generator_RowChangedName="t_repository_salary_structRowChanged" msprop:Generator_RowEvArgName="t_repository_salary_structRowChangeEvent" msprop:Generator_RowClassName="t_repository_salary_structRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1753,7 +1770,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_salary_data_source_type" msprop:Generator_TableClassName="t_salary_data_source_typeDataTable" msprop:Generator_TableVarName="tablet_salary_data_source_type" msprop:Generator_RowChangedName="t_salary_data_source_typeRowChanged" msprop:Generator_TablePropName="t_salary_data_source_type" msprop:Generator_RowDeletingName="t_salary_data_source_typeRowDeleting" msprop:Generator_RowChangingName="t_salary_data_source_typeRowChanging" msprop:Generator_RowEvHandlerName="t_salary_data_source_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_salary_data_source_typeRowDeleted" msprop:Generator_RowClassName="t_salary_data_source_typeRow" msprop:Generator_UserTableName="t_salary_data_source_type" msprop:Generator_RowEvArgName="t_salary_data_source_typeRowChangeEvent">
+        <xs:element name="t_salary_data_source_type" msprop:Generator_TableClassName="t_salary_data_source_typeDataTable" msprop:Generator_TableVarName="tablet_salary_data_source_type" msprop:Generator_TablePropName="t_salary_data_source_type" msprop:Generator_RowDeletingName="t_salary_data_source_typeRowDeleting" msprop:Generator_RowChangingName="t_salary_data_source_typeRowChanging" msprop:Generator_RowEvHandlerName="t_salary_data_source_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_salary_data_source_typeRowDeleted" msprop:Generator_UserTableName="t_salary_data_source_type" msprop:Generator_RowChangedName="t_salary_data_source_typeRowChanged" msprop:Generator_RowEvArgName="t_salary_data_source_typeRowChangeEvent" msprop:Generator_RowClassName="t_salary_data_source_typeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1781,7 +1798,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_salary_item" msprop:Generator_TableClassName="t_salary_itemDataTable" msprop:Generator_TableVarName="tablet_salary_item" msprop:Generator_RowChangedName="t_salary_itemRowChanged" msprop:Generator_TablePropName="t_salary_item" msprop:Generator_RowDeletingName="t_salary_itemRowDeleting" msprop:Generator_RowChangingName="t_salary_itemRowChanging" msprop:Generator_RowEvHandlerName="t_salary_itemRowChangeEventHandler" msprop:Generator_RowDeletedName="t_salary_itemRowDeleted" msprop:Generator_RowClassName="t_salary_itemRow" msprop:Generator_UserTableName="t_salary_item" msprop:Generator_RowEvArgName="t_salary_itemRowChangeEvent">
+        <xs:element name="t_salary_item" msprop:Generator_TableClassName="t_salary_itemDataTable" msprop:Generator_TableVarName="tablet_salary_item" msprop:Generator_TablePropName="t_salary_item" msprop:Generator_RowDeletingName="t_salary_itemRowDeleting" msprop:Generator_RowChangingName="t_salary_itemRowChanging" msprop:Generator_RowEvHandlerName="t_salary_itemRowChangeEventHandler" msprop:Generator_RowDeletedName="t_salary_itemRowDeleted" msprop:Generator_UserTableName="t_salary_item" msprop:Generator_RowChangedName="t_salary_itemRowChanged" msprop:Generator_RowEvArgName="t_salary_itemRowChangeEvent" msprop:Generator_RowClassName="t_salary_itemRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1844,7 +1861,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_salary_item_type" msprop:Generator_TableClassName="t_salary_item_typeDataTable" msprop:Generator_TableVarName="tablet_salary_item_type" msprop:Generator_RowChangedName="t_salary_item_typeRowChanged" msprop:Generator_TablePropName="t_salary_item_type" msprop:Generator_RowDeletingName="t_salary_item_typeRowDeleting" msprop:Generator_RowChangingName="t_salary_item_typeRowChanging" msprop:Generator_RowEvHandlerName="t_salary_item_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_salary_item_typeRowDeleted" msprop:Generator_RowClassName="t_salary_item_typeRow" msprop:Generator_UserTableName="t_salary_item_type" msprop:Generator_RowEvArgName="t_salary_item_typeRowChangeEvent">
+        <xs:element name="t_salary_item_type" msprop:Generator_TableClassName="t_salary_item_typeDataTable" msprop:Generator_TableVarName="tablet_salary_item_type" msprop:Generator_TablePropName="t_salary_item_type" msprop:Generator_RowDeletingName="t_salary_item_typeRowDeleting" msprop:Generator_RowChangingName="t_salary_item_typeRowChanging" msprop:Generator_RowEvHandlerName="t_salary_item_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="t_salary_item_typeRowDeleted" msprop:Generator_UserTableName="t_salary_item_type" msprop:Generator_RowChangedName="t_salary_item_typeRowChanged" msprop:Generator_RowEvArgName="t_salary_item_typeRowChangeEvent" msprop:Generator_RowClassName="t_salary_item_typeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1872,7 +1889,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_settings" msprop:Generator_TableClassName="t_settingsDataTable" msprop:Generator_TableVarName="tablet_settings" msprop:Generator_RowChangedName="t_settingsRowChanged" msprop:Generator_TablePropName="t_settings" msprop:Generator_RowDeletingName="t_settingsRowDeleting" msprop:Generator_RowChangingName="t_settingsRowChanging" msprop:Generator_RowEvHandlerName="t_settingsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_settingsRowDeleted" msprop:Generator_RowClassName="t_settingsRow" msprop:Generator_UserTableName="t_settings" msprop:Generator_RowEvArgName="t_settingsRowChangeEvent">
+        <xs:element name="t_settings" msprop:Generator_TableClassName="t_settingsDataTable" msprop:Generator_TableVarName="tablet_settings" msprop:Generator_TablePropName="t_settings" msprop:Generator_RowDeletingName="t_settingsRowDeleting" msprop:Generator_RowChangingName="t_settingsRowChanging" msprop:Generator_RowEvHandlerName="t_settingsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_settingsRowDeleted" msprop:Generator_UserTableName="t_settings" msprop:Generator_RowChangedName="t_settingsRowChanged" msprop:Generator_RowEvArgName="t_settingsRowChangeEvent" msprop:Generator_RowClassName="t_settingsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME">
@@ -1900,7 +1917,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_unit" msprop:Generator_TableClassName="t_unitDataTable" msprop:Generator_TableVarName="tablet_unit" msprop:Generator_RowChangedName="t_unitRowChanged" msprop:Generator_TablePropName="t_unit" msprop:Generator_RowDeletingName="t_unitRowDeleting" msprop:Generator_RowChangingName="t_unitRowChanging" msprop:Generator_RowEvHandlerName="t_unitRowChangeEventHandler" msprop:Generator_RowDeletedName="t_unitRowDeleted" msprop:Generator_RowClassName="t_unitRow" msprop:Generator_UserTableName="t_unit" msprop:Generator_RowEvArgName="t_unitRowChangeEvent">
+        <xs:element name="t_unit" msprop:Generator_TableClassName="t_unitDataTable" msprop:Generator_TableVarName="tablet_unit" msprop:Generator_TablePropName="t_unit" msprop:Generator_RowDeletingName="t_unitRowDeleting" msprop:Generator_RowChangingName="t_unitRowChanging" msprop:Generator_RowEvHandlerName="t_unitRowChangeEventHandler" msprop:Generator_RowDeletedName="t_unitRowDeleted" msprop:Generator_UserTableName="t_unit" msprop:Generator_RowChangedName="t_unitRowChanged" msprop:Generator_RowEvArgName="t_unitRowChangeEvent" msprop:Generator_RowClassName="t_unitRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -1921,7 +1938,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="v_evaluation_form_detail" msprop:Generator_TableClassName="v_evaluation_form_detailDataTable" msprop:Generator_TableVarName="tablev_evaluation_form_detail" msprop:Generator_RowChangedName="v_evaluation_form_detailRowChanged" msprop:Generator_TablePropName="v_evaluation_form_detail" msprop:Generator_RowDeletingName="v_evaluation_form_detailRowDeleting" msprop:Generator_RowChangingName="v_evaluation_form_detailRowChanging" msprop:Generator_RowEvHandlerName="v_evaluation_form_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_evaluation_form_detailRowDeleted" msprop:Generator_RowClassName="v_evaluation_form_detailRow" msprop:Generator_UserTableName="v_evaluation_form_detail" msprop:Generator_RowEvArgName="v_evaluation_form_detailRowChangeEvent">
+        <xs:element name="v_evaluation_form_detail" msprop:Generator_TableClassName="v_evaluation_form_detailDataTable" msprop:Generator_TableVarName="tablev_evaluation_form_detail" msprop:Generator_TablePropName="v_evaluation_form_detail" msprop:Generator_RowDeletingName="v_evaluation_form_detailRowDeleting" msprop:Generator_RowChangingName="v_evaluation_form_detailRowChanging" msprop:Generator_RowEvHandlerName="v_evaluation_form_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_evaluation_form_detailRowDeleted" msprop:Generator_UserTableName="v_evaluation_form_detail" msprop:Generator_RowChangedName="v_evaluation_form_detailRowChanged" msprop:Generator_RowEvArgName="v_evaluation_form_detailRowChangeEvent" msprop:Generator_RowClassName="v_evaluation_form_detailRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FORM_ID" msprop:Generator_ColumnVarNameInTable="columnFORM_ID" msprop:Generator_ColumnPropNameInRow="FORM_ID" msprop:Generator_ColumnPropNameInTable="FORM_IDColumn" msprop:Generator_UserColumnName="FORM_ID">
@@ -1980,7 +1997,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="v_evaluation_result_detail" msprop:Generator_TableClassName="v_evaluation_result_detailDataTable" msprop:Generator_TableVarName="tablev_evaluation_result_detail" msprop:Generator_RowChangedName="v_evaluation_result_detailRowChanged" msprop:Generator_TablePropName="v_evaluation_result_detail" msprop:Generator_RowDeletingName="v_evaluation_result_detailRowDeleting" msprop:Generator_RowChangingName="v_evaluation_result_detailRowChanging" msprop:Generator_RowEvHandlerName="v_evaluation_result_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_evaluation_result_detailRowDeleted" msprop:Generator_RowClassName="v_evaluation_result_detailRow" msprop:Generator_UserTableName="v_evaluation_result_detail" msprop:Generator_RowEvArgName="v_evaluation_result_detailRowChangeEvent">
+        <xs:element name="v_evaluation_result_detail" msprop:Generator_TableClassName="v_evaluation_result_detailDataTable" msprop:Generator_TableVarName="tablev_evaluation_result_detail" msprop:Generator_TablePropName="v_evaluation_result_detail" msprop:Generator_RowDeletingName="v_evaluation_result_detailRowDeleting" msprop:Generator_RowChangingName="v_evaluation_result_detailRowChanging" msprop:Generator_RowEvHandlerName="v_evaluation_result_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_evaluation_result_detailRowDeleted" msprop:Generator_UserTableName="v_evaluation_result_detail" msprop:Generator_RowChangedName="v_evaluation_result_detailRowChanged" msprop:Generator_RowEvArgName="v_evaluation_result_detailRowChangeEvent" msprop:Generator_RowClassName="v_evaluation_result_detailRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="POSITION_ID" msprop:Generator_ColumnVarNameInTable="columnPOSITION_ID" msprop:Generator_ColumnPropNameInRow="POSITION_ID" msprop:Generator_ColumnPropNameInTable="POSITION_IDColumn" msprop:Generator_UserColumnName="POSITION_ID">
@@ -2084,7 +2101,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="v_salary_struct_detail" msprop:Generator_TableClassName="v_salary_struct_detailDataTable" msprop:Generator_TableVarName="tablev_salary_struct_detail" msprop:Generator_RowChangedName="v_salary_struct_detailRowChanged" msprop:Generator_TablePropName="v_salary_struct_detail" msprop:Generator_RowDeletingName="v_salary_struct_detailRowDeleting" msprop:Generator_RowChangingName="v_salary_struct_detailRowChanging" msprop:Generator_RowEvHandlerName="v_salary_struct_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_salary_struct_detailRowDeleted" msprop:Generator_RowClassName="v_salary_struct_detailRow" msprop:Generator_UserTableName="v_salary_struct_detail" msprop:Generator_RowEvArgName="v_salary_struct_detailRowChangeEvent">
+        <xs:element name="v_salary_struct_detail" msprop:Generator_TableClassName="v_salary_struct_detailDataTable" msprop:Generator_TableVarName="tablev_salary_struct_detail" msprop:Generator_TablePropName="v_salary_struct_detail" msprop:Generator_RowDeletingName="v_salary_struct_detailRowDeleting" msprop:Generator_RowChangingName="v_salary_struct_detailRowChanging" msprop:Generator_RowEvHandlerName="v_salary_struct_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_salary_struct_detailRowDeleted" msprop:Generator_UserTableName="v_salary_struct_detail" msprop:Generator_RowChangedName="v_salary_struct_detailRowChanged" msprop:Generator_RowEvArgName="v_salary_struct_detailRowChangeEvent" msprop:Generator_RowClassName="v_salary_struct_detailRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="POSITION_ID" msprop:Generator_ColumnVarNameInTable="columnPOSITION_ID" msprop:Generator_ColumnPropNameInRow="POSITION_ID" msprop:Generator_ColumnPropNameInTable="POSITION_IDColumn" msprop:Generator_UserColumnName="POSITION_ID">
@@ -2154,7 +2171,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="v_assignment_detail" msprop:Generator_TableClassName="v_assignment_detailDataTable" msprop:Generator_TableVarName="tablev_assignment_detail" msprop:Generator_TablePropName="v_assignment_detail" msprop:Generator_RowDeletingName="v_assignment_detailRowDeleting" msprop:Generator_RowChangingName="v_assignment_detailRowChanging" msprop:Generator_RowEvHandlerName="v_assignment_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_assignment_detailRowDeleted" msprop:Generator_UserTableName="v_assignment_detail" msprop:Generator_RowChangedName="v_assignment_detailRowChanged" msprop:Generator_RowEvArgName="v_assignment_detailRowChangeEvent" msprop:Generator_RowClassName="v_assignment_detailRow">
+        <xs:element name="v_assignment_detail" msprop:Generator_TableClassName="v_assignment_detailDataTable" msprop:Generator_TableVarName="tablev_assignment_detail" msprop:Generator_RowChangedName="v_assignment_detailRowChanged" msprop:Generator_TablePropName="v_assignment_detail" msprop:Generator_RowDeletingName="v_assignment_detailRowDeleting" msprop:Generator_RowChangingName="v_assignment_detailRowChanging" msprop:Generator_RowEvHandlerName="v_assignment_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_assignment_detailRowDeleted" msprop:Generator_RowClassName="v_assignment_detailRow" msprop:Generator_UserTableName="v_assignment_detail" msprop:Generator_RowEvArgName="v_assignment_detailRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ASSIGNMENT_ID" msprop:Generator_ColumnVarNameInTable="columnASSIGNMENT_ID" msprop:Generator_ColumnPropNameInRow="ASSIGNMENT_ID" msprop:Generator_ColumnPropNameInTable="ASSIGNMENT_IDColumn" msprop:Generator_UserColumnName="ASSIGNMENT_ID">
@@ -2219,7 +2236,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="v_team_assignment_detail" msprop:Generator_TableClassName="v_team_assignment_detailDataTable" msprop:Generator_TableVarName="tablev_team_assignment_detail" msprop:Generator_RowChangedName="v_team_assignment_detailRowChanged" msprop:Generator_TablePropName="v_team_assignment_detail" msprop:Generator_RowDeletingName="v_team_assignment_detailRowDeleting" msprop:Generator_RowChangingName="v_team_assignment_detailRowChanging" msprop:Generator_RowEvHandlerName="v_team_assignment_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_team_assignment_detailRowDeleted" msprop:Generator_RowClassName="v_team_assignment_detailRow" msprop:Generator_UserTableName="v_team_assignment_detail" msprop:Generator_RowEvArgName="v_team_assignment_detailRowChangeEvent">
+        <xs:element name="v_team_assignment_detail" msprop:Generator_TableClassName="v_team_assignment_detailDataTable" msprop:Generator_TableVarName="tablev_team_assignment_detail" msprop:Generator_TablePropName="v_team_assignment_detail" msprop:Generator_RowDeletingName="v_team_assignment_detailRowDeleting" msprop:Generator_RowChangingName="v_team_assignment_detailRowChanging" msprop:Generator_RowEvHandlerName="v_team_assignment_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_team_assignment_detailRowDeleted" msprop:Generator_UserTableName="v_team_assignment_detail" msprop:Generator_RowChangedName="v_team_assignment_detailRowChanged" msprop:Generator_RowEvArgName="v_team_assignment_detailRowChangeEvent" msprop:Generator_RowClassName="v_team_assignment_detailRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -2298,7 +2315,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="v_personal_assignment_detail" msprop:Generator_TableClassName="v_personal_assignment_detailDataTable" msprop:Generator_TableVarName="tablev_personal_assignment_detail" msprop:Generator_TablePropName="v_personal_assignment_detail" msprop:Generator_RowDeletingName="v_personal_assignment_detailRowDeleting" msprop:Generator_RowChangingName="v_personal_assignment_detailRowChanging" msprop:Generator_RowEvHandlerName="v_personal_assignment_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_personal_assignment_detailRowDeleted" msprop:Generator_UserTableName="v_personal_assignment_detail" msprop:Generator_RowChangedName="v_personal_assignment_detailRowChanged" msprop:Generator_RowEvArgName="v_personal_assignment_detailRowChangeEvent" msprop:Generator_RowClassName="v_personal_assignment_detailRow">
+        <xs:element name="v_personal_assignment_detail" msprop:Generator_TableClassName="v_personal_assignment_detailDataTable" msprop:Generator_TableVarName="tablev_personal_assignment_detail" msprop:Generator_RowChangedName="v_personal_assignment_detailRowChanged" msprop:Generator_TablePropName="v_personal_assignment_detail" msprop:Generator_RowDeletingName="v_personal_assignment_detailRowDeleting" msprop:Generator_RowChangingName="v_personal_assignment_detailRowChanging" msprop:Generator_RowEvHandlerName="v_personal_assignment_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_personal_assignment_detailRowDeleted" msprop:Generator_RowClassName="v_personal_assignment_detailRow" msprop:Generator_UserTableName="v_personal_assignment_detail" msprop:Generator_RowEvArgName="v_personal_assignment_detailRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -2378,7 +2395,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_position_assignments" msprop:Generator_TableClassName="t_position_assignmentsDataTable" msprop:Generator_TableVarName="tablet_position_assignments" msprop:Generator_RowChangedName="t_position_assignmentsRowChanged" msprop:Generator_TablePropName="t_position_assignments" msprop:Generator_RowDeletingName="t_position_assignmentsRowDeleting" msprop:Generator_RowChangingName="t_position_assignmentsRowChanging" msprop:Generator_RowEvHandlerName="t_position_assignmentsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_position_assignmentsRowDeleted" msprop:Generator_RowClassName="t_position_assignmentsRow" msprop:Generator_UserTableName="t_position_assignments" msprop:Generator_RowEvArgName="t_position_assignmentsRowChangeEvent">
+        <xs:element name="t_position_assignments" msprop:Generator_TableClassName="t_position_assignmentsDataTable" msprop:Generator_TableVarName="tablet_position_assignments" msprop:Generator_TablePropName="t_position_assignments" msprop:Generator_RowDeletingName="t_position_assignmentsRowDeleting" msprop:Generator_RowChangingName="t_position_assignmentsRowChanging" msprop:Generator_RowEvHandlerName="t_position_assignmentsRowChangeEventHandler" msprop:Generator_RowDeletedName="t_position_assignmentsRowDeleted" msprop:Generator_UserTableName="t_position_assignments" msprop:Generator_RowChangedName="t_position_assignmentsRowChanged" msprop:Generator_RowEvArgName="t_position_assignmentsRowChangeEvent" msprop:Generator_RowClassName="t_position_assignmentsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ASSIGNMENT_ID" msprop:Generator_ColumnVarNameInTable="columnASSIGNMENT_ID" msprop:Generator_ColumnPropNameInRow="ASSIGNMENT_ID" msprop:Generator_ColumnPropNameInTable="ASSIGNMENT_IDColumn" msprop:Generator_UserColumnName="ASSIGNMENT_ID">
@@ -2408,7 +2425,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="t_code_table" msprop:Generator_TableClassName="t_code_tableDataTable" msprop:Generator_TableVarName="tablet_code_table" msprop:Generator_TablePropName="t_code_table" msprop:Generator_RowDeletingName="t_code_tableRowDeleting" msprop:Generator_RowChangingName="t_code_tableRowChanging" msprop:Generator_RowEvHandlerName="t_code_tableRowChangeEventHandler" msprop:Generator_RowDeletedName="t_code_tableRowDeleted" msprop:Generator_UserTableName="t_code_table" msprop:Generator_RowChangedName="t_code_tableRowChanged" msprop:Generator_RowEvArgName="t_code_tableRowChangeEvent" msprop:Generator_RowClassName="t_code_tableRow">
+        <xs:element name="t_code_table" msprop:Generator_TableClassName="t_code_tableDataTable" msprop:Generator_TableVarName="tablet_code_table" msprop:Generator_RowChangedName="t_code_tableRowChanged" msprop:Generator_TablePropName="t_code_table" msprop:Generator_RowDeletingName="t_code_tableRowDeleting" msprop:Generator_RowChangingName="t_code_tableRowChanging" msprop:Generator_RowEvHandlerName="t_code_tableRowChangeEventHandler" msprop:Generator_RowDeletedName="t_code_tableRowDeleted" msprop:Generator_RowClassName="t_code_tableRow" msprop:Generator_UserTableName="t_code_table" msprop:Generator_RowEvArgName="t_code_tableRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -2433,6 +2450,40 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ENABLED" msprop:Generator_ColumnVarNameInTable="columnENABLED" msprop:Generator_ColumnPropNameInRow="ENABLED" msprop:Generator_ColumnPropNameInTable="ENABLEDColumn" msprop:Generator_UserColumnName="ENABLED" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="v_auto_assignment_list" msprop:Generator_TableClassName="v_auto_assignment_listDataTable" msprop:Generator_TableVarName="tablev_auto_assignment_list" msprop:Generator_TablePropName="v_auto_assignment_list" msprop:Generator_RowDeletingName="v_auto_assignment_listRowDeleting" msprop:Generator_RowChangingName="v_auto_assignment_listRowChanging" msprop:Generator_RowEvHandlerName="v_auto_assignment_listRowChangeEventHandler" msprop:Generator_RowDeletedName="v_auto_assignment_listRowDeleted" msprop:Generator_UserTableName="v_auto_assignment_list" msprop:Generator_RowChangedName="v_auto_assignment_listRowChanged" msprop:Generator_RowEvArgName="v_auto_assignment_listRowChangeEvent" msprop:Generator_RowClassName="v_auto_assignment_listRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ASSIGNMENT_ID" msprop:Generator_ColumnVarNameInTable="columnASSIGNMENT_ID" msprop:Generator_ColumnPropNameInRow="ASSIGNMENT_ID" msprop:Generator_ColumnPropNameInTable="ASSIGNMENT_IDColumn" msprop:Generator_UserColumnName="ASSIGNMENT_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VERSION_ID" msprop:Generator_ColumnVarNameInTable="columnVERSION_ID" msprop:Generator_ColumnPropNameInRow="VERSION_ID" msprop:Generator_ColumnPropNameInTable="VERSION_IDColumn" msprop:Generator_UserColumnName="VERSION_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UNIT_ID" msprop:Generator_ColumnVarNameInTable="columnUNIT_ID" msprop:Generator_ColumnPropNameInRow="UNIT_ID" msprop:Generator_ColumnPropNameInTable="UNIT_IDColumn" msprop:Generator_UserColumnName="UNIT_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2578,7 +2629,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="evaluation_form_detail" msdata:parent="t_evaluation_form" msdata:child="v_evaluation_form_detail" msdata:parentkey="ID" msdata:childkey="FORM_ID" msprop:Generator_UserChildTable="v_evaluation_form_detail" msprop:Generator_ChildPropName="Getv_evaluation_form_detailRows" msprop:Generator_UserRelationName="evaluation_form_detail" msprop:Generator_ParentPropName="t_evaluation_formRow" msprop:Generator_RelationVarName="relationevaluation_form_detail" msprop:Generator_UserParentTable="t_evaluation_form" />
+      <msdata:Relationship name="evaluation_form_detail" msdata:parent="t_evaluation_form" msdata:child="v_evaluation_form_detail" msdata:parentkey="ID" msdata:childkey="FORM_ID" msprop:Generator_UserChildTable="v_evaluation_form_detail" msprop:Generator_ChildPropName="Getv_evaluation_form_detailRows" msprop:Generator_UserRelationName="evaluation_form_detail" msprop:Generator_RelationVarName="relationevaluation_form_detail" msprop:Generator_UserParentTable="t_evaluation_form" msprop:Generator_ParentPropName="t_evaluation_formRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

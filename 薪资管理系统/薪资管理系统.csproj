@@ -156,6 +156,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataSetTemplate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Schedule\AnnualScheduleItem.cs" />
     <Compile Include="Schedule\AutoAssignmentWeightControl.cs">
       <SubType>UserControl</SubType>
@@ -385,6 +390,7 @@
     </Compile>
     <Compile Include="Schedule\AnnualSchedule.cs" />
     <Compile Include="Schedule\ScheduleControlManager.cs" />
+    <Compile Include="Schedule\ScheduleHelper.cs" />
     <Compile Include="Schedule\ScheduleItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -392,6 +398,7 @@
       <DependentUpon>ScheduleItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Schedule\ScheduleKeys.cs" />
+    <Compile Include="Schedule\XtraUserControl1.cs" />
     <Compile Include="SystemInitalizer.cs" />
     <EmbeddedResource Include="Schedule\AutoAssignmentWeightControl.resx">
       <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
@@ -514,6 +521,17 @@
     </None>
     <None Include="Data\DataSetSalary.xss">
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
+    </None>
+    <None Include="Data\DataSetTemplate.xsc">
+      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
+    </None>
+    <None Include="Data\DataSetTemplate.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTemplate.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\DataSetTemplate.xss">
+      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SalarySystem.Data.SalaryDataSet.datasource" />

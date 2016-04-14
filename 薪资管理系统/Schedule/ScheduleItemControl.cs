@@ -1,71 +1,124 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using DevExpress.XtraScheduler.UI;
+using DevExpress.XtraGrid;
+using DevExpress.XtraTab;
 using DevExpress.XtraVerticalGrid;
+using SalarySystem.Data;
 using UC.Platform.Data;
 
 namespace SalarySystem.Schedule
 {
-    public partial class ScheduleItemControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class ScheduleItemControl : XtraUserControl
     {
-        private const string _SQL_ANNUAL_ASSIGNMENT_TEMPLAT =
-            "select distinct t0.ASSIGNMENT_ID as DEF_ID,ifnull(t1.ID,\'\') as ID,ifnull(t1.NAME,\'\') as NAME,ifnull(t1.DESCRIPTION,\'\') as DESCRIPTION,ifnull(t1.ASSIGNMENT_YEAR, {0}) as YEAR,ifnull(t1.ASSIGNMENT_MONTH, {1}) as MONTH,ifnull(t1.TARGET, 0) as TARGET,ifnull(t1.CREATE_TIME, current_date()) as CREATE_TIME,ifnull(t1.VERSION_ID, t2.VERSION_ID) as VERSION_ID,ifnull(t1.EXEC_STATE, 0) as STATE,ifnull(t1.CREATOR_ID, \'nobody\') as CREATOR,t2.NAME as DEF_NAME,cast(t3.VALUE as decimal) as RATE from t_position_assignments t0 left join t_annual_assignment t1 on t1.ASSIGNMENT_ID=t0.ASSIGNMENT_ID and t1.VERSION_ID=t1.VERSION_ID and t1.ASSIGNMENT_YEAR={0} and t1.ASSIGNMENT_MONTH={1} inner join t_assignment_define t2 on t0.ASSIGNMENT_ID=t2.ID left join t_settings t3 on cast(substr(t3.NAME, -2) as unsigned)= {1} where t0.ENABLED=true and t2.TYPE = \'1\' and t3.NAME like \'assignment.schedule%\' and t2.VERSION_ID=\'{2}\'";
-
-        private string getSqlAnnualAssignmentOneMonth(int year, int month)
-        {
-            //string sqlFormat = "select * from ({0}) t_all";
-            return string.Format(_SQL_ANNUAL_ASSIGNMENT_TEMPLAT, year, month, GlobalSettings.AssignmentVersion);
-        }
-
-        private string getAnnualAssignmentSql(string id, int year)
-        {
-            string sql = "";
-            for (int i = 0; i < 12; i++)
-            {
-                sql += "(" + getSqlAnnualAssignmentOneMonth(year, i + 1) + ")";
-                if (i < 11)
-                {
-                    sql += " union all ";
-                }
-            }
-            return string.IsNullOrEmpty(id) ? string.Format("select * from ({0}) t_all", year) :
-                string.Format("select * from ({0}) t_all where t_all.DEF_ID='{1}'", sql, id);
-        }
-
-        private const string _SQL_MONTHLY_ASSIGNMENT_TEMPLATE = "SELECT t0.ID as EMPLOYEE_ID, " + "t0.NAME as EMPLOYEE_NAME," + "t1.ASSIGNMENT_ID," + "t1.POSITION_ID," + "t2.NAME," + "t2.VERSION_ID," + "t3.ID as PERF_ID," + "ifnull(t3.TARGET,0) as TARGET," + "ifnull(t3.ASSIGNMENT_YEAR, {0}) as ASSIGNMENT_YEAR," + "ifnull(t3.ASSIGNMENT_MONTH, {1}) as ASSIGNMENT_MONTH," + "t3.DESCRIPTION as PERF_DESC" + "FROM t_employee t0 " + "left join t_position_assignments t1 on t0.POSITION_ID=t1.POSITION_ID" + "inner join t_assignment_define t2 on t2.ID=t1.ASSIGNMENT_ID" + "left join t_assignment_performance t3 on t3.EMPLOYEE_ID= t0.ID" + "where t0.ENABLED=true " + "and t2.type='1' " + "and t1.ENABLED=true " + "and (t3.VERSION_ID=t1.VERSION_ID or t3.VERSION_ID is null) " + "and t3.ASSIGNMENT_YEAR={1} or t3.ASSIGNMENT_YEAR is null " + "and t3.ASSIGNMENT_MONTH={0} or t3.ASSIGNMENT_MONTH is null " + "and t1.ASSIGNMENT_ID='{2}'";
+        private const string _SQL_MONTHLY_ASSIGNMENT_TEMPLATE =
+            "SELECT t0.ID as EMPLOYEE_ID, " + 
+            " t0.NAME as EMPLOYEE_NAME," + 
+            " t1.ASSIGNMENT_ID," + 
+            " t1.POSITION_ID," +
+            " t4.NAME as POSITION_NAME," +
+            " t2.NAME," + 
+            " t2.VERSION_ID," + 
+            " t5.NAME as UNIT_NAME," +
+            " t3.ID as PERF_ID," + 
+            " ifnull(t3.TARGET,0) as TARGET," +
+            " ifnull(t3.ASSIGNMENT_YEAR, {0}) as ASSIGNMENT_YEAR, " +
+            " ifnull(t3.ASSIGNMENT_MONTH, {1}) as ASSIGNMENT_MONTH, " + 
+            " t3.DESCRIPTION as PERF_DESC " +
+            " FROM t_employee t0 " + 
+            " left join t_position_assignments t1 on t0.POSITION_ID=t1.POSITION_ID " +
+            " inner join t_assignment_define t2 on t2.ID=t1.ASSIGNMENT_ID and t2.type='1' " +
+            " left join t_assignment_performance t3 on t3.EMPLOYEE_ID= t0.ID " + 
+            " inner join t_position t4 on t4.ID=t0.POSITION_ID " +
+            " inner join t_unit t5 on t5.ID=t2.UNIT_ID " +
+            " where " +
+            " t0.ENABLED=true " +
+            " and t2.type='1' " + 
+            " and t1.ENABLED=true " + 
+            " and (t3.VERSION_ID=t1.VERSION_ID or t3.VERSION_ID is null) " +
+            " and t3.ASSIGNMENT_YEAR={1} or t3.ASSIGNMENT_YEAR is null " +
+            " and t3.ASSIGNMENT_MONTH={0} or t3.ASSIGNMENT_MONTH is null " + 
+            " and t1.ASSIGNMENT_ID='{2}'";
 
         private string getMonthlyAssignment(string id, int year, int month)
         {
             return string.Format(_SQL_MONTHLY_ASSIGNMENT_TEMPLATE, year, month, id);
         }
 
+        private string getMonthlyAssignmentSql(string id, int year)
+        {
+            string sql = "";
+            for (int i = 0; i < 12; i++)
+            {
+                sql +="(" + getMonthlyAssignment(id, year, i + 1) + ")";
+                if (i < 11)
+                {
+                    sql += " union all ";
+                }
+            }
+            sql= string.Format("select * from ({0}) t_all", sql);
+            return sql;
+        }
+
 
         
-        private readonly DataSet _annualAssignment=new DataSet();
+        private DataSet _annualAssignment;
 
         public ScheduleItemControl()
         {
             InitializeComponent();
         }
 
-        void loadMonthlyAssignment()
+        void loadannualAssignment()
         {
-            _annualAssignment.Clear();
-            DBHandlerEx.FillNoNameOnce(_annualAssignment, getAnnualAssignmentSql(ItemId, Year));
-            vGridControl2.DataSource = _annualAssignment.Tables.Count>0 ? _annualAssignment.Tables[0]:null;
+            vGridControl2.DataSource = _annualAssignment != null && _annualAssignment.Tables.Count > 0
+                ? _annualAssignment.Tables[0]
+                : null;
         }
 
-        public void SetScheduleItem(int year, string id)
+        private readonly DataSet _monthlyAssignment=new DataSet();
+        void loadMonthlyAssignment(int year, string id)
         {
+            xtraTabControl1.TabPages.Clear();
+            _monthlyAssignment.Clear();
+            string sql = getMonthlyAssignmentSql(id, year);
+            DBHandlerEx.FillNoNameOnce(_monthlyAssignment, sql);
+
+            for (int month = 0; month < 12; month++)
+            {
+                XtraTabPage page = xtraTabControl1.TabPages.Add(string.Format("{0}月", month + 1));
+                GridControl control = ScheduleHelper.CreateMonthAssignmentGrid(page.Text);
+                control.Dock=DockStyle.Fill;
+                control.DataSource = new DataView(_monthlyAssignment.Tables[0])
+                {
+                    RowFilter = string.Format("[ASSIGNMENT_MONTH]={0}", month + 1)
+                };
+                page.Controls.Add(control);
+            }
+        }
+
+        private bool _isLoading;
+        public void SetScheduleItem(int year, DataSetSalary.v_auto_assignment_listRow row, DataSet dataSet)
+        {
+            _isLoading = true;
             Year = year;
-            ItemId = id;
-            loadMonthlyAssignment();
+            ItemId = row.ASSIGNMENT_ID;
+
+            labelControlUnit.Text = DataHolder.Unit.FindByID(row.UNIT_ID).NAME;
+            textEditAmount.EditValue = 0;
+            if (dataSet.Tables.Count > 0)
+            {
+                decimal total = dataSet.Tables[0].Rows.Cast<DataRow>().ToList().Sum(item => (decimal)item["TARGET"]);
+                textEditAmount.EditValue = total;
+            }
+           
+            _annualAssignment = dataSet;
+            loadannualAssignment();
+            loadMonthlyAssignment(Year, ItemId);
+            _isLoading = false;
         }
 
         protected int Year { get; set; }
@@ -97,5 +150,35 @@ namespace SalarySystem.Schedule
             }
         }
 
+        private void amountEditValueChanged(object sender, DevExpress.XtraEditors.Controls.ConvertEditValueEventArgs e)
+        {
+            if(_isLoading) return;
+            recalcAnnualSchedule((decimal) textEditAmount.EditValue);
+        }
+
+        private void recalcAnnualSchedule(decimal total)
+        {
+            foreach (DataRow row in _annualAssignment.Tables[0].Rows )
+            {
+                row["TARGET"] = total*(decimal) row["RATE"]/100;
+            }
+        }
+
+        private void generateAssignment(object sender, EventArgs e)
+        {
+        }
+
+        private void onAmountKeyDownEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                updageAnnualSchedule();
+            }
+        }
+
+        private void updageAnnualSchedule()
+        {
+            recalcAnnualSchedule((decimal) textEditAmount.EditValue);
+        }
     }
 }
