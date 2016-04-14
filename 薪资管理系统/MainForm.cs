@@ -10,6 +10,7 @@ using SalarySystem.Managment;
 using SalarySystem.Managment.Basic;
 using SalarySystem.Managment.Employee;
 using SalarySystem.Managment.Position;
+using SalarySystem.Schedule;
 
 namespace SalarySystem
 {
@@ -102,7 +103,7 @@ namespace SalarySystem
         {
             if (!takeCachedPage("基本定义"))
             {
-                addControl("基本定义", new BasicDefineControl());
+                addControl("基本定义", new NavBarManagedControl(new DefineControlManager()));
             }
         }
 
@@ -119,6 +120,14 @@ namespace SalarySystem
             if (!takeCachedPage("系统设置"))
             {
                 addControl("系统配置", new ConfigManagmentControl());
+            }
+        }
+
+        private void scheduleClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!takeCachedPage("任务计划"))
+            {
+                addControl("任务计划", new NavBarManagedControl(new ScheduleControlManager()));
             }
         }
     }

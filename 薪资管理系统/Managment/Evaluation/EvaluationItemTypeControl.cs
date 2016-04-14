@@ -3,7 +3,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
 {

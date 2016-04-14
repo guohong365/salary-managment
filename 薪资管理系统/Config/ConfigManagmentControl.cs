@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraNavBar;
 using SalarySystem.Managment.Basic;
+using SalarySystem.Schedule;
 
 namespace SalarySystem.Config
 {

@@ -2,11 +2,11 @@
 using System.Data;
 using DevExpress.XtraGrid.Views.Base;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
 {
-    public partial class ExecuttionEvaluationFormControl : BaseControl
+    public partial class ExecuttionEvaluationFormControl : BaseEditableControl
     {
         private readonly DataView _dataViewFormDetail;
         private readonly DataView _dataViewForm;

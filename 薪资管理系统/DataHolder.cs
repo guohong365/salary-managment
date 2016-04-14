@@ -1,7 +1,6 @@
 ﻿using System.Configuration;
 using MySql.Data.MySqlClient;
 using SalarySystem.Data;
-using UC.Platform.Data.DBHelper;
 
 namespace SalarySystem
 {
@@ -15,8 +14,8 @@ namespace SalarySystem
 
         public static void InitAdapter()
         {
-            DBHandlerEx.RegisterDBDefaultType(ConfigurationManager.ConnectionStrings[0]);
-           // DBHandlerEx.RegisterDBDefaultType("MySql.Data.MySqlClient", "server=localhost;user id=root;persistsecurityinfo=True;database=salary;password=1111");
+            //DBHandlerEx.RegisterDBDefaultType(ConfigurationManager.ConnectionStrings[0]);
+           
         }
 
         public static DataSetSalary DataSet

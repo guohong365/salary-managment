@@ -1,6 +1,6 @@
 ﻿using SalarySystem.Data;
 
-namespace SalarySystem.Managment
+namespace SalarySystem
 {
     public static class GlobalSettings
     {

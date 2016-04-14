@@ -1,6 +1,6 @@
-﻿namespace SalarySystem.Managment.Basic
+﻿namespace SalarySystem
 {
-    partial class BaseControl
+    partial class BaseEditableControl
     {
         /// <summary> 
         /// Required designer variable.

@@ -1,12 +1,12 @@
 ﻿using System.Data;
 using SalarySystem.Data;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 
 namespace SalarySystem.Managment.Assignment
 {
-    public partial class PersonalAssignmentDefineControl : BaseControl
+    public partial class PersonalAssignmentDefineControl : BaseEditableControl
     {
         public PersonalAssignmentDefineControl()
         {

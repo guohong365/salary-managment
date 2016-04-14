@@ -2,12 +2,12 @@
 using System.Data;
 using DevExpress.XtraEditors;
 
-namespace SalarySystem.Managment.Basic
+namespace SalarySystem
 {
-    public partial class BaseControl : XtraUserControl
+    public partial class BaseEditableControl : XtraUserControl
     {
         private bool _virtualUnload = true;
-        public BaseControl()
+        public BaseEditableControl()
         {
             InitializeComponent();
             if (VirtualUnload)

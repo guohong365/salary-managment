@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SalarySystem.Managment.Editor;
 using SalarySystem.Managment.Employee.Editor;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Employee
 {

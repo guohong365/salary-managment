@@ -2,9 +2,8 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using SalarySystem.Data;
-using SalarySystem.Managment;
 using SalarySystem.Managment.Editor;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem
 {
@@ -12,7 +11,7 @@ namespace SalarySystem
     {
         private static bool loadSettings()
         {
-            DataHolder.InitAdapter();
+            initDatabase();
             DBHandlerEx.FillOnce(DataHolder.Settings, "select * from t_settings");
             DBHandlerEx.FillOnce(DataHolder.RepositoryEvaluation, "select * from t_repository_evaluation");
             DBHandlerEx.FillOnce(DataHolder.RepositoryAssignment, "select * from t_repository_assignment");
@@ -113,6 +112,12 @@ namespace SalarySystem
             _sqlLoadAssignmentItemType = "select * from t_assignment_item_type";
             _sqlLoadAssignmentUnit = "select * from t_unit";
             return true;
+        }
+
+        private static void initDatabase()
+        {
+            DBHandlerEx.RegisterDBDefaultType("MySql.Data.MySqlClient", "server=localhost;user id=root;persistsecurityinfo=True;database=salary;password=1111");
+            //DBHandlerEx.RegisterDBDefaultType(ConfigurationManager.ConnectionStrings[0]);
         }
 
         private static string _sqlLoadEvaluationForm;

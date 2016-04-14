@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading;
 using UC.Platform.Data.Utils;
 
-namespace UC.Platform.Data.DBHelper
+namespace UC.Platform.Data
 {
     public sealed class DBHandlerEx
     {
@@ -17,14 +17,13 @@ namespace UC.Platform.Data.DBHelper
         private static readonly Type _dataTableType = typeof (DataTable);
 
         private static readonly Hashtable _dataSetTypeTable = new Hashtable();
-
         private static readonly LocalDataStoreSlot _exceptionSlot = Thread.GetNamedDataSlot("PlatformDBHandlerException");
 
         private readonly Hashtable _procParaeters = new Hashtable();
-        //private DbDataAdapter _adapter;
-        //private DbCommand _command;
+
         private readonly DbConnection _connection;
         private DbTransaction _transaction;
+        
         private bool _transactionOpenConnection;
 
         private DBHandlerEx()
@@ -214,47 +213,25 @@ namespace UC.Platform.Data.DBHelper
 
         public int ExecuteNonQuery(DbTransaction transaction, string strSql, DbParameter[] parameters)
         {
-            int num2;
-            bool flag = false;
-            DbCommand command = getCommand();
+            DbCommand command = _factory.CreateCommand(transaction);
             try
             {
-                if (command.Connection.State != ConnectionState.Open)
-                {
-                    command.Connection.Open();
-                    flag = true;
-                }
                 command.CommandType = CommandType.Text;
                 command.Parameters.Clear();
 
                 //ÍõÎ°2007-12-05×¢
-                //strSql = GetReplaceSql(strSql);
                 command.CommandText = strSql;
                 if (parameters != null)
                 {
-                    foreach (DbParameter parameter in parameters)
-                    {
-                        command.Parameters.Add(parameter);
-                    }
+                    command.Parameters.AddRange(parameters);
                 }
-                int result = command.ExecuteNonQuery();
-
-                num2 = result;
+                return command.ExecuteNonQuery();
             }
             catch (Exception exception)
             {
                 handleException(exception, strSql);
-                num2 = -1;
+                return -1;
             }
-            finally
-            {
-                if (flag)
-                {
-                    command.Connection.Close();
-                }
-                command.Transaction = null;
-            }
-            return num2;
         }
 
 
@@ -382,24 +359,14 @@ namespace UC.Platform.Data.DBHelper
         public object ExecuteProc(DbTransaction transaction, string procName, DbParameter[] parameters,
             string[] outParameters)
         {
-            object obj3;
-            bool flag = false;
-            DbCommand command = getCommand();
+            DbCommand command = _factory.CreateCommand(transaction);
             try
             {
-                if (command.Connection.State != ConnectionState.Open)
-                {
-                    command.Connection.Open();
-                    flag = true;
-                }
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Clear();
                 if (parameters != null)
                 {
-                    foreach (DbParameter parameter in parameters)
-                    {
-                        command.Parameters.Add(parameter);
-                    }
+                    command.Parameters.AddRange(parameters);
                 }
                 command.CommandText = procName;
                 int num = command.ExecuteNonQuery();
@@ -423,22 +390,13 @@ namespace UC.Platform.Data.DBHelper
                     }
                     result = objArray;
                 }
-                obj3 = result;
+                return result;
             }
             catch (Exception exception)
             {
                 handleException(exception, procName);
-                obj3 = null;
+                return  null;
             }
-            finally
-            {
-                if (flag)
-                {
-                    command.Connection.Close();
-                }
-                command.Transaction = null;
-            }
-            return obj3;
         }
 
         public object ExecuteProc(string procName, string[] parametersName, object[] parameters, string[] outParameters)
@@ -449,7 +407,6 @@ namespace UC.Platform.Data.DBHelper
         public object ExecuteProc(DbTransaction transaction, string procName, string[] parametersName,
             object[] parameters, string[] outParameters)
         {
-            object obj3;
             if ((parametersName != null) && (parametersName.Length > 0))
             {
                 if (parameters == null)
@@ -461,19 +418,13 @@ namespace UC.Platform.Data.DBHelper
                     return null;
                 }
             }
-            bool flag = false;
-            DbCommand cmd = getCommand();
+            DbCommand cmd = _factory.CreateCommand(transaction);
             try
             {
-                if (cmd.Connection.State != ConnectionState.Open)
-                {
-                    cmd.Connection.Open();
-                    flag = true;
-                }
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = procName;
                 cmd.Parameters.Clear();
-                if (!DBBuilder.DeriveParameters(_factory, cmd))
+                if (!_factory.DeriveParameters(cmd))
                 {
                     return null;
                 }
@@ -517,22 +468,13 @@ namespace UC.Platform.Data.DBHelper
                     }
                     result = objArray;
                 }
-                obj3 = result;
+                return result;
             }
             catch (Exception exception)
             {
                 handleException(exception, procName);
-                obj3 = null;
+                return null;
             }
-            finally
-            {
-                if (flag)
-                {
-                    cmd.Connection.Close();
-                }
-                cmd.Transaction = null;
-            }
-            return obj3;
         }
 
         public static object ExecuteProcOnce(string procName)
@@ -619,7 +561,6 @@ namespace UC.Platform.Data.DBHelper
             return obj2;
         }
 
-
         public static object ExecuteProcOnce(string procName, string[] parametersName, object[] parameters,
             string[] outParameters)
         {
@@ -639,46 +580,26 @@ namespace UC.Platform.Data.DBHelper
             return obj2;
         }
 
-
-        public IDataReader ExecuteReader(string strSql)
+        public DbDataReader ExecuteReader(string strSql)
         {
             return ExecuteReader(strSql, CommandBehavior.Default);
         }
 
-        public IDataReader ExecuteReader(string strSql, CommandBehavior behavior)
+        public DbDataReader ExecuteReader(string strSql, CommandBehavior behavior)
         {
-            IDataReader reader2;
-            bool flag = false;
-            DbCommand command = getCommand();
+            DbCommand command = _factory.CreateCommand((DbConnection) null);
             try
             {
-                if (command.Connection.State != ConnectionState.Open)
-                {
-                    command.Connection.Open();
-                    flag = true;
-                }
                 command.CommandType = CommandType.Text;
                 command.Parameters.Clear();
-                //strSql = GetReplaceSql(strSql);
                 command.CommandText = strSql;
-                IDataReader reader = command.ExecuteReader(behavior);
-
-                reader2 = reader;
+                return command.ExecuteReader(behavior);
             }
             catch (Exception exception)
             {
                 handleException(exception, strSql);
-                reader2 = null;
+                return null;
             }
-            finally
-            {
-                if (flag)
-                {
-                    command.Connection.Close();
-                }
-                command.Transaction = null;
-            }
-            return reader2;
         }
 
         public object ExecuteScalar(string strSql)
@@ -698,46 +619,23 @@ namespace UC.Platform.Data.DBHelper
 
         public object ExecuteScalar(DbTransaction transaction, string strSql, DbParameter[] parameters)
         {
-            object obj3;
-            bool flag = false;
-            DbCommand command = getCommand();
+            DbCommand command = _factory.CreateCommand(transaction);
             try
             {
-                if (command.Connection.State != ConnectionState.Open)
-                {
-                    command.Connection.Open();
-                    flag = true;
-                }
                 command.CommandType = CommandType.Text;
                 command.Parameters.Clear();
-                //strSql = GetReplaceSql(strSql);
                 command.CommandText = strSql;
                 if (parameters != null)
                 {
-                    foreach (DbParameter parameter in parameters)
-                    {
-                        command.Parameters.Add(parameter);
-                    }
+                    command.Parameters.AddRange(parameters);
                 }
-
-                object result = command.ExecuteScalar();
-
-                obj3 = result;
+                return command.ExecuteScalar();
             }
             catch (Exception exception)
             {
                 handleException(exception, strSql);
-                obj3 = null;
+                return null;
             }
-            finally
-            {
-                if (flag)
-                {
-                    command.Connection.Close();
-                }
-                command.Transaction = null;
-            }
-            return obj3;
         }
 
         public static object ExecuteScalarOnce(string strSql)
@@ -1112,9 +1010,9 @@ namespace UC.Platform.Data.DBHelper
         }
 
 
-        public int FillNoName(DbTransaction transaction, DataTable dataTable, string strSql,
-            DbParameter[] parameters)
+        public int FillNoName(DbTransaction transaction, DataTable dataTable, string strSql, DbParameter[] parameters)
         {
+            
             int num2;
             if (dataTable == null)
             {
@@ -1123,7 +1021,10 @@ namespace UC.Platform.Data.DBHelper
             DbDataAdapter adapter=null;
             try
             {
-                 adapter= GetDataAdapter(transaction, dataTable.TableName);
+                adapter=_factory.CreateDataAdapter();
+                adapter.SelectCommand.CommandText = strSql;
+                adapter.SelectCommand.CommandType= CommandType.Text;
+
                 installAdapter(transaction, adapter);
                 //strSql = GetReplaceSql(strSql);
                 adapter.SelectCommand.Parameters.Clear();
@@ -1368,32 +1269,34 @@ namespace UC.Platform.Data.DBHelper
             }
         }
 
-        public void FreeBuffer()
+        public bool FreeBuffer()
+        {
+            return FreeBuffer(false);
+        }
+
+        public bool FreeBuffer(bool commit)
         {
             try
             {
                 if (_transaction != null)
                 {
-                    EndTransaction(false);
+                    EndTransaction(commit);
                 }
-                if ((_connection != null) && (_connection.State == ConnectionState.Open))
+                if (_connection != null && _connection.State == ConnectionState.Open)
                 {
                     _connection.Close();
                 }
+                return true;
             }
             catch
             {
+                return false;
             }
         }
 
         public static DBHandlerEx GetBuffer()
         {
             return new DBHandlerEx();
-        }
-
-        private DbCommand getCommand()
-        {
-            return DBBuilder.CreateCommand(_factory, _transaction);
         }
 
         public DbDataAdapter GetDataAdapter(string tableName)
@@ -1403,7 +1306,7 @@ namespace UC.Platform.Data.DBHelper
 
         public DbDataAdapter GetDataAdapter(DbTransaction transaction, string tableName)
         {
-            return DBBuilder.CreateAdapter(_factory, tableName, transaction);
+            return _factory.CreateDataAdapter(tableName, transaction);
         }
 
         public DataSet GetDataSet(string tableName)
@@ -1463,7 +1366,7 @@ namespace UC.Platform.Data.DBHelper
             var command = _procParaeters[text] as DbCommand;
             if (command == null)
             {
-                command = DBBuilder.DeriveParameters(_factory, procName);
+                command = _factory.DeriveParameters(procName);
                 if (command == null)
                 {
                     parameters = null;
@@ -1471,7 +1374,7 @@ namespace UC.Platform.Data.DBHelper
                 }
                 _procParaeters[text] = command;
             }
-            parameters = DBBuilder.CreateParameter(factory, command.Parameters.Count);
+            parameters = _factory.CreateParameters(command.Parameters.Count);
             var hashtable = new Hashtable();
             for (int i = 0; i < parameters.Length; i++)
             {

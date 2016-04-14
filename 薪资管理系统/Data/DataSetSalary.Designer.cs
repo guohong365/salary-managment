@@ -17718,7 +17718,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18055,7 +18055,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18353,7 +18353,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18658,7 +18658,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18978,7 +18978,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19295,7 +19295,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19592,7 +19592,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19885,7 +19885,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20192,7 +20192,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20484,7 +20484,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20811,7 +20811,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21136,7 +21136,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21430,7 +21430,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21716,7 +21716,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21990,7 +21990,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22279,7 +22279,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22575,7 +22575,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22871,7 +22871,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23151,7 +23151,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23464,7 +23464,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23767,7 +23767,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24039,7 +24039,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24302,7 +24302,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24542,7 +24542,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24730,7 +24730,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24906,7 +24906,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25944,7 +25944,7 @@ namespace SalarySystem.Data.DataSetSalaryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString1;
+            this._connection.ConnectionString = global::SalarySystem.Properties.Settings.Default.salaryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.gridControlDetail = new DevExpress.XtraGrid.GridControl();
             this.gridViewDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colENABLED1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -215,11 +214,11 @@
             this.colID1.FieldName = "ID";
             this.colID1.Name = "colID1";
             // 
-            // ExecutionAssignmentControl
+            // AssignmentDefineControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ExecutionAssignmentControl";
+            this.Name = "AssignmentDefineControl";
             this.Size = new System.Drawing.Size(634, 409);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);

@@ -5,12 +5,12 @@ using System.Linq;
 using DevExpress.XtraTreeList.Nodes;
 using SalarySystem.Data;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 
 namespace SalarySystem.Managment.Assignment
 {
-    public partial class AutoAssignmentRateDefineControl : BaseControl
+    public partial class AutoAssignmentRateDefineControl : BaseEditableControl
     {
         public AutoAssignmentRateDefineControl()
         {
@@ -59,6 +59,7 @@ namespace SalarySystem.Managment.Assignment
                 {
                     dataRow.WEIGHT = row.WEIGHT;
                     dataRow.ENABLED = row.USED;
+                    dataRow.VALUE = 0;
                 }
                 else
                 {
@@ -68,6 +69,7 @@ namespace SalarySystem.Managment.Assignment
                     dataRow.WEIGHT = row.WEIGHT;
                     dataRow.VERSION_ID = row.VERSION_ID;
                     dataRow.ENABLED = row.USED;
+                    dataRow.VALUE = 0;
                     DataHolder.PositionAssignments.Addt_position_assignmentsRow(dataRow);
                 }
             }

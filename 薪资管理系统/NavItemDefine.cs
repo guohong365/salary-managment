@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SalarySystem.Managment.Basic
+namespace SalarySystem
 {
     public interface INavItemDefine
     {

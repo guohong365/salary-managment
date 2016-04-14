@@ -6,7 +6,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTreeList;
 
-namespace SalarySystem.Managment.Basic
+namespace SalarySystem
 {
     public enum VersionType
     {

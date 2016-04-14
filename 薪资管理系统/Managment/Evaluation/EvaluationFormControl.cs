@@ -8,11 +8,11 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
 {
-    public partial class EvaluationFormControl : BaseControl
+    public partial class EvaluationFormControl : BaseEditableControl
     {
         private const string _FILTER_FORMAT = "[ENABLED]=true and ([POSITION_ID]='{0}' or [POSITION_ID]='{1}')";
 

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraNavBar;
-using SalarySystem.Managment.Basic;
+using SalarySystem.Schedule;
 
 namespace SalarySystem.Execute
 {

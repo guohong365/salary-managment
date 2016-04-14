@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using DevExpress.XtraNavBar;
 
-namespace SalarySystem.Managment.Basic
+namespace SalarySystem
 {
     public class NavBarControlManagerBase : INavBarContorlManager
     {   
@@ -21,21 +21,27 @@ namespace SalarySystem.Managment.Basic
                 return x.Order - y.Order;
             }
         }
-        private readonly Control _contrainerControl;
+
         private readonly List<NavGroupDefine> _navGroupDefines=new List<NavGroupDefine>();
-        private readonly NavBarControl _navBarControl;
-        public Control ContainerControl { get { return _contrainerControl; } }
+
+        public Control ContainerControl { get; set; }
+
         public List<NavGroupDefine> NavGroupDefines { get { return _navGroupDefines; } }
-       
+        public NavBarControl NavBarControl { get; set; }
+
         public NavBarControlManagerBase(Control container, NavBarControl navBarControl)
         {
-            _contrainerControl = container;
-            _navBarControl = navBarControl;
+            ContainerControl = container;
+            NavBarControl = navBarControl;
+        }
+
+        public NavBarControlManagerBase():this(null, null)
+        {
         }
 
         public virtual void InitNavBar()
         {
-            onBuildNavBar(_navBarControl);
+            onBuildNavBar(NavBarControl);
         }
 
         protected virtual void ItemClickedHandler(object sender, NavBarLinkEventArgs e)
@@ -46,6 +52,7 @@ namespace SalarySystem.Managment.Basic
 
         protected virtual void onNavItemClicked(INavItemDefine item)
         {
+            if(ContainerControl==null) return;
             var currentControl = ContainerControl.Controls.Count > 0 ? ContainerControl.Controls[0] : null;
             try
             {
@@ -77,6 +84,7 @@ namespace SalarySystem.Managment.Basic
         }
         protected virtual void onBuildNavBar(NavBarControl navBarControl)
         {
+            if(navBarControl==null) return;
             _navGroupDefines.Sort(ItemComparer.Comparer);
             _navGroupDefines.ForEach(item => item.Items.Sort(ItemComparer.Comparer));
             navBarControl.Items.Clear();

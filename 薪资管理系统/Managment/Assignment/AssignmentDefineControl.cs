@@ -2,11 +2,11 @@
 using System.Data;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Assignment
 {
-    public partial class AssignmentDefineControl : BaseControl
+    public partial class AssignmentDefineControl : BaseEditableControl
     {
         public AssignmentDefineControl()
         {

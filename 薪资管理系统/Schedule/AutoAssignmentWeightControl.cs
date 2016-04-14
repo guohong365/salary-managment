@@ -1,12 +1,10 @@
-﻿using System;
-using System.Data;
-using System.Linq;
-using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+﻿using System.Data;
+using System.Drawing;
+using UC.Platform.Data;
 
-namespace SalarySystem.Config
+namespace SalarySystem.Schedule
 {
-    public partial class AutoAssignmentWeightControl : BaseControl
+    public partial class AutoAssignmentWeightControl : BaseEditableControl
     {
         public AutoAssignmentWeightControl()
         {
@@ -69,15 +67,28 @@ namespace SalarySystem.Config
                         break;
                     case "VALUE":
                         decimal decVal = decimal.Parse(e.CellValue.ToString());
-                        e.DisplayText = string.Format("{0:P}", decVal);
+                        e.DisplayText = string.Format("{0}%", decVal);
                         break;
                 }
             }
         }
 
-        private void onEditValueChanged(object sender, System.EventArgs e)
+        private void onCustomDrawFooterCell(object sender, DevExpress.XtraGrid.Views.Grid.FooterCellCustomDrawEventArgs e)
         {
-
+            if(e.Info.DisplayText==string.Empty) return;
+            if (e.Column.FieldName == "VALUE")
+            {
+                decimal val = (decimal) (e.Info.Value);
+                if ( val != 100)
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                    e.Info.DisplayText += "（分配占比累计和"+(val < 100 ?"少于": "超出")+"100%！）";
+                }
+                else
+                {
+                    e.Appearance.Reset();
+                }
+            }
         }
     }
 }

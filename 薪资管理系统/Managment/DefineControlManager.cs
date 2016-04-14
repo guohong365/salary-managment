@@ -1,9 +1,10 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraNavBar;
 using SalarySystem.Managment.Assignment;
+using SalarySystem.Managment.Basic;
 using SalarySystem.Managment.Evaluation;
 
-namespace SalarySystem.Managment.Basic
+namespace SalarySystem.Managment
 {
     public class DefineControlManager : NavBarControlManagerBase
     {
@@ -22,12 +23,21 @@ namespace SalarySystem.Managment.Basic
         protected const string KEY_ASSIGNMENT_DEFINE = "基本任务指标定义";
         protected const string KEY_TEAM_ASSIGNMENT_DEFINE = "自动分配任务占比定义";
         protected const string KEY_EXECUTION_ASSIGNMENT = "岗位任务指标定义";
-        
-        
-        public DefineControlManager(Control container, NavBarControl navBarControl)
-            :base(container, navBarControl)
+
+
+        public DefineControlManager()
         {
-            #region 导航栏定义
+            defineNavGroups();
+        }
+
+        public DefineControlManager(Control container, NavBarControl navBarControl):
+            base(container, navBarControl)
+        {
+            defineNavGroups();
+        }
+
+        private void defineNavGroups(){
+        #region 导航栏定义
 
             NavGroupDefines.AddRange(new []
             {

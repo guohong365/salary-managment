@@ -6,11 +6,11 @@ using System.Linq;
 using System.Windows.Forms;
 using SalarySystem.Data;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem.Execute
 {
-    public partial class ExecutionPerformanceControl : BaseControl
+    public partial class ExecutionPerformanceControl : BaseEditableControl
     {
 
         private EmployeePerformance _currentEmployeePerformance;

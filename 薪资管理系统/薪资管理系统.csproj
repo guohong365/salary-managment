@@ -118,6 +118,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraTreeList.v10.2.resources.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraVerticalGrid.v10.2.resources.dll</HintPath>
@@ -126,7 +127,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraWizard.v10.2.resources.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -144,10 +147,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\AutoAssignmentWeightControl.cs">
+    <Compile Include="Schedule\AnnualScheduleItem.cs" />
+    <Compile Include="Schedule\AutoAssignmentWeightControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Config\AutoAssignmentWeightControl.Designer.cs">
+    <Compile Include="Schedule\AutoAssignmentWeightControl.Designer.cs">
       <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Config\ConfigManagmentControl.cs">
@@ -181,10 +185,10 @@
     <Compile Include="Execute\ExecutionPerformanceControl.Designer.cs">
       <DependentUpon>ExecutionPerformanceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Execute\AssignmentScheduleControl.cs">
+    <Compile Include="Schedule\AssignmentScheduleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Execute\AssignmentScheduleControl.Designer.cs">
+    <Compile Include="Schedule\AssignmentScheduleControl.Designer.cs">
       <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Assignment\PersonalAssignmentDefineControl.cs">
@@ -199,19 +203,13 @@
     <Compile Include="Managment\Assignment\AutoAssignmentRateDefineControl.Designer.cs">
       <DependentUpon>AutoAssignmentRateDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\BasicDefineControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\BasicDefineControl.Designer.cs">
-      <DependentUpon>BasicDefineControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Managment\Basic\CodeTableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Managment\Basic\CodeTableControl.Designer.cs">
       <DependentUpon>CodeTableControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\DefineControlManager.cs" />
+    <Compile Include="Managment\DefineControlManager.cs" />
     <Compile Include="Managment\Evaluation\EvaluationFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -243,11 +241,11 @@
     <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.Designer.cs">
       <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\GridViewHelper.cs" />
-    <Compile Include="Managment\Basic\INavBarContorlManager.cs" />
-    <Compile Include="Managment\Basic\NavBarControlManagerBase.cs" />
-    <Compile Include="Managment\Basic\NavGroupDefine.cs" />
-    <Compile Include="Managment\Basic\NavItemDefine.cs" />
+    <Compile Include="GridViewHelper.cs" />
+    <Compile Include="INavBarContorlManager.cs" />
+    <Compile Include="NavBarControlManagerBase.cs" />
+    <Compile Include="NavGroupDefine.cs" />
+    <Compile Include="NavItemDefine.cs" />
     <Compile Include="Execute\SalaryDetailControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,11 +258,11 @@
     <Compile Include="Managment\Basic\SalaryItemControl.Designer.cs">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\BaseControl.cs">
+    <Compile Include="BaseEditableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\BaseControl.Designer.cs">
-      <DependentUpon>BaseControl.cs</DependentUpon>
+    <Compile Include="BaseEditableControl.Designer.cs">
+      <DependentUpon>BaseEditableControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Assignment\AssignmentDefineControl.cs">
       <SubType>UserControl</SubType>
@@ -304,7 +302,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\GlobalSettings.cs" />
+    <Compile Include="GlobalSettings.cs" />
     <Compile Include="Execute\IManagmentContainer.cs" />
     <Compile Include="Managment\IManagmentControl.cs" />
     <Compile Include="Managment\ManagmentControl.cs" />
@@ -362,6 +360,12 @@
     <Compile Include="Managment\Position\SalaryStructureControl.Designer.cs">
       <DependentUpon>SalaryStructureControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="NavBarManagedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NavBarManagedControl.Designer.cs">
+      <DependentUpon>NavBarManagedControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managment\Salary\SalaryManagmentControl.cs">
@@ -370,14 +374,23 @@
     <Compile Include="Managment\Salary\SalaryManagmentControl.Designer.cs">
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Schedule\AnnualSchedule.cs" />
+    <Compile Include="Schedule\ScheduleControlManager.cs" />
+    <Compile Include="Schedule\ScheduleItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Schedule\ScheduleItemControl.Designer.cs">
+      <DependentUpon>ScheduleItemControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule\ScheduleKeys.cs" />
     <Compile Include="SystemInitalizer.cs" />
-    <EmbeddedResource Include="Config\AutoAssignmentWeightControl.resx">
+    <EmbeddedResource Include="Schedule\AutoAssignmentWeightControl.resx">
       <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Config\ConfigManagmentControl.resx">
       <DependentUpon>ConfigManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Execute\AssignmentScheduleControl.resx">
+    <EmbeddedResource Include="Schedule\AssignmentScheduleControl.resx">
       <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Execute\EvalFormControl.resx">
@@ -394,9 +407,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Assignment\AutoAssignmentRateDefineControl.resx">
       <DependentUpon>AutoAssignmentRateDefineControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\BasicDefineControl.resx">
-      <DependentUpon>BasicDefineControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Evaluation\EvaluationFormControl.resx">
       <DependentUpon>EvaluationFormControl.cs</DependentUpon>
@@ -416,8 +426,8 @@
     <EmbeddedResource Include="Managment\Basic\SalaryItemControl.resx">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\BaseControl.resx">
-      <DependentUpon>BaseControl.cs</DependentUpon>
+    <EmbeddedResource Include="BaseEditableControl.resx">
+      <DependentUpon>BaseEditableControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Assignment\AssignmentDefineControl.resx">
       <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
@@ -464,6 +474,9 @@
     <EmbeddedResource Include="Managment\Position\SalaryStructureControl.resx">
       <DependentUpon>SalaryStructureControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NavBarManagedControl.resx">
+      <DependentUpon>NavBarManagedControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -478,6 +491,9 @@
     <EmbeddedResource Include="Managment\Salary\SalaryManagmentControl.resx">
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\ScheduleItemControl.resx">
+      <DependentUpon>ScheduleItemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Data\DataSetSalary.xsc">
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
@@ -491,6 +507,8 @@
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\SalarySystem.Data.SalaryDataSet.datasource" />
+    <None Include="Properties\DataSources\SalarySystem.Schedule.AnnualSchedule.datasource" />
+    <None Include="Properties\DataSources\SalarySystem.Schedule.AnnualScheduleItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -511,6 +529,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

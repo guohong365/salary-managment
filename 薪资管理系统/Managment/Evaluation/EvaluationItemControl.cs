@@ -3,7 +3,7 @@ using System.Data;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Managment.Basic;
-using UC.Platform.Data.DBHelper;
+using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
 {

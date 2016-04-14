@@ -4,7 +4,6 @@ namespace UC.Platform.Data
 {
     public interface IDatabaseProviderFactory  
     {
-        DbCommand CreateCommand();
         DbCommandBuilder CreateCommandBuilder();
         DbCommandBuilder CreateCommandBuilder(DbDataAdapter adapter);
         DbConnection CreateConnection();
@@ -14,5 +13,13 @@ namespace UC.Platform.Data
         bool CanCreateDataSourceEnumerator { get; }
         string ConnectionString { get; }
         string ProviderName { get; }
+        DbCommand CreateCommand(DbTransaction transaction);
+        DbDataAdapter CreateDataAdapter(string tableName, DbTransaction transaction);
+        DbDataAdapter CreateDataAdapter(string tableName);
+        DbParameter[] CreateParameters(int count);
+        bool DeriveParameters(DbCommand cmd);
+        DbCommand DeriveParameters(string procName);
+        DbCommand CreateCommand(DbConnection connection);
+        DbDataAdapter CreateDataAdapter(DbConnection connection);
     }
 }
