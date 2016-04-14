@@ -28,17 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.vGridControl1 = new DevExpress.XtraVerticalGrid.VGridControl();
-            this.annualScheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rowYear = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowId = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowName = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowAnnualValue = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowMonthValues = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.annualScheduleItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vGridControl2 = new DevExpress.XtraVerticalGrid.VGridControl();
-            this.rowDispalyText = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowMonth = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowRate = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowValue = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
@@ -48,8 +44,6 @@
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.annualScheduleBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.annualScheduleItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -59,7 +53,6 @@
             // 
             // vGridControl1
             // 
-            this.vGridControl1.DataSource = this.annualScheduleBindingSource;
             this.vGridControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.vGridControl1.LayoutStyle = DevExpress.XtraVerticalGrid.LayoutViewStyle.SingleRecordView;
             this.vGridControl1.Location = new System.Drawing.Point(0, 0);
@@ -74,10 +67,6 @@
             this.rowMonthValues});
             this.vGridControl1.Size = new System.Drawing.Size(614, 112);
             this.vGridControl1.TabIndex = 0;
-            // 
-            // annualScheduleBindingSource
-            // 
-            this.annualScheduleBindingSource.DataSource = typeof(SalarySystem.Schedule.AnnualSchedule);
             // 
             // rowYear
             // 
@@ -110,48 +99,50 @@
             this.rowMonthValues.Properties.FieldName = "MonthValues";
             this.rowMonthValues.Properties.ReadOnly = true;
             // 
-            // annualScheduleItemBindingSource
-            // 
-            this.annualScheduleItemBindingSource.DataSource = typeof(SalarySystem.Schedule.AnnualScheduleItem);
-            // 
             // vGridControl2
             // 
-            this.vGridControl2.DataSource = this.annualScheduleItemBindingSource;
+            this.vGridControl2.Appearance.ModifiedRecordValue.BackColor = System.Drawing.Color.Yellow;
+            this.vGridControl2.Appearance.ModifiedRecordValue.Options.UseBackColor = true;
+            this.vGridControl2.Appearance.ReadOnlyRecordValue.ForeColor = System.Drawing.Color.Black;
+            this.vGridControl2.Appearance.ReadOnlyRecordValue.Options.UseForeColor = true;
+            this.vGridControl2.Appearance.ReadOnlyRow.ForeColor = System.Drawing.Color.Black;
+            this.vGridControl2.Appearance.ReadOnlyRow.Options.UseForeColor = true;
             this.vGridControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.vGridControl2.Location = new System.Drawing.Point(0, 112);
             this.vGridControl2.Name = "vGridControl2";
             this.vGridControl2.OptionsView.FixRowHeaderPanelWidth = true;
             this.vGridControl2.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
-            this.rowDispalyText,
             this.rowMonth,
             this.rowRate,
             this.rowValue});
             this.vGridControl2.Size = new System.Drawing.Size(614, 98);
             this.vGridControl2.TabIndex = 2;
-            // 
-            // rowDispalyText
-            // 
-            this.rowDispalyText.Name = "rowDispalyText";
-            this.rowDispalyText.Properties.Caption = "月份名称";
-            this.rowDispalyText.Properties.FieldName = "DispalyText";
+            this.vGridControl2.CustomDrawRowValueCell += new DevExpress.XtraVerticalGrid.Events.CustomDrawRowValueCellEventHandler(this.customDrawRowValueCell);
             // 
             // rowMonth
             // 
             this.rowMonth.Name = "rowMonth";
+            this.rowMonth.OptionsRow.AllowFocus = false;
             this.rowMonth.Properties.Caption = "月份";
-            this.rowMonth.Properties.FieldName = "Month";
+            this.rowMonth.Properties.FieldName = "MONTH";
+            this.rowMonth.Properties.Format.FormatString = "{0}月";
+            this.rowMonth.Properties.Format.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.rowMonth.Properties.ReadOnly = true;
             // 
             // rowRate
             // 
             this.rowRate.Name = "rowRate";
             this.rowRate.Properties.Caption = "占比";
-            this.rowRate.Properties.FieldName = "Rate";
+            this.rowRate.Properties.FieldName = "RATE";
+            this.rowRate.Properties.Format.FormatString = "{0}%";
+            this.rowRate.Properties.Format.FormatType = DevExpress.Utils.FormatType.Custom;
             // 
             // rowValue
             // 
             this.rowValue.Name = "rowValue";
             this.rowValue.Properties.Caption = "分配值";
-            this.rowValue.Properties.FieldName = "Value";
+            this.rowValue.Properties.FieldName = "TARGET";
+            this.rowValue.Properties.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
             // 
             // panelControl1
             // 
@@ -205,8 +196,6 @@
             this.Name = "ScheduleItemControl";
             this.Size = new System.Drawing.Size(614, 482);
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.annualScheduleBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.annualScheduleItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vGridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -219,15 +208,12 @@
         #endregion
 
         private DevExpress.XtraVerticalGrid.VGridControl vGridControl1;
-        private System.Windows.Forms.BindingSource annualScheduleBindingSource;
-        private System.Windows.Forms.BindingSource annualScheduleItemBindingSource;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowYear;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowId;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowName;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowAnnualValue;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowMonthValues;
         private DevExpress.XtraVerticalGrid.VGridControl vGridControl2;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow rowDispalyText;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowMonth;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowRate;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowValue;
