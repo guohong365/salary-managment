@@ -37,7 +37,7 @@
             this.rowRate = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowValue = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonGen = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
@@ -111,6 +111,7 @@
             this.vGridControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.vGridControl2.Location = new System.Drawing.Point(0, 54);
             this.vGridControl2.Name = "vGridControl2";
+            this.vGridControl2.OptionsBehavior.UseEnterAsTab = true;
             this.vGridControl2.OptionsView.FixRowHeaderPanelWidth = true;
             this.vGridControl2.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
             this.rowMonth,
@@ -119,9 +120,19 @@
             this.vGridControl2.Size = new System.Drawing.Size(614, 80);
             this.vGridControl2.TabIndex = 6;
             this.vGridControl2.CustomDrawRowValueCell += new DevExpress.XtraVerticalGrid.Events.CustomDrawRowValueCellEventHandler(this.customDrawRowValueCell);
+            this.vGridControl2.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.onScheduleShowingEditor);
+            this.vGridControl2.CellValueChanged += new DevExpress.XtraVerticalGrid.Events.CellValueChangedEventHandler(this.onScheduleValueChanged);
+            this.vGridControl2.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.onShecduleValidatingEditor);
+            this.vGridControl2.InvalidValueException += new DevExpress.XtraEditors.Controls.InvalidValueExceptionEventHandler(this.onInvalidValueException);
             // 
             // rowMonth
             // 
+            this.rowMonth.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.rowMonth.Appearance.Options.UseBackColor = true;
+            this.rowMonth.Appearance.Options.UseTextOptions = true;
+            this.rowMonth.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.rowMonth.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.rowMonth.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
             this.rowMonth.Name = "rowMonth";
             this.rowMonth.OptionsRow.AllowFocus = false;
             this.rowMonth.Properties.Caption = "月份";
@@ -141,6 +152,7 @@
             // 
             // rowValue
             // 
+            this.rowValue.Height = 17;
             this.rowValue.Name = "rowValue";
             this.rowValue.Properties.Caption = "分配值";
             this.rowValue.Properties.FieldName = "TARGET";
@@ -148,21 +160,22 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Controls.Add(this.simpleButtonGen);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 134);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(614, 40);
             this.panelControl1.TabIndex = 7;
             // 
-            // simpleButton1
+            // simpleButtonGen
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(14, 9);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "分配任务";
-            this.simpleButton1.Click += new System.EventHandler(this.generateAssignment);
+            this.simpleButtonGen.Enabled = false;
+            this.simpleButtonGen.Location = new System.Drawing.Point(14, 9);
+            this.simpleButtonGen.Name = "simpleButtonGen";
+            this.simpleButtonGen.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonGen.TabIndex = 0;
+            this.simpleButtonGen.Text = "分配任务";
+            this.simpleButtonGen.Click += new System.EventHandler(this.generateAssignment);
             // 
             // xtraTabControl1
             // 
@@ -185,6 +198,7 @@
             this.xtraTabPage10,
             this.xtraTabPage11,
             this.xtraTabPage12});
+            this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.onMontlySchedulePageChanged);
             // 
             // xtraTabPage1
             // 
@@ -292,7 +306,7 @@
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowRate;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowValue;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonGen;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;

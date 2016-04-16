@@ -162,6 +162,7 @@
       <DependentUpon>DataSetTemplate.xsd</DependentUpon>
     </Compile>
     <Compile Include="Schedule\AnnualScheduleItem.cs" />
+    <Compile Include="Schedule\AssignmentScheduleDetailParameter.cs" />
     <Compile Include="Schedule\AutoAssignmentWeightControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -398,7 +399,12 @@
       <DependentUpon>ScheduleItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Schedule\ScheduleKeys.cs" />
-    <Compile Include="Schedule\XtraUserControl1.cs" />
+    <Compile Include="Schedule\AssignmentTreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Schedule\AssignmentTreeControl.Designer.cs">
+      <DependentUpon>AssignmentTreeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemInitalizer.cs" />
     <EmbeddedResource Include="Schedule\AutoAssignmentWeightControl.resx">
       <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
@@ -510,6 +516,9 @@
     <EmbeddedResource Include="Schedule\ScheduleItemControl.resx">
       <DependentUpon>ScheduleItemControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\AssignmentTreeControl.resx">
+      <DependentUpon>AssignmentTreeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Data\DataSetSalary.xsc">
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
@@ -557,7 +566,483 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\actions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add DB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anthena.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\audio off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\burn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\card machine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CD add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CD box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CD Burn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CD remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CDs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Credit Card OK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Credit Card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DB web.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DB2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DB3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\firewall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder doc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder songs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\get mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HD blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HD copy blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HD copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HD grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HD save blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HD save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imac off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod blue on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod green on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod grey on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod pink on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipod pink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail replay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail seal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\misc blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\misc green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\misc red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\misc yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\misc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\packages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pictures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\protect blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\protect green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\protect red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\protect yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\read.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove DB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\router.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ruler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save a copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save as.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\support offline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\support online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sync.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\todo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tools sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\truck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tutorial.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web disk blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom -.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom +.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

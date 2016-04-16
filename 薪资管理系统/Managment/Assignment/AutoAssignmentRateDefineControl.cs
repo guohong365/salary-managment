@@ -57,19 +57,19 @@ namespace SalarySystem.Managment.Assignment
                 var dataRow = DataHolder.PositionAssignments.FindByASSIGNMENT_IDPOSITION_ID(row.DEFINE_ID, row.ID);
                 if (dataRow != null)
                 {
-                    dataRow.WEIGHT = row.WEIGHT;
+                    dataRow.WEIGHT = 100;
                     dataRow.ENABLED = row.USED;
-                    dataRow.VALUE = 0;
+                    dataRow.VALUE = row.WEIGHT;
                 }
                 else
                 {
                     dataRow = DataHolder.PositionAssignments.Newt_position_assignmentsRow();
                     dataRow.ASSIGNMENT_ID = row.DEFINE_ID;
                     dataRow.POSITION_ID = row.ID;
-                    dataRow.WEIGHT = row.WEIGHT;
+                    dataRow.WEIGHT = 100;
                     dataRow.VERSION_ID = row.VERSION_ID;
                     dataRow.ENABLED = row.USED;
-                    dataRow.VALUE = 0;
+                    dataRow.VALUE = row.WEIGHT;
                     DataHolder.PositionAssignments.Addt_position_assignmentsRow(dataRow);
                 }
             }

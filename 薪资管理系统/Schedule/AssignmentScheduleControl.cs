@@ -12,19 +12,19 @@ namespace SalarySystem.Schedule
     public partial class AssignmentScheduleControl : BaseEditableControl
     {
         private const string _SQL_ANNUAL_ASSIGNMENT_TEMPLAT =
-            "select distinct t0.ASSIGNMENT_ID as DEF_ID," +
-            "ifnull(t1.ID,\'\') as ID," +
-            "ifnull(t1.NAME,\'\') as NAME," +
-            "ifnull(t1.DESCRIPTION,\'\') as DESCRIPTION," +
-            "ifnull(t1.ASSIGNMENT_YEAR, {0}) as YEAR," +
-            "ifnull(t1.ASSIGNMENT_MONTH, {1}) as MONTH," +
-            "ifnull(t1.TARGET, 0) as TARGET," +
-            "ifnull(t1.CREATE_TIME, current_date()) as CREATE_TIME," +
-            "ifnull(t1.VERSION_ID, t2.VERSION_ID) as VERSION_ID," +
-            "ifnull(t1.EXEC_STATE, 0) as STATE," +
-            "ifnull(t1.CREATOR_ID, \'nobody\') as CREATOR," +
-            "t2.NAME as DEF_NAME," +
-            "cast(t3.VALUE as decimal) as RATE " +
+            "select distinct t0.ASSIGNMENT_ID as "+ScheduleHelper.Annual.COL_DEF_ID+"," +
+            "ifnull(t1.ID,\'\') as "+ScheduleHelper.Annual.COL_TASK_ID+"," +
+            "ifnull(t1.NAME,\'\') as "+ScheduleHelper.Annual.COL_TASK_NAME+"," +
+            "ifnull(t1.DESCRIPTION,\'\') as "+ScheduleHelper.Annual.COL_TASK_DESC+"," +
+            "ifnull(t1.ASSIGNMENT_YEAR, {0}) as "+ScheduleHelper.Annual.COL_YEAR +"," +
+            "ifnull(t1.ASSIGNMENT_MONTH, {1}) as " + ScheduleHelper.Annual.COL_MONTH+ "," +
+            "ifnull(t1.TARGET, 0) as " + ScheduleHelper.Annual.COL_TARGET+ "," +
+            "ifnull(t1.CREATE_TIME, current_date()) as " + ScheduleHelper.Annual.COL_CREATE_TIME + "," +
+            "ifnull(t1.VERSION_ID, t2.VERSION_ID) as " + ScheduleHelper.Annual.COL_VERSION_ID + "," +
+            "ifnull(t1.EXEC_STATE, 0) as " + ScheduleHelper.Annual.COL_STATE + "," +
+            "ifnull(t1.CREATOR_ID, \'nobody\') as " + ScheduleHelper.Annual.COL_CREATOR + "," +
+            "t2.NAME as " + ScheduleHelper.Annual.COL_DEF_NAME + "," +
+            "cast(t3.VALUE as decimal) as " + ScheduleHelper.Annual.COL_RATE + " " +
             "from t_position_assignments t0 " +
             "left join t_annual_assignment t1 on " +
                 "t1.ASSIGNMENT_ID=t0.ASSIGNMENT_ID " +
@@ -45,32 +45,33 @@ namespace SalarySystem.Schedule
             return string.Format(_SQL_ANNUAL_ASSIGNMENT_TEMPLAT, year, month, GlobalSettings.AssignmentVersion);
         }
 
-        private string getAnnualAssignmentSql(string id, int year)
+        private string getAnnualAssignmentSql(string id, int year, int monthFrom, int monthTo)
         {
             string sql = "";
-            for (int i = 0; i < 12; i++)
+            for (int i = monthFrom; i <= monthTo; i++)
             {
-                sql += "(" + getSqlAnnualAssignmentOneMonth(year, i + 1) + ")";
-                if (i < 11)
+                sql += "(" + getSqlAnnualAssignmentOneMonth(year, i) + ")";
+                if (i < monthTo)
                 {
                     sql += " union all ";
                 }
             }
             return string.IsNullOrEmpty(id) ? string.Format("select * from ({0}) t_all", year) :
-                string.Format("select * from ({0}) t_all where t_all.DEF_ID='{1}'", sql, id);
+                string.Format("select * from ({0}) t_all where t_all.{2}='{1}' ", sql, id, ScheduleHelper.Annual.COL_DEF_ID);
         }
 
         public AssignmentScheduleControl()
         {
             InitializeComponent();
-            textEditYear.EditValue = DateTime.Now.Year;
-            textEditYear.Focus();
+            spinEditYear.Value = DateTime.Now.Year;
+            spinEditMonthFrom.Value = DateTime.Now.Month;
+            spinEditMonthTo.Value = 12;
         }
 
         private const string _SQL_ASSIGNMENT_LIST = "select * from v_auto_assignment_list where VERSION_ID={0}";
 
         private readonly Dictionary<DataSetSalary.v_auto_assignment_listRow, DataSet> _annualSchedules=new Dictionary<DataSetSalary.v_auto_assignment_listRow, DataSet>();
-        protected void loadData(int year)
+        protected void loadData(int year, int monthFrom, int monthTo)
         {
             var assignmentList=new DataSetSalary.v_auto_assignment_listDataTable();
             var ret=DBHandlerEx.FillOnce(assignmentList, string.Format(_SQL_ASSIGNMENT_LIST, GlobalSettings.AssignmentVersion));
@@ -89,41 +90,47 @@ namespace SalarySystem.Schedule
             assignmentList.Rows.Cast<DataSetSalary.v_auto_assignment_listRow>().ToList().ForEach(row =>
             {
                 DataSet dataSet=new DataSet();
-                if (loadAnnualSchedule(dataSet, year, row.ASSIGNMENT_ID) < 0)
+                if (loadAnnualSchedule(dataSet, year, monthFrom, monthTo, row.ASSIGNMENT_ID) < 0)
                 {
                     MessageBox.Show("加载年度计划错误...");
                     return;
                 }
                 _annualSchedules.Add(row, dataSet);
+                dataSet.Tables[0].RowChanged += onRowChanged;
                 XtraTabPage page = xtraTabControlScheduleItems.TabPages.Add(row.NAME);
                 ScheduleItemControl control = new ScheduleItemControl
                 {
                     Dock = DockStyle.Fill,
                     Tag = row
                 };
-                control.SetScheduleItem(year, row, dataSet);
+                control.DataChanged += dataChanged;
+                control.SetScheduleItem(new AssignmentScheduleDetailParameter(dataSet.Tables[0], row.ASSIGNMENT_ID,
+                    row.UNIT_NAME, row.NAME, monthFrom, monthTo, year));
                 page.Controls.Add(control);
             });
         }
 
-        private int loadAnnualSchedule(DataSet dataSet, int year, string assignmentID)
+        private void dataChanged(object sender, EventArgs e)
         {
-            string sql = getAnnualAssignmentSql(assignmentID, year);
-            return DBHandlerEx.FillNoNameOnce(dataSet, sql);
+            onRowChanged(sender, new DataRowChangeEventArgs(null, DataRowAction.Change));
+        }
+
+
+        private int loadAnnualSchedule(DataSet dataSet, int year, int monthFrom, int monthTo, string assignmentID)
+        {
+            string sql = getAnnualAssignmentSql(assignmentID, year, monthFrom, monthTo);
+            int ret= DBHandlerEx.FillNoNameOnce(dataSet, sql);
+            if (ret < 0 || dataSet.Tables.Count==0) return ret;
+            ScheduleHelper.Annual.AddAnnualSumarry(dataSet.Tables[0]);
+            return ret;
         }
 
         private void onLoadData(object sender, EventArgs e)
         {
-            int val;
-            try
-            {
-                val = (int) textEditYear.EditValue;
-            }
-            catch
-            {
-                return;
-            }
-            loadData(val);
+            int year = (int)spinEditYear.Value;
+                int monthFrom = (int) spinEditMonthFrom.Value;
+                int monthTo = (int) spinEditMonthTo.Value;
+            loadData(year, monthFrom, monthTo);
         }
 
         private void onYearEditEnterKeyDown(object sender, KeyEventArgs e)
@@ -133,5 +140,6 @@ namespace SalarySystem.Schedule
                 onLoadData(sender, new EventArgs());
             }
         }
+
     }
 }

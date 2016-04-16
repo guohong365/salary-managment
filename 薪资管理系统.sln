@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{4E
 		20160407.sql = 20160407.sql
 		20160413.sql = 20160413.sql
 		20160415.sql = 20160415.sql
+		20160416.sql = 20160416.sql
 		init_employee.sql = init_employee.sql
 		init_evaluation_item_type.sql = init_evaluation_item_type.sql
 		init_position.sql = init_position.sql
