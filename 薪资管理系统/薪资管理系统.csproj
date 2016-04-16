@@ -163,6 +163,12 @@
     </Compile>
     <Compile Include="Schedule\AnnualScheduleItem.cs" />
     <Compile Include="Schedule\AssignmentScheduleDetailParameter.cs" />
+    <Compile Include="Schedule\AssignmentTree2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Schedule\AssignmentTree2Control.Designer.cs">
+      <DependentUpon>AssignmentTree2Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="Schedule\AutoAssignmentWeightControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -390,6 +396,7 @@
       <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Schedule\AnnualSchedule.cs" />
+    <Compile Include="Schedule\MonthAssignmentScheduleParameter.cs" />
     <Compile Include="Schedule\ScheduleControlManager.cs" />
     <Compile Include="Schedule\ScheduleHelper.cs" />
     <Compile Include="Schedule\ScheduleItemControl.cs">
@@ -406,6 +413,9 @@
       <DependentUpon>AssignmentTreeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemInitalizer.cs" />
+    <EmbeddedResource Include="Schedule\AssignmentTree2Control.resx">
+      <DependentUpon>AssignmentTree2Control.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Schedule\AutoAssignmentWeightControl.resx">
       <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Drawing;
 using System.Linq;
 using DevExpress.XtraTreeList.Nodes;
 using SalarySystem.Data;
-using SalarySystem.Managment.Basic;
 using UC.Platform.Data;
 
 
@@ -34,12 +32,14 @@ namespace SalarySystem.Managment.Assignment
             _dataView.RowChanged += onRowChanged;
             repositoryItemLookUpEdit1.DataSource = DataHolder.Position;
             treeList1.CustomDrawNodeCell += GridViewHelper.CustomDrawNodeCell;
+            treeList1.ExpandAll();
         }
 
         protected override void onControlReload()
         {
             base.onControlReload();
             _dataView.RowChanged += onRowChanged;
+            treeList1.ExpandAll();
 
         }
 
@@ -108,6 +108,7 @@ namespace SalarySystem.Managment.Assignment
         {
             TreeListNode parentNode = thisNode.ParentNode;
             if(parentNode==null) return;
+
             //处理自身值的问题
             if ((bool) parentNode.GetValue("USED")) //本身就是选中的
             {
@@ -116,7 +117,7 @@ namespace SalarySystem.Managment.Assignment
                 //如果是反选
                 //查找其他兄弟是否有选中的，如有，返回。
                 if (thisNode.ParentNode.Nodes.Cast<TreeListNode>()
-                    .Any(brother => brother != thisNode && brother.Checked))
+                    .Any(brother => brother != thisNode && (bool) brother.GetValue("USED")))
                 {
                     return;
                 }
@@ -198,15 +199,19 @@ namespace SalarySystem.Managment.Assignment
 
         private void cellValueChange(object sender, DevExpress.XtraTreeList.CellValueChangedEventArgs e)
         {
-            if (e.Column.FieldName == "USED")
+            if(e.Column.FieldName=="USED")
             {
                 if ((bool) e.Value)
                 {
                     recalcWeight(e.Node);
+                    checkParent(e.Node, true);
                 }
-                checkChildren(e.Node, (bool)e.Value);
-                checkParent(e.Node,(bool)e.Value);
+                else
+                {
+                    checkChildren(e.Node, false);
+                }
             }
+
         }
     }
 }

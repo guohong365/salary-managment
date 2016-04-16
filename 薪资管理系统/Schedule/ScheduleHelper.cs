@@ -102,44 +102,55 @@ namespace SalarySystem.Schedule
                 return (val == null || DBNull.Value.Equals(val) || string.IsNullOrEmpty(Convert.ToString(val)));
             }
 
-            enum NodeState
+            [Flags]
+            enum NodeTypeFlags
             {
-                EMP,
-                POS_NO_EMP,
-                POS_HAS_EMP,
-                POS_HAS_EMP_BY_CHILD,
-                POS_NO_VALUE
+                UNKNOWN=              0x00000000,
+                EMPLOYEE=             0x00000001,  //员工节点 
+                POSITSION=             0x10000000,  //岗位节点
+                //HAS_EMPLOYEE =0x00000001, //岗位节点，下属有员工
+                //NO_EMPLOYEE=4, //岗位节点，下属无员工
+                HAS_EMPLOYEE_BY_CHILD=0x00000002, //岗位节点，直接下属无员工，但下属岗位有员工
+                HAS_VALUE=            0x00000004 //岗位节点，占比为0
             }
 
-            static bool passthroughNodes(TreeListNode node)
+            /// <summary>
+            /// 检查所有自身及子节点类型
+            /// </summary>
+            /// <param name="node">待检查节点</param>
+            /// <returns>输入节点的类型</returns>
+            static NodeTypeFlags passthroughNodes(TreeListNode node)
             {
-                node.Tag = null;
+                NodeTypeFlags flags = NodeTypeFlags.UNKNOWN;
 
                 if (!isPositionNode(node))
                 {
-                    node.Tag = NodeState.EMP;
-                    return false;
+                    flags |= NodeTypeFlags.EMPLOYEE;
+                      node.Tag = flags;
+                    return flags;
                 }
+                flags |= NodeTypeFlags.POSITSION;
                 if (!node.HasChildren || Convert.ToDecimal(node.GetValue(COL_WEIGHT)) <=0)
                 {
-                    node.Tag = NodeState.POS_NO_EMP;
-                    return false;
+                    node.Tag = flags;
+                    return flags;
                 }
+                flags |= NodeTypeFlags.HAS_VALUE;
+                
                 foreach (TreeListNode child in node.Nodes)
                 {
                     if (!isPositionNode(child))
                     {
-                        node.Tag = NodeState.POS_HAS_EMP;
-                        child.Tag = NodeState.EMP;
+                        flags |= NodeTypeFlags.EMPLOYEE;
+                        child.Tag = NodeTypeFlags.EMPLOYEE;
                     }
                     else
                     {
-                        bool ret = passthroughNodes(child);
-                        if (node.Tag != null) continue;
-                        node.Tag = ret ? NodeState.POS_HAS_EMP_BY_CHILD : NodeState.POS_NO_EMP;
+                        flags |= passthroughNodes(child);
                     }
                 }
-                return (NodeState)node.Tag== NodeState.POS_HAS_EMP || (NodeState)node.Tag== NodeState.POS_HAS_EMP_BY_CHILD ;
+                node.Tag = flags;
+                return flags;
             }
 
             public static void AssignNode(TreeListNodes nodes, decimal total, int month)
@@ -148,35 +159,45 @@ namespace SalarySystem.Schedule
                 List<TreeListNode> employee=new List<TreeListNode>();
                 foreach (TreeListNode node in nodes)
                 {
-                    NodeState type = (NodeState) node.Tag;
-                    switch (type)
+                    NodeTypeFlags type =  (NodeTypeFlags) node.Tag;
+                    if (!type.HasFlag(NodeTypeFlags.EMPLOYEE))
                     {
-                        case NodeState.POS_NO_EMP:
-                            continue;
-                        case NodeState.EMP: //本级员工节点
-                            employee.Add(node);
-                            break;
-                        case NodeState.POS_HAS_EMP: //下级岗位节点
-                        case NodeState.POS_HAS_EMP_BY_CHILD:
-                            reassignChildren.Add(node);
-                            break;
+                        continue;
                     }
+
+                    if (type == NodeTypeFlags.EMPLOYEE) //本级员工节点
+                    {
+                        employee.Add(node);
+                        continue;
+                    }
+
+                    reassignChildren.Add(node); //下级需再分配岗位节点
                 }
+
                 //本级员工节点直接平分
                 employee.ForEach(item =>
                 {
                     item[COL_TARGET] = total/employee.Count;
-                    if(string.IsNullOrEmpty(Convert.ToString(item[COL_PERF_ID])))
+                    //如果该节点为新增节点，生成任务主键
+                    if (string.IsNullOrEmpty(Convert.ToString(item[COL_PERF_ID])))
+                    {
                         item[COL_PERF_ID] = Guid.NewGuid().ToString();
+                    }
                 } );
 
                 //下级节点按比例再分配
+                
+                //计算下级节点再分配占比归一因子
                 decimal allRate = reassignChildren.Sum(item => Convert.ToDecimal(item.GetValue(COL_WEIGHT)));
+                
                 foreach (TreeListNode child in reassignChildren)
                 {
-                    decimal rate = Convert.ToDecimal(child.GetValue(COL_WEIGHT));
-                    decimal nextTotal = total * rate/allRate;
+                    //计算当前子结点动态占比
+                    decimal rate = Convert.ToDecimal(child.GetValue(COL_WEIGHT))/allRate;
+                    decimal nextTotal = Math.Floor(total * rate*100+(decimal) 0.5)/100;
+                    //设置子节点任务额度
                     child.SetValue(COL_TARGET, nextTotal);
+                    //再次向下分配
                     AssignNode(child.Nodes, nextTotal, month);
                 }
             }

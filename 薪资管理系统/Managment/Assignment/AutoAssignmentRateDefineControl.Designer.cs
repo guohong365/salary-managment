@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.列NAME = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -65,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vteamassignmentdetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -80,11 +82,11 @@
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Location = new System.Drawing.Point(738, 9);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(1341, 9);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Location = new System.Drawing.Point(657, 9);
+            this.simpleButtonSave.Location = new System.Drawing.Point(1260, 9);
             // 
             // panelControl2
             // 
@@ -244,6 +246,9 @@
             // 列USED
             // 
             this.列USED.Caption = "启用";
+            repositoryItemCheckEdit1.AutoHeight = false;
+            repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.列USED.ColumnEdit = repositoryItemCheckEdit1;
             this.列USED.FieldName = "USED";
             this.列USED.Name = "列USED";
             this.列USED.OptionsColumn.AllowMoveToCustomizationForm = false;
@@ -533,6 +538,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vteamassignmentdetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();

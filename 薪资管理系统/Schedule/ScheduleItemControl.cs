@@ -15,56 +15,6 @@ namespace SalarySystem.Schedule
 {
     public partial class ScheduleItemControl : XtraUserControl
     {
-        //private const string _SQL_MONTHLY_ASSIGNMENT_TEMPLATE =
-        //    "SELECT t0.ID as EMPLOYEE_ID, " + 
-        //    " t0.NAME as EMPLOYEE_NAME," + 
-        //    " t0.LEADER_ID" +
-        //    " t1.ASSIGNMENT_ID," + 
-        //    " t1.POSITION_ID," +
-        //    " t4.NAME as POSITION_NAME," +
-        //    " t2.NAME," + 
-        //    " t2.VERSION_ID," + 
-        //    " t5.NAME as UNIT_NAME," +
-        //    " t3.ID as PERF_ID," + 
-        //    " ifnull(t3.TARGET,0) as TARGET," +
-        //    " ifnull(t3.ASSIGNMENT_YEAR, {0}) as ASSIGNMENT_YEAR, " +
-        //    " ifnull(t3.ASSIGNMENT_MONTH, {1}) as ASSIGNMENT_MONTH, " + 
-        //    " t3.DESCRIPTION as PERF_DESC " +
-        //    " FROM t_employee t0 " + 
-        //    " left join t_position_assignments t1 on t0.POSITION_ID=t1.POSITION_ID " +
-        //    " inner join t_assignment_define t2 on t2.ID=t1.ASSIGNMENT_ID and t2.type='1' " +
-        //    " left join t_assignment_performance t3 on t3.EMPLOYEE_ID= t0.ID " + 
-        //    " inner join t_position t4 on t4.ID=t0.POSITION_ID " +
-        //    " inner join t_unit t5 on t5.ID=t2.UNIT_ID " +
-        //    " where " +
-        //    " t0.ENABLED=true " +
-        //    " and t2.type='1' " + 
-        //    " and t1.ENABLED=true " + 
-        //    " and (t3.VERSION_ID=t1.VERSION_ID or t3.VERSION_ID is null) " +
-        //    " and t3.ASSIGNMENT_YEAR={1} or t3.ASSIGNMENT_YEAR is null " +
-        //    " and t3.ASSIGNMENT_MONTH={0} or t3.ASSIGNMENT_MONTH is null " + 
-        //    " and t1.ASSIGNMENT_ID='{2}'";
-
-        //private string getMonthlyAssignment(string id, int year, int month)
-        //{
-        //    return string.Format(_SQL_MONTHLY_ASSIGNMENT_TEMPLATE, year, month, id);
-        //}
-
-        //private string getMonthlyAssignmentSql(string id, int year, int monthFrom, int monthTo)
-        //{
-        //    string sql = "";
-        //    for (int i = monthFrom; i <= monthTo; i++)
-        //    {
-        //        sql +="(" + getMonthlyAssignment(id, year, i) + ")";
-        //        if (i < monthTo)
-        //        {
-        //            sql += " union all ";
-        //        }
-        //    }
-        //    sql= string.Format("select * from ({0}) t_all", sql);
-        //    return sql;
-        //}
-
         private AssignmentScheduleDetailParameter _parameter;
         public event EventHandler DataChanged;
 
@@ -98,7 +48,8 @@ namespace SalarySystem.Schedule
             vGridControl2.DataSource = AnnualAssignment;
         }
 
-        private readonly IDictionary<int, AssignmentTreeControl> _monthlyAssignmentPageControls = new Dictionary<int, AssignmentTreeControl>();
+        private readonly IDictionary<int, AssignmentTree2Control> _monthlyAssignmentPageControls =
+            new Dictionary<int, AssignmentTree2Control>();
 
         private void onRowcHanged(object sender, DataRowChangeEventArgs e)
         {
@@ -163,8 +114,7 @@ namespace SalarySystem.Schedule
                     return;
             }
             decimal total = ScheduleHelper.Annual.GetMonthAmont(AnnualAssignment, parameter.Month);
-            _monthlyAssignmentPageControls[parameter.Month].Generate(total, parameter.Month);
-
+            ScheduleHelper.Monthly.GenerateMonthAssignment(_monthlyAssignmentPageControls[parameter.Month].TreeList, total, parameter.Month);
         }
         #region 处理年度计划
         private void customDrawRowValueCell(object sender, DevExpress.XtraVerticalGrid.Events.CustomDrawRowValueCellEventArgs e)
@@ -328,12 +278,12 @@ namespace SalarySystem.Schedule
             for (int month = monthFrom; month <= monthTo; month ++)
             {
                 XtraTabPage page = xtraTabControl1.TabPages.Add(string.Format("{0}月", month));
-                var dataTable= loadMonthlyAssignment(id, year, month);
-                AssignmentTreeControl control =new AssignmentTreeControl
+                var dataTable = loadEmployeeTreeAssignment(id, year, month);
+                AssignmentTree2Control control = new AssignmentTree2Control
                 {
                     Dock = DockStyle.Fill,
                     Tag = new MonthAssignmentScheduleParameter(id, year, month),
-                    PositionTreeAutoAssignment = dataTable
+                    EmployeeTreeAssignment = dataTable
                 };
                 _monthlyAssignmentPageControls.Add(month, control);
                 page.Tag = new MonthAssignmentScheduleParameter(id, year, month);
@@ -345,120 +295,159 @@ namespace SalarySystem.Schedule
             }
         }
 
-        private DataSetSalary.v_position_tree_auto_assignmentDataTable loadMonthlyAssignment(string id, int year, int month)
+        //private DataSetSalary.v_position_tree_auto_assignmentDataTable loadMonthlyAssignment(string id, int year, int month)
+        //{
+        //    string sql = getMonthlyAssignmentSql(id, year, month);
+        //    DataSetSalary.v_position_tree_auto_assignmentDataTable dataTable=new DataSetSalary.v_position_tree_auto_assignmentDataTable();
+        //    DBHandlerEx.FillOnce(dataTable, sql);
+        //    return dataTable;
+        //}
+
+        private DataSetSalary.v_employee_tree_assignmentDataTable loadEmployeeTreeAssignment(string id, int year,
+            int month)
         {
-            string sql = getMonthlyAssignmentSql(id, year, month);
-            DataSetSalary.v_position_tree_auto_assignmentDataTable dataTable=new DataSetSalary.v_position_tree_auto_assignmentDataTable();
+            string sql = getMonthlyAssignmentSql2(id, year, month);
+            DataSetSalary.v_employee_tree_assignmentDataTable dataTable =
+                new DataSetSalary.v_employee_tree_assignmentDataTable();
             DBHandlerEx.FillOnce(dataTable, sql);
             return dataTable;
         }
 
-        private string getMonthlyAssignmentSql(string id, int year, int month)
+        //private string getMonthlyAssignmentSql(string id, int year, int month)
+        //{
+        //    const string sql = "select * from (" +
+        //                       "select " +
+        //                       "t1.ID AS ID," +
+        //                       "t1.LEADER_ID AS LEADER_ID," +
+        //                       "t1.NAME AS NAME," +
+        //                       "t2.ID AS DEFINE_ID," +
+        //                       "t2.NAME AS DEFINE_NAME," +
+        //                       "t2.VERSION_ID AS VERSION_ID," +
+        //                       "t3.VALUE AS WEIGHT," +
+        //                       "null AS EMPLOYEE_ID," +
+        //                       "null AS EMPLOYEE_NAME," +
+        //                       "null AS PERF_ID," +
+        //                       "null as POSITION_ID, " +
+        //                       "0 AS TARGET," +
+        //                       "0 AS COMPLETED," +
+        //                       "{1} AS ASSIGNMENT_YEAR," +
+        //                       "{2} AS ASSIGNMENT_MONTH," +
+        //                       "t6.NAME AS UNIT_NAME," +
+        //                       "0 as ICON" +
+        //                       " FROM" +
+        //                       " t_position t1" +
+        //                       " left JOIN t_assignment_define t2 ON (t1.ID = t2.POSITION_ID  OR t2.POSITION_ID = '9999999999') and t2.type='1'" +
+        //                       " left JOIN t_position_assignments t3 ON t1.ID = t3.POSITION_ID AND t3.ASSIGNMENT_ID = t2.ID  AND t2.VERSION_ID = t3.VERSION_ID" +
+        //                       " JOIN t_unit t6 ON t6.ID = t2.UNIT_ID" +
+        //                       " WHERE" +
+        //                       " t1.ENABLED = TRUE" +
+        //                       " AND t1.ID <> '9999999999'" +
+        //                       " AND t2.ENABLED = TRUE" +
+        //                       " AND t3.ENABLED = TRUE" +
+        //                       " and t2.ID='{0}'" +
+        //                       " and t2.VERSION_ID='{3}'" +
+
+        //                       //"select " +
+        //                       //"ID," +
+        //                       //"LEADER_ID," +
+        //                       //"NAME," +
+        //                       //"null as DEFINE_ID," +
+        //                       //"null as DEFINE_NAME," +
+        //                       //"null as VERSION_ID," +
+        //                       //"0 as WEIGHT," +
+        //                       //"null as EMPLOYEE_ID," +
+        //                       //"null as EMPLOYEE_NAME," +
+        //                       //"null as POSITION_ID," +
+        //                       //"null as PERF_ID," +
+        //                       //"0 as TARGET," +
+        //                       //"0 as COMPLETED," +
+        //                       //"{1} as ASSIGNMENT_YEAR," +
+        //                       //"{2} as ASSIGNMENT_MONTH," +
+        //                       //"null as UNIT_NAME," +
+        //                       //"0 as ICON " +
+        //                       //" from t_position" +
+        //                       //" where " +
+        //                       //" enabled = true " +
+        //                       //" and id<>'9999999999'" +
+        //                       " union all " +
+        //                       " select " +
+        //                       " if(not isnull(EMPLOYEE_ID), EMPLOYEE_ID, ID) as ID," +
+        //                       " if(not isnull(EMPLOYEE_ID), POSITION_ID, LEADER_ID) as LEADER_ID," +
+        //                       " if(not isnull(EMPLOYEE_ID), EMPLOYEE_NAME, NAME) as NAME," +
+        //                       " DEFINE_ID," +
+        //                       " DEFINE_NAME," +
+        //                       " VERSION_ID," +
+        //                       " WEIGHT," +
+        //                       " EMPLOYEE_ID," +
+        //                       " EMPLOYEE_NAME," +
+        //                       " ifnull(PERF_ID,'') as PERF_ID," +
+        //                       " POSITION_ID, " +
+        //                       " ifnull(TARGET,0) as TARGET," +
+        //                       " ifnull(COMPLETED,0) as COMPLETED," +
+        //                       " ifnull(ASSIGNMENT_YEAR, 2016) as ASSIGNMENT_YEAR," +
+        //                       " ifnull(ASSIGNMENT_MONTH,4) as ASSIGNMENT_MONTH," +
+        //                       " UNIT_NAME, " +
+        //                       " if(not isnull(EMPLOYEE_ID), 1, 0) as ICON " +
+        //                       " from v_position_tree_auto_assignment " +
+        //                       " where " +
+        //                       " DEFINE_ID='{0}' " +
+        //                       " and (ASSIGNMENT_YEAR={1} or isnull(ASSIGNMENT_YEAR))" +
+        //                       " and (ASSIGNMENT_MONTH={2} or isnull(ASSIGNMENT_MONTH)) " +
+        //                       " and VERSION_ID='{3}') t" +
+        //                       " group by ID, EMPLOYEE_ID";
+
+
+        //    const string formatStr = "select " +
+        //                             "ID," +
+        //                             "LEADER_ID," +
+        //                             "NAME,DEFINE_ID," +
+        //                             "DEFINE_NAME," +
+        //                             "VERSION_ID," +
+        //                             "WEIGHT," +
+        //                             "EMPLOYEE_ID," +
+        //                             "EMPLOYEE_NAME," +
+        //                             "ifnull(PERF_ID,'') as PERF_ID," +
+        //                             "ifnull(TARGET,0) as TARGET," +
+        //                             "ifnull(COMPLETED,0) as COMPLETED," +
+        //                             "ifnull(ASSIGNMENT_YEAR, {1}) as ASSIGNMENT_YEAR," +
+        //                             "ifnull(ASSIGNMENT_MONTH,{2}) as ASSIGNMENT_MONTH," +
+        //                             "UNIT_NAME" +
+        //                             " from v_position_tree_auto_assignment" +
+        //                             " where DEFINE_ID='{0}' " +
+        //                             " and (ASSIGNMENT_YEAR={1} or isnull(ASSIGNMENT_YEAR)) " +
+        //                             " and (ASSIGNMENT_MONTH={2} or isnull(ASSIGNMENT_MONTH))" +
+        //                             " and VERSION_ID='{3}'";
+        //    return string.Format(sql, id, year, month, GlobalSettings.AssignmentVersion);
+        //}
+
+        private string getMonthlyAssignmentSql2(string id, int year, int month)
         {
-            const string sql = "select * from (" +
-                               "select " +
-                               "t1.ID AS ID," +
-                               "t1.LEADER_ID AS LEADER_ID," +
-                               "t1.NAME AS NAME," +
-                               "t2.ID AS DEFINE_ID," +
-                               "t2.NAME AS DEFINE_NAME," +
-                               "t2.VERSION_ID AS VERSION_ID," +
-                               "t3.VALUE AS WEIGHT," +
-                               "null AS EMPLOYEE_ID," +
-                               "null AS EMPLOYEE_NAME," +
-                               "null AS PERF_ID," +
-                               "null as POSITION_ID, " +
-                               "0 AS TARGET," +
-                               "0 AS COMPLETED," +
-                               "{1} AS ASSIGNMENT_YEAR," +
-                               "{2} AS ASSIGNMENT_MONTH," +
-                               "t6.NAME AS UNIT_NAME," +
-                               "0 as ICON" +
-                               " FROM" +
-                               " t_position t1" +
-                               " left JOIN t_assignment_define t2 ON (t1.ID = t2.POSITION_ID  OR t2.POSITION_ID = '9999999999') and t2.type='1'" +
-                               " left JOIN t_position_assignments t3 ON t1.ID = t3.POSITION_ID AND t3.ASSIGNMENT_ID = t2.ID  AND t2.VERSION_ID = t3.VERSION_ID" +
-                               " JOIN t_unit t6 ON t6.ID = t2.UNIT_ID" +
-                               " WHERE" +
-                               " t1.ENABLED = TRUE" +
-                               " AND t1.ID <> '9999999999'" +
-                               " AND t2.ENABLED = TRUE" +
-                               " AND t3.ENABLED = TRUE" +
-                               " and t2.ID='{0}'" +
-                               " and t2.VERSION_ID='{3}'" +
-
-                               //"select " +
-                               //"ID," +
-                               //"LEADER_ID," +
-                               //"NAME," +
-                               //"null as DEFINE_ID," +
-                               //"null as DEFINE_NAME," +
-                               //"null as VERSION_ID," +
-                               //"0 as WEIGHT," +
-                               //"null as EMPLOYEE_ID," +
-                               //"null as EMPLOYEE_NAME," +
-                               //"null as POSITION_ID," +
-                               //"null as PERF_ID," +
-                               //"0 as TARGET," +
-                               //"0 as COMPLETED," +
-                               //"{1} as ASSIGNMENT_YEAR," +
-                               //"{2} as ASSIGNMENT_MONTH," +
-                               //"null as UNIT_NAME," +
-                               //"0 as ICON " +
-                               //" from t_position" +
-                               //" where " +
-                               //" enabled = true " +
-                               //" and id<>'9999999999'" +
-                               " union all " +
-                               " select " +
-                               " if(not isnull(EMPLOYEE_ID), EMPLOYEE_ID, ID) as ID," +
-                               " if(not isnull(EMPLOYEE_ID), POSITION_ID, LEADER_ID) as LEADER_ID," +
-                               " if(not isnull(EMPLOYEE_ID), EMPLOYEE_NAME, NAME) as NAME," +
-                               " DEFINE_ID," +
-                               " DEFINE_NAME," +
-                               " VERSION_ID," +
-                               " WEIGHT," +
-                               " EMPLOYEE_ID," +
-                               " EMPLOYEE_NAME," +
-                               " ifnull(PERF_ID,'') as PERF_ID," +
-                               " POSITION_ID, " +
-                               " ifnull(TARGET,0) as TARGET," +
-                               " ifnull(COMPLETED,0) as COMPLETED," +
-                               " ifnull(ASSIGNMENT_YEAR, 2016) as ASSIGNMENT_YEAR," +
-                               " ifnull(ASSIGNMENT_MONTH,4) as ASSIGNMENT_MONTH," +
-                               " UNIT_NAME, " +
-                               " if(not isnull(EMPLOYEE_ID), 1, 0) as ICON " +
-                               " from v_position_tree_auto_assignment " +
-                               " where " +
-                               " DEFINE_ID='{0}' " +
-                               " and (ASSIGNMENT_YEAR={1} or isnull(ASSIGNMENT_YEAR))" +
-                               " and (ASSIGNMENT_MONTH={2} or isnull(ASSIGNMENT_MONTH)) " +
-                               " and VERSION_ID='{3}') t" +
-                               " group by ID, EMPLOYEE_ID";
-
-
-            const string formatStr = "select " +
-                                     "ID," +
-                                     "LEADER_ID," +
-                                     "NAME,DEFINE_ID," +
-                                     "DEFINE_NAME," +
-                                     "VERSION_ID," +
-                                     "WEIGHT," +
-                                     "EMPLOYEE_ID," +
+            const string sqlFormat = "select " +
+                                     "EMPLOYEE_ID, " +
+                                     "EMPLOYEE_LEADER," +
                                      "EMPLOYEE_NAME," +
-                                     "ifnull(PERF_ID,'') as PERF_ID," +
-                                     "ifnull(TARGET,0) as TARGET," +
-                                     "ifnull(COMPLETED,0) as COMPLETED," +
-                                     "ifnull(ASSIGNMENT_YEAR, {1}) as ASSIGNMENT_YEAR," +
-                                     "ifnull(ASSIGNMENT_MONTH,{2}) as ASSIGNMENT_MONTH," +
-                                     "UNIT_NAME" +
-                                     " from v_position_tree_auto_assignment" +
-                                     " where DEFINE_ID='{0}' " +
-                                     " and (ASSIGNMENT_YEAR={1} or isnull(ASSIGNMENT_YEAR)) " +
-                                     " and (ASSIGNMENT_MONTH={2} or isnull(ASSIGNMENT_MONTH))" +
+                                     "POSITION_ID," +
+                                     "POSITION_NAME," +
+                                     "ASSIGNMENT_ID," +
+                                     "VERSION_ID," +
+                                     "POSITION_WEIGHT," +
+                                     "DEF_NAME," +
+                                     "UNIT_ID," +
+                                     "UNIT_NAME," +
+                                     "PERF_ID," +
+                                     "TARGET," +
+                                     "COMPLETED," +
+                                     "ifnull(ASSIGNMENT_YEAR, {0}) as ASSIGNMENT_YEAR," +
+                                     "ifnull(ASSIGNMENT_MONTH,{1}) as ASSIGNMENT_MONTH" +
+                                     " from v_employee_tree_assignment" +
+                                     " where " +
+                                     " (ASSIGNMENT_YEAR={0} or isnull(ASSIGNMENT_YEAR))" +
+                                     " and (ASSIGNMENT_MONTH={1} or isnull(ASSIGNMENT_MONTH))" +
+                                     " and ASSIGNMENT_ID='{2}'" +
                                      " and VERSION_ID='{3}'";
-            return string.Format(sql, id, year, month, GlobalSettings.AssignmentVersion);
+            return string.Format(sqlFormat, year, month, id, GlobalSettings.AssignmentVersion);
         }
+
 
         private readonly Color[] _colors =
         {
@@ -487,20 +476,5 @@ namespace SalarySystem.Schedule
         }
 
         #endregion
-    }
-                
-
-    public class MonthAssignmentScheduleParameter
-    {
-        public MonthAssignmentScheduleParameter(string itemId, int year, int month)
-        {
-            Month = month;
-            Year = year;
-            ItemId = itemId;
-        }
-
-        public int Year { get; private set; }
-        public int Month { get; private set; }
-        public string ItemId { get;private set; }
     }
 }
