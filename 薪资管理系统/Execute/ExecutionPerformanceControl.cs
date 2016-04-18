@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using SalarySystem.Data;
-using SalarySystem.Managment.Basic;
 using UC.Platform.Data;
 
 namespace SalarySystem.Execute
@@ -114,14 +113,21 @@ namespace SalarySystem.Execute
         private void saveEvaluationResults(DBHandlerEx handler)
         {
             Debug.Assert(CurrentEmployeePerformance!=null);
-            DataSetSalary.t_evaluation_resultsDataTable resultsDataTable =
-                new DataSetSalary.t_evaluation_resultsDataTable();
+            var resultsDataTable =new DataSetSalary.t_evaluation_resultsDataTable();
             handler.Fill(resultsDataTable,
-                "select * from t_evaluation_resuts where EMPLOYEE_ID='" + CurrentEmployeePerformance.Employee.ID + "'");
-            CurrentEmployeePerformance.Results.ToList().ForEach(result =>
+                string.Format("select * " +
+                              "from t_evaluation_results " +
+                              " where EMPLOYEE_ID='{0}'" +
+                              " and VERSION_ID='{1}'" +
+                              " and EVALUATION_YEAR={2}" +
+                              " and EVALUATION_MONTH={3}",
+                              CurrentEmployeePerformance.Employee.ID,
+                              GlobalSettings.EvaluationVersion,
+                              textEditEvalYear.EditValue,
+                              textEditEvalMonth.EditValue));
+            CurrentEmployeePerformance.EvaluationResults.ToList().ForEach(result =>
             {
-                DataSetSalary.v_evaluation_result_detailDataTable resultDetail =
-                    (DataSetSalary.v_evaluation_result_detailDataTable) result.Value.GetChanges();
+                var resultDetail =(DataSetSalary.v_evaluation_result_detailDataTable) result.Value.GetChanges();
                 if(resultDetail==null || resultDetail.Rows.Count==0) return;
                 resultDetail.ToList().ForEach(detailRow =>
                 {
@@ -142,7 +148,7 @@ namespace SalarySystem.Execute
                     resultsRow.EMPLOYEE_ID = detailRow.EMPLOYEE_ID;
                     resultsRow.EVALUATION_FORM_ID = detailRow.FORM_ID;
                     resultsRow.EVALUATION_ITEM_ID = detailRow.ITEM_ID;
-                    resultsRow.EVALUATION_YEAY = detailRow.EVALUATION_YEAY;
+                    resultsRow.EVALUATION_YEAR = detailRow.EVALUATION_YEAR;
                     resultsRow.EVALUATION_MONTH = detailRow.EVALUATION_MONTH;
                     resultsRow.EVALUATION_TIME = detailRow.EVALUATION_TIME;
                     resultsRow.EVALUATOR = detailRow.EVALUATOR;
@@ -184,56 +190,121 @@ namespace SalarySystem.Execute
             base.onRevert();
             if (CurrentEmployeePerformance != null)
             {
-                CurrentEmployeePerformance.Results.Values.ToList().ForEach(item=>item.RejectChanges());
+                CurrentEmployeePerformance.EvaluationResults.Values.ToList().ForEach(item=>item.RejectChanges());
             }
-        }
-
-
-        private void dirtyChangedHandler(object sender, EventArgs e)
-        {
-            Debug.Assert(CurrentEmployeePerformance!=null);
-            EnableSave(CurrentEmployeePerformance.IsDirty);
-            EnableRevert(CurrentEmployeePerformance.IsDirty);
         }
 
         private void focusedEmployeeChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             var row = gridViewEmploye.GetDataRow(e.FocusedRowHandle) as DataSetSalary.t_employeeRow;
-            if (row == null)
+            if (row == null) return;
+
+            if (CurrentEmployeePerformance!=null && CurrentEmployeePerformance.IsDirty)
             {
-                CurrentEmployeePerformance = null;
-           }
-            else
-            {
-                if (CurrentEmployeePerformance != null && (string)row["ID"] == CurrentEmployeePerformance.Employee.ID)
+                var dialogResult = MessageBox.Show("数据未保存，是否保存？", "警告", MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                switch (dialogResult)
                 {
-                    if (CurrentEmployeePerformance.IsDirty)
-                    {
-                        var dialogResult = MessageBox.Show("数据未保存，是否保存？", "警告", MessageBoxButtons.YesNoCancel,
-                            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                        switch (dialogResult)
-                        {
-                            case DialogResult.Yes:
-                                Save();
-                                break;
-                            case DialogResult.No:
-                                Revert();
-                                break;
-                            case DialogResult.Cancel:
-                                gridViewEmploye.FocusedRowHandle = e.PrevFocusedRowHandle;
-                                return;
-                        }
-                    }
+                    case DialogResult.Yes:
+                        Save();
+                        break;
+                    case DialogResult.No:
+                        Revert();
+                        break;
+                    case DialogResult.Cancel:
+                        gridViewEmploye.FocusedRowHandle = e.PrevFocusedRowHandle;
+                        return;
                 }
-                var sql = string.Format(
-                    "select distinct FORM_ID, FORM_NAME " +
-                    "from v_evaluation_result_detail " +
-                    "where POSITION_ID='{0}'", row.POSITION_ID);
-                DataSet dataSet=DBHandlerEx.FillOnce(sql, "v_evaluation_result_detail");
-                CurrentEmployeePerformance = new EmployeePerformance(row, dataSet.Tables[0], (string) lookUpEditEvaluator.EditValue, (int) textEditEvalYear.EditValue,
-                    (int) textEditEvalMonth.EditValue, dateEditEvalTIme.DateTime);
-                CurrentEmployeePerformance.DirtyChanged += dirtyChangedHandler;
             }
+            var forms = LoadFroms(row.POSITION_ID);
+            if (forms == null)
+            {
+                MessageBox.Show("加载考核表错误！");
+                return;
+            }
+
+            var performance = new EmployeePerformance(row, forms, (string) lookUpEditEvaluator.EditValue,
+                (int) textEditEvalYear.EditValue,
+                (int) textEditEvalMonth.EditValue, dateEditEvalTIme.DateTime);
+            foreach (DataRow formRow in forms.Rows)
+            {
+                string formId = Convert.ToString(formRow["FORM_ID"]);
+                var result = LoadEvaluationResultsDetail((int) textEditEvalYear.EditValue, (int) textEditEvalMonth.EditValue,formId, row.ID);
+                if (result == null)
+                {
+                    throw new Exception("加载考核表["+Convert.ToString(formRow["FORM_NAME"])+"]");
+                }
+                result.RowChanged += onRowChanged;
+                performance.EvaluationResults[formId] = result;
+            }
+            CurrentEmployeePerformance = performance;
+            evalFormsControl1.EmployeePerformance = CurrentEmployeePerformance;
         }
+
+        #region 加载数据
+
+        private const string _EVALUATION_FORMS_SQL_FORMAT =
+            "select " +
+            " distinct FORM_ID, FORM_NAME " +
+            " from v_evaluation_result_detail " +
+            " where POSITION_ID='{0}'" +
+            " and VERSION_ID='{1}'";
+
+        public DataTable LoadFroms(string positionId, string versionId)
+        {
+            string sql = string.Format(_EVALUATION_FORMS_SQL_FORMAT, positionId, versionId);
+            DataTable table = new DataTable();
+            return DBHandlerEx.FillOnce(table, sql) >= 0 ? table : null;
+        }
+
+        public DataTable LoadFroms(string positionId)
+        {
+            return LoadFroms(positionId, GlobalSettings.EvaluationVersion);
+        }
+        private const string _EVALUATION_RESULTS_SQL_FORMAT =
+            "SELECT " +
+            "POSITION_ID," +
+            "FORM_ID," +
+            "WEIGHT, " +
+            "VERSION_ID," +
+            "FORM_NAME," +
+            "ITEM_ID," +
+            "SHOW_ORDER," +
+            "ITEM_NAME," +
+            "ITEM_DESC," +
+            "ITEM_TYPE," +
+            "FULL_MARK," +
+            "EMPLOYEE_ID," +
+            "EMPLOYEE_NAME," +
+            "RESULT_ID," +
+            "RESULT_DESC," +
+            "ifnull(EVALUATION_YEAR, {0}) as EVALUATION_YEAR," +
+            "ifnull(EVALUATION_MONTH, {1}) as EVALUATION_MONTH," +
+            "ifnull(EVALUATOR, 'nobody') as EVALUATOR," +
+            "ifnull(EVALUATION_TIME, current_time()) as EVALUATION_TIME," +
+            "ifnull(MARK, 0) as MARK" +
+            " from " +
+            " v_evaluation_result_detail " +
+            " where" +
+            " FORM_ID='{2}' " +
+            " and EMPLOYEE_ID='{3}'" +
+            " and VERSION_ID='{4}' " +
+            " and (EVALUATION_YEAR={0} or isnull(EVALUATION_YEAR))" +
+            " and (EVALUATION_MONTH={1} or isnull(EVALUATION_MONTH))" +
+            " order by SHOW_ORDER";
+
+        public DataSetSalary.v_evaluation_result_detailDataTable LoadEvaluationResultsDetail(int year, int month,string formId, string employeeId, string versionId)
+        {
+            var resultDetail = new DataSetSalary.v_evaluation_result_detailDataTable();
+            var sql = string.Format(_EVALUATION_RESULTS_SQL_FORMAT,year, month, formId, employeeId, versionId);
+            return DBHandlerEx.FillOnce(resultDetail, sql) >= 0 ? resultDetail : null;
+        }
+
+        public DataSetSalary.v_evaluation_result_detailDataTable LoadEvaluationResultsDetail(int year, int month,string formId,
+            string employeeId)
+        {
+            return LoadEvaluationResultsDetail(year, month, formId, employeeId, GlobalSettings.EvaluationVersion);
+        }
+        #endregion
     }
 }

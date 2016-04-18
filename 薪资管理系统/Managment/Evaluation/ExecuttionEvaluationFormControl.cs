@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using DevExpress.XtraGrid.Views.Base;
-using SalarySystem.Managment.Basic;
 using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
@@ -33,14 +31,14 @@ namespace SalarySystem.Managment.Evaluation
             repositoryItemLookUpEditRepoFormPosition.DataSource = new DataView(DataHolder.Position);
         }
 
-        private string getFormFilter(string positionId)
+        private static string getFormFilter(string positionId)
         {
             return string.IsNullOrEmpty(positionId)
                 ? string.Format("[ENABLED]=true")
                 : string.Format("[ENABLED]=true AND ([POSITION_ID]='{0}' OR [POSITION_ID]='{1}')", positionId, GlobalSettings.GENERAL_POSITION);
         }
 
-        private string getFormDetailFilter(string formId)
+        private static string getFormDetailFilter(string formId)
         {
             return string.Format("[FORM_ID]='{0}' AND [ENABLED]=true AND [USED]=true", formId);
         }
@@ -129,8 +127,11 @@ namespace SalarySystem.Managment.Evaluation
 
         protected override void onSave()
         {
-            base.onSave();
-            DBHandlerEx.UpdateOnce(DataHolder.PositionEvaluationForms);
+            if(DBHandlerEx.UpdateOnce(DataHolder.PositionEvaluationForms)>=0)
+            {
+                base.onSave();
+            }
+            
         }
 
         protected override void onRevert()
@@ -149,8 +150,8 @@ namespace SalarySystem.Managment.Evaluation
         protected override void onControlReload()
         {
             base.onControlReload();
-
             DataHolder.PositionEvaluationForms.RowChanged += onRowChanged;
+            gridViewExecutionForm.ExpandAllGroups();
         }
 
         protected override void onControlUnload()

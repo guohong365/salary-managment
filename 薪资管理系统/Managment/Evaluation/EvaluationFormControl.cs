@@ -7,7 +7,6 @@ using DevExpress.Data;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
-using SalarySystem.Managment.Basic;
 using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
@@ -16,7 +15,7 @@ namespace SalarySystem.Managment.Evaluation
     {
         private const string _FILTER_FORMAT = "[ENABLED]=true and ([POSITION_ID]='{0}' or [POSITION_ID]='{1}')";
 
-        string getItemsFilter(string positionId)
+        static string getItemsFilter(string positionId)
         {
             return string.Format(_FILTER_FORMAT, positionId, GlobalSettings.GENERAL_POSITION);
         }

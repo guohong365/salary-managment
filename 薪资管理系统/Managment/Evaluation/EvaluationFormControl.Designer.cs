@@ -89,6 +89,14 @@
             this.panelControl1.Size = new System.Drawing.Size(929, 40);
             this.panelControl1.TabIndex = 0;
             // 
+            // simpleButtonRevert
+            // 
+            this.simpleButtonRevert.Location = new System.Drawing.Point(849, 9);
+            // 
+            // simpleButtonSave
+            // 
+            this.simpleButtonSave.Location = new System.Drawing.Point(768, 9);
+            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.simpleButtonRemoveItems);

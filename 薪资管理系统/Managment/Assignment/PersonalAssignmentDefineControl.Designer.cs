@@ -51,8 +51,6 @@
             this.colDEFINE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDEFAULT_VALUE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tpositionassignmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.t_position_assignmentsTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_position_assignmentsTableAdapter();
-            this.v_personal_assignment_detailTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.v_personal_assignment_detailTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -266,14 +264,6 @@
             this.tpositionassignmentsBindingSource.DataMember = "t_position_assignments";
             this.tpositionassignmentsBindingSource.DataSource = this.dataSetSalary;
             // 
-            // t_position_assignmentsTableAdapter
-            // 
-            this.t_position_assignmentsTableAdapter.ClearBeforeFill = true;
-            // 
-            // v_personal_assignment_detailTableAdapter
-            // 
-            this.v_personal_assignment_detailTableAdapter.ClearBeforeFill = true;
-            // 
             // PersonalAssignmentDefineControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -303,8 +293,6 @@
         private Data.DataSetSalary dataSetSalary;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.BindingSource tpositionassignmentsBindingSource;
-        private Data.DataSetSalaryTableAdapters.t_position_assignmentsTableAdapter t_position_assignmentsTableAdapter;
-        private Data.DataSetSalaryTableAdapters.v_personal_assignment_detailTableAdapter v_personal_assignment_detailTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colUSED;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditPosition;

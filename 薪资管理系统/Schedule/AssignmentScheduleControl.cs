@@ -39,13 +39,13 @@ namespace SalarySystem.Schedule
             "and t3.NAME like \'assignment.schedule%\' " +
             "and t2.VERSION_ID=\'{2}\'";
 
-        private string getSqlAnnualAssignmentOneMonth(int year, int month)
+        private static string getSqlAnnualAssignmentOneMonth(int year, int month)
         {
             //string sqlFormat = "select * from ({0}) t_all";
             return string.Format(_SQL_ANNUAL_ASSIGNMENT_TEMPLAT, year, month, GlobalSettings.AssignmentVersion);
         }
 
-        private string getAnnualAssignmentSql(string id, int year, int monthFrom, int monthTo)
+        private static string getAnnualAssignmentSql(string id, int year, int monthFrom, int monthTo)
         {
             string sql = "";
             for (int i = monthFrom; i <= monthTo; i++)
@@ -116,7 +116,7 @@ namespace SalarySystem.Schedule
         }
 
 
-        private int loadAnnualSchedule(DataSet dataSet, int year, int monthFrom, int monthTo, string assignmentID)
+        private static int loadAnnualSchedule(DataSet dataSet, int year, int monthFrom, int monthTo, string assignmentID)
         {
             string sql = getAnnualAssignmentSql(assignmentID, year, monthFrom, monthTo);
             int ret= DBHandlerEx.FillNoNameOnce(dataSet, sql);
@@ -141,5 +141,17 @@ namespace SalarySystem.Schedule
             }
         }
 
+        protected override void onSave()
+        {
+            base.onSave();
+            foreach (XtraTabPage page in xtraTabControlScheduleItems.TabPages)
+            {
+                ScheduleItemControl control = page.Controls[0] as ScheduleItemControl;
+                if (control != null)
+                {
+                    control.Save();
+                }
+            }
+        }
     }
 }

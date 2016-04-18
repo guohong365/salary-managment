@@ -19,18 +19,16 @@ namespace UC.Platform.Data
         private static readonly Hashtable _dataSetTypeTable = new Hashtable();
         private static readonly LocalDataStoreSlot _exceptionSlot = Thread.GetNamedDataSlot("PlatformDBHandlerException");
 
-        private readonly Hashtable _procParaeters = new Hashtable();
-
         private readonly DbConnection _connection;
+        private readonly Hashtable _procParaeters = new Hashtable();
         private DbTransaction _transaction;
-        
+
         private bool _transactionOpenConnection;
 
         private DBHandlerEx()
         {
             _connection = _factory.CreateConnection();
         }
-
 
 
         public DbConnection Connection
@@ -214,41 +212,52 @@ namespace UC.Platform.Data
         public int ExecuteNonQuery(DbTransaction transaction, string strSql, DbParameter[] parameters)
         {
             DbCommand command = _factory.CreateCommand(transaction);
-            try
-            {
-                command.CommandType = CommandType.Text;
-                command.Parameters.Clear();
+            command.CommandType = CommandType.Text;
+            command.Parameters.Clear();
 
-                //王伟2007-12-05注
-                command.CommandText = strSql;
-                if (parameters != null)
-                {
-                    command.Parameters.AddRange(parameters);
-                }
-                return command.ExecuteNonQuery();
-            }
-            catch (Exception exception)
+            //王伟2007-12-05注
+            command.CommandText = strSql;
+            if (parameters != null)
             {
-                handleException(exception, strSql);
-                return -1;
+                command.Parameters.AddRange(parameters);
             }
+            return command.ExecuteNonQuery();
         }
 
 
         public static int ExecuteNonQueryOnce(string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.ExecuteNonQuery(strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.ExecuteNonQuery(strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int ExecuteNonQueryOnce(string strSql, DbParameter[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.ExecuteNonQuery(strSql, parameters);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                return buffer.ExecuteNonQuery(strSql, parameters);
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int[] ExecuteNonQueryOnce(string[] strSql)
@@ -284,17 +293,37 @@ namespace UC.Platform.Data
         public static int ExecuteNonQueryOnce(DbTransaction transaction, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.ExecuteNonQuery(transaction, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.ExecuteNonQuery(transaction, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int ExecuteNonQueryOnce(DbTransaction transaction, string strSql, DbParameter[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.ExecuteNonQuery(transaction, strSql, parameters);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.ExecuteNonQuery(transaction, strSql, parameters);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int[] ExecuteNonQueryOnce(DbTransaction transaction, string[] strSql)
@@ -360,43 +389,31 @@ namespace UC.Platform.Data
             string[] outParameters)
         {
             DbCommand command = _factory.CreateCommand(transaction);
-            try
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Clear();
+            if (parameters != null)
             {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Clear();
-                if (parameters != null)
-                {
-                    command.Parameters.AddRange(parameters);
-                }
-                command.CommandText = procName;
-                int num = command.ExecuteNonQuery();
-                object result = command.Parameters.Contains("ReturnValue")
-                    ? command.Parameters["ReturnValue"].Value
-                    : num;
-                if ((outParameters != null) && (outParameters.Length > 0))
-                {
-                    var objArray = new object[outParameters.Length + 1];
-                    objArray[0] = result;
-                    for (int i = 0; i < outParameters.Length; i++)
-                    {
-                        if ((outParameters[i] != null) && (outParameters[i] != ""))
-                        {
-                            DbParameter parameter2 = command.Parameters[outParameters[i]];
-                            if (parameter2 != null)
-                            {
-                                objArray[i + 1] = parameter2.Value;
-                            }
-                        }
-                    }
-                    result = objArray;
-                }
-                return result;
+                command.Parameters.AddRange(parameters);
             }
-            catch (Exception exception)
+            command.CommandText = procName;
+            int num = command.ExecuteNonQuery();
+            object result = command.Parameters.Contains("ReturnValue")
+                ? command.Parameters["ReturnValue"].Value
+                : num;
+            if ((outParameters == null) || (outParameters.Length <= 0)) return result;
+            var objArray = new object[outParameters.Length + 1];
+            objArray[0] = result;
+            for (int i = 0; i < outParameters.Length; i++)
             {
-                handleException(exception, procName);
-                return  null;
+                if ((outParameters[i] == null) || (outParameters[i] == "")) continue;
+                DbParameter parameter2 = command.Parameters[outParameters[i]];
+                if (parameter2 != null)
+                {
+                    objArray[i + 1] = parameter2.Value;
+                }
             }
+            result = objArray;
+            return result;
         }
 
         public object ExecuteProc(string procName, string[] parametersName, object[] parameters, string[] outParameters)
@@ -419,127 +436,199 @@ namespace UC.Platform.Data
                 }
             }
             DbCommand cmd = _factory.CreateCommand(transaction);
-            try
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = procName;
+            cmd.Parameters.Clear();
+            if (!_factory.DeriveParameters(cmd))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = procName;
-                cmd.Parameters.Clear();
-                if (!_factory.DeriveParameters(cmd))
-                {
-                    return null;
-                }
-                if ((parametersName != null) && (parametersName.Length > 0))
-                {
-                    for (int i = 0; i < parametersName.Length; i++)
-                    {
-                        DbParameter parameter = cmd.Parameters[parametersName[i]];
-                        if (parameter != null)
-                        {
-                            if ((parameters[i] == null) || ((parameters[i] as string) == ""))
-                            {
-                                parameter.Value = DBNull.Value;
-                            }
-                            else
-                            {
-                                parameter.Value = parameters[i];
-                            }
-                        }
-                    }
-                }
-                int num2 = cmd.ExecuteNonQuery();
-                object result = cmd.Parameters.Contains("ReturnValue")
-                    ? cmd.Parameters["ReturnValue"].Value
-                    : num2;
-
-                if ((outParameters != null) && (outParameters.Length > 0))
-                {
-                    var objArray = new object[outParameters.Length + 1];
-                    objArray[0] = result;
-                    for (int j = 0; j < outParameters.Length; j++)
-                    {
-                        if ((outParameters[j] != null) && (outParameters[j] != ""))
-                        {
-                            DbParameter parameter2 = cmd.Parameters[outParameters[j]];
-                            if (parameter2 != null)
-                            {
-                                objArray[j + 1] = (parameter2.Value == DBNull.Value) ? null : parameter2.Value;
-                            }
-                        }
-                    }
-                    result = objArray;
-                }
-                return result;
-            }
-            catch (Exception exception)
-            {
-                handleException(exception, procName);
                 return null;
             }
+            if ((parametersName != null) && (parametersName.Length > 0))
+            {
+                for (int i = 0; i < parametersName.Length; i++)
+                {
+                    DbParameter parameter = cmd.Parameters[parametersName[i]];
+                    if (parameter != null)
+                    {
+                        if ((parameters[i] == null) || ((parameters[i] as string) == ""))
+                        {
+                            parameter.Value = DBNull.Value;
+                        }
+                        else
+                        {
+                            parameter.Value = parameters[i];
+                        }
+                    }
+                }
+            }
+            int num2 = cmd.ExecuteNonQuery();
+            object result = cmd.Parameters.Contains("ReturnValue")
+                ? cmd.Parameters["ReturnValue"].Value
+                : num2;
+
+            if ((outParameters != null) && (outParameters.Length > 0))
+            {
+                var objArray = new object[outParameters.Length + 1];
+                objArray[0] = result;
+                for (int j = 0; j < outParameters.Length; j++)
+                {
+                    if ((outParameters[j] != null) && (outParameters[j] != ""))
+                    {
+                        DbParameter parameter2 = cmd.Parameters[outParameters[j]];
+                        if (parameter2 != null)
+                        {
+                            objArray[j + 1] = (parameter2.Value == DBNull.Value) ? null : parameter2.Value;
+                        }
+                    }
+                }
+                result = objArray;
+            }
+            return result;
         }
 
         public static object ExecuteProcOnce(string procName)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(procName);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(procName);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(DbTransaction transaction, string procName)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(transaction, procName);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(transaction, procName);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(string procName, DbParameter[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(procName, parameters, null);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(procName, parameters, null);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(string procName, string[] outParameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(procName, outParameters);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(procName, outParameters);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(DbTransaction transaction, string procName, DbParameter[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(transaction, procName, parameters, null);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(transaction, procName, parameters, null);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(DbTransaction transaction, string procName, string[] outParameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(transaction, procName, outParameters);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(transaction, procName, outParameters);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static object ExecuteProcOnce(string procName, DbParameter[] parameters, string[] outParameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(procName, parameters, outParameters);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(procName, parameters, outParameters);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(string procName, string[] parametersName, object[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(procName, parametersName, parameters, null);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(procName, parametersName, parameters, null);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -547,27 +636,57 @@ namespace UC.Platform.Data
             string[] outParameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(transaction, procName, parameters, outParameters);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(transaction, procName, parameters, outParameters);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(DbTransaction transaction, string procName, string[] parametersName,
             object[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(transaction, procName, parametersName, parameters, null);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(transaction, procName, parametersName, parameters, null);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteProcOnce(string procName, string[] parametersName, object[] parameters,
             string[] outParameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(procName, parametersName, parameters, outParameters);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(procName, parametersName, parameters, outParameters);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -575,9 +694,19 @@ namespace UC.Platform.Data
             object[] parameters, string[] outParameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteProc(transaction, procName, parametersName, parameters, outParameters);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteProc(transaction, procName, parametersName, parameters, outParameters);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public DbDataReader ExecuteReader(string strSql)
@@ -588,18 +717,10 @@ namespace UC.Platform.Data
         public DbDataReader ExecuteReader(string strSql, CommandBehavior behavior)
         {
             DbCommand command = _factory.CreateCommand((DbConnection) null);
-            try
-            {
-                command.CommandType = CommandType.Text;
-                command.Parameters.Clear();
-                command.CommandText = strSql;
-                return command.ExecuteReader(behavior);
-            }
-            catch (Exception exception)
-            {
-                handleException(exception, strSql);
-                return null;
-            }
+            command.CommandType = CommandType.Text;
+            command.Parameters.Clear();
+            command.CommandText = strSql;
+            return command.ExecuteReader(behavior);
         }
 
         public object ExecuteScalar(string strSql)
@@ -620,46 +741,68 @@ namespace UC.Platform.Data
         public object ExecuteScalar(DbTransaction transaction, string strSql, DbParameter[] parameters)
         {
             DbCommand command = _factory.CreateCommand(transaction);
-            try
+            command.CommandType = CommandType.Text;
+            command.Parameters.Clear();
+            command.CommandText = strSql;
+            if (parameters != null)
             {
-                command.CommandType = CommandType.Text;
-                command.Parameters.Clear();
-                command.CommandText = strSql;
-                if (parameters != null)
-                {
-                    command.Parameters.AddRange(parameters);
-                }
-                return command.ExecuteScalar();
+                command.Parameters.AddRange(parameters);
             }
-            catch (Exception exception)
-            {
-                handleException(exception, strSql);
-                return null;
-            }
+            return command.ExecuteScalar();
         }
 
         public static object ExecuteScalarOnce(string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteScalar(strSql);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteScalar(strSql);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteScalarOnce(string strSql, DbParameter[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteScalar(strSql, parameters);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteScalar(strSql, parameters);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static object ExecuteScalarOnce(DbTransaction transaction, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            object obj2 = buffer.ExecuteScalar(transaction, strSql);
-            buffer.FreeBuffer();
-            return obj2;
+            try
+            {
+                object obj2 = buffer.ExecuteScalar(transaction, strSql);
+                return obj2;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -770,7 +913,6 @@ namespace UC.Platform.Data
 
         public int Fill(DbTransaction transaction, DataTable dataTable, string strSql, DbParameter[] parameters)
         {
-            int num2;
             if (dataTable == null)
             {
                 return -1;
@@ -780,34 +922,20 @@ namespace UC.Platform.Data
                 return FillNoName(transaction, dataTable, strSql);
             }
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, dataTable.TableName);
-            try
+            installAdapter(transaction, dataAdapter);
+            //strSql = GetReplaceSql(strSql);
+            dataAdapter.SelectCommand.Parameters.Clear();
+            dataAdapter.SelectCommand.CommandText = strSql;
+            if (parameters != null)
             {
-                installAdapter(transaction, dataAdapter);
-                //strSql = GetReplaceSql(strSql);
-                dataAdapter.SelectCommand.Parameters.Clear();
-                dataAdapter.SelectCommand.CommandText = strSql;
-                if (parameters != null)
+                foreach (DbParameter parameter in parameters)
                 {
-                    foreach (var parameter in parameters)
-                    {
-                        dataAdapter.SelectCommand.Parameters.Add(parameter);
-                    }
+                    dataAdapter.SelectCommand.Parameters.Add(parameter);
                 }
-                var result = dataAdapter.Fill(dataTable);
-                num2 = result;
             }
-            catch (Exception exception)
-            {
-                dataTable.Clear();
-
-                handleException(exception, strSql);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(dataAdapter);
-            }
-            return num2;
+            int result = dataAdapter.Fill(dataTable);
+            freeAdapter(dataAdapter);
+            return result;
         }
 
         public DataSet Fill(DbTransaction transaction, string strSql, string tableName)
@@ -891,36 +1019,22 @@ namespace UC.Platform.Data
 
         public bool FillDataSetSchema(DataSet ds, string[] tableNames)
         {
-            try
+            foreach (string text in tableNames)
             {
-                foreach (string text in tableNames)
+                DbDataAdapter dataAdapter = GetDataAdapter(text);
+                if (dataAdapter == null)
                 {
-                    DbDataAdapter dataAdapter = GetDataAdapter(text);
-                    try
-                    {
-                        if (dataAdapter == null)
-                        {
-                            return false;
-                        }
-                        DataTable[] tableArray = dataAdapter.FillSchema(ds, SchemaType.Source);
-                        if ((tableArray == null) || (tableArray.Length < 1))
-                        {
-                            return false;
-                        }
-                        tableArray[0].TableName = text;
-                    }
-                    finally
-                    {
-                        freeAdapter(dataAdapter);
-                    }
+                    return false;
                 }
-                return true;
+                DataTable[] tableArray = dataAdapter.FillSchema(ds, SchemaType.Source);
+                if ((tableArray == null) || (tableArray.Length < 1))
+                {
+                    return false;
+                }
+                tableArray[0].TableName = text;
+                freeAdapter(dataAdapter);
             }
-            catch (Exception exception)
-            {
-                handleException(exception);
-                return false;
-            }
+            return true;
         }
 
         public static bool FillDataSetSchemaOnce(DataSet ds, string tableName)
@@ -971,86 +1085,54 @@ namespace UC.Platform.Data
 
         public int FillNoName(DbTransaction transaction, DataSet dataSet, string strSql, DbParameter[] parameters)
         {
-            int num2;
-
             if (dataSet == null)
             {
                 return -1;
             }
-            DbDataAdapter adapter = null;
-            try
+            DbDataAdapter adapter = _factory.CreateDataAdapter();
+            adapter.SelectCommand.Connection = _factory.CreateConnection();
+            installAdapter(transaction, adapter);
+            //strSql = GetReplaceSql(strSql);
+            adapter.SelectCommand.Parameters.Clear();
+            adapter.SelectCommand.CommandText = strSql;
+            if (parameters != null)
             {
-                 adapter= _factory.CreateDataAdapter();
-                adapter.SelectCommand.Connection = _factory.CreateConnection();
-                installAdapter(transaction, adapter);
-                //strSql = GetReplaceSql(strSql);
-                adapter.SelectCommand.Parameters.Clear();
-                adapter.SelectCommand.CommandText = strSql;
-                if (parameters != null)
+                foreach (DbParameter parameter in parameters)
                 {
-                    foreach (DbParameter parameter in parameters)
-                    {
-                        adapter.SelectCommand.Parameters.Add(parameter);
-                    }
+                    adapter.SelectCommand.Parameters.Add(parameter);
                 }
-                int result = adapter.Fill(dataSet);
-                num2 = result;
             }
-            catch (Exception exception)
-            {
-                dataSet.Clear();
-                handleException(exception, strSql);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(adapter);
-            }
-            return num2;
+            int result = adapter.Fill(dataSet);
+            freeAdapter(adapter);
+            return result;
         }
 
 
         public int FillNoName(DbTransaction transaction, DataTable dataTable, string strSql, DbParameter[] parameters)
         {
-            
-            int num2;
             if (dataTable == null)
             {
                 return -1;
             }
-            DbDataAdapter adapter=null;
-            try
-            {
-                adapter=_factory.CreateDataAdapter();
-                adapter.SelectCommand.CommandText = strSql;
-                adapter.SelectCommand.CommandType= CommandType.Text;
+            DbDataAdapter adapter = _factory.CreateDataAdapter();
+            adapter.SelectCommand.CommandText = strSql;
+            adapter.SelectCommand.CommandType = CommandType.Text;
 
-                installAdapter(transaction, adapter);
-                //strSql = GetReplaceSql(strSql);
-                adapter.SelectCommand.Parameters.Clear();
-                adapter.SelectCommand.CommandText = strSql;
-                if (parameters != null)
+            installAdapter(transaction, adapter);
+            //strSql = GetReplaceSql(strSql);
+            adapter.SelectCommand.Parameters.Clear();
+            adapter.SelectCommand.CommandText = strSql;
+            if (parameters != null)
+            {
+                foreach (DbParameter parameter in parameters)
                 {
-                    foreach (DbParameter parameter in parameters)
-                    {
-                        adapter.SelectCommand.Parameters.Add(parameter);
-                    }
+                    adapter.SelectCommand.Parameters.Add(parameter);
                 }
+            }
 
-                int result = adapter.Fill(dataTable);
-                num2 = result;
-            }
-            catch (Exception exception)
-            {
-                dataTable.Clear();
-                handleException(exception, strSql);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(adapter);
-            }
-            return num2;
+            int result = adapter.Fill(dataTable);
+            freeAdapter(adapter);
+            return result;
         }
 
         public int FillNoName(DbTransaction transaction, DataTable dataTable, string strSql)
@@ -1060,7 +1142,6 @@ namespace UC.Platform.Data
 
         public int FillNoName(DbTransaction transaction, DataSet dataSet, string tableName, string strSql)
         {
-            int num2;
             if (dataSet == null)
             {
                 return -1;
@@ -1069,179 +1150,341 @@ namespace UC.Platform.Data
             {
                 return FillNoName(transaction, dataSet, strSql);
             }
-            DataTable dataTable = null;
-            DbDataAdapter adapter = null;
-            try
-            {
-                adapter = GetDataAdapter(transaction, tableName);
-                installAdapter(transaction, adapter);
-                dataTable = dataSet.Tables[tableName] ?? dataSet.Tables.Add(tableName);
-                //strSql = GetReplaceSql(strSql);
-                adapter.SelectCommand.CommandText = strSql;
-                int result = adapter.Fill(dataTable);
-                num2 = result;
-            }
-            catch (Exception exception)
-            {
-                if (dataTable != null)
-                {
-                    dataTable.Clear();
-                }
-                handleException(exception, "表名：" + tableName + "\r\n" + strSql);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(adapter);
-            }
-            return num2;
+            DbDataAdapter adapter = GetDataAdapter(transaction, tableName);
+            installAdapter(transaction, adapter);
+            DataTable dataTable = dataSet.Tables[tableName] ?? dataSet.Tables.Add(tableName);
+            //strSql = GetReplaceSql(strSql);
+            adapter.SelectCommand.CommandText = strSql;
+            int result = adapter.Fill(dataTable);
+            freeAdapter(adapter);
+            return result;
         }
 
         public static int FillNoNameOnce(DataSet dataSet, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.FillNoName(dataSet, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.FillNoName(dataSet, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static int FillNoNameOnce(DbTransaction transaction, DataSet dataSet, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.FillNoName(transaction, dataSet, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.FillNoName(transaction, dataSet, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static DataSet FillOnce(string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            DataSet set = buffer.Fill(strSql);
-            buffer.FreeBuffer();
-            return set;
+            try
+            {
+                DataSet set = buffer.Fill(strSql);
+                return set;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DataSet dataSet, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(dataSet, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(dataSet, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DataSet dataSet, string strSql, DbParameter[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(dataSet, strSql, parameters);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(dataSet, strSql, parameters);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DataTable dataTable, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(dataTable, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(dataTable, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DataTable dataTable, string strSql, DbParameter[] parameters)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(dataTable, strSql, parameters);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(dataTable, strSql, parameters);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static DataSet FillOnce(DbTransaction transaction, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            DataSet set = buffer.Fill(transaction, strSql);
-            buffer.FreeBuffer();
-            return set;
+            try
+            {
+                DataSet set = buffer.Fill(transaction, strSql);
+                return set;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static DataSet FillOnce(string strSql, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            DataSet set = buffer.Fill(strSql, tableName);
-            buffer.FreeBuffer();
-            return set;
+            try
+            {
+                DataSet set = buffer.Fill(strSql, tableName);
+                return set;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DataSet dataSet, int tableIndex, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(dataSet, tableIndex, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(dataSet, tableIndex, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DataSet dataSet, string tableName, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(dataSet, tableName, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(dataSet, tableName, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DbTransaction transaction, DataSet dataSet, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(transaction, dataSet, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(transaction, dataSet, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally 
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DbTransaction transaction, DataTable dataTable, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(transaction, dataTable, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(transaction, dataTable, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static DataSet FillOnce(DbTransaction transaction, string strSql, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            DataSet set = buffer.Fill(transaction, strSql, tableName);
-            buffer.FreeBuffer();
-            return set;
+            try
+            {
+                DataSet set = buffer.Fill(transaction, strSql, tableName);
+                return set;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static DataSet FillOnce(string strSql, string tableName, string strNamespace)
         {
             DBHandlerEx buffer = GetBuffer();
-            DataSet set = buffer.Fill(strSql, tableName, strNamespace);
-            buffer.FreeBuffer();
-            return set;
+            try
+            {
+                DataSet set = buffer.Fill(strSql, tableName, strNamespace);
+                return set;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static int FillOnce(DbTransaction transaction, DataSet dataSet, int tableIndex, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(transaction, dataSet, tableIndex, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(transaction, dataSet, tableIndex, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int FillOnce(DbTransaction transaction, DataSet dataSet, string tableName, string strSql)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Fill(transaction, dataSet, tableName, strSql);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Fill(transaction, dataSet, tableName, strSql);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static DataSet FillOnce(DbTransaction transaction, string strSql, string tableName, string strNamespace)
         {
             DBHandlerEx buffer = GetBuffer();
-            DataSet set = buffer.Fill(transaction, strSql, tableName, strNamespace);
-            buffer.FreeBuffer();
-            return set;
+            try
+            {
+                DataSet set = buffer.Fill(transaction, strSql, tableName, strNamespace);
+                return set;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -1311,41 +1554,39 @@ namespace UC.Platform.Data
 
         public DataSet GetDataSet(string tableName)
         {
-            DataSet set3;
             DbDataAdapter dataAdapter = GetDataAdapter(tableName);
             if (dataAdapter == null)
             {
                 return null;
             }
-            try
+            var dataSet = new DataSet("DataSet_" + tableName.ToUpper());
+            DataTable[] tableArray = dataAdapter.FillSchema(dataSet, SchemaType.Source);
+            if ((tableArray == null) || (tableArray.Length < 1))
             {
-                var dataSet = new DataSet("DataSet_" + tableName.ToUpper());
-                DataTable[] tableArray = dataAdapter.FillSchema(dataSet, SchemaType.Source);
-                if ((tableArray == null) || (tableArray.Length < 1))
-                {
-                    return null;
-                }
-                tableArray[0].TableName = tableName;
-                set3 = dataSet.Clone();
+                return null;
             }
-            catch (Exception exception)
-            {
-                handleException(exception);
-                set3 = null;
-            }
-            finally
-            {
-                freeAdapter(dataAdapter);
-            }
+            tableArray[0].TableName = tableName;
+            DataSet set3 = dataSet.Clone();
+            freeAdapter(dataAdapter);
             return set3;
         }
 
         public static DataSet GetDataSetOnce(string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            DataSet dataSet = buffer.GetDataSet(tableName);
-            buffer.FreeBuffer();
-            return dataSet;
+            try
+            {
+                DataSet dataSet = buffer.GetDataSet(tableName);
+                return dataSet;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -1560,7 +1801,7 @@ namespace UC.Platform.Data
                 _factory = new DatabaseFactory(providerName, connectionString);
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 string estr = e.ToString();
                 Console.WriteLine(estr);
@@ -1618,7 +1859,6 @@ namespace UC.Platform.Data
 
         public int Update(DbTransaction transaction, DataRow[] dataRows)
         {
-            int num2;
             if (dataRows == null)
             {
                 return -3;
@@ -1633,22 +1873,10 @@ namespace UC.Platform.Data
             }
             string tableName = dataRows[0].Table.TableName;
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, tableName);
-            try
-            {
-                installAdapter(transaction, dataAdapter);
-                int result = dataAdapter.Update(dataRows);
-                num2 = result;
-            }
-            catch (Exception exception)
-            {
-                handleException(exception);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(dataAdapter);
-            }
-            return num2;
+            installAdapter(transaction, dataAdapter);
+            int result = dataAdapter.Update(dataRows);
+            freeAdapter(dataAdapter);
+            return result;
         }
 
         public int Update(DbTransaction transaction, DataSet dataSet)
@@ -1662,29 +1890,16 @@ namespace UC.Platform.Data
 
         public int Update(DbTransaction transaction, DataTable dataTable)
         {
-            int num2;
             //TODO: DataSet为啥不能为空
             if ((dataTable == null)) // || (dataTable.DataSet == null))
             {
                 return -2;
             }
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, dataTable.TableName);
-            try
-            {
-                installAdapter(transaction, dataAdapter);
-                int result = dataAdapter.Update(dataTable);
-                num2 = result;
-            }
-            catch (Exception exception)
-            {
-                handleException(exception);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(dataAdapter);
-            }
-            return num2;
+            installAdapter(transaction, dataAdapter);
+            int result = dataAdapter.Update(dataTable);
+            freeAdapter(dataAdapter);
+            return result;
         }
 
         public int Update(DbTransaction transaction, DataSet dataSet, int tableIndex)
@@ -1708,100 +1923,220 @@ namespace UC.Platform.Data
         public static int UpdateOnce(DataRow dataRow)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(dataRow);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(dataRow);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DataSet dataSet)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(dataSet, 0);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(dataSet, 0);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DataTable dataTable)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(dataTable);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(dataTable);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DataRow[] dataRows)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(dataRows);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(dataRows);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static int UpdateOnce(DataSet dataSet, int tableIndex)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(dataSet, tableIndex);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(dataSet, tableIndex);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DataSet dataSet, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(dataSet, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(dataSet, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static int UpdateOnce(DbTransaction transaction, DataRow dataRow)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(transaction, dataRow);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(transaction, dataRow);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DbTransaction transaction, DataSet dataSet)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(transaction, dataSet, 0);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(transaction, dataSet, 0);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DbTransaction transaction, DataRow[] dataRows)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(transaction, dataRows);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(transaction, dataRows);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DbTransaction transaction, DataTable dataTable)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(transaction, dataTable);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(transaction, dataTable);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static int UpdateOnce(DbTransaction transaction, DataSet dataSet, int tableIndex)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(transaction, dataSet, tableIndex);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(transaction, dataSet, tableIndex);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateOnce(DbTransaction transaction, DataSet dataSet, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.Update(transaction, dataSet, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.Update(transaction, dataSet, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -1851,7 +2186,6 @@ namespace UC.Platform.Data
 
         public int UpdateToTable(DbTransaction transaction, DataRow[] dataRows, string tableName)
         {
-            int num2;
             if (dataRows.Length < 1)
             {
                 return 0;
@@ -1861,22 +2195,10 @@ namespace UC.Platform.Data
             {
                 return -1;
             }
-            try
-            {
-                installAdapter(transaction, dataAdapter);
-                int result = dataAdapter.Update(dataRows);
-                num2 = result;
-            }
-            catch (Exception exception)
-            {
-                handleException(exception);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(dataAdapter);
-            }
-            return num2;
+            installAdapter(transaction, dataAdapter);
+            int result = dataAdapter.Update(dataRows);
+            freeAdapter(dataAdapter);
+            return result;
         }
 
         public int UpdateToTable(DbTransaction transaction, DataSet dataSet, string tableName)
@@ -1886,28 +2208,15 @@ namespace UC.Platform.Data
 
         public int UpdateToTable(DbTransaction transaction, DataTable dataTable, string tableName)
         {
-            int num2;
             if (dataTable == null)
             {
                 return -1;
             }
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, tableName);
-            try
-            {
-                installAdapter(transaction, dataAdapter);
-                int result = dataAdapter.Update(dataTable);
-                num2 = result;
-            }
-            catch (Exception exception)
-            {
-                handleException(exception);
-                num2 = -1;
-            }
-            finally
-            {
-                freeAdapter(dataAdapter);
-            }
-            return num2;
+            installAdapter(transaction, dataAdapter);
+            int result = dataAdapter.Update(dataTable);
+            freeAdapter(dataAdapter);
+            return result;
         }
 
         public int UpdateToTable(DbTransaction transaction, DataSet dataSet, int tableIndex, string tableName)
@@ -1932,83 +2241,183 @@ namespace UC.Platform.Data
         public static int UpdateToTableOnce(DataRow dataRow, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(dataRow, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(dataRow, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateToTableOnce(DataSet dataSet, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(dataSet, 0, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(dataSet, 0, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateToTableOnce(DataRow[] dataRows, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(dataRows, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(dataRows, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateToTableOnce(DataTable dataTable, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(dataTable, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(dataTable, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static int UpdateToTableOnce(DataSet dataSet, int tableIndex, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(dataSet, tableIndex, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(dataSet, tableIndex, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateToTableOnce(DataSet dataSet, string orgTableName, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(dataSet, orgTableName, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(dataSet, orgTableName, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
         public static int UpdateToTableOnce(DbTransaction transaction, DataRow dataRow, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(transaction, dataRow, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(transaction, dataRow, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateToTableOnce(DbTransaction transaction, DataSet dataSet, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(transaction, dataSet, 0, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(transaction, dataSet, 0, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateToTableOnce(DbTransaction transaction, DataRow[] dataRows, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(transaction, dataRows, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(transaction, dataRows, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
         public static int UpdateToTableOnce(DbTransaction transaction, DataTable dataTable, string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(transaction, dataTable, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(transaction, dataTable, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -2016,9 +2425,19 @@ namespace UC.Platform.Data
             string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(transaction, dataSet, tableIndex, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(transaction, dataSet, tableIndex, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 
@@ -2026,9 +2445,19 @@ namespace UC.Platform.Data
             string tableName)
         {
             DBHandlerEx buffer = GetBuffer();
-            int num = buffer.UpdateToTable(transaction, dataSet, orgTableName, tableName);
-            buffer.FreeBuffer();
-            return num;
+            try
+            {
+                int num = buffer.UpdateToTable(transaction, dataSet, orgTableName, tableName);
+                return num;
+            }
+            catch
+            {
+                return -1;
+            }
+            finally
+            {
+                buffer.FreeBuffer();
+            }
         }
 
 

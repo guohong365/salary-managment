@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
@@ -85,6 +84,12 @@ namespace SalarySystem.Schedule
                         dataTable.Rows.Cast<DataRow>()
                             .ToList()
                             .Find(item => (Convert.ToInt32(item[COL_MONTH]) == month))[COL_TARGET]);
+            }
+
+            public static void SetMonthScheduleState(DataTable annualAssignment, int month, int state)
+            {
+                annualAssignment.Rows.Cast<DataRow>().ToList().Find(item => (Convert.ToInt32(item[COL_MONTH]) == month))
+                    [COL_STATE] = state;
             }
         }
 
@@ -207,6 +212,37 @@ namespace SalarySystem.Schedule
                 treeList.BeginUpdate();
                 AssignNode(treeList.Nodes, total, month);
                 treeList.EndUpdate();
+            }
+
+            public static void GenerateMonthAssignmentByEmployeeTee(TreeList treeList, decimal total)
+            {
+                treeList.BeginUpdate();
+                assignNodeByEmployeeTree(treeList.Nodes, total);
+                treeList.EndUpdate();
+            }
+
+            private static void assignNodeByEmployeeTree(TreeListNodes nodes, decimal total)
+            {
+                Dictionary<string, List<TreeListNode>> samePosition=new Dictionary<string, List<TreeListNode>>();
+                foreach (TreeListNode node in nodes)
+                {
+                    string positionId = node.GetValue("POSITION_ID").ToString();
+                    if (!samePosition.ContainsKey(positionId))
+                    {
+                        samePosition.Add(positionId, new List<TreeListNode>());
+                    }
+                    samePosition[positionId].Add(node) ;
+                }
+                foreach (KeyValuePair<string, List<TreeListNode>> pair in samePosition)
+                {
+                    int employeeCount= pair.Value.Count;
+                    decimal target = Math.Floor(total * Convert.ToDecimal(pair.Value[0].GetValue("POSITION_WEIGHT"))*100+ (decimal) 0.5)/10000/employeeCount;
+                    foreach (TreeListNode employeeNode in pair.Value)
+                    {
+                        employeeNode.SetValue(COL_TARGET, target);
+                        assignNodeByEmployeeTree(employeeNode.Nodes, target);
+                    }
+                }
             }
         }
     }

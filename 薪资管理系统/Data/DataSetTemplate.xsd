@@ -6,66 +6,7 @@
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="salaryConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="salaryConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SalarySystem.Properties.Settings.GlobalReference.Default.salaryConnectionString1" Provider="MySql.Data.MySqlClient" />
         </Connections>
-        <Tables>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_template_auto_employee_assignmentTableAdapter" GeneratorDataComponentClassName="v_template_auto_employee_assignmentTableAdapter" Name="v_template_auto_employee_assignment" UserDataComponentName="v_template_auto_employee_assignmentTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.v_template_auto_employee_assignment" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT `EMPLOYEE_ID`, `EMPLOYEE_NAME`, `ASSIGNMENT_ID`, `POSITION_ID`, `POSITION_NAME`, `NAME`, `VERSION_ID`, `UNIT_NAME`, `PERF_ID`, `TARGET`, `ASSIGNMENT_YEAR`, `ASSIGNMENT_MONTH`, `PERF_DESC` FROM `salary`.`v_template_auto_employee_assignment`</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="EMPLOYEE_ID" DataSetColumn="EMPLOYEE_ID" />
-              <Mapping SourceColumn="EMPLOYEE_NAME" DataSetColumn="EMPLOYEE_NAME" />
-              <Mapping SourceColumn="ASSIGNMENT_ID" DataSetColumn="ASSIGNMENT_ID" />
-              <Mapping SourceColumn="POSITION_ID" DataSetColumn="POSITION_ID" />
-              <Mapping SourceColumn="POSITION_NAME" DataSetColumn="POSITION_NAME" />
-              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
-              <Mapping SourceColumn="VERSION_ID" DataSetColumn="VERSION_ID" />
-              <Mapping SourceColumn="UNIT_NAME" DataSetColumn="UNIT_NAME" />
-              <Mapping SourceColumn="PERF_ID" DataSetColumn="PERF_ID" />
-              <Mapping SourceColumn="TARGET" DataSetColumn="TARGET" />
-              <Mapping SourceColumn="ASSIGNMENT_YEAR" DataSetColumn="ASSIGNMENT_YEAR" />
-              <Mapping SourceColumn="ASSIGNMENT_MONTH" DataSetColumn="ASSIGNMENT_MONTH" />
-              <Mapping SourceColumn="PERF_DESC" DataSetColumn="PERF_DESC" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_template_position_tree_auto_assignmentTableAdapter" GeneratorDataComponentClassName="v_template_position_tree_auto_assignmentTableAdapter" Name="v_template_position_tree_auto_assignment" UserDataComponentName="v_template_position_tree_auto_assignmentTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="salaryConnectionString1 (Settings)" DbObjectName="salary.v_template_position_tree_auto_assignment" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT `ID`, `LEADER_ID`, `NAME`, `DEFINE_ID`, `DEFINE_NAME`, `VERSION_ID`, `WEIGHT`, `EMPLOYEE_ID`, `EMPLOYEE_NAME`, `PERF_ID`, `TARGET`, `COMPLETED`, `ASSIGNMENT_YEAR`, `ASSIGNMENT_MONTH`, `UNIT_NAME` FROM `salary`.`v_template_position_tree_auto_assignment`</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
-              <Mapping SourceColumn="LEADER_ID" DataSetColumn="LEADER_ID" />
-              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
-              <Mapping SourceColumn="DEFINE_ID" DataSetColumn="DEFINE_ID" />
-              <Mapping SourceColumn="DEFINE_NAME" DataSetColumn="DEFINE_NAME" />
-              <Mapping SourceColumn="VERSION_ID" DataSetColumn="VERSION_ID" />
-              <Mapping SourceColumn="WEIGHT" DataSetColumn="WEIGHT" />
-              <Mapping SourceColumn="EMPLOYEE_ID" DataSetColumn="EMPLOYEE_ID" />
-              <Mapping SourceColumn="EMPLOYEE_NAME" DataSetColumn="EMPLOYEE_NAME" />
-              <Mapping SourceColumn="PERF_ID" DataSetColumn="PERF_ID" />
-              <Mapping SourceColumn="TARGET" DataSetColumn="TARGET" />
-              <Mapping SourceColumn="COMPLETED" DataSetColumn="COMPLETED" />
-              <Mapping SourceColumn="ASSIGNMENT_YEAR" DataSetColumn="ASSIGNMENT_YEAR" />
-              <Mapping SourceColumn="ASSIGNMENT_MONTH" DataSetColumn="ASSIGNMENT_MONTH" />
-              <Mapping SourceColumn="UNIT_NAME" DataSetColumn="UNIT_NAME" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-        </Tables>
+        <Tables />
         <Sources />
       </DataSource>
     </xs:appinfo>
@@ -73,7 +14,7 @@
   <xs:element name="DataSetTemplate" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetTemplate" msprop:Generator_UserDSName="DataSetTemplate">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="v_template_auto_employee_assignment" msprop:Generator_TableClassName="v_template_auto_employee_assignmentDataTable" msprop:Generator_TableVarName="tablev_template_auto_employee_assignment" msprop:Generator_TablePropName="v_template_auto_employee_assignment" msprop:Generator_RowDeletingName="v_template_auto_employee_assignmentRowDeleting" msprop:Generator_RowChangingName="v_template_auto_employee_assignmentRowChanging" msprop:Generator_RowEvHandlerName="v_template_auto_employee_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="v_template_auto_employee_assignmentRowDeleted" msprop:Generator_UserTableName="v_template_auto_employee_assignment" msprop:Generator_RowChangedName="v_template_auto_employee_assignmentRowChanged" msprop:Generator_RowEvArgName="v_template_auto_employee_assignmentRowChangeEvent" msprop:Generator_RowClassName="v_template_auto_employee_assignmentRow">
+        <xs:element name="v_template_auto_employee_assignment" msprop:Generator_TableClassName="v_template_auto_employee_assignmentDataTable" msprop:Generator_TableVarName="tablev_template_auto_employee_assignment" msprop:Generator_RowChangedName="v_template_auto_employee_assignmentRowChanged" msprop:Generator_TablePropName="v_template_auto_employee_assignment" msprop:Generator_RowDeletingName="v_template_auto_employee_assignmentRowDeleting" msprop:Generator_RowChangingName="v_template_auto_employee_assignmentRowChanging" msprop:Generator_RowEvHandlerName="v_template_auto_employee_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="v_template_auto_employee_assignmentRowDeleted" msprop:Generator_RowClassName="v_template_auto_employee_assignmentRow" msprop:Generator_UserTableName="v_template_auto_employee_assignment" msprop:Generator_RowEvArgName="v_template_auto_employee_assignmentRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EMPLOYEE_ID" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_ID" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_ID" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_IDColumn" msprop:Generator_UserColumnName="EMPLOYEE_ID">
@@ -152,7 +93,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="v_template_position_tree_auto_assignment" msprop:Generator_TableClassName="v_template_position_tree_auto_assignmentDataTable" msprop:Generator_TableVarName="tablev_template_position_tree_auto_assignment" msprop:Generator_TablePropName="v_template_position_tree_auto_assignment" msprop:Generator_RowDeletingName="v_template_position_tree_auto_assignmentRowDeleting" msprop:Generator_RowChangingName="v_template_position_tree_auto_assignmentRowChanging" msprop:Generator_RowEvHandlerName="v_template_position_tree_auto_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="v_template_position_tree_auto_assignmentRowDeleted" msprop:Generator_UserTableName="v_template_position_tree_auto_assignment" msprop:Generator_RowChangedName="v_template_position_tree_auto_assignmentRowChanged" msprop:Generator_RowEvArgName="v_template_position_tree_auto_assignmentRowChangeEvent" msprop:Generator_RowClassName="v_template_position_tree_auto_assignmentRow">
+        <xs:element name="v_template_position_tree_auto_assignment" msprop:Generator_TableClassName="v_template_position_tree_auto_assignmentDataTable" msprop:Generator_TableVarName="tablev_template_position_tree_auto_assignment" msprop:Generator_RowChangedName="v_template_position_tree_auto_assignmentRowChanged" msprop:Generator_TablePropName="v_template_position_tree_auto_assignment" msprop:Generator_RowDeletingName="v_template_position_tree_auto_assignmentRowDeleting" msprop:Generator_RowChangingName="v_template_position_tree_auto_assignmentRowChanging" msprop:Generator_RowEvHandlerName="v_template_position_tree_auto_assignmentRowChangeEventHandler" msprop:Generator_RowDeletedName="v_template_position_tree_auto_assignmentRowDeleted" msprop:Generator_RowClassName="v_template_position_tree_auto_assignmentRow" msprop:Generator_UserTableName="v_template_position_tree_auto_assignment" msprop:Generator_RowEvArgName="v_template_position_tree_auto_assignmentRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
@@ -233,6 +174,113 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="v_employee_salary_detail" msprop:Generator_TableClassName="v_employee_salary_detailDataTable" msprop:Generator_TableVarName="tablev_employee_salary_detail" msprop:Generator_TablePropName="v_employee_salary_detail" msprop:Generator_RowDeletingName="v_employee_salary_detailRowDeleting" msprop:Generator_RowChangingName="v_employee_salary_detailRowChanging" msprop:Generator_RowEvHandlerName="v_employee_salary_detailRowChangeEventHandler" msprop:Generator_RowDeletedName="v_employee_salary_detailRowDeleted" msprop:Generator_UserTableName="v_employee_salary_detail" msprop:Generator_RowChangedName="v_employee_salary_detailRowChanged" msprop:Generator_RowEvArgName="v_employee_salary_detailRowChangeEvent" msprop:Generator_RowClassName="v_employee_salary_detailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POSITION_ID" msprop:Generator_ColumnVarNameInTable="columnPOSITION_ID" msprop:Generator_ColumnPropNameInRow="POSITION_ID" msprop:Generator_ColumnPropNameInTable="POSITION_IDColumn" msprop:Generator_UserColumnName="POSITION_ID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALARY_ITEM_ID" msprop:Generator_ColumnVarNameInTable="columnSALARY_ITEM_ID" msprop:Generator_ColumnPropNameInRow="SALARY_ITEM_ID" msprop:Generator_ColumnPropNameInTable="SALARY_ITEM_IDColumn" msprop:Generator_UserColumnName="SALARY_ITEM_ID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VERSION_ID" msprop:Generator_ColumnVarNameInTable="columnVERSION_ID" msprop:Generator_ColumnPropNameInRow="VERSION_ID" msprop:Generator_ColumnPropNameInTable="VERSION_IDColumn" msprop:Generator_UserColumnName="VERSION_ID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALARY_ITEM_NAME" msprop:Generator_ColumnVarNameInTable="columnSALARY_ITEM_NAME" msprop:Generator_ColumnPropNameInRow="SALARY_ITEM_NAME" msprop:Generator_ColumnPropNameInTable="SALARY_ITEM_NAMEColumn" msprop:Generator_UserColumnName="SALARY_ITEM_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALARY_ITEM_TYPE" msprop:Generator_ColumnVarNameInTable="columnSALARY_ITEM_TYPE" msprop:Generator_ColumnPropNameInRow="SALARY_ITEM_TYPE" msprop:Generator_ColumnPropNameInTable="SALARY_ITEM_TYPEColumn" msprop:Generator_UserColumnName="SALARY_ITEM_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALARY_ITEM_DESC" msprop:Generator_ColumnVarNameInTable="columnSALARY_ITEM_DESC" msprop:Generator_ColumnPropNameInRow="SALARY_ITEM_DESC" msprop:Generator_ColumnPropNameInTable="SALARY_ITEM_DESCColumn" msprop:Generator_UserColumnName="SALARY_ITEM_DESC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VALUE" msprop:Generator_ColumnVarNameInTable="columnVALUE" msprop:Generator_ColumnPropNameInRow="VALUE" msprop:Generator_ColumnPropNameInTable="VALUEColumn" msprop:Generator_UserColumnName="VALUE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATA_SOURCE_TYPE" msprop:Generator_ColumnVarNameInTable="columnDATA_SOURCE_TYPE" msprop:Generator_ColumnPropNameInRow="DATA_SOURCE_TYPE" msprop:Generator_ColumnPropNameInTable="DATA_SOURCE_TYPEColumn" msprop:Generator_UserColumnName="DATA_SOURCE_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALARY_DETAIL_ID" msprop:Generator_ColumnVarNameInTable="columnSALARY_DETAIL_ID" msprop:Generator_ColumnPropNameInRow="SALARY_DETAIL_ID" msprop:Generator_ColumnPropNameInTable="SALARY_DETAIL_IDColumn" msprop:Generator_UserColumnName="SALARY_DETAIL_ID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALARY_YEAR" msprop:Generator_ColumnVarNameInTable="columnSALARY_YEAR" msprop:Generator_ColumnPropNameInRow="SALARY_YEAR" msprop:Generator_ColumnPropNameInTable="SALARY_YEARColumn" msprop:Generator_UserColumnName="SALARY_YEAR" type="xs:int" minOccurs="0" />
+              <xs:element name="SALARY_MONTH" msprop:Generator_ColumnVarNameInTable="columnSALARY_MONTH" msprop:Generator_ColumnPropNameInRow="SALARY_MONTH" msprop:Generator_ColumnPropNameInTable="SALARY_MONTHColumn" msprop:Generator_UserColumnName="SALARY_MONTH" type="xs:int" minOccurs="0" />
+              <xs:element name="AMOUNT" msprop:Generator_ColumnVarNameInTable="columnAMOUNT" msprop:Generator_ColumnPropNameInRow="AMOUNT" msprop:Generator_ColumnPropNameInTable="AMOUNTColumn" msprop:Generator_UserColumnName="AMOUNT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="POSITION_NAME" msprop:Generator_ColumnVarNameInTable="columnPOSITION_NAME" msprop:Generator_ColumnPropNameInRow="POSITION_NAME" msprop:Generator_ColumnPropNameInTable="POSITION_NAMEColumn" msprop:Generator_UserColumnName="POSITION_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALARY_ITEM_TYPE_NAME" msprop:Generator_ColumnVarNameInTable="columnSALARY_ITEM_TYPE_NAME" msprop:Generator_ColumnPropNameInRow="SALARY_ITEM_TYPE_NAME" msprop:Generator_ColumnPropNameInTable="SALARY_ITEM_TYPE_NAMEColumn" msprop:Generator_UserColumnName="SALARY_ITEM_TYPE_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATA_SOURCE_TYPE_NAME" msprop:Generator_ColumnVarNameInTable="columnDATA_SOURCE_TYPE_NAME" msprop:Generator_ColumnPropNameInRow="DATA_SOURCE_TYPE_NAME" msprop:Generator_ColumnPropNameInTable="DATA_SOURCE_TYPE_NAMEColumn" msprop:Generator_UserColumnName="DATA_SOURCE_TYPE_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1">
@@ -248,6 +296,12 @@
       <xs:field xpath="mstns:EMPLOYEE_ID" />
       <xs:field xpath="mstns:PERF_ID" />
       <xs:field xpath="mstns:UNIT_NAME" />
+    </xs:unique>
+    <xs:unique name="v_employee_salary_detail_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:v_employee_salary_detail" />
+      <xs:field xpath="mstns:ID" />
+      <xs:field xpath="mstns:SALARY_ITEM_ID" />
+      <xs:field xpath="mstns:SALARY_DETAIL_ID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

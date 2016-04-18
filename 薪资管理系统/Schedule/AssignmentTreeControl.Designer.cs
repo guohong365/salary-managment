@@ -43,7 +43,6 @@
             this.vpositiontreeautoassignmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
-            this.v_position_tree_auto_assignmentTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.v_position_tree_auto_assignmentTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vpositiontreeautoassignmentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
@@ -169,7 +168,6 @@
             // 
             // v_position_tree_auto_assignmentTableAdapter
             // 
-            this.v_position_tree_auto_assignmentTableAdapter.ClearBeforeFill = true;
             // 
             // AssignmentTreeControl
             // 
@@ -199,7 +197,6 @@
         private System.Windows.Forms.BindingSource vpositiontreeautoassignmentBindingSource;
         private Data.DataSetSalary dataSetSalary;
         private DevExpress.Utils.ImageCollection imageCollection1;
-        private Data.DataSetSalaryTableAdapters.v_position_tree_auto_assignmentTableAdapter v_position_tree_auto_assignmentTableAdapter;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列ICON;
     }
 }

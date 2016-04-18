@@ -28,77 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlEvaluationType = new DevExpress.XtraGrid.GridControl();
             this.gridViewEvaluationType = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEvaluationType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.SuspendLayout();
             // 
-            // colENABLED
-            // 
-            this.colENABLED.AppearanceHeader.Options.UseTextOptions = true;
-            this.colENABLED.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colENABLED.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
-            this.colENABLED.Caption = "有效";
-            this.colENABLED.FieldName = "ENABLED";
-            this.colENABLED.MaxWidth = 35;
-            this.colENABLED.MinWidth = 35;
-            this.colENABLED.Name = "colENABLED";
-            this.colENABLED.Visible = true;
-            this.colENABLED.VisibleIndex = 0;
-            this.colENABLED.Width = 35;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButton1.Location = new System.Drawing.Point(358, 9);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "保存";
-            this.simpleButton1.Click += new System.EventHandler(this.save_Click);
-            // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButton2);
-            this.panelControl1.Controls.Add(this.simpleButton1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 371);
-            this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(519, 40);
-            this.panelControl1.TabIndex = 1;
             // 
-            // simpleButton2
+            // simpleButtonRevert
             // 
-            this.simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButton2.Location = new System.Drawing.Point(439, 9);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 1;
-            this.simpleButton2.Text = "放弃";
-            this.simpleButton2.Click += new System.EventHandler(this.abandon_Click);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(439, 9);
+            // 
+            // simpleButtonSave
+            // 
+            this.simpleButtonSave.Location = new System.Drawing.Point(358, 9);
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.gridControlEvaluationType);
+            this.panelControl2.Size = new System.Drawing.Size(519, 371);
             // 
             // gridControlEvaluationType
             // 
+            this.gridControlEvaluationType.AccessibleDescription = "";
             this.gridControlEvaluationType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlEvaluationType.Location = new System.Drawing.Point(0, 0);
+            this.gridControlEvaluationType.Location = new System.Drawing.Point(2, 2);
             this.gridControlEvaluationType.MainView = this.gridViewEvaluationType;
             this.gridControlEvaluationType.Name = "gridControlEvaluationType";
             this.gridControlEvaluationType.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1});
-            this.gridControlEvaluationType.Size = new System.Drawing.Size(519, 371);
-            this.gridControlEvaluationType.TabIndex = 0;
+            this.gridControlEvaluationType.Size = new System.Drawing.Size(515, 367);
+            this.gridControlEvaluationType.TabIndex = 1;
             this.gridControlEvaluationType.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewEvaluationType});
             // 
@@ -225,7 +199,20 @@
             this.gridViewEvaluationType.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gridViewEvaluationType.OptionsView.ShowViewCaption = true;
             this.gridViewEvaluationType.ViewCaption = "考核项目类型定义";
-            this.gridViewEvaluationType.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.initNewRow);
+            // 
+            // colENABLED
+            // 
+            this.colENABLED.AppearanceHeader.Options.UseTextOptions = true;
+            this.colENABLED.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colENABLED.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
+            this.colENABLED.Caption = "有效";
+            this.colENABLED.FieldName = "ENABLED";
+            this.colENABLED.MaxWidth = 35;
+            this.colENABLED.MinWidth = 35;
+            this.colENABLED.Name = "colENABLED";
+            this.colENABLED.Visible = true;
+            this.colENABLED.VisibleIndex = 0;
+            this.colENABLED.Width = 35;
             // 
             // colID
             // 
@@ -263,13 +250,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridControlEvaluationType);
-            this.Controls.Add(this.panelControl1);
             this.Name = "EvaluationItemTypeControl";
             this.Size = new System.Drawing.Size(519, 411);
-            this.VisibleChanged += new System.EventHandler(this.close_Click);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEvaluationType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
@@ -279,15 +265,13 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraGrid.GridControl gridControlEvaluationType;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewEvaluationType;
+        private DevExpress.XtraGrid.Columns.GridColumn colENABLED;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME;
         private DevExpress.XtraGrid.Columns.GridColumn colDESCRIPTION;
-        private DevExpress.XtraGrid.Columns.GridColumn colENABLED;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+
     }
 }

@@ -413,6 +413,9 @@
       <DependentUpon>AssignmentTreeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemInitalizer.cs" />
+    <EmbeddedResource Include="Execute\SalaryDetailControl.resx">
+      <DependentUpon>SalaryDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Schedule\AssignmentTree2Control.resx">
       <DependentUpon>AssignmentTree2Control.cs</DependentUpon>
     </EmbeddedResource>

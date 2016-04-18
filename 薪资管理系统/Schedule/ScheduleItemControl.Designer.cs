@@ -183,6 +183,8 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 174);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.True;
+            this.xtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControl1.Size = new System.Drawing.Size(614, 308);
             this.xtraTabControl1.TabIndex = 8;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {

@@ -109,9 +109,9 @@ namespace SalarySystem
 
         private void employee_performance(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (!takeCachedPage("员工表现"))
+            if (!takeCachedPage("员工考核"))
             {
-                addControl("员工表现",new ExecutionPerformanceControl());
+                addControl("员工考核",new ExecutionPerformanceControl());
             }
         }
 
@@ -128,6 +128,14 @@ namespace SalarySystem
             if (!takeCachedPage("任务计划"))
             {
                 addControl("任务计划", new NavBarManagedControl(new ScheduleControlManager()));
+            }
+        }
+
+        private void salaryDetailClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!takeCachedPage("工资明细"))
+            {
+                addControl("工资明细", new SalaryDetailControl());
             }
         }
     }

@@ -1,28 +1,16 @@
 ﻿using System;
 using System.Data;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
-using SalarySystem.Managment.Basic;
 using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
 {
-    public partial class EvaluationItemControl : XtraUserControl
+    public partial class EvaluationItemControl : BaseEditableControl
     {
         public EvaluationItemControl()
         {
             InitializeComponent();
-            gridView1.ViewCaption = string.Format("考核项目定义（{0}）", GlobalSettings.EvaluationFullVersion);
-            gridControl1.DataSource = DataHolder.EvaluationItem;
-            var dataView = new DataView(DataHolder.EvaluationItemType)
-            {
-                RowFilter = "[ENABLED]=true"
-            };
-            repositoryItemLookUpEditType.DataSource = dataView;
-            dataView=new DataView(DataHolder.Position){RowFilter = "ENABLED=true"};
-            repositoryItemLookUpEditPosition.DataSource = dataView;
-            gridView1.ExpandAllGroups();
-            gridView1.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+            
         }
 
         private void initNewRow(object sender, InitNewRowEventArgs e)
@@ -36,19 +24,48 @@ namespace SalarySystem.Managment.Evaluation
             }
         }
 
-        private void save_clicked(object sender, EventArgs e)
+        protected override void onControlLoad()
         {
-            DBHandlerEx.UpdateOnce(DataHolder.EvaluationItem);
-            //DataHolder.EvaluationItemTableAdapter.Update(DataHolder.EvaluationItem);
-            simpleButton1.Enabled = false;
-            simpleButton2.Enabled = false;
+            base.onControlLoad();
+            gridView1.ViewCaption = string.Format("考核项目定义（{0}）", GlobalSettings.EvaluationFullVersion);
+            gridControl1.DataSource = DataHolder.EvaluationItem;
+            var dataView = new DataView(DataHolder.EvaluationItemType)
+            {
+                RowFilter = "[ENABLED]=true"
+            };
+            repositoryItemLookUpEditType.DataSource = dataView;
+            dataView = new DataView(DataHolder.Position) { RowFilter = "ENABLED=true" };
+            repositoryItemLookUpEditPosition.DataSource = dataView;
+            gridView1.ExpandAllGroups();
+            gridView1.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+            gridView1.InitNewRow += initNewRow;
+            DataHolder.EvaluationItem.RowChanged += onRowChanged;
         }
 
-        private void abandon_clicked(object sender, EventArgs e)
+        protected override void onControlReload()
         {
+            base.onControlReload();
+            DataHolder.EvaluationItem.RowChanged += onRowChanged;
+        }
+
+        protected override void onControlUnload()
+        {
+            base.onControlUnload();
+            DataHolder.EvaluationItem.RowChanged -= onRowChanged;
+        }
+
+        protected override void onSave()
+        {
+            if (DBHandlerEx.UpdateOnce(DataHolder.EvaluationItem) >= 0)
+            {
+                base.onSave();
+            }
+        }
+
+        protected override void onRevert()
+        {
+            base.onRevert();
             DataHolder.EvaluationItem.RejectChanges();
-            simpleButton1.Enabled = false;
-            simpleButton2.Enabled = false;
         }
     }
 }

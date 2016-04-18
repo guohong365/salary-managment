@@ -108,15 +108,108 @@ namespace SalarySystem.Schedule
                 //TODO error;
                 return;
             }
-            if (ScheduleHelper.Annual.GetMonthScheduleState(AnnualAssignment, parameter.Month) == 1)
+            if (ScheduleHelper.Annual.GetMonthScheduleState(AnnualAssignment, parameter.Month) == GlobalSettings.STATE_ASSIGNED)
             {
                 if(MessageBox.Show(this, "任务已生成，是否重新生成", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)== DialogResult.No)
                     return;
             }
             decimal total = ScheduleHelper.Annual.GetMonthAmont(AnnualAssignment, parameter.Month);
-            ScheduleHelper.Monthly.GenerateMonthAssignment(_monthlyAssignmentPageControls[parameter.Month].TreeList, total, parameter.Month);
+            ScheduleHelper.Monthly.GenerateMonthAssignmentByEmployeeTee(
+                ((AssignmentTree2Control) page.Controls[0]).TreeList, total);
+            ScheduleHelper.Annual.SetMonthScheduleState(AnnualAssignment, parameter.Month, GlobalSettings.STATE_ASSIGNED);
+            setTabPageAppearance(page, GlobalSettings.STATE_ASSIGNED);
         }
+
+        private void setTabPageAppearance(XtraTabPage page, int state)
+        {
+            page.Appearance.Header.ForeColor = _colors[state];
+            Font oldFont = page.Appearance.Header.Font;
+            page.Appearance.Header.Font = new Font(oldFont.FontFamily, oldFont.Size, FontStyle.Bold, oldFont.Unit);
+        }
+
         #region 处理年度计划
+
+        public void Save()
+        {
+            DataSetSalary.t_annual_assignmentDataTable annualAssignment=new DataSetSalary.t_annual_assignmentDataTable();
+            DataSetSalary.t_assignment_performanceDataTable assignmentPerformance=new DataSetSalary.t_assignment_performanceDataTable();
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
+            handler.BeginTransaction();
+            try
+            {
+                string delAnnualSql = string.Format(
+                    "delete  from t_annual_assignment where ASSIGNMENT_YEAR={0} and ASSIGNMENT_MONTH>={1} and ASSIGNMENT_MONTH<={2}",
+                    Year, MonthFrom, MonthTo);
+                handler.ExecuteNonQuery(delAnnualSql);
+                foreach (DataRow annualRow in AnnualAssignment.Rows)
+                {
+                    if (annualRow[ScheduleHelper.Annual.COL_DEF_ID].Equals(ScheduleHelper.Annual.SUMMARY_ID))
+                        continue;
+                    var newRow = annualAssignment.Newt_annual_assignmentRow();
+                    newRow.ID = Guid.NewGuid().ToString();
+                    newRow.ASSIGNMENT_ID = (string) annualRow[ScheduleHelper.Annual.COL_DEF_ID];
+                    newRow.NAME = string.Format("{0}年度{1}月任务计划", Year, annualRow[ScheduleHelper.Annual.COL_MONTH]);
+                    newRow.DESCRIPTION = newRow.NAME;
+                    newRow.ASSIGNMENT_YEAR = Year;
+                    newRow.ASSIGNMENT_MONTH = Convert.ToInt32(annualRow[ScheduleHelper.Annual.COL_MONTH]);
+                    newRow.TARGET = (decimal) annualRow[ScheduleHelper.Annual.COL_TARGET];
+                    newRow.CREATE_TIME = (DateTime) annualRow[ScheduleHelper.Annual.COL_CREATE_TIME];
+                    newRow.CREATOR_ID = (string) annualRow[ScheduleHelper.Annual.COL_CREATOR];
+                    newRow.VERSION_ID = (string) annualRow[ScheduleHelper.Annual.COL_VERSION_ID];
+                    newRow.EXEC_STATE = Convert.ToInt32(annualRow[ScheduleHelper.Annual.COL_STATE]);
+                    annualAssignment.Addt_annual_assignmentRow(newRow);
+
+                    switch (newRow.EXEC_STATE)
+                    {
+                        case GlobalSettings.STATE_UNASIGNED:
+                            continue;
+                        case GlobalSettings.STATE_ASSIGNED:
+                            string delSql = string.Format(
+                                "delete from t_assignment_performance where ASSIGNMENT_YEAR={0} and ASSIGNMENT_MONTH={1} and DEFINE_ID='{2}'",
+                                newRow.ASSIGNMENT_YEAR, newRow.ASSIGNMENT_MONTH, newRow.ASSIGNMENT_ID);
+                            if (handler.ExecuteNonQuery(delSql) < 0)
+                            {
+                                MessageBox.Show("删除月度计划错误！");
+                            }
+                            foreach (
+                                var employeeRow in
+                                    _monthlyAssignmentPageControls[newRow.ASSIGNMENT_MONTH].EmployeeTreeAssignment)
+                            {
+                                var monthRow = assignmentPerformance.Newt_assignment_performanceRow();
+                                monthRow.ID = Guid.NewGuid().ToString();
+                                monthRow.EMPLOYEE_ID = employeeRow.EMPLOYEE_ID;
+                                monthRow.COMPLETED = 0;
+                                monthRow.TARGET = employeeRow.TARGET;
+                                monthRow.ASSIGNMENT_YEAR = employeeRow.ASSIGNMENT_YEAR;
+                                monthRow.ASSIGNMENT_MONTH = employeeRow.ASSIGNMENT_MONTH;
+                                monthRow.DESCRIPTION = "";
+                                monthRow.VERSION_ID = employeeRow.VERSION_ID;
+                                monthRow.DEFINE_ID = employeeRow.ASSIGNMENT_ID;
+                                assignmentPerformance.Addt_assignment_performanceRow(monthRow);
+                            }
+                            break;
+                        case GlobalSettings.STATE_EXECUTING:
+                        case GlobalSettings.STATE_COMPLETED:
+                            break;
+                    }
+                }
+                handler.Update(annualAssignment);
+                handler.Update(assignmentPerformance);
+                handler.EndTransaction(true);
+                AnnualAssignment.AcceptChanges();
+                _monthlyAssignmentPageControls.Values.ToList().ForEach(item=>item.EmployeeTreeAssignment.AcceptChanges());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                handler.EndTransaction(false);
+            }
+            finally
+            {
+                handler.FreeBuffer(false);
+            }
+        }
+
         private void customDrawRowValueCell(object sender, DevExpress.XtraVerticalGrid.Events.CustomDrawRowValueCellEventArgs e)
         {
             VGridControl vGridControl = sender as VGridControl;
@@ -148,16 +241,16 @@ namespace SalarySystem.Schedule
                 {
                     switch (Convert.ToInt64(row[ScheduleHelper.Annual.COL_STATE]))
                     {
-                        case 0: // - 未分配
+                        case GlobalSettings.STATE_UNASIGNED: // - 未分配
                             e.Appearance.BackColor = Color.WhiteSmoke;
                             break;
-                        case 1: // - 已分配
+                        case GlobalSettings.STATE_ASSIGNED: // - 已分配
                             e.Appearance.BackColor = Color.CadetBlue;
                             break;
-                        case 2: // - 已执行
+                        case GlobalSettings.STATE_EXECUTING: // - 已执行
                             e.Appearance.BackColor = Color.Orange;
                             break;
-                        case 3: // - 执行完成
+                        case GlobalSettings.STATE_COMPLETED: // - 执行完成
                             e.Appearance.BackColor = Color.Gray;
                             break;
                     }
@@ -303,7 +396,7 @@ namespace SalarySystem.Schedule
         //    return dataTable;
         //}
 
-        private DataSetSalary.v_employee_tree_assignmentDataTable loadEmployeeTreeAssignment(string id, int year,
+        private static DataSetSalary.v_employee_tree_assignmentDataTable loadEmployeeTreeAssignment(string id, int year,
             int month)
         {
             string sql = getMonthlyAssignmentSql2(id, year, month);
@@ -420,32 +513,42 @@ namespace SalarySystem.Schedule
         //    return string.Format(sql, id, year, month, GlobalSettings.AssignmentVersion);
         //}
 
-        private string getMonthlyAssignmentSql2(string id, int year, int month)
+        private static string getMonthlyAssignmentSql2(string id, int year, int month)
         {
-            const string sqlFormat = "select " +
-                                     "EMPLOYEE_ID, " +
-                                     "EMPLOYEE_LEADER," +
-                                     "EMPLOYEE_NAME," +
-                                     "POSITION_ID," +
-                                     "POSITION_NAME," +
-                                     "ASSIGNMENT_ID," +
-                                     "VERSION_ID," +
-                                     "POSITION_WEIGHT," +
-                                     "DEF_NAME," +
-                                     "UNIT_ID," +
-                                     "UNIT_NAME," +
-                                     "PERF_ID," +
-                                     "TARGET," +
-                                     "COMPLETED," +
-                                     "ifnull(ASSIGNMENT_YEAR, {0}) as ASSIGNMENT_YEAR," +
-                                     "ifnull(ASSIGNMENT_MONTH,{1}) as ASSIGNMENT_MONTH" +
-                                     " from v_employee_tree_assignment" +
-                                     " where " +
-                                     " (ASSIGNMENT_YEAR={0} or isnull(ASSIGNMENT_YEAR))" +
-                                     " and (ASSIGNMENT_MONTH={1} or isnull(ASSIGNMENT_MONTH))" +
-                                     " and ASSIGNMENT_ID='{2}'" +
-                                     " and VERSION_ID='{3}'";
-            return string.Format(sqlFormat, year, month, id, GlobalSettings.AssignmentVersion);
+            const string sqlFormat = "SELECT " +
+                                     "t.ID AS EMPLOYEE_ID," +
+                                     "t.LEADER_ID AS EMPLOYEE_LEADER," +
+                                     "t.NAME AS EMPLOYEE_NAME," +
+                                     "t.POSITION_ID AS POSITION_ID," +
+                                     "c2.NAME AS POSITION_NAME," +
+                                     "t1.ASSIGNMENT_ID AS ASSIGNMENT_ID," +
+                                     "t1.VERSION_ID AS VERSION_ID," +
+                                     "t1.VALUE AS POSITION_WEIGHT," +
+                                     "t2.NAME AS DEF_NAME," +
+                                     "t2.UNIT_ID AS UNIT_ID," +
+                                     "c1.NAME AS UNIT_NAME," +
+                                     "t3.ID AS PERF_ID," +
+                                     "IFNULL(t3.TARGET, 0) AS TARGET," +
+                                     "IFNULL(t3.COMPLETED, 0) AS COMPLETED," +
+                                     "ifnull(t3.ASSIGNMENT_YEAR, {0}) AS ASSIGNMENT_YEAR," +
+                                     "ifnull(t3.ASSIGNMENT_MONTH, {1}) AS ASSIGNMENT_MONTH" +
+                                     " FROM" +
+                                     " t_employee t" +
+                                     " LEFT JOIN t_position_assignments t1 ON t1.POSITION_ID = t.POSITION_ID  AND t1.ENABLED = TRUE" +
+                                     " LEFT JOIN t_assignment_define t2 ON t2.ID = t1.ASSIGNMENT_ID AND t2.TYPE = '1'  AND t2.ENABLED = TRUE  AND t2.VERSION_ID = t1.VERSION_ID" +
+                                     " LEFT JOIN t_assignment_performance t3 ON t3.EMPLOYEE_ID = t.ID  AND t3.DEFINE_ID = t1.ASSIGNMENT_ID  AND t3.VERSION_ID = t1.VERSION_ID AND t3.ASSIGNMENT_YEAR={0} and t3.ASSIGNMENT_MONTH={1}" +
+                                     " LEFT JOIN t_unit c1 ON c1.ID = t2.UNIT_ID" +
+                                     " LEFT JOIN t_position c2 ON c2.ID = t.POSITION_ID" +
+                                     " WHERE" +
+                                     " t.ENABLED = TRUE" +
+                                     " AND t.ID <> '9999999999'" +
+                                     " AND t1.ENABLED = TRUE" +
+                                     " AND t2.TYPE = '1'" +
+                                     " AND t1.ASSIGNMENT_ID='{2}'" +
+                                     " AND t1.VERSION_ID='{3}'" +
+                                     " and (t3.ASSIGNMENT_YEAR={0} or isnull(t3.ASSIGNMENT_YEAR))" +
+                                     " and (t3.ASSIGNMENT_MONTH={1} or isnull(t3.ASSIGNMENT_MONTH))";
+                                     return string.Format(sqlFormat, year, month, id, GlobalSettings.AssignmentVersion);
         }
 
 

@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
@@ -175,20 +174,19 @@
             this.barSubItem3.Id = 7;
             this.barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem6)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10)});
             this.barSubItem3.Name = "barSubItem3";
             // 
             // barButtonItem9
             // 
-            this.barButtonItem9.Caption = "员工表现录入";
+            this.barButtonItem9.Caption = "员工考核";
             this.barButtonItem9.Id = 13;
             this.barButtonItem9.Name = "barButtonItem9";
             this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.employee_performance);
             // 
             // barButtonItem10
             // 
-            this.barButtonItem10.Caption = "工资明细查询";
+            this.barButtonItem10.Caption = "工资明细";
             this.barButtonItem10.Id = 14;
             this.barButtonItem10.Name = "barButtonItem10";
             // 
@@ -221,7 +219,7 @@
             // 
             // barSubItem4
             // 
-            this.barSubItem4.Caption = "统计报表";
+            this.barSubItem4.Caption = "统计查询";
             this.barSubItem4.Id = 8;
             this.barSubItem4.Name = "barSubItem4";
             // 

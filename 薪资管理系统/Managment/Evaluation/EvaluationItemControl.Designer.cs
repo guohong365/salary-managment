@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPOSITION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEditPosition = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colTYPE = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -45,63 +42,43 @@
             this.colVERSION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).BeginInit();
             this.SuspendLayout();
             // 
-            // colENABLED
-            // 
-            this.colENABLED.Caption = "启用";
-            this.colENABLED.FieldName = "ENABLED";
-            this.colENABLED.MaxWidth = 35;
-            this.colENABLED.Name = "colENABLED";
-            this.colENABLED.Visible = true;
-            this.colENABLED.VisibleIndex = 0;
-            this.colENABLED.Width = 62;
-            // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButton2);
-            this.panelControl1.Controls.Add(this.simpleButton1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 432);
-            this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(608, 40);
-            this.panelControl1.TabIndex = 2;
             // 
-            // simpleButton2
+            // simpleButtonRevert
             // 
-            this.simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButton2.Location = new System.Drawing.Point(528, 9);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 1;
-            this.simpleButton2.Text = "放弃";
-            this.simpleButton2.Click += new System.EventHandler(this.abandon_clicked);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(528, 9);
             // 
-            // simpleButton1
+            // simpleButtonSave
             // 
-            this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButton1.Location = new System.Drawing.Point(447, 9);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "保存";
-            this.simpleButton1.Click += new System.EventHandler(this.save_clicked);
+            this.simpleButtonSave.Location = new System.Drawing.Point(447, 9);
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.gridControl1);
+            this.panelControl2.Size = new System.Drawing.Size(608, 432);
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEditType,
             this.repositoryItemLookUpEditPosition});
-            this.gridControl1.Size = new System.Drawing.Size(608, 432);
-            this.gridControl1.TabIndex = 3;
+            this.gridControl1.Size = new System.Drawing.Size(604, 428);
+            this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -132,7 +109,16 @@
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colPOSITION_ID, DevExpress.Data.ColumnSortOrder.Ascending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTYPE, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridView1.ViewCaption = "考核项目定义";
-            this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.initNewRow);
+            // 
+            // colENABLED
+            // 
+            this.colENABLED.Caption = "启用";
+            this.colENABLED.FieldName = "ENABLED";
+            this.colENABLED.MaxWidth = 35;
+            this.colENABLED.Name = "colENABLED";
+            this.colENABLED.Visible = true;
+            this.colENABLED.VisibleIndex = 0;
+            this.colENABLED.Width = 62;
             // 
             // colPOSITION_ID
             // 
@@ -229,12 +215,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridControl1);
-            this.Controls.Add(this.panelControl1);
             this.Name = "EvaluationItemControl";
             this.Size = new System.Drawing.Size(608, 472);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).EndInit();
@@ -245,20 +231,18 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colENABLED;
+        private DevExpress.XtraGrid.Columns.GridColumn colPOSITION_ID;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditPosition;
         private DevExpress.XtraGrid.Columns.GridColumn colTYPE;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditType;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME;
         private DevExpress.XtraGrid.Columns.GridColumn colFULL_MARK;
         private DevExpress.XtraGrid.Columns.GridColumn colDESCRIPTION;
         private DevExpress.XtraGrid.Columns.GridColumn colVERSION_ID;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditType;
-        private DevExpress.XtraGrid.Columns.GridColumn colPOSITION_ID;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditPosition;
+
     }
 }

@@ -9,6 +9,9 @@ namespace SalarySystem.Schedule
         public AssignmentTree2Control()
         {
             InitializeComponent();
+            treeList1.RootValue = "";
+            treeList1.OptionsView.ShowRoot = true;
+            treeList1.OptionsView.ShowVertLines = true;
         }
 
         private DataSetSalary.v_employee_tree_assignmentDataTable _employeeTreeAssignment;

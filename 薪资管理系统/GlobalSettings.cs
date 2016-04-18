@@ -23,6 +23,10 @@ namespace SalarySystem
 
         public static DataSetSalary.t_repository_salary_structRow CurrentSalaryRepository;
         public static DataSetSalary.t_repository_assignmentRow CurrentAssignmentRepository;
+        public const int STATE_UNASIGNED = 0;
+        public const int STATE_ASSIGNED=1;
+        public const int STATE_EXECUTING = 2;
+        public const int STATE_COMPLETED = 3;
 
         public static string EvaluationFullVersion
         {

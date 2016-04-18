@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.列NAME = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -44,8 +43,6 @@
             this.列UNIT_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.列IS_NEW = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.列VERSION_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.vteamassignmentdetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gridControlAssignmentDefine = new DevExpress.XtraGrid.GridControl();
             this.gridViewAssignmentDefine = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -58,17 +55,14 @@
             this.colVERSION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUNIT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPOSITION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.v_team_assignment_detailTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.v_team_assignment_detailTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(repositoryItemCheckEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vteamassignmentdetailBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlAssignmentDefine)).BeginInit();
@@ -82,16 +76,21 @@
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Location = new System.Drawing.Point(1341, 9);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(738, 9);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Location = new System.Drawing.Point(1260, 9);
+            this.simpleButtonSave.Location = new System.Drawing.Point(657, 9);
             // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.splitContainerControl1);
             this.panelControl2.Size = new System.Drawing.Size(818, 466);
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -181,7 +180,6 @@
             this.列UNIT_ID,
             this.列IS_NEW,
             this.列VERSION_ID});
-            this.treeList1.DataSource = this.vteamassignmentdetailBindingSource;
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(0, 0);
             this.treeList1.Name = "treeList1";
@@ -246,9 +244,7 @@
             // 列USED
             // 
             this.列USED.Caption = "启用";
-            repositoryItemCheckEdit1.AutoHeight = false;
-            repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            this.列USED.ColumnEdit = repositoryItemCheckEdit1;
+            this.列USED.ColumnEdit = this.repositoryItemCheckEdit1;
             this.列USED.FieldName = "USED";
             this.列USED.Name = "列USED";
             this.列USED.OptionsColumn.AllowMoveToCustomizationForm = false;
@@ -313,16 +309,6 @@
             this.列VERSION_ID.Name = "列VERSION_ID";
             this.列VERSION_ID.OptionsColumn.AllowMoveToCustomizationForm = false;
             this.列VERSION_ID.OptionsColumn.ShowInCustomizationForm = false;
-            // 
-            // vteamassignmentdetailBindingSource
-            // 
-            this.vteamassignmentdetailBindingSource.DataMember = "v_team_assignment_detail";
-            this.vteamassignmentdetailBindingSource.DataSource = this.dataSetSalary;
-            // 
-            // dataSetSalary
-            // 
-            this.dataSetSalary.DataSetName = "DataSetSalary";
-            this.dataSetSalary.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // splitContainerControl1
             // 
@@ -521,10 +507,6 @@
             this.colPOSITION_ID.FieldName = "POSITION_ID";
             this.colPOSITION_ID.Name = "colPOSITION_ID";
             // 
-            // v_team_assignment_detailTableAdapter
-            // 
-            this.v_team_assignment_detailTableAdapter.ClearBeforeFill = true;
-            // 
             // AutoAssignmentRateDefineControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -535,12 +517,10 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(repositoryItemCheckEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vteamassignmentdetailBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlAssignmentDefine)).EndInit();
@@ -575,10 +555,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列UNIT_ID;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列IS_NEW;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列VERSION_ID;
-        private System.Windows.Forms.BindingSource vteamassignmentdetailBindingSource;
-        private Data.DataSetSalary dataSetSalary;
-        private Data.DataSetSalaryTableAdapters.v_team_assignment_detailTableAdapter v_team_assignment_detailTableAdapter;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
     }
 }
