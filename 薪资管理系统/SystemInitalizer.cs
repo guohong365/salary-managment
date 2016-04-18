@@ -117,7 +117,6 @@ namespace SalarySystem
         private static void initDatabase()
         {
             DBHandlerEx.RegisterDBDefaultType("MySql.Data.MySqlClient", "server=localhost;user id=root;persistsecurityinfo=True;database=salary;password=1111");
-            //DBHandlerEx.RegisterDBDefaultType(ConfigurationManager.ConnectionStrings[0]);
         }
 
         private static string _sqlLoadEvaluationForm;
@@ -204,8 +203,6 @@ namespace SalarySystem
 
             DBHandlerEx.FillOnce(DataHolder.EvaluationItem, _sqlLoadEvaluationItem);
             DBHandlerEx.FillOnce(DataHolder.EvaluationItemType, _sqlLoadEvaluationItemType);
-            DBHandlerEx.FillOnce(DataHolder.PositionEvaluationForms, _sqlLoadPositionEvaluationForms);
-            DBHandlerEx.FillOnce(DataHolder.EvaluationFormDetail, _sqlLoadEvaluationFormDetail);
             DBHandlerEx.FillOnce(DataHolder.EvaluationStandard, _sqlLoadEvaluationStandard);
             #endregion
 
@@ -213,17 +210,12 @@ namespace SalarySystem
 
             DBHandlerEx.FillOnce(DataHolder.AssignmentDefine, _sqlLoadAssignmentDefine);
             DBHandlerEx.FillOnce(DataHolder.AssignmentItemType, _sqlLoadAssignmentItemType);
-            DBHandlerEx.FillOnce(DataHolder.PositionAssignments, _sqlLoadPositionAssignments);
             DBHandlerEx.FillOnce(DataHolder.Unit, _sqlLoadAssignmentUnit);
             #endregion
             #region 薪资相关
 
-            DBHandlerEx.FillOnce(DataHolder.SalaryDataSourceType, "select * from t_salary_data_source_type");
             DBHandlerEx.FillOnce(DataHolder.SalaryItem, "select * from t_salary_item");
             DBHandlerEx.FillOnce(DataHolder.SalaryItemType, "select * from t_salary_item_type");
-            DBHandlerEx.FillOnce(DataHolder.PositionSalaryItems, "select * from t_position_salary_items");
-
-            DBHandlerEx.FillOnce(DataHolder.SalaryStructDetail, "select * from v_salary_struct_detail");
 
             #endregion
         }

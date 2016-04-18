@@ -1,6 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using SalarySystem.Data;
-using SalarySystem.Managment.Basic;
 using UC.Platform.Data;
 
 
@@ -14,18 +14,23 @@ namespace SalarySystem.Managment.Assignment
             GridViewHelper.SetUpEditableGridView(gridView1, false, "岗位任务定义", VersionType.ASSIGNMENT);
         }
 
-        private readonly DataSetSalary.v_personal_assignment_detailDataTable _dataTable =
+        private readonly DataSetSalary.v_personal_assignment_detailDataTable _personalAssignmentDetail =
             new DataSetSalary.v_personal_assignment_detailDataTable();
 
         private DataView _dataView;
-        readonly string _sql = string.Format("select * from v_personal_assignment_detail where VERSION_ID='{0}'", GlobalSettings.AssignmentVersion);
+
+        private const string _PERSONAL_ASSIGNMENT_SQL_FORMAT =
+            "select * from v_personal_assignment_detail where VERSION_ID='{0}'";
         protected override void onControlLoad()
         {
             base.onControlLoad();
-            
-            DBHandlerEx.FillOnce(_dataTable, _sql);
-            _dataView=new DataView(_dataTable);
-            _dataTable.RowChanged += onRowChanged;
+            string sql = getLoadSql();
+            if (DBHandlerEx.FillOnce(_personalAssignmentDetail, sql) < 0)
+            {
+                throw new Exception("load data failed");
+            }
+            _dataView=new DataView(_personalAssignmentDetail);
+            _personalAssignmentDetail.RowChanged += onRowChanged;
 
             repositoryItemLookUpEditType.DataSource = DataHolder.AssignmentItemType;
             repositoryItemLookUpEditUnit.DataSource = DataHolder.Unit;
@@ -35,53 +40,68 @@ namespace SalarySystem.Managment.Assignment
 
         }
 
+        static string getLoadSql()
+        {
+            return string.Format(_PERSONAL_ASSIGNMENT_SQL_FORMAT, GlobalSettings.AssignmentVersion);
+        }
         protected override void onControlReload()
         {
             base.onControlReload();
-            _dataTable.Clear();
-            DBHandlerEx.FillOnce(_dataTable, _sql);
-            _dataTable.RowChanged += onRowChanged;
+            _personalAssignmentDetail.Clear();
+
+            DBHandlerEx.FillOnce(_personalAssignmentDetail, getLoadSql());
+            _personalAssignmentDetail.RowChanged += onRowChanged;
         }
 
         protected override void onControlUnload()
         {
             base.onControlUnload();
-            _dataTable.RowChanged -= onRowChanged;
+            _personalAssignmentDetail.RowChanged -= onRowChanged;
         }
+
 
         protected override void onSave()
         {
             base.onSave();
-            foreach (DataSetSalary.v_personal_assignment_detailRow detailRow in _dataTable)
+            var positionAssignments=new DataSetSalary.t_position_assignmentsDataTable();
+            if (DBHandlerEx.FillOnce(positionAssignments,
+                string.Format("select * from t_position_assignments where VERSION_ID={0}",
+                    GlobalSettings.AssignmentVersion)) < 0)
             {
-                DataSetSalary.t_position_assignmentsRow row =
-                    DataHolder.PositionAssignments.FindByASSIGNMENT_IDPOSITION_ID(detailRow.DEFINE_ID, detailRow.ID);
+                throw new Exception("load positionAssignments failed.");
+            }
+            foreach (var detailRow in _personalAssignmentDetail)
+            {
+                var row =positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(detailRow.DEFINE_ID, detailRow.ID);
                 if (row != null)
                 {
-                    row.ENABLED = detailRow.USED;
+                    row.ENABLED = detailRow.USED!=0;
                     row.WEIGHT = 100;
                     row.VALUE = detailRow.VALUE;
                 }
                 else
                 {
-                    row = DataHolder.PositionAssignments.Newt_position_assignmentsRow();
+                    row = positionAssignments.Newt_position_assignmentsRow();
                     row.ASSIGNMENT_ID = detailRow.DEFINE_ID;
                     row.POSITION_ID = detailRow.ID;
-                    row.ENABLED = detailRow.USED;
+                    row.ENABLED = detailRow.USED!=0;
                     row.WEIGHT = 100;
                     row.VALUE = detailRow.VALUE;
                     row.VERSION_ID = detailRow.VERSION_ID;
-                    DataHolder.PositionAssignments.Addt_position_assignmentsRow(row);
+                    positionAssignments.Addt_position_assignmentsRow(row);
                 }
             }
-            DBHandlerEx.UpdateOnce(DataHolder.PositionAssignments);
-            _dataTable.AcceptChanges();
+            if (DBHandlerEx.UpdateOnce(positionAssignments) < 0)
+            {
+                throw new Exception("save positionAssignments failed.");
+            }
+            _personalAssignmentDetail.AcceptChanges();
         }
 
         protected override void onRevert()
         {
             base.onRevert();
-            _dataTable.RejectChanges();
+            _personalAssignmentDetail.RejectChanges();
         }
     }
 }

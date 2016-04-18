@@ -39,6 +39,9 @@ namespace SalarySystem.Managment.Evaluation
             repositoryItemLookUpEditItemPosition.DataSource = new DataView(DataHolder.Position);
             gridViewForm.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
             gridViewFormDetail.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+
+
+
         }
         
         private void initNewRow(object sender, InitNewRowEventArgs e)

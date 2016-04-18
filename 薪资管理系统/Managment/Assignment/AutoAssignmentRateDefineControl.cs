@@ -76,7 +76,7 @@ namespace SalarySystem.Managment.Assignment
                 if (dataRow != null)
                 {
                     dataRow.WEIGHT = 100;
-                    dataRow.ENABLED = row.USED;
+                    dataRow.ENABLED = row.USED!=0;
                     dataRow.VALUE = row.WEIGHT;
                 }
                 else
@@ -86,7 +86,7 @@ namespace SalarySystem.Managment.Assignment
                     dataRow.POSITION_ID = row.ID;
                     dataRow.WEIGHT = 100;
                     dataRow.VERSION_ID = row.VERSION_ID;
-                    dataRow.ENABLED = row.USED;
+                    dataRow.ENABLED = row.USED!=0;
                     dataRow.VALUE = row.WEIGHT;
                     positionAssignments.Addt_position_assignmentsRow(dataRow);
                 }

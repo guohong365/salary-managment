@@ -12,23 +12,12 @@ namespace SalarySystem
         {
         }
 
-        public static void InitAdapter()
-        {
-            //DBHandlerEx.RegisterDBDefaultType(ConfigurationManager.ConnectionStrings[0]);
-           
-        }
-
         public static DataSetSalary DataSet
         {
             get { return _dataSet; }
         }
 
         #region 数据表
-
-        public static DataSetSalary.t_annual_assignmentDataTable AnnualAssignment
-        {
-            get { return _dataSet.t_annual_assignment; }
-        }
 
         public static DataSetSalary.t_assignment_defineDataTable AssignmentDefine
         {
@@ -40,19 +29,10 @@ namespace SalarySystem
             get { return _dataSet.t_assignment_item_type; }
         }
 
-        public static DataSetSalary.t_assignment_performanceDataTable AssignmentPerformance
-        {
-            get { return _dataSet.t_assignment_performance; }
-        }
 
         public static DataSetSalary.t_employeeDataTable Employee
         {
             get { return _dataSet.t_employee; }
-        }
-
-        public static DataSetSalary.t_employee_salary_detailDataTable EmployeeSalaryDetail
-        {
-            get { return _dataSet.t_employee_salary_detail; }
         }
 
         public static DataSetSalary.t_evaluation_formDataTable EvaluationForm
@@ -75,11 +55,6 @@ namespace SalarySystem
             get { return _dataSet.t_evaluation_item_type; }
         }
 
-        public static DataSetSalary.t_evaluation_resultsDataTable EvaluationResults
-        {
-            get { return _dataSet.t_evaluation_results; }
-        }
-
         public static DataSetSalary.t_evaluation_standardDataTable EvaluationStandard
         {
             get { return _dataSet.t_evaluation_standard; }
@@ -88,21 +63,6 @@ namespace SalarySystem
         public static DataSetSalary.t_positionDataTable Position
         {
             get { return _dataSet.t_position; }
-        }
-
-        public static DataSetSalary.t_position_assignmentsDataTable PositionAssignments
-        {
-            get { return _dataSet.t_position_assignments; }
-        }
-
-        public static DataSetSalary.t_position_evaluation_formsDataTable PositionEvaluationForms
-        {
-            get { return _dataSet.t_position_evaluation_forms; }
-        }
-
-        public static DataSetSalary.t_position_salary_itemsDataTable PositionSalaryItems
-        {
-            get { return _dataSet.t_position_salary_items; }
         }
 
         public static DataSetSalary.t_repository_assignmentDataTable RepositoryAssignment
@@ -118,11 +78,6 @@ namespace SalarySystem
         public static DataSetSalary.t_repository_salary_structDataTable RepositorySalaryStruct
         {
             get { return _dataSet.t_repository_salary_struct; }
-        }
-
-        public static DataSetSalary.t_salary_data_source_typeDataTable SalaryDataSourceType
-        {
-            get { return _dataSet.t_salary_data_source_type; }
         }
 
         public static DataSetSalary.t_salary_itemDataTable SalaryItem
@@ -145,15 +100,6 @@ namespace SalarySystem
             get { return _dataSet.t_unit; }
         }
         
-        public static DataSetSalary.v_evaluation_form_detailDataTable EvaluationFormDetail
-        {
-            get { return _dataSet.v_evaluation_form_detail; }
-        }
-        
-        public static DataSetSalary.v_salary_struct_detailDataTable SalaryStructDetail
-        {
-            get { return _dataSet.v_salary_struct_detail; }
-        }
         #endregion
 
     }

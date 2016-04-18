@@ -1,13 +1,54 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using DevExpress.XtraGrid.Views.Base;
+using SalarySystem.Data;
 using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Evaluation
 {
     public partial class ExecuttionEvaluationFormControl : BaseEditableControl
     {
-        private readonly DataView _dataViewFormDetail;
-        private readonly DataView _dataViewForm;
+        private DataView _dataViewFormDetail;
+        private DataView _dataViewForm;
+
+        private readonly DataSetSalary.v_evaluation_form_detailDataTable _evaluationFormDetail =
+            new DataSetSalary.v_evaluation_form_detailDataTable();
+
+        private const string _EVALUATION_FORM_DETAIL_SQL_FORMAT = 
+            "select * from" +
+            " v_evaluation_form_detail " +
+            " where" +
+            " VERSION_ID='{0}'" +
+            " and USED = true" +
+            " and ENABLED= true";
+        int loadEvaluationFormDetail()
+        {
+            string sql = string.Format(_EVALUATION_FORM_DETAIL_SQL_FORMAT, GlobalSettings.EvaluationVersion);
+            return DBHandlerEx.FillOnce(_evaluationFormDetail, sql);
+        }
+
+        private readonly DataSetSalary.t_position_evaluation_formsDataTable _positionEvaluationForms =
+            new DataSetSalary.t_position_evaluation_formsDataTable();
+
+        private const string _POSITION_EVALUATION_FORMS_SQL_FORMAT =
+            "select * from t_position_evaluation_forms " +
+            " where VERSION_ID='{0}'";
+        int loadPositionEvaluationForms()
+        {
+            string sql = string.Format(_POSITION_EVALUATION_FORMS_SQL_FORMAT, GlobalSettings.EvaluationVersion);
+            return DBHandlerEx.FillOnce(_positionEvaluationForms, sql);
+        }
+
+        readonly DataSetSalary.t_evaluation_formDataTable _evaluationForm=new DataSetSalary.t_evaluation_formDataTable();
+
+        private const string _EVALUATION_FORM_SQL_FORMAT =
+            "select * from t_evaluation_form where VERSION_ID='{0}' and ENABLED=true";
+
+        int loadEvaluationForm()
+        {
+            string sql = string.Format(_EVALUATION_FORM_SQL_FORMAT, GlobalSettings.EvaluationVersion);
+            return DBHandlerEx.FillOnce(_evaluationForm, sql);
+        }
 
         public ExecuttionEvaluationFormControl()
         {
@@ -17,18 +58,7 @@ namespace SalarySystem.Managment.Evaluation
             GridViewHelper.SetUpReadOnlyGridView(gridViewPredeinedForms, false, "预定义考核表", VersionType.EVALUATION);
             gridViewExecutionForm.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
 
-            repositoryItemLookUpEditItemType.DataSource = new DataView(DataHolder.EvaluationItemType);
-            gridControlPredifinedForms.DataSource = null;
-            _dataViewFormDetail = new DataView(DataHolder.EvaluationFormDetail);
-            gridControlExecutionForm.DataSource = new DataView(DataHolder.PositionEvaluationForms);
-            repositoryItemLookUpEditPosition.DataSource = new DataView(DataHolder.Position)
-            {
-                RowFilter = "[ENABLED]=true"
-            };
-
-            _dataViewForm = new DataView(DataHolder.EvaluationForm){RowFilter = getFormFilter("")};
-            repositoryItemGridLookUpEditForm.DataSource = _dataViewForm;
-            repositoryItemLookUpEditRepoFormPosition.DataSource = new DataView(DataHolder.Position);
+            
         }
 
         private static string getFormFilter(string positionId)
@@ -40,7 +70,7 @@ namespace SalarySystem.Managment.Evaluation
 
         private static string getFormDetailFilter(string formId)
         {
-            return string.Format("[FORM_ID]='{0}' AND [ENABLED]=true AND [USED]=true", formId);
+            return string.Format("[FORM_ID]='{0}'", formId);
         }
 
         public void SetFormId(string formId)
@@ -127,7 +157,7 @@ namespace SalarySystem.Managment.Evaluation
 
         protected override void onSave()
         {
-            if(DBHandlerEx.UpdateOnce(DataHolder.PositionEvaluationForms)>=0)
+            if(DBHandlerEx.UpdateOnce(_positionEvaluationForms)>=0)
             {
                 base.onSave();
             }
@@ -137,27 +167,45 @@ namespace SalarySystem.Managment.Evaluation
         protected override void onRevert()
         {
             base.onRevert();
-            DataHolder.PositionEvaluationForms.RejectChanges();
+            _positionEvaluationForms.RejectChanges();
         }
 
         protected override void onControlLoad()
         {
             base.onControlLoad();
-            DataHolder.PositionEvaluationForms.RowChanged += onRowChanged;
+            if (loadEvaluationFormDetail() < 0 ||
+                loadPositionEvaluationForms() < 0 ||
+                loadEvaluationForm() < 0)
+            {
+                throw new Exception("加载数据错误！");
+            }
+            _positionEvaluationForms.RowChanged += onRowChanged;
+            repositoryItemLookUpEditItemType.DataSource = new DataView(DataHolder.EvaluationItemType);
+            gridControlPredifinedForms.DataSource = null;
+            _dataViewFormDetail = new DataView(_evaluationFormDetail);
+            gridControlExecutionForm.DataSource = new DataView(_positionEvaluationForms);
+            repositoryItemLookUpEditPosition.DataSource = new DataView(DataHolder.Position)
+            {
+                RowFilter = "[ENABLED]=true"
+            };
+
+            _dataViewForm = new DataView(_evaluationForm) { RowFilter = getFormFilter("") };
+            repositoryItemGridLookUpEditForm.DataSource = _dataViewForm;
+            repositoryItemLookUpEditRepoFormPosition.DataSource = new DataView(DataHolder.Position);
             gridViewExecutionForm.ExpandAllGroups();
         }
 
         protected override void onControlReload()
         {
             base.onControlReload();
-            DataHolder.PositionEvaluationForms.RowChanged += onRowChanged;
+            _positionEvaluationForms.RowChanged += onRowChanged;
             gridViewExecutionForm.ExpandAllGroups();
         }
 
         protected override void onControlUnload()
         {
             base.onControlUnload();
-            DataHolder.PositionEvaluationForms.RowChanged -= onRowChanged;
+            _positionEvaluationForms.RowChanged -= onRowChanged;
 
         }
     }

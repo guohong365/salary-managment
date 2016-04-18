@@ -26,11 +26,6 @@ namespace SalarySystem.Managment.Basic
                 RowFilter = "[ENABLED]=true"
             };
 
-            repositoryItemLookUpEditDataSourceType.DataSource = new DataView(DataHolder.SalaryDataSourceType)
-            {
-                RowFilter = "[ENABLED]=true"
-            };
-
             GridViewHelper.SetUpEditableGridView(gridViewSalaryItem, false, "基本薪资构成项目", VersionType.SALARY);
 
         }
