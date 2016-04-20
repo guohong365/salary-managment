@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using SalarySystem.Data;
-using UC.Platform.Data;
 
 namespace SalarySystem.Execute
 {

@@ -3,6 +3,7 @@ using DevExpress.XtraNavBar;
 using SalarySystem.Managment.Assignment;
 using SalarySystem.Managment.Basic;
 using SalarySystem.Managment.Evaluation;
+using SalarySystem.Managment.Salary;
 
 namespace SalarySystem.Managment
 {
@@ -19,6 +20,7 @@ namespace SalarySystem.Managment
 
         protected const string KEY_SALARY_ITEM = "基本薪资构成项目定义";
         protected const string KEY_EXECUTION_SALAY_STRUCT = "薪资结构实施管理";
+        protected const string KEY_SALARY_FUNCTION = "公式定义";
 
         protected const string KEY_ASSIGNMENT_DEFINE = "基本任务指标定义";
         protected const string KEY_TEAM_ASSIGNMENT_DEFINE = "自动分配任务占比定义";
@@ -57,7 +59,8 @@ namespace SalarySystem.Managment
                 new NavGroupDefine(KEY_GROUP_SALARY_STRUCTURE, new []
                 {
                     new NavItemDefine(KEY_SALARY_ITEM, typeof(SalaryItemControl), onNavItemClicked, 0),
-                    new NavItemDefine(KEY_EXECUTION_SALAY_STRUCT, typeof(AssignmentDefineControl), onNavItemClicked, 1)
+                    new NavItemDefine(KEY_EXECUTION_SALAY_STRUCT, typeof(AssignmentDefineControl), onNavItemClicked, 1),
+                    new NavItemDefine(KEY_SALARY_FUNCTION, typeof(FunctionDefineControl), onNavItemClicked, 2) 
 
                 }, 2) 
             });

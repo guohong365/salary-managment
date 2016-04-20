@@ -112,7 +112,7 @@ namespace UC.Platform.Data
             if (builder == null) return adapter;
             adapter.InsertCommand = builder.GetInsertCommand(true);
             adapter.UpdateCommand = builder.GetUpdateCommand(true);
-            adapter.DeleteCommand = builder.GetUpdateCommand(true);
+            adapter.DeleteCommand = builder.GetDeleteCommand(true);
             return adapter;
         }
 

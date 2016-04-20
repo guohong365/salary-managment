@@ -35,11 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.Data.v10.2.resources.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.OfficeSkins.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v10.2.Core.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.RichEdit.v10.2.Core.resources.dll</HintPath>
@@ -156,10 +158,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataSetTemplate.cs">
+      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data\DataSetTemplate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetTemplate.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Execute\EvaluationPerformanceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Execute\EvaluationPerformanceControl.Designer.cs">
+      <DependentUpon>EvaluationPerformanceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Execute\AssignmentPerformanceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Execute\AssignmentPerformanceControl.Designer.cs">
+      <DependentUpon>AssignmentPerformanceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managment\Salary\FunctionDefineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Salary\FunctionDefineControl.Designer.cs">
+      <DependentUpon>FunctionDefineControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Schedule\AnnualScheduleItem.cs" />
     <Compile Include="Schedule\AssignmentScheduleDetailParameter.cs" />
@@ -250,10 +274,10 @@
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Execute\ExecutionControlManager.cs" />
-    <Compile Include="Managment\Basic\ExecutionSalaryStructControl.cs">
+    <Compile Include="Managment\Salary\ExecutionSalaryStructControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\ExecutionSalaryStructControl.Designer.cs">
+    <Compile Include="Managment\Salary\ExecutionSalaryStructControl.Designer.cs">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.cs">
@@ -267,16 +291,10 @@
     <Compile Include="NavBarControlManagerBase.cs" />
     <Compile Include="NavGroupDefine.cs" />
     <Compile Include="NavItemDefine.cs" />
-    <Compile Include="Execute\SalaryDetailControl.cs">
+    <Compile Include="Managment\Salary\SalaryItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Execute\SalaryDetailControl.Designer.cs">
-      <DependentUpon>SalaryDetailControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Basic\SalaryItemControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Basic\SalaryItemControl.Designer.cs">
+    <Compile Include="Managment\Salary\SalaryItemControl.Designer.cs">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="BaseEditableControl.cs">
@@ -389,14 +407,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Managment\Salary\SalaryManagmentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Salary\SalaryManagmentControl.Designer.cs">
-      <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Schedule\AnnualSchedule.cs" />
     <Compile Include="Schedule\MonthAssignmentScheduleParameter.cs" />
+    <Compile Include="Schedule\PersonalAssignmentScheduleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Schedule\PersonalAssignmentScheduleControl.Designer.cs">
+      <DependentUpon>PersonalAssignmentScheduleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule\PersonalMonthlyAssignmentScheduleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Schedule\PersonalMonthlyAssignmentScheduleControl.Designer.cs">
+      <DependentUpon>PersonalMonthlyAssignmentScheduleControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Schedule\ScheduleControlManager.cs" />
     <Compile Include="Schedule\ScheduleHelper.cs" />
     <Compile Include="Schedule\ScheduleItemControl.cs">
@@ -413,8 +437,14 @@
       <DependentUpon>AssignmentTreeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemInitalizer.cs" />
-    <EmbeddedResource Include="Execute\SalaryDetailControl.resx">
-      <DependentUpon>SalaryDetailControl.cs</DependentUpon>
+    <EmbeddedResource Include="Execute\AssignmentPerformanceControl.resx">
+      <DependentUpon>AssignmentPerformanceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Execute\EvaluationPerformanceControl.resx">
+      <DependentUpon>EvaluationPerformanceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Salary\FunctionDefineControl.resx">
+      <DependentUpon>FunctionDefineControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Schedule\AssignmentTree2Control.resx">
       <DependentUpon>AssignmentTree2Control.cs</DependentUpon>
@@ -452,13 +482,13 @@
     <EmbeddedResource Include="Managment\Evaluation\EvaluationItemTypeControl.resx">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\ExecutionSalaryStructControl.resx">
+    <EmbeddedResource Include="Managment\Salary\ExecutionSalaryStructControl.resx">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Evaluation\ExecuttionEvaluationFormControl.resx">
       <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Basic\SalaryItemControl.resx">
+    <EmbeddedResource Include="Managment\Salary\SalaryItemControl.resx">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaseEditableControl.resx">
@@ -523,8 +553,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Managment\Salary\SalaryManagmentControl.resx">
-      <DependentUpon>SalaryManagmentControl.cs</DependentUpon>
+    <EmbeddedResource Include="Schedule\PersonalAssignmentScheduleControl.resx">
+      <DependentUpon>PersonalAssignmentScheduleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\PersonalMonthlyAssignmentScheduleControl.resx">
+      <DependentUpon>PersonalMonthlyAssignmentScheduleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Schedule\ScheduleItemControl.resx">
       <DependentUpon>ScheduleItemControl.cs</DependentUpon>

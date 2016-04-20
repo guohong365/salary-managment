@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using DevExpress.XtraGrid.Views.Grid;
-using SalarySystem.Managment.Basic;
+using SalarySystem.Data;
 using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Assignment
@@ -15,49 +15,56 @@ namespace SalarySystem.Managment.Assignment
         }
 
         private DataView _itemView;
+        readonly DataSetSalary.t_assignment_defineDataTable _assignmentDefine=new DataSetSalary.t_assignment_defineDataTable();
+        private const string _ASSGINMENT_DEFINE_SQL_FORMAT = "select * from t_assignment_define where VERSION_ID='{0}'";
+        void loadAssignmentDefine()
+        {
+            string sql = string.Format(_ASSGINMENT_DEFINE_SQL_FORMAT, GlobalSettings.AssignmentVersion);
+            if (DBHandlerEx.FillOnce(_assignmentDefine, sql) < 0)
+            {
+                throw new Exception();
+            }
+
+        }
         protected override void onControlLoad()
         {
             base.onControlLoad();
-            
+            loadAssignmentDefine();
             GridViewHelper.SetUpEditableGridView(gridViewDetails, false, "任务指标定义", VersionType.ASSIGNMENT);
-            _itemView = new DataView(DataHolder.AssignmentDefine) { RowFilter = string.Format("[VERSION_ID]={0}", GlobalSettings.AssignmentVersion) };
+            _itemView = new DataView(_assignmentDefine);
             gridControlDetail.DataSource = _itemView;
             repositoryItemLookUpEditType.DataSource = new DataView(DataHolder.AssignmentItemType);
             repositoryItemLookUpEditUnit.DataSource = new DataView(DataHolder.Unit);
             repositoryItemLookUpEditPosition.DataSource = new DataView(DataHolder.Position);
             gridViewDetails.InitNewRow += initNewRow;
             gridViewDetails.ExpandAllGroups();
-            DataHolder.AssignmentDefine.RowChanged += rowChanged;
+            _assignmentDefine.RowChanged += rowChanged;
         }
 
         protected override void onControlReload()
         {
             base.onControlReload();
-            DataHolder.AssignmentDefine.RowChanged += rowChanged;
+            _assignmentDefine.RowChanged += rowChanged;
             gridViewDetails.ExpandAllGroups();
         }
 
         protected override void onControlUnload()
         {
             base.onControlUnload();
-            DataHolder.AssignmentDefine.RowChanged -= rowChanged;
+            _assignmentDefine.RowChanged -= rowChanged;
         }
 
         protected override void onSave()
         {
+            if (DBHandlerEx.UpdateOnce(_assignmentDefine) <= 0) return;
+            _assignmentDefine.AcceptChanges();
             base.onSave();
-            DataTable changedTable = DataHolder.AssignmentDefine.GetChanges();
-            if (changedTable == null || changedTable.Rows.Count <= 0) return;
-            if (DBHandlerEx.UpdateOnce(changedTable) > 0)
-            {
-                DataHolder.AssignmentDefine.AcceptChanges();
-            }
         }
 
         protected override void onRevert()
         {
             base.onRevert();
-            DataHolder.AssignmentDefine.RejectChanges();
+            _assignmentDefine.RejectChanges();
         }
 
         private void rowChanged(object sender, DataRowChangeEventArgs e)
@@ -72,12 +79,12 @@ namespace SalarySystem.Managment.Assignment
 
         private void initNewRow(object sender, InitNewRowEventArgs e)
         {
-            var row = gridViewDetails.GetDataRow(e.RowHandle);
+            var row = gridViewDetails.GetDataRow(e.RowHandle) as DataSetSalary.t_assignment_defineRow;
             if (row == null) return;
-            row["ID"] = Guid.NewGuid().ToString();
-            row["ENABLED"] = true;
-            row["VERSION_ID"] = GlobalSettings.AssignmentVersion;
-            row["DEFAULT_VALUE"] = 0;
+            row.ID = Guid.NewGuid().ToString();
+            row.ENABLED = true;
+            row.VERSION_ID= GlobalSettings.AssignmentVersion;
+            row.DEFAULT_VALUE = 0;
         }
     }
 }

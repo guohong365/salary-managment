@@ -11,7 +11,7 @@ namespace SalarySystem.Managment.Assignment
         public PersonalAssignmentDefineControl()
         {
             InitializeComponent();
-            GridViewHelper.SetUpEditableGridView(gridView1, false, "岗位任务定义", VersionType.ASSIGNMENT);
+            //GridViewHelper.SetUpEditableGridView(gridViewPersionalAssignment, false, "岗位任务定义", VersionType.ASSIGNMENT);
         }
 
         private readonly DataSetSalary.v_personal_assignment_detailDataTable _personalAssignmentDetail =
@@ -19,25 +19,33 @@ namespace SalarySystem.Managment.Assignment
 
         private DataView _dataView;
 
-        private const string _PERSONAL_ASSIGNMENT_SQL_FORMAT =
+ private const string _PERSONAL_ASSIGNMENT_SQL_FORMAT =
             "select * from v_personal_assignment_detail where VERSION_ID='{0}'";
-        protected override void onControlLoad()
+
+        void loadData()
         {
-            base.onControlLoad();
+            _personalAssignmentDetail.Clear();
             string sql = getLoadSql();
             if (DBHandlerEx.FillOnce(_personalAssignmentDetail, sql) < 0)
             {
                 throw new Exception("load data failed");
             }
+        }
+        protected override void onControlLoad()
+        {
+            base.onControlLoad();
+            loadData();
             _dataView=new DataView(_personalAssignmentDetail);
             _personalAssignmentDetail.RowChanged += onRowChanged;
 
-            repositoryItemLookUpEditType.DataSource = DataHolder.AssignmentItemType;
+            repositoryItemLookUpEditItemType.DataSource = DataHolder.AssignmentItemType;
+
+            //repositoryItemLookUpEditType.DataSource = DataHolder.AssignmentItemType;
             repositoryItemLookUpEditUnit.DataSource = DataHolder.Unit;
             repositoryItemLookUpEditPosition.DataSource = DataHolder.Position;
 
-            gridControl1.DataSource = _dataView;
-
+            gridControlPersonalAssignment.DataSource = _dataView;
+            gridViewPersonalAssignment.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
         }
 
         static string getLoadSql()
@@ -47,10 +55,8 @@ namespace SalarySystem.Managment.Assignment
         protected override void onControlReload()
         {
             base.onControlReload();
-            _personalAssignmentDetail.Clear();
-
-            DBHandlerEx.FillOnce(_personalAssignmentDetail, getLoadSql());
-            _personalAssignmentDetail.RowChanged += onRowChanged;
+           loadData();
+           _personalAssignmentDetail.RowChanged += onRowChanged;
         }
 
         protected override void onControlUnload()
@@ -63,7 +69,7 @@ namespace SalarySystem.Managment.Assignment
         protected override void onSave()
         {
             base.onSave();
-            var positionAssignments=new DataSetSalary.t_position_assignmentsDataTable();
+            var positionAssignments = new DataSetSalary.t_position_assignmentsDataTable();
             if (DBHandlerEx.FillOnce(positionAssignments,
                 string.Format("select * from t_position_assignments where VERSION_ID={0}",
                     GlobalSettings.AssignmentVersion)) < 0)
@@ -72,10 +78,10 @@ namespace SalarySystem.Managment.Assignment
             }
             foreach (var detailRow in _personalAssignmentDetail)
             {
-                var row =positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(detailRow.DEFINE_ID, detailRow.ID);
+                var row = positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(detailRow.DEFINE_ID, detailRow.ID);
                 if (row != null)
                 {
-                    row.ENABLED = detailRow.USED!=0;
+                    row.ENABLED = detailRow.USED;
                     row.WEIGHT = 100;
                     row.VALUE = detailRow.VALUE;
                 }
@@ -84,7 +90,7 @@ namespace SalarySystem.Managment.Assignment
                     row = positionAssignments.Newt_position_assignmentsRow();
                     row.ASSIGNMENT_ID = detailRow.DEFINE_ID;
                     row.POSITION_ID = detailRow.ID;
-                    row.ENABLED = detailRow.USED!=0;
+                    row.ENABLED = detailRow.USED;
                     row.WEIGHT = 100;
                     row.VALUE = detailRow.VALUE;
                     row.VERSION_ID = detailRow.VERSION_ID;

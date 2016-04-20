@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraBars;
+using DevExpress.XtraBars.Helpers;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using SalarySystem.Config;
 using SalarySystem.Execute;
 using SalarySystem.Managment;
-using SalarySystem.Managment.Basic;
 using SalarySystem.Managment.Employee;
 using SalarySystem.Managment.Position;
 using SalarySystem.Schedule;
@@ -20,6 +21,7 @@ namespace SalarySystem
         public MainForm()
         {
             InitializeComponent();
+            SkinHelper.InitSkinPopupMenu(barSubItemSkins);
         }
 
         private void onLoad(object sender, EventArgs e)
@@ -68,7 +70,7 @@ namespace SalarySystem
             xtraTabControl1.SelectedTabPage = page;
         }
 
-        private void employeeManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void employeeManagment(object sender, ItemClickEventArgs e)
         {
             if (!takeCachedPage("员工管理"))
             {
@@ -86,7 +88,7 @@ namespace SalarySystem
             xtraTabControl1.TabPages.Remove(page);
         }
 
-        private void positionManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void positionManagment(object sender, ItemClickEventArgs e)
         {
             if (!takeCachedPage("岗位管理"))
             {
@@ -94,12 +96,12 @@ namespace SalarySystem
             }
         }
 
-        private void appraisalElementManagment(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void appraisalElementManagment(object sender, ItemClickEventArgs e)
         {
 
         }
 
-        private void basic_define(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void basic_define(object sender, ItemClickEventArgs e)
         {
             if (!takeCachedPage("基本定义"))
             {
@@ -107,7 +109,7 @@ namespace SalarySystem
             }
         }
 
-        private void employee_performance(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void employee_performance(object sender, ItemClickEventArgs e)
         {
             if (!takeCachedPage("员工考核"))
             {
@@ -115,7 +117,7 @@ namespace SalarySystem
             }
         }
 
-        private void onSystemConfig(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void onSystemConfig(object sender, ItemClickEventArgs e)
         {
             if (!takeCachedPage("系统设置"))
             {
@@ -123,7 +125,7 @@ namespace SalarySystem
             }
         }
 
-        private void scheduleClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void scheduleClicked(object sender, ItemClickEventArgs e)
         {
             if (!takeCachedPage("任务计划"))
             {
@@ -131,11 +133,11 @@ namespace SalarySystem
             }
         }
 
-        private void salaryDetailClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void salaryDetailClicked(object sender, ItemClickEventArgs e)
         {
             if (!takeCachedPage("工资明细"))
             {
-                addControl("工资明细", new SalaryDetailControl());
+                addControl("工资明细", new AssignmentPerformanceControl());
             }
         }
     }

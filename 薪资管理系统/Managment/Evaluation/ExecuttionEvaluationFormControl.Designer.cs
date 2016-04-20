@@ -80,11 +80,11 @@
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Location = new System.Drawing.Point(279, 5);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(715, 9);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Location = new System.Drawing.Point(181, 5);
+            this.simpleButtonSave.Location = new System.Drawing.Point(634, 9);
             // 
             // panelControl2
             // 
@@ -169,6 +169,8 @@
             this.repositoryItemLookUpEditPosition.DisplayMember = "NAME";
             this.repositoryItemLookUpEditPosition.Name = "repositoryItemLookUpEditPosition";
             this.repositoryItemLookUpEditPosition.NullText = "";
+            this.repositoryItemLookUpEditPosition.ShowFooter = false;
+            this.repositoryItemLookUpEditPosition.ShowHeader = false;
             this.repositoryItemLookUpEditPosition.ValueMember = "ID";
             // 
             // colEVALUATION_FORM_ID

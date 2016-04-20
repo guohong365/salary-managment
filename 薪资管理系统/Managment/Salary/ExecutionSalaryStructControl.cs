@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Data;
+using System.Diagnostics;
 using DevExpress.XtraEditors.Controls;
 using SalarySystem.Data;
 using UC.Platform.Data;
 
-namespace SalarySystem.Managment.Basic
+namespace SalarySystem.Managment.Salary
 {
     public partial class ExecutionSalaryStructControl : DevExpress.XtraEditors.XtraUserControl
     {
@@ -15,8 +15,11 @@ namespace SalarySystem.Managment.Basic
         private readonly DataSetSalary.v_salary_struct_detailDataTable _salaryStructDetail =
             new DataSetSalary.v_salary_struct_detailDataTable();
 
+        readonly DataSetSalary.t_salary_itemDataTable _salaryItem=new DataSetSalary.t_salary_itemDataTable();
         private const string _SALARY_STRUCT_DETAIL_SQL_FORMAT =
             "select * from v_salary_struct_detail where VERSION_ID='{0}'";
+
+        private const string _SALARY_ITEM_SQL_FORMAT = "select * from t_salary_item where ENABLED=true and VERSION_ID='{0}'";
 
         int loadSalaryStructDetail()
         {
@@ -24,22 +27,30 @@ namespace SalarySystem.Managment.Basic
             return DBHandlerEx.FillOnce(_salaryStructDetail, sql);
         }
 
+        int loadSalaryItem()
+        {
+            string sql = string.Format(_SALARY_ITEM_SQL_FORMAT, GlobalSettings.SalaryVersion);
+            return DBHandlerEx.FillOnce(_salaryItem, sql);
+        }
+
+        void loadData()
+        {
+            if (loadSalaryItem() < 0 || loadSalaryStructDetail() < 0)
+            {
+                throw new Exception();
+            }
+        }
+
         public ExecutionSalaryStructControl()
         {
             InitializeComponent();
             GridViewHelper.SetUpEditableGridView(gridViewExecSalaryDetai, false, "薪资构成", VersionType.SALARY);
 
-            if (loadSalaryStructDetail() < 0)
-            {
-                throw new Exception("load salary detail failed.");
-            }
+            loadData();
 
             gridControlExecSalaryDetai.DataSource = null;
             _detailView=new DataView(_salaryStructDetail);
-            _itemView = new DataView(DataHolder.SalaryItem)
-            {
-                RowFilter = string.Format("[ENABLED]=true AND [VERSION_ID]='{0}'", GlobalSettings.SalaryVersion)
-            };
+            _itemView = new DataView(_salaryItem);
 
             treeListPosition.DataSource = new DataView(DataHolder.Position){RowFilter = "[ENABLED]=true"};
             gridControlExecSalaryDetai.DataSource = null;
@@ -53,7 +64,7 @@ namespace SalarySystem.Managment.Basic
 
         static string getDetailViewFilter(string positionId)
         {
-            return string.Format("[VERSION_ID]='{0}' AND [POSITION_ID]='{1}'", GlobalSettings.SalaryVersion, positionId);
+            return string.Format("[POSITION_ID]='{0}'", positionId);
         }
 
         static string getItemListFilter(string positionId)
@@ -166,7 +177,7 @@ namespace SalarySystem.Managment.Basic
             string itemId = (string) e.Value;
             if(string.IsNullOrEmpty(itemId))return;
             var row = gridViewExecSalaryDetai.GetDataRow(gridViewExecSalaryDetai.FocusedRowHandle) as DataSetSalary.v_salary_struct_detailRow;
-            var itemRow = DataHolder.SalaryItem.FindByID(itemId);
+            var itemRow = _salaryItem.FindByID(itemId);
             if (row == null) return;
             row.NAME = itemRow.NAME;
             row.DESCRIPTION = itemRow.DESCRIPTION;

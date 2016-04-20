@@ -197,25 +197,17 @@ namespace SalarySystem
             #endregion
 
             #region 绩效相关
-            
-            DBHandlerEx.FillOnce(DataHolder.EvaluationForm, _sqlLoadEvaluationForm);
-            DBHandlerEx.FillOnce(DataHolder.EvaluationFormItems, _sqlLoadEvaluationFormItems);
-
-            DBHandlerEx.FillOnce(DataHolder.EvaluationItem, _sqlLoadEvaluationItem);
             DBHandlerEx.FillOnce(DataHolder.EvaluationItemType, _sqlLoadEvaluationItemType);
             DBHandlerEx.FillOnce(DataHolder.EvaluationStandard, _sqlLoadEvaluationStandard);
             #endregion
 
             #region 任务相关
-
-            DBHandlerEx.FillOnce(DataHolder.AssignmentDefine, _sqlLoadAssignmentDefine);
             DBHandlerEx.FillOnce(DataHolder.AssignmentItemType, _sqlLoadAssignmentItemType);
             DBHandlerEx.FillOnce(DataHolder.Unit, _sqlLoadAssignmentUnit);
             #endregion
             #region 薪资相关
-
-            DBHandlerEx.FillOnce(DataHolder.SalaryItem, "select * from t_salary_item");
             DBHandlerEx.FillOnce(DataHolder.SalaryItemType, "select * from t_salary_item_type");
+            DBHandlerEx.FillOnce(DataHolder.ParameterType, "select * from t_parameter_type");
 
             #endregion
         }

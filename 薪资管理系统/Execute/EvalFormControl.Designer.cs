@@ -187,6 +187,7 @@
             this.gridViewEvalForm.OptionsView.ShowGroupedColumns = true;
             this.gridViewEvalForm.OptionsView.ShowGroupPanel = false;
             this.gridViewEvalForm.OptionsView.ShowIndicator = false;
+            this.gridViewEvalForm.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.validatingEditor);
             // 
             // colITEM_TYPE
             // 

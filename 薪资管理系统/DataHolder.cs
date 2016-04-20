@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using MySql.Data.MySqlClient;
-using SalarySystem.Data;
+﻿using SalarySystem.Data;
 
 namespace SalarySystem
 {
@@ -19,11 +17,6 @@ namespace SalarySystem
 
         #region 数据表
 
-        public static DataSetSalary.t_assignment_defineDataTable AssignmentDefine
-        {
-            get { return _dataSet.t_assignment_define; }
-        }
-
         public static DataSetSalary.t_assignment_item_typeDataTable AssignmentItemType
         {
             get { return _dataSet.t_assignment_item_type; }
@@ -33,21 +26,6 @@ namespace SalarySystem
         public static DataSetSalary.t_employeeDataTable Employee
         {
             get { return _dataSet.t_employee; }
-        }
-
-        public static DataSetSalary.t_evaluation_formDataTable EvaluationForm
-        {
-            get { return _dataSet.t_evaluation_form; }
-        }
-
-        public static DataSetSalary.t_evaluation_form_itemsDataTable EvaluationFormItems
-        {
-            get { return _dataSet.t_evaluation_form_items; }
-        }
-
-        public static DataSetSalary.t_evaluation_itemDataTable EvaluationItem
-        {
-            get { return _dataSet.t_evaluation_item; }
         }
 
         public static DataSetSalary.t_evaluation_item_typeDataTable EvaluationItemType
@@ -80,14 +58,19 @@ namespace SalarySystem
             get { return _dataSet.t_repository_salary_struct; }
         }
 
-        public static DataSetSalary.t_salary_itemDataTable SalaryItem
-        {
-            get { return _dataSet.t_salary_item; }
-        }
-
         public static DataSetSalary.t_salary_item_typeDataTable SalaryItemType
         {
             get { return _dataSet.t_salary_item_type; }
+        }
+
+        public static DataSetSalary.t_salary_functionDataTable SalaryFunction
+        {
+            get { return _dataSet.t_salary_function; }
+        }
+
+        public static DataSetSalary.t_salary_function_parameterDataTable SalaryFunctionParameter
+        {
+            get { return _dataSet.t_salary_function_parameter; }
         }
 
         public static DataSetSalary.t_settingsDataTable Settings
@@ -99,7 +82,11 @@ namespace SalarySystem
         {
             get { return _dataSet.t_unit; }
         }
-        
+
+        public static DataSetSalary.t_parameter_typeDataTable ParameterType
+        {
+            get { return _dataSet.t_parameter_type; }
+        }
         #endregion
 
     }

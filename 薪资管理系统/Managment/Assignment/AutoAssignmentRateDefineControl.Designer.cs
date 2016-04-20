@@ -28,41 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.列NAME = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.列DEFINE_NAME = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.列WEIGHT = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.列USED = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.列FIT_POSITION_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.列DEFINE_DESC = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.列DEFINE_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.列DEFINE_TYPE = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.列UNIT_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.列IS_NEW = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.列VERSION_ID = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.repositoryItemLookUpEditFitPosition = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemCheckEditUsed = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.repositoryItemLookUpEditPosition = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gridControlAssignmentDefine = new DevExpress.XtraGrid.GridControl();
             this.gridViewAssignmentDefine = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTYPE = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDEFAULT_VALUE = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colVERSION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUNIT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPOSITION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditFitPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditUsed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlAssignmentDefine)).BeginInit();
@@ -87,22 +75,13 @@
             this.panelControl2.Controls.Add(this.splitContainerControl1);
             this.panelControl2.Size = new System.Drawing.Size(818, 466);
             // 
-            // repositoryItemCheckEdit1
+            // repositoryItemTextEdit1
             // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            // 
-            // repositoryItemLookUpEdit1
-            // 
-            this.repositoryItemLookUpEdit1.AutoHeight = false;
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NAME", "名称1")});
-            this.repositoryItemLookUpEdit1.DisplayMember = "NAME";
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            this.repositoryItemLookUpEdit1.NullText = "";
-            this.repositoryItemLookUpEdit1.ValueMember = "ID";
+            this.repositoryItemTextEdit1.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
             // treeList1
             // 
@@ -173,15 +152,11 @@
             this.列DEFINE_NAME,
             this.列WEIGHT,
             this.列USED,
-            this.列FIT_POSITION_ID,
-            this.列DEFINE_DESC,
-            this.列DEFINE_ID,
-            this.列DEFINE_TYPE,
-            this.列UNIT_ID,
-            this.列IS_NEW,
-            this.列VERSION_ID});
+            this.列FIT_POSITION_ID});
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(0, 0);
+            this.treeList1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.treeList1.LookAndFeel.UseWindowsXPTheme = true;
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsView.EnableAppearanceEvenRow = true;
             this.treeList1.OptionsView.EnableAppearanceOddRow = true;
@@ -189,7 +164,9 @@
             this.treeList1.OptionsView.ShowRowFooterSummary = true;
             this.treeList1.ParentFieldName = "LEADER_ID";
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1});
+            this.repositoryItemLookUpEditFitPosition,
+            this.repositoryItemCheckEditUsed,
+            this.repositoryItemLookUpEditPosition});
             this.treeList1.RootValue = "<Null>";
             this.treeList1.Size = new System.Drawing.Size(596, 462);
             this.treeList1.TabIndex = 0;
@@ -223,7 +200,6 @@
             // 列WEIGHT
             // 
             this.列WEIGHT.Caption = "占比(%)";
-            this.列WEIGHT.ColumnEdit = this.repositoryItemTextEdit1;
             this.列WEIGHT.FieldName = "WEIGHT";
             this.列WEIGHT.Name = "列WEIGHT";
             this.列WEIGHT.OptionsColumn.AllowMoveToCustomizationForm = false;
@@ -233,18 +209,9 @@
             this.列WEIGHT.VisibleIndex = 2;
             this.列WEIGHT.Width = 118;
             // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.repositoryItemTextEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            // 
             // 列USED
             // 
             this.列USED.Caption = "启用";
-            this.列USED.ColumnEdit = this.repositoryItemCheckEdit1;
             this.列USED.FieldName = "USED";
             this.列USED.Name = "列USED";
             this.列USED.OptionsColumn.AllowMoveToCustomizationForm = false;
@@ -256,7 +223,7 @@
             // 列FIT_POSITION_ID
             // 
             this.列FIT_POSITION_ID.Caption = "适用岗位";
-            this.列FIT_POSITION_ID.ColumnEdit = this.repositoryItemLookUpEdit1;
+            this.列FIT_POSITION_ID.ColumnEdit = this.repositoryItemLookUpEditFitPosition;
             this.列FIT_POSITION_ID.FieldName = "FIT_POSITION_ID";
             this.列FIT_POSITION_ID.Name = "列FIT_POSITION_ID";
             this.列FIT_POSITION_ID.OptionsColumn.AllowEdit = false;
@@ -266,49 +233,32 @@
             this.列FIT_POSITION_ID.VisibleIndex = 4;
             this.列FIT_POSITION_ID.Width = 119;
             // 
-            // 列DEFINE_DESC
+            // repositoryItemLookUpEditFitPosition
             // 
-            this.列DEFINE_DESC.Caption = "任务说明";
-            this.列DEFINE_DESC.FieldName = "DEFINE_DESC";
-            this.列DEFINE_DESC.Name = "列DEFINE_DESC";
-            this.列DEFINE_DESC.OptionsColumn.AllowEdit = false;
-            this.列DEFINE_DESC.OptionsColumn.AllowMoveToCustomizationForm = false;
-            this.列DEFINE_DESC.OptionsColumn.ShowInCustomizationForm = false;
+            this.repositoryItemLookUpEditFitPosition.AutoHeight = false;
+            this.repositoryItemLookUpEditFitPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditFitPosition.DisplayMember = "NAME";
+            this.repositoryItemLookUpEditFitPosition.Name = "repositoryItemLookUpEditFitPosition";
+            this.repositoryItemLookUpEditFitPosition.NullText = "";
+            this.repositoryItemLookUpEditFitPosition.ValueMember = "ID";
             // 
-            // 列DEFINE_ID
+            // repositoryItemCheckEditUsed
             // 
-            this.列DEFINE_ID.FieldName = "DEFINE_ID";
-            this.列DEFINE_ID.Name = "列DEFINE_ID";
-            this.列DEFINE_ID.OptionsColumn.AllowMoveToCustomizationForm = false;
-            this.列DEFINE_ID.OptionsColumn.ShowInCustomizationForm = false;
+            this.repositoryItemCheckEditUsed.AutoHeight = false;
+            this.repositoryItemCheckEditUsed.Name = "repositoryItemCheckEditUsed";
             // 
-            // 列DEFINE_TYPE
+            // repositoryItemLookUpEditPosition
             // 
-            this.列DEFINE_TYPE.FieldName = "DEFINE_TYPE";
-            this.列DEFINE_TYPE.Name = "列DEFINE_TYPE";
-            this.列DEFINE_TYPE.OptionsColumn.AllowMoveToCustomizationForm = false;
-            this.列DEFINE_TYPE.OptionsColumn.ShowInCustomizationForm = false;
-            // 
-            // 列UNIT_ID
-            // 
-            this.列UNIT_ID.FieldName = "UNIT_ID";
-            this.列UNIT_ID.Name = "列UNIT_ID";
-            this.列UNIT_ID.OptionsColumn.AllowMoveToCustomizationForm = false;
-            this.列UNIT_ID.OptionsColumn.ShowInCustomizationForm = false;
-            // 
-            // 列IS_NEW
-            // 
-            this.列IS_NEW.FieldName = "IS_NEW";
-            this.列IS_NEW.Name = "列IS_NEW";
-            this.列IS_NEW.OptionsColumn.AllowMoveToCustomizationForm = false;
-            this.列IS_NEW.OptionsColumn.ShowInCustomizationForm = false;
-            // 
-            // 列VERSION_ID
-            // 
-            this.列VERSION_ID.FieldName = "VERSION_ID";
-            this.列VERSION_ID.Name = "列VERSION_ID";
-            this.列VERSION_ID.OptionsColumn.AllowMoveToCustomizationForm = false;
-            this.列VERSION_ID.OptionsColumn.ShowInCustomizationForm = false;
+            this.repositoryItemLookUpEditPosition.AutoHeight = false;
+            this.repositoryItemLookUpEditPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditPosition.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NAME", "名称10")});
+            this.repositoryItemLookUpEditPosition.DisplayMember = "NAME";
+            this.repositoryItemLookUpEditPosition.Name = "repositoryItemLookUpEditPosition";
+            this.repositoryItemLookUpEditPosition.NullText = "";
+            this.repositoryItemLookUpEditPosition.ValueMember = "ID";
             // 
             // splitContainerControl1
             // 
@@ -440,15 +390,7 @@
             this.gridViewAssignmentDefine.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(188)))));
             this.gridViewAssignmentDefine.Appearance.VertLine.Options.UseBackColor = true;
             this.gridViewAssignmentDefine.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colNAME,
-            this.colID,
-            this.colDESCRIPTION,
-            this.colENABLED,
-            this.colTYPE,
-            this.colDEFAULT_VALUE,
-            this.colVERSION_ID,
-            this.colUNIT_ID,
-            this.colPOSITION_ID});
+            this.colNAME});
             this.gridViewAssignmentDefine.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gridViewAssignmentDefine.GridControl = this.gridControlAssignmentDefine;
             this.gridViewAssignmentDefine.Name = "gridViewAssignmentDefine";
@@ -467,46 +409,6 @@
             this.colNAME.Visible = true;
             this.colNAME.VisibleIndex = 0;
             // 
-            // colID
-            // 
-            this.colID.FieldName = "ID";
-            this.colID.Name = "colID";
-            // 
-            // colDESCRIPTION
-            // 
-            this.colDESCRIPTION.FieldName = "DESCRIPTION";
-            this.colDESCRIPTION.Name = "colDESCRIPTION";
-            // 
-            // colENABLED
-            // 
-            this.colENABLED.FieldName = "ENABLED";
-            this.colENABLED.Name = "colENABLED";
-            // 
-            // colTYPE
-            // 
-            this.colTYPE.FieldName = "TYPE";
-            this.colTYPE.Name = "colTYPE";
-            // 
-            // colDEFAULT_VALUE
-            // 
-            this.colDEFAULT_VALUE.FieldName = "DEFAULT_VALUE";
-            this.colDEFAULT_VALUE.Name = "colDEFAULT_VALUE";
-            // 
-            // colVERSION_ID
-            // 
-            this.colVERSION_ID.FieldName = "VERSION_ID";
-            this.colVERSION_ID.Name = "colVERSION_ID";
-            // 
-            // colUNIT_ID
-            // 
-            this.colUNIT_ID.FieldName = "UNIT_ID";
-            this.colUNIT_ID.Name = "colUNIT_ID";
-            // 
-            // colPOSITION_ID
-            // 
-            this.colPOSITION_ID.FieldName = "POSITION_ID";
-            this.colPOSITION_ID.Name = "colPOSITION_ID";
-            // 
             // AutoAssignmentRateDefineControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -517,10 +419,11 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditFitPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditUsed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlAssignmentDefine)).EndInit();
@@ -534,29 +437,16 @@
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列NAME;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列DEFINE_NAME;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn 列DEFINE_TYPE;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列FIT_POSITION_ID;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn 列DEFINE_ID;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列USED;
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列WEIGHT;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn 列DEFINE_DESC;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraGrid.GridControl gridControlAssignmentDefine;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewAssignmentDefine;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME;
-        private DevExpress.XtraGrid.Columns.GridColumn colID;
-        private DevExpress.XtraGrid.Columns.GridColumn colDESCRIPTION;
-        private DevExpress.XtraGrid.Columns.GridColumn colENABLED;
-        private DevExpress.XtraGrid.Columns.GridColumn colTYPE;
-        private DevExpress.XtraGrid.Columns.GridColumn colDEFAULT_VALUE;
-        private DevExpress.XtraGrid.Columns.GridColumn colVERSION_ID;
-        private DevExpress.XtraGrid.Columns.GridColumn colUNIT_ID;
-        private DevExpress.XtraGrid.Columns.GridColumn colPOSITION_ID;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn 列UNIT_ID;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn 列IS_NEW;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn 列VERSION_ID;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditFitPosition;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditUsed;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditPosition;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace SalarySystem.Managment.Basic
+﻿namespace SalarySystem.Managment.Salary
 {
     partial class ExecutionSalaryStructControl
     {

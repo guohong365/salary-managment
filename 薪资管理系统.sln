@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{4E
 		20160416-1.sql = 20160416-1.sql
 		20160416.sql = 20160416.sql
 		20160419.sql = 20160419.sql
+		20160421.sql = 20160421.sql
 		init_employee.sql = init_employee.sql
 		init_evaluation_item_type.sql = init_evaluation_item_type.sql
 		init_position.sql = init_position.sql
@@ -27,6 +28,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{AFCAE4BB-D10A-4F13-8A0B-1147B9E4C39F}"
 	ProjectSection(SolutionItems) = preProject
 		design\岗位绩效薪酬计算办法.docx = design\岗位绩效薪酬计算办法.docx
+		design\岗位绩效薪酬计算办法2.docx = design\岗位绩效薪酬计算办法2.docx
 		design\绘图1.vsd = design\绘图1.vsd
 		design\薪酬管理.cdb = design\薪酬管理.cdb
 		design\薪酬管理.cdm = design\薪酬管理.cdm

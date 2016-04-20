@@ -24,7 +24,7 @@ namespace SalarySystem.Execute
                 new NavGroupDefine(KEY_GROUP_EXECUTED_EVALUATION, new[]
                 {
                     new NavItemDefine(KEY_EXECUTED_EVALUATION, typeof(ExecutionPerformanceControl), onNavItemClicked, 0),
-                    new NavItemDefine(KEY_SALARY_DETAIL, typeof(SalaryDetailControl), onNavItemClicked, 1)
+                    new NavItemDefine(KEY_SALARY_DETAIL, typeof(AssignmentPerformanceControl), onNavItemClicked, 1)
                 })
             });
         }

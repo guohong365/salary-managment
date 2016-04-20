@@ -144,7 +144,7 @@ namespace SalarySystem.Execute
                         resultsRow.ID = Guid.NewGuid().ToString();
                     }
                     
-                    resultsRow.DESCRIPTION = detailRow.RESULT_DESC;
+                    resultsRow.DESCRIPTION = detailRow.IsRESULT_DESCNull()?"":detailRow.RESULT_DESC;
                     resultsRow.EMPLOYEE_ID = detailRow.EMPLOYEE_ID;
                     resultsRow.EVALUATION_FORM_ID = detailRow.FORM_ID;
                     resultsRow.EVALUATION_ITEM_ID = detailRow.ITEM_ID;
@@ -173,11 +173,8 @@ namespace SalarySystem.Execute
             try
             {
                 saveEvaluationResults(handler);
+                CurrentEmployeePerformance.EvaluationResults.Values.ToList().ForEach(table=>table.AcceptChanges());
                 handler.EndTransaction(true);
-            }
-            catch
-            {
-                handler.EndTransaction(false);
             }
             finally
             {

@@ -1,4 +1,4 @@
-﻿namespace SalarySystem.Managment.Basic
+﻿namespace SalarySystem.Managment.Salary
 {
     partial class SalaryItemControl
     {
@@ -29,12 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButtonRevert = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButtonSave = new DevExpress.XtraEditors.SimpleButton();
-            this.gridControlSalaryItem = new DevExpress.XtraGrid.GridControl();
             this.dataSetSalaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
+            this.gridControlSalaryItem = new DevExpress.XtraGrid.GridControl();
             this.gridViewSalaryItem = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPOSITION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,71 +39,42 @@
             this.colTYPE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEditItemType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDATA_SOURCE_TYPE = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemLookUpEditDataSourceType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colVALUE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFUNC_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEditFunction = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVERSION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlSalaryItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalaryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlSalaryItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSalaryItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditDataSourceType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditFunction)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButtonRevert);
-            this.panelControl1.Controls.Add(this.simpleButtonSave);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 481);
-            this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(593, 40);
-            this.panelControl1.TabIndex = 1;
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButtonRevert.Enabled = false;
-            this.simpleButtonRevert.Location = new System.Drawing.Point(513, 9);
-            this.simpleButtonRevert.Name = "simpleButtonRevert";
-            this.simpleButtonRevert.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonRevert.TabIndex = 1;
-            this.simpleButtonRevert.Text = "放弃";
-            this.simpleButtonRevert.Click += new System.EventHandler(this.abandon_items);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(393, 9);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.simpleButtonSave.Enabled = false;
-            this.simpleButtonSave.Location = new System.Drawing.Point(432, 9);
-            this.simpleButtonSave.Name = "simpleButtonSave";
-            this.simpleButtonSave.Size = new System.Drawing.Size(75, 23);
-            this.simpleButtonSave.TabIndex = 0;
-            this.simpleButtonSave.Text = "保存";
-            this.simpleButtonSave.Click += new System.EventHandler(this.save_items);
+            this.simpleButtonSave.Location = new System.Drawing.Point(312, 9);
             // 
-            // gridControlSalaryItem
+            // panelControl2
             // 
-            this.gridControlSalaryItem.DataMember = "t_salary_item";
-            this.gridControlSalaryItem.DataSource = this.dataSetSalaryBindingSource;
-            this.gridControlSalaryItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlSalaryItem.Location = new System.Drawing.Point(0, 0);
-            this.gridControlSalaryItem.MainView = this.gridViewSalaryItem;
-            this.gridControlSalaryItem.Name = "gridControlSalaryItem";
-            this.gridControlSalaryItem.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEditItemType,
-            this.repositoryItemLookUpEditPosition,
-            this.repositoryItemLookUpEditDataSourceType});
-            this.gridControlSalaryItem.Size = new System.Drawing.Size(593, 481);
-            this.gridControlSalaryItem.TabIndex = 2;
-            this.gridControlSalaryItem.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewSalaryItem});
+            this.panelControl2.Controls.Add(this.gridControlSalaryItem);
+            this.panelControl2.Size = new System.Drawing.Size(593, 481);
             // 
             // dataSetSalaryBindingSource
             // 
@@ -118,6 +86,23 @@
             this.dataSetSalary.DataSetName = "DataSetSalary";
             this.dataSetSalary.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // gridControlSalaryItem
+            // 
+            this.gridControlSalaryItem.DataMember = "t_salary_item";
+            this.gridControlSalaryItem.DataSource = this.dataSetSalaryBindingSource;
+            this.gridControlSalaryItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlSalaryItem.Location = new System.Drawing.Point(2, 2);
+            this.gridControlSalaryItem.MainView = this.gridViewSalaryItem;
+            this.gridControlSalaryItem.Name = "gridControlSalaryItem";
+            this.gridControlSalaryItem.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEditItemType,
+            this.repositoryItemLookUpEditPosition,
+            this.repositoryItemLookUpEditFunction});
+            this.gridControlSalaryItem.Size = new System.Drawing.Size(589, 477);
+            this.gridControlSalaryItem.TabIndex = 3;
+            this.gridControlSalaryItem.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewSalaryItem});
+            // 
             // gridViewSalaryItem
             // 
             this.gridViewSalaryItem.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -125,14 +110,13 @@
             this.colPOSITION_ID,
             this.colTYPE,
             this.colNAME,
-            this.colDATA_SOURCE_TYPE,
             this.colVALUE,
+            this.colFUNC_ID,
             this.colDESCRIPTION,
             this.colID,
             this.colVERSION_ID});
             this.gridViewSalaryItem.GridControl = this.gridControlSalaryItem;
             this.gridViewSalaryItem.Name = "gridViewSalaryItem";
-            this.gridViewSalaryItem.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.initNewRow);
             // 
             // colENABLED
             // 
@@ -157,6 +141,7 @@
             // repositoryItemLookUpEditPosition
             // 
             this.repositoryItemLookUpEditPosition.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.repositoryItemLookUpEditPosition.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
             this.repositoryItemLookUpEditPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEditPosition.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
@@ -204,30 +189,6 @@
             this.colNAME.Visible = true;
             this.colNAME.VisibleIndex = 3;
             // 
-            // colDATA_SOURCE_TYPE
-            // 
-            this.colDATA_SOURCE_TYPE.Caption = "取值类型";
-            this.colDATA_SOURCE_TYPE.ColumnEdit = this.repositoryItemLookUpEditDataSourceType;
-            this.colDATA_SOURCE_TYPE.FieldName = "DATA_SOURCE_TYPE";
-            this.colDATA_SOURCE_TYPE.MaxWidth = 80;
-            this.colDATA_SOURCE_TYPE.Name = "colDATA_SOURCE_TYPE";
-            this.colDATA_SOURCE_TYPE.Visible = true;
-            this.colDATA_SOURCE_TYPE.VisibleIndex = 4;
-            // 
-            // repositoryItemLookUpEditDataSourceType
-            // 
-            this.repositoryItemLookUpEditDataSourceType.AutoHeight = false;
-            this.repositoryItemLookUpEditDataSourceType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEditDataSourceType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NAME", "Name1")});
-            this.repositoryItemLookUpEditDataSourceType.DisplayMember = "NAME";
-            this.repositoryItemLookUpEditDataSourceType.Name = "repositoryItemLookUpEditDataSourceType";
-            this.repositoryItemLookUpEditDataSourceType.NullText = "";
-            this.repositoryItemLookUpEditDataSourceType.ShowFooter = false;
-            this.repositoryItemLookUpEditDataSourceType.ShowHeader = false;
-            this.repositoryItemLookUpEditDataSourceType.ValueMember = "ID";
-            // 
             // colVALUE
             // 
             this.colVALUE.Caption = "取值";
@@ -236,7 +197,32 @@
             this.colVALUE.Name = "colVALUE";
             this.colVALUE.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.colVALUE.Visible = true;
-            this.colVALUE.VisibleIndex = 5;
+            this.colVALUE.VisibleIndex = 4;
+            // 
+            // colFUNC_ID
+            // 
+            this.colFUNC_ID.Caption = "计算公式";
+            this.colFUNC_ID.ColumnEdit = this.repositoryItemLookUpEditFunction;
+            this.colFUNC_ID.FieldName = "FUNC_ID";
+            this.colFUNC_ID.Name = "colFUNC_ID";
+            this.colFUNC_ID.Visible = true;
+            this.colFUNC_ID.VisibleIndex = 6;
+            // 
+            // repositoryItemLookUpEditFunction
+            // 
+            this.repositoryItemLookUpEditFunction.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.repositoryItemLookUpEditFunction.AutoHeight = false;
+            this.repositoryItemLookUpEditFunction.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
+            this.repositoryItemLookUpEditFunction.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditFunction.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NAME", "名称"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DISPLAY_FORMULA", "公式")});
+            this.repositoryItemLookUpEditFunction.DisplayMember = "DISPLAY_FORMULA";
+            this.repositoryItemLookUpEditFunction.Name = "repositoryItemLookUpEditFunction";
+            this.repositoryItemLookUpEditFunction.NullText = "";
+            this.repositoryItemLookUpEditFunction.NullValuePromptShowForEmptyValue = true;
+            this.repositoryItemLookUpEditFunction.ValueMember = "ID";
             // 
             // colDESCRIPTION
             // 
@@ -245,7 +231,7 @@
             this.colDESCRIPTION.Name = "colDESCRIPTION";
             this.colDESCRIPTION.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.colDESCRIPTION.Visible = true;
-            this.colDESCRIPTION.VisibleIndex = 6;
+            this.colDESCRIPTION.VisibleIndex = 5;
             // 
             // colID
             // 
@@ -263,45 +249,40 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridControlSalaryItem);
-            this.Controls.Add(this.panelControl1);
             this.Name = "SalaryItemControl";
             this.Size = new System.Drawing.Size(593, 521);
-            this.Load += new System.EventHandler(this.control_load);
-            this.VisibleChanged += new System.EventHandler(this.visibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlSalaryItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalaryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlSalaryItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSalaryItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditDataSourceType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditFunction)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonRevert;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonSave;
-        private DevExpress.XtraGrid.GridControl gridControlSalaryItem;
         private System.Windows.Forms.BindingSource dataSetSalaryBindingSource;
         private Data.DataSetSalary dataSetSalary;
+        private DevExpress.XtraGrid.GridControl gridControlSalaryItem;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewSalaryItem;
         private DevExpress.XtraGrid.Columns.GridColumn colENABLED;
+        private DevExpress.XtraGrid.Columns.GridColumn colPOSITION_ID;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditPosition;
         private DevExpress.XtraGrid.Columns.GridColumn colTYPE;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditItemType;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME;
         private DevExpress.XtraGrid.Columns.GridColumn colVALUE;
+        private DevExpress.XtraGrid.Columns.GridColumn colFUNC_ID;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditFunction;
         private DevExpress.XtraGrid.Columns.GridColumn colDESCRIPTION;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colVERSION_ID;
-        private DevExpress.XtraGrid.Columns.GridColumn colPOSITION_ID;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditPosition;
-        private DevExpress.XtraGrid.Columns.GridColumn colDATA_SOURCE_TYPE;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditDataSourceType;
     }
 }

@@ -1259,7 +1259,7 @@ namespace UC.Platform.Data
                 int num = buffer.Fill(dataTable, strSql);
                 return num;
             }
-            catch
+            catch(Exception e)
             {
                 return -1;
             }

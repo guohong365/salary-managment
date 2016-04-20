@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
@@ -38,18 +43,33 @@ namespace SalarySystem.Managment.Assignment
             InitializeComponent();
         }
 
+        readonly DataSetSalary.t_assignment_defineDataTable _assignmentDefine=new DataSetSalary.t_assignment_defineDataTable();
+
+        private const string _ASSIGNMENT_DEFINE_SQL_FORMAT =
+            "select * from t_assignment_define where ENABLED=true and TYPE='{0}' and VERSION_ID='{1}'";
+        void loadAssignmentDefine()
+        {
+            string sql = string.Format(_ASSIGNMENT_DEFINE_SQL_FORMAT, GlobalSettings.TYPE_ASSIGNMENT_AUTO_ASSIGN,
+                GlobalSettings.AssignmentVersion);
+            if (DBHandlerEx.FillOnce(_assignmentDefine, sql) < 0)
+            {
+                throw new Exception("failed");
+            }
+        }
+
         protected override void onControlLoad()
         {
             base.onControlLoad();
+            
+            loadAssignmentDefine();
 
-            gridControlAssignmentDefine.DataSource = new DataView(DataHolder.AssignmentDefine)
-            {
-                RowFilter = string.Format("[ENABLED]=true AND [TYPE]='{0}'", GlobalSettings.TYPE_ASSIGNMENT_AUTO_ASSIGN)
-            };
+            gridControlAssignmentDefine.DataSource = new DataView(_assignmentDefine);
+
             _details.Values.ToList().ForEach(item => item.RowChanged += onRowChanged);
             //手工触发，装载TreeList数据
             focusedAssignmentDefinChanged(gridViewAssignmentDefine, new FocusedRowChangedEventArgs(-1, 0));
-            repositoryItemLookUpEdit1.DataSource = DataHolder.Position;
+            repositoryItemLookUpEditFitPosition.DataSource = DataHolder.Position;
+            repositoryItemLookUpEditFitPosition.DataSource = DataHolder.Position;
             treeList1.CustomDrawNodeCell += GridViewHelper.CustomDrawNodeCell;
         }
 
@@ -66,17 +86,22 @@ namespace SalarySystem.Managment.Assignment
             _details.Values.ToList().ForEach(item => item.RowChanged -= onRowChanged);
         }
 
-        private static void saveOneAssignmentDefine(DataSetSalary.v_team_assignment_detailDataTable dataTable, string defineId)
+        private static void saveOneAssignmentDefine(DBHandlerEx handler, DataSetSalary.v_team_assignment_detailDataTable dataTable, string defineId)
         {
             var positionAssignments=new DataSetSalary.t_position_assignmentsDataTable();
-            DBHandlerEx.FillOnce(positionAssignments, string.Format("select * from t_position_assignments where ASSIGNMENT_ID='{0}'", defineId));
+            if (
+                handler.Fill(positionAssignments,
+                    string.Format("select * from t_position_assignments where ASSIGNMENT_ID='{0}'", defineId)) < 0)
+            {
+                throw new Exception();
+            }
             foreach (var row in dataTable)
             {
                 var dataRow = positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(defineId, row.ID);
                 if (dataRow != null)
                 {
                     dataRow.WEIGHT = 100;
-                    dataRow.ENABLED = row.USED!=0;
+                    dataRow.ENABLED = row.USED;
                     dataRow.VALUE = row.WEIGHT;
                 }
                 else
@@ -86,21 +111,32 @@ namespace SalarySystem.Managment.Assignment
                     dataRow.POSITION_ID = row.ID;
                     dataRow.WEIGHT = 100;
                     dataRow.VERSION_ID = row.VERSION_ID;
-                    dataRow.ENABLED = row.USED!=0;
+                    dataRow.ENABLED = row.USED;
                     dataRow.VALUE = row.WEIGHT;
                     positionAssignments.Addt_position_assignmentsRow(dataRow);
                 }
             }
-            if (DBHandlerEx.UpdateOnce(positionAssignments.GetChanges()) > 0)
-            {
-                dataTable.AcceptChanges();
-            }
+            handler.Update(positionAssignments.GetChanges());
+            dataTable.AcceptChanges();
         }
 
         protected override void onSave()
         {
-            base.onSave();
-            _details.ToList().ForEach(item=>saveOneAssignmentDefine(item.Value, item.Key));
+            var handler = DBHandlerEx.GetBuffer();
+            try
+            {
+                _details.ToList().ForEach(item => saveOneAssignmentDefine(handler,item.Value, item.Key));
+                handler.EndTransaction(true);
+                base.onSave();
+            }
+            catch
+            {
+                handler.EndTransaction(false);
+            }
+            finally
+            {
+                handler.FreeBuffer();
+            }
         }
 
         protected override void onRevert()
@@ -244,6 +280,47 @@ namespace SalarySystem.Managment.Assignment
                 checkParent(e.Node);
             }
             _preventValueChangedEvent = false;
+        }
+
+        private void queryUsedCheckStateByValue(object sender, QueryCheckStateByValueEventArgs e)
+        {
+            string val = e.Value.ToString();
+            switch (val)
+            {
+                case "True":
+                case "Yes":
+                case "1":
+                    e.CheckState = CheckState.Checked;
+                    break;
+                case "False":
+                case "No":
+                case "0":
+                    e.CheckState = CheckState.Unchecked;
+                    break;
+                default:
+                    e.CheckState = CheckState.Indeterminate;
+                    break;
+            }
+            e.Handled = true;
+        }
+
+        private void queryUsedValueByCheckState(object sender, QueryValueByCheckStateEventArgs e)
+        {
+            //CheckEdit edit = sender as CheckEdit;
+            //Debug.Assert(edit != null, "edit != null");
+            switch (e.CheckState)
+            {
+                case CheckState.Checked:
+                    e.Value = (long)1;
+                    break;
+                case CheckState.Unchecked:
+                    e.Value = (long)0;
+                    break;
+                default:
+                    e.Value = (long)-1;
+                    break;
+            }
+            e.Handled = true;
         }
     }
 }
