@@ -1,5 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
 
 namespace SalarySystem.Schedule
@@ -27,7 +31,7 @@ namespace SalarySystem.Schedule
             }
         }
 
-        private void customDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        private void customDrawCell(object sender, RowCellCustomDrawEventArgs e)
         {
             var row = gridView1.GetDataRow(e.RowHandle) as DataSetSalary.v_personal_assignment_scheduleRow;
             if (row==null) return;
@@ -37,6 +41,18 @@ namespace SalarySystem.Schedule
                 e.Appearance.ForeColor = Color.Teal;
             }
             GridViewHelper.GerneralCustomCellDrawHandler(sender, e);
+        }
+
+        private void cellValueChanging(object sender, CellValueChangedEventArgs e)
+        {
+            var gridView = sender as GridView;
+            Debug.Assert(gridView != null);
+            if (e.Column.FieldName == "ASSIGNED")
+            {
+                var row = gridView.GetDataRow(e.RowHandle) as DataSetSalary.v_personal_assignment_scheduleRow;
+                Debug.Assert(row != null);
+                row.TARGET = Convert.ToBoolean(e.Value) ? row.VALUE : 0;
+            }
         }
     }
 }

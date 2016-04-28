@@ -89,7 +89,7 @@
             this.textEditAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.textEditAmount.Size = new System.Drawing.Size(170, 21);
             this.textEditAmount.TabIndex = 1;
-            this.textEditAmount.FormatEditValue += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.amountEditValueChanged);
+            this.textEditAmount.EditValueChanged += new System.EventHandler(this.amountValueChanged);
             this.textEditAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.onAmountKeyDownEnter);
             // 
             // labelControl1

@@ -167,12 +167,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetTemplate.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Execute\EvaluationPerformanceControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Execute\EvaluationPerformanceControl.Designer.cs">
-      <DependentUpon>EvaluationPerformanceControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Execute\AssignmentPerformanceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -439,9 +433,6 @@
     <Compile Include="SystemInitalizer.cs" />
     <EmbeddedResource Include="Execute\AssignmentPerformanceControl.resx">
       <DependentUpon>AssignmentPerformanceControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Execute\EvaluationPerformanceControl.resx">
-      <DependentUpon>EvaluationPerformanceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Salary\FunctionDefineControl.resx">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>

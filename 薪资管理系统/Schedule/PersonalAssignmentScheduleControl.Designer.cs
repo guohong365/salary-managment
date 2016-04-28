@@ -58,11 +58,11 @@
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Location = new System.Drawing.Point(609, 9);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(601, 9);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Location = new System.Drawing.Point(528, 9);
+            this.simpleButtonSave.Location = new System.Drawing.Point(520, 9);
             // 
             // panelControl2
             // 

@@ -185,6 +185,8 @@ namespace SalarySystem.Schedule
                                 monthRow.DESCRIPTION = "";
                                 monthRow.VERSION_ID = employeeRow.VERSION_ID;
                                 monthRow.DEFINE_ID = employeeRow.ASSIGNMENT_ID;
+                                monthRow.DEFINE_TYPE = "1";
+                                monthRow.DEFINE_UNIT = employeeRow.UNIT_ID;
                                 assignmentPerformance.Addt_assignment_performanceRow(monthRow);
                             }
                             break;
@@ -266,12 +268,6 @@ namespace SalarySystem.Schedule
             }
         }
 
-        private void amountEditValueChanged(object sender, ConvertEditValueEventArgs e)
-        {
-            if (_isLoading) return;
-            recalcAnnualScheduleValue((decimal)textEditAmount.EditValue);
-        }
-
         private void recalcAnnualScheduleValue(decimal total)
         {
             var rows = AnnualAssignment.Rows;
@@ -338,6 +334,7 @@ namespace SalarySystem.Schedule
 
         private void onScheduleValueChanged(object sender, DevExpress.XtraVerticalGrid.Events.CellValueChangedEventArgs e)
         {
+            if(_isLoading) return;
             switch (e.Row.Name)
             {
                 case "rowRate":
@@ -579,5 +576,13 @@ namespace SalarySystem.Schedule
         }
 
         #endregion
+
+        private void amountValueChanged(object sender, EventArgs e)
+        {
+            if (_isLoading) return;
+            _isLoading = true;
+            recalcAnnualScheduleValue(Convert.ToDecimal(textEditAmount.EditValue));
+            _isLoading = false;
+        }
     }
 }

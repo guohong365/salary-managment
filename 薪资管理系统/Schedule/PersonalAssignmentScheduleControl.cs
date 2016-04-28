@@ -166,6 +166,8 @@ namespace SalarySystem.Schedule
                                     newRow.DESCRIPTION = "";
                                     newRow.VERSION_ID = scheduleRow.VERSION_ID;
                                     newRow.DEFINE_ID = scheduleRow.DEF_ID;
+                                    newRow.DEFINE_TYPE = scheduleRow.DEF_TYPE;
+                                    newRow.DEFINE_UNIT = scheduleRow.UNIT_ID;
                                     _assignmentPerformance.Addt_assignment_performanceRow(newRow);
                                 }
                                 continue;

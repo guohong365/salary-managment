@@ -30,26 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
             this.vpersonalassignmentscheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.v_personal_assignment_scheduleTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.v_personal_assignment_scheduleTableAdapter();
+            this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colASSIGNED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEMPLOYEE_NAME = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colVALUE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDEF_NAME = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDEF_TYPE = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUNIT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCOMPLETED = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTARGET = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colASSIGNED = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemLookUpEditUnit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemLookUpEditType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colTARGET = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVALUE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCOMPLETED = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUNIT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEditUnit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.v_personal_assignment_scheduleTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.v_personal_assignment_scheduleTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vpersonalassignmentscheduleBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditUnit)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -67,6 +67,16 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
+            // vpersonalassignmentscheduleBindingSource
+            // 
+            this.vpersonalassignmentscheduleBindingSource.DataMember = "v_personal_assignment_schedule";
+            this.vpersonalassignmentscheduleBindingSource.DataSource = this.dataSetSalary;
+            // 
+            // dataSetSalary
+            // 
+            this.dataSetSalary.DataSetName = "DataSetSalary";
+            this.dataSetSalary.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -81,20 +91,15 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.customDrawCell);
+            this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.cellValueChanging);
             // 
-            // dataSetSalary
+            // colASSIGNED
             // 
-            this.dataSetSalary.DataSetName = "DataSetSalary";
-            this.dataSetSalary.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // vpersonalassignmentscheduleBindingSource
-            // 
-            this.vpersonalassignmentscheduleBindingSource.DataMember = "v_personal_assignment_schedule";
-            this.vpersonalassignmentscheduleBindingSource.DataSource = this.dataSetSalary;
-            // 
-            // v_personal_assignment_scheduleTableAdapter
-            // 
-            this.v_personal_assignment_scheduleTableAdapter.ClearBeforeFill = true;
+            this.colASSIGNED.Caption = "分配";
+            this.colASSIGNED.FieldName = "ASSIGNED";
+            this.colASSIGNED.Name = "colASSIGNED";
+            this.colASSIGNED.Visible = true;
+            this.colASSIGNED.VisibleIndex = 0;
             // 
             // colEMPLOYEE_NAME
             // 
@@ -104,15 +109,6 @@
             this.colEMPLOYEE_NAME.OptionsColumn.AllowEdit = false;
             this.colEMPLOYEE_NAME.Visible = true;
             this.colEMPLOYEE_NAME.VisibleIndex = 1;
-            // 
-            // colVALUE
-            // 
-            this.colVALUE.Caption = "预定额度";
-            this.colVALUE.FieldName = "VALUE";
-            this.colVALUE.Name = "colVALUE";
-            this.colVALUE.OptionsColumn.AllowEdit = false;
-            this.colVALUE.Visible = true;
-            this.colVALUE.VisibleIndex = 5;
             // 
             // colDEF_NAME
             // 
@@ -134,6 +130,41 @@
             this.colDEF_TYPE.VisibleIndex = 3;
             this.colDEF_TYPE.Width = 84;
             // 
+            // repositoryItemLookUpEditType
+            // 
+            this.repositoryItemLookUpEditType.AutoHeight = false;
+            this.repositoryItemLookUpEditType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditType.DisplayMember = "NAME";
+            this.repositoryItemLookUpEditType.Name = "repositoryItemLookUpEditType";
+            this.repositoryItemLookUpEditType.ValueMember = "ID";
+            // 
+            // colTARGET
+            // 
+            this.colTARGET.Caption = "任务额度";
+            this.colTARGET.FieldName = "TARGET";
+            this.colTARGET.Name = "colTARGET";
+            this.colTARGET.Visible = true;
+            this.colTARGET.VisibleIndex = 4;
+            // 
+            // colVALUE
+            // 
+            this.colVALUE.Caption = "预定额度";
+            this.colVALUE.FieldName = "VALUE";
+            this.colVALUE.Name = "colVALUE";
+            this.colVALUE.OptionsColumn.AllowEdit = false;
+            this.colVALUE.Visible = true;
+            this.colVALUE.VisibleIndex = 5;
+            // 
+            // colCOMPLETED
+            // 
+            this.colCOMPLETED.Caption = "完成额度";
+            this.colCOMPLETED.FieldName = "COMPLETED";
+            this.colCOMPLETED.Name = "colCOMPLETED";
+            this.colCOMPLETED.OptionsColumn.AllowEdit = false;
+            this.colCOMPLETED.Visible = true;
+            this.colCOMPLETED.VisibleIndex = 6;
+            // 
             // colUNIT_ID
             // 
             this.colUNIT_ID.Caption = "单位";
@@ -145,31 +176,6 @@
             this.colUNIT_ID.VisibleIndex = 7;
             this.colUNIT_ID.Width = 90;
             // 
-            // colCOMPLETED
-            // 
-            this.colCOMPLETED.Caption = "完成额度";
-            this.colCOMPLETED.FieldName = "COMPLETED";
-            this.colCOMPLETED.Name = "colCOMPLETED";
-            this.colCOMPLETED.OptionsColumn.AllowEdit = false;
-            this.colCOMPLETED.Visible = true;
-            this.colCOMPLETED.VisibleIndex = 6;
-            // 
-            // colTARGET
-            // 
-            this.colTARGET.Caption = "任务额度";
-            this.colTARGET.FieldName = "TARGET";
-            this.colTARGET.Name = "colTARGET";
-            this.colTARGET.Visible = true;
-            this.colTARGET.VisibleIndex = 4;
-            // 
-            // colASSIGNED
-            // 
-            this.colASSIGNED.Caption = "分配";
-            this.colASSIGNED.FieldName = "ASSIGNED";
-            this.colASSIGNED.Name = "colASSIGNED";
-            this.colASSIGNED.Visible = true;
-            this.colASSIGNED.VisibleIndex = 0;
-            // 
             // repositoryItemLookUpEditUnit
             // 
             this.repositoryItemLookUpEditUnit.AutoHeight = false;
@@ -179,14 +185,9 @@
             this.repositoryItemLookUpEditUnit.Name = "repositoryItemLookUpEditUnit";
             this.repositoryItemLookUpEditUnit.ValueMember = "ID";
             // 
-            // repositoryItemLookUpEditType
+            // v_personal_assignment_scheduleTableAdapter
             // 
-            this.repositoryItemLookUpEditType.AutoHeight = false;
-            this.repositoryItemLookUpEditType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEditType.DisplayMember = "NAME";
-            this.repositoryItemLookUpEditType.Name = "repositoryItemLookUpEditType";
-            this.repositoryItemLookUpEditType.ValueMember = "ID";
+            this.v_personal_assignment_scheduleTableAdapter.ClearBeforeFill = true;
             // 
             // PersonalMonthlyAssignmentScheduleControl
             // 
@@ -197,11 +198,11 @@
             this.Name = "PersonalMonthlyAssignmentScheduleControl";
             this.Size = new System.Drawing.Size(666, 505);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vpersonalassignmentscheduleBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditUnit)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -110,6 +110,54 @@ namespace SalarySystem.Execute
             CurrentEmployeePerformance = null;
         }
 
+        public int Year
+        {
+            set
+            {
+                textEditEvalYear.EditValue = value;
+            }
+            get
+            {
+                return Convert.ToInt32(textEditEvalYear.EditValue);
+            }
+        }
+
+        public int Month
+        {
+            get
+            {
+                return Convert.ToInt32(textEditEvalMonth.EditValue);
+            }
+            set
+            {
+                textEditEvalMonth.EditValue = value;
+            }
+        }
+
+        public string Evaluator
+        {
+            get
+            {
+                return Convert.ToString(lookUpEditEvaluator.EditValue);
+            }
+            set
+            {
+                lookUpEditEvaluator.EditValue = value;
+            }
+        }
+
+        public DateTime EvaluationTime
+        {
+            get
+            {
+                return dateEditEvalTIme.DateTime;
+            }
+            set
+            {
+                dateEditEvalTIme.EditValue = value;
+            }
+        }
+
         private void saveEvaluationResults(DBHandlerEx handler)
         {
             Debug.Assert(CurrentEmployeePerformance!=null);
@@ -172,8 +220,10 @@ namespace SalarySystem.Execute
             handler.BeginTransaction();
             try
             {
+                handler.Update(CurrentEmployeePerformance.AssignmentPerformance);
                 saveEvaluationResults(handler);
                 CurrentEmployeePerformance.EvaluationResults.Values.ToList().ForEach(table=>table.AcceptChanges());
+                CurrentEmployeePerformance.AssignmentPerformance.AcceptChanges();
                 handler.EndTransaction(true);
             }
             finally
@@ -214,19 +264,22 @@ namespace SalarySystem.Execute
                 }
             }
             var forms = LoadFroms(row.POSITION_ID);
-            if (forms == null)
+            var assignmentPerformance = loadAssignmentPerformance(row.ID, Year, Month);
+            assignmentPerformance.RowChanged += onRowChanged;
+            var performance = new EmployeePerformance
             {
-                MessageBox.Show("加载考核表错误！");
-                return;
-            }
-
-            var performance = new EmployeePerformance(row, forms, (string) lookUpEditEvaluator.EditValue,
-                (int) textEditEvalYear.EditValue,
-                (int) textEditEvalMonth.EditValue, dateEditEvalTIme.DateTime);
+                Year = Year,
+                Month = Month,
+                Employee = row,
+                EvaluatorId = Evaluator, 
+                FormsIdName = forms,
+                EvaluationTime = EvaluationTime,
+                AssignmentPerformance = assignmentPerformance
+            };
             foreach (DataRow formRow in forms.Rows)
             {
                 string formId = Convert.ToString(formRow["FORM_ID"]);
-                var result = LoadEvaluationResultsDetail((int) textEditEvalYear.EditValue, (int) textEditEvalMonth.EditValue,formId, row.ID);
+                var result = LoadEvaluationResultsDetail(Year, Month,formId, row.ID);
                 if (result == null)
                 {
                     throw new Exception("加载考核表["+Convert.ToString(formRow["FORM_NAME"])+"]");
@@ -236,10 +289,17 @@ namespace SalarySystem.Execute
             }
             CurrentEmployeePerformance = performance;
             evalFormsControl1.EmployeePerformance = CurrentEmployeePerformance;
+            var ctrl = new AssignmentPerformanceControl
+            {
+                EmployeePerformance = CurrentEmployeePerformance,
+                Dock = DockStyle.Fill
+            };
+            xtraTabPagePerf.Controls.Add(ctrl);
+
         }
 
         #region 加载数据
-
+        #region 加载考核数据
         private const string _EVALUATION_FORMS_SQL_FORMAT =
             "select " +
             " distinct FORM_ID, FORM_NAME " +
@@ -250,10 +310,18 @@ namespace SalarySystem.Execute
         public DataTable LoadFroms(string positionId, string versionId)
         {
             string sql = string.Format(_EVALUATION_FORMS_SQL_FORMAT, positionId, versionId);
-            DataTable table = new DataTable();
-            return DBHandlerEx.FillOnce(table, sql) >= 0 ? table : null;
+            var handler = DBHandlerEx.GetBuffer();
+            try
+            {
+                var table = new DataTable();
+                handler.Fill(table, sql);
+                return table;
+            }
+            finally
+            {
+                handler.FreeBuffer();
+            }
         }
-
         public DataTable LoadFroms(string positionId)
         {
             return LoadFroms(positionId, GlobalSettings.EvaluationVersion);
@@ -302,6 +370,37 @@ namespace SalarySystem.Execute
         {
             return LoadEvaluationResultsDetail(year, month, formId, employeeId, GlobalSettings.EvaluationVersion);
         }
+
+        #endregion
+
+        #region 加载绩效数据
+
+        private const string _ASSIGNMENT_PERFORMANCE_SQL_F_ORMAT=
+            "select * " +
+            " from t_assignment_performance " +
+            " where " +
+            " EMPLOYEE_ID={0} " +
+            " and ASSIGNMENT_YEAR={1} " +
+            " and ASSIGNMENT_MONTH={2}";
+
+        DataSetSalary.t_assignment_performanceDataTable loadAssignmentPerformance(string employeeId, int year, int month)
+        {
+            var sql = string.Format(_ASSIGNMENT_PERFORMANCE_SQL_F_ORMAT, employeeId, year, month);
+            var handler=DBHandlerEx.GetBuffer();
+            try
+            {
+                var table = new DataSetSalary.t_assignment_performanceDataTable();
+                handler.Fill(table, sql);
+                return table;
+            }
+            finally
+            {
+                handler.FreeBuffer();
+            }
+        }
+        #endregion
+
+
         #endregion
     }
 }
