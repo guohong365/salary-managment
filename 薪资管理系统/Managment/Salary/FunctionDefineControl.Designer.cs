@@ -44,12 +44,12 @@
             this.gridViewFunction = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.colSQL_STMT = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.t_salary_functionTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_salary_functionTableAdapter();
             this.colDISPLAY_FORMULA = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSQL_STMT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
+            this.t_salary_functionTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_salary_functionTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -71,11 +71,11 @@
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Location = new System.Drawing.Point(624, 9);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(616, 9);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Location = new System.Drawing.Point(543, 9);
+            this.simpleButtonSave.Location = new System.Drawing.Point(535, 9);
             // 
             // panelControl2
             // 
@@ -117,7 +117,11 @@
             this.repositoryItemLookUpEditType.AutoHeight = false;
             this.repositoryItemLookUpEditType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NAME", "NAME")});
+            this.repositoryItemLookUpEditType.DisplayMember = "NAME";
             this.repositoryItemLookUpEditType.Name = "repositoryItemLookUpEditType";
+            this.repositoryItemLookUpEditType.ValueMember = "SYSTEM_TYPE";
             // 
             // gridColumn3
             // 
@@ -215,13 +219,14 @@
             this.colNAME.Visible = true;
             this.colNAME.VisibleIndex = 1;
             // 
-            // colDESCRIPTION
+            // colDISPLAY_FORMULA
             // 
-            this.colDESCRIPTION.Caption = "说明";
-            this.colDESCRIPTION.FieldName = "DESCRIPTION";
-            this.colDESCRIPTION.Name = "colDESCRIPTION";
-            this.colDESCRIPTION.Visible = true;
-            this.colDESCRIPTION.VisibleIndex = 3;
+            this.colDISPLAY_FORMULA.Caption = "公式";
+            this.colDISPLAY_FORMULA.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.colDISPLAY_FORMULA.FieldName = "DISPLAY_FORMULA";
+            this.colDISPLAY_FORMULA.Name = "colDISPLAY_FORMULA";
+            this.colDISPLAY_FORMULA.Visible = true;
+            this.colDISPLAY_FORMULA.VisibleIndex = 2;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -232,6 +237,14 @@
             this.repositoryItemButtonEdit1.ReadOnly = true;
             this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.functionEditorButtonClicked);
             // 
+            // colDESCRIPTION
+            // 
+            this.colDESCRIPTION.Caption = "说明";
+            this.colDESCRIPTION.FieldName = "DESCRIPTION";
+            this.colDESCRIPTION.Name = "colDESCRIPTION";
+            this.colDESCRIPTION.Visible = true;
+            this.colDESCRIPTION.VisibleIndex = 3;
+            // 
             // colSQL_STMT
             // 
             this.colSQL_STMT.Caption = "SQL";
@@ -241,25 +254,16 @@
             this.colSQL_STMT.Visible = true;
             this.colSQL_STMT.VisibleIndex = 4;
             // 
-            // t_salary_functionTableAdapter
-            // 
-            this.t_salary_functionTableAdapter.ClearBeforeFill = true;
-            // 
-            // colDISPLAY_FORMULA
-            // 
-            this.colDISPLAY_FORMULA.Caption = "公式";
-            this.colDISPLAY_FORMULA.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.colDISPLAY_FORMULA.FieldName = "DISPLAY_FORMULA";
-            this.colDISPLAY_FORMULA.Name = "colDISPLAY_FORMULA";
-            this.colDISPLAY_FORMULA.Visible = true;
-            this.colDISPLAY_FORMULA.VisibleIndex = 2;
-            // 
             // repositoryItemMemoExEdit1
             // 
             this.repositoryItemMemoExEdit1.AutoHeight = false;
             this.repositoryItemMemoExEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemMemoExEdit1.Name = "repositoryItemMemoExEdit1";
+            // 
+            // t_salary_functionTableAdapter
+            // 
+            this.t_salary_functionTableAdapter.ClearBeforeFill = true;
             // 
             // FunctionDefineControl
             // 

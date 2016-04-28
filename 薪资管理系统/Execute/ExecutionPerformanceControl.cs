@@ -289,12 +289,13 @@ namespace SalarySystem.Execute
             }
             CurrentEmployeePerformance = performance;
             evalFormsControl1.EmployeePerformance = CurrentEmployeePerformance;
-            var ctrl = new AssignmentPerformanceControl
-            {
-                EmployeePerformance = CurrentEmployeePerformance,
-                Dock = DockStyle.Fill
-            };
-            xtraTabPagePerf.Controls.Add(ctrl);
+            assignmentPerformanceControl1.EmployeePerformance = CurrentEmployeePerformance;
+            //var ctrl = new AssignmentPerformanceControl
+            //{
+            //    EmployeePerformance = CurrentEmployeePerformance,
+            //    Dock = DockStyle.Fill
+            //};
+            //xtraTabPagePerf.Controls.Add(ctrl);
 
         }
 
