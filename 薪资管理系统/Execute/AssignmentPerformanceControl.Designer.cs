@@ -28,45 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.tassignmentperformanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDEFINE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDEFINE_TYPE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTARGET = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCOMPLETED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDEFINE_UNIT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEditUnit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.t_assignment_performanceTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_assignment_performanceTableAdapter();
+            this.repositoryItemLookUpEditType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUpEditDefine = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tassignmentperformanceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditDefine)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
             // 
-            this.gridControl1.DataSource = this.tassignmentperformanceBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEditUnit,
+            this.repositoryItemLookUpEditType,
+            this.repositoryItemLookUpEditDefine});
             this.gridControl1.Size = new System.Drawing.Size(594, 499);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            // 
-            // tassignmentperformanceBindingSource
-            // 
-            this.tassignmentperformanceBindingSource.DataMember = "t_assignment_performance";
-            this.tassignmentperformanceBindingSource.DataSource = this.dataSetSalary;
-            // 
-            // dataSetSalary
-            // 
-            this.dataSetSalary.DataSetName = "DataSetSalary";
-            this.dataSetSalary.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // gridView1
             // 
@@ -85,20 +78,22 @@
             // colDEFINE_ID
             // 
             this.colDEFINE_ID.Caption = "任务";
+            this.colDEFINE_ID.ColumnEdit = this.repositoryItemLookUpEditDefine;
             this.colDEFINE_ID.FieldName = "DEFINE_ID";
             this.colDEFINE_ID.Name = "colDEFINE_ID";
             this.colDEFINE_ID.OptionsColumn.AllowEdit = false;
             this.colDEFINE_ID.Visible = true;
-            this.colDEFINE_ID.VisibleIndex = 4;
+            this.colDEFINE_ID.VisibleIndex = 0;
             // 
             // colDEFINE_TYPE
             // 
             this.colDEFINE_TYPE.Caption = "类型";
+            this.colDEFINE_TYPE.ColumnEdit = this.repositoryItemLookUpEditType;
             this.colDEFINE_TYPE.FieldName = "DEFINE_TYPE";
             this.colDEFINE_TYPE.Name = "colDEFINE_TYPE";
             this.colDEFINE_TYPE.OptionsColumn.AllowEdit = false;
             this.colDEFINE_TYPE.Visible = true;
-            this.colDEFINE_TYPE.VisibleIndex = 5;
+            this.colDEFINE_TYPE.VisibleIndex = 1;
             // 
             // colTARGET
             // 
@@ -107,7 +102,7 @@
             this.colTARGET.Name = "colTARGET";
             this.colTARGET.OptionsColumn.AllowEdit = false;
             this.colTARGET.Visible = true;
-            this.colTARGET.VisibleIndex = 1;
+            this.colTARGET.VisibleIndex = 2;
             // 
             // colCOMPLETED
             // 
@@ -115,16 +110,26 @@
             this.colCOMPLETED.FieldName = "COMPLETED";
             this.colCOMPLETED.Name = "colCOMPLETED";
             this.colCOMPLETED.Visible = true;
-            this.colCOMPLETED.VisibleIndex = 0;
+            this.colCOMPLETED.VisibleIndex = 3;
             // 
             // colDEFINE_UNIT
             // 
             this.colDEFINE_UNIT.Caption = "单位";
+            this.colDEFINE_UNIT.ColumnEdit = this.repositoryItemLookUpEditUnit;
             this.colDEFINE_UNIT.FieldName = "DEFINE_UNIT";
             this.colDEFINE_UNIT.Name = "colDEFINE_UNIT";
             this.colDEFINE_UNIT.OptionsColumn.AllowEdit = false;
             this.colDEFINE_UNIT.Visible = true;
-            this.colDEFINE_UNIT.VisibleIndex = 3;
+            this.colDEFINE_UNIT.VisibleIndex = 4;
+            // 
+            // repositoryItemLookUpEditUnit
+            // 
+            this.repositoryItemLookUpEditUnit.AutoHeight = false;
+            this.repositoryItemLookUpEditUnit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditUnit.DisplayMember = "NAME";
+            this.repositoryItemLookUpEditUnit.Name = "repositoryItemLookUpEditUnit";
+            this.repositoryItemLookUpEditUnit.ValueMember = "ID";
             // 
             // colDESCRIPTION
             // 
@@ -132,11 +137,25 @@
             this.colDESCRIPTION.FieldName = "DESCRIPTION";
             this.colDESCRIPTION.Name = "colDESCRIPTION";
             this.colDESCRIPTION.Visible = true;
-            this.colDESCRIPTION.VisibleIndex = 2;
+            this.colDESCRIPTION.VisibleIndex = 5;
             // 
-            // t_assignment_performanceTableAdapter
+            // repositoryItemLookUpEditType
             // 
-            this.t_assignment_performanceTableAdapter.ClearBeforeFill = true;
+            this.repositoryItemLookUpEditType.AutoHeight = false;
+            this.repositoryItemLookUpEditType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditType.DisplayMember = "NAME";
+            this.repositoryItemLookUpEditType.Name = "repositoryItemLookUpEditType";
+            this.repositoryItemLookUpEditType.ValueMember = "ID";
+            // 
+            // repositoryItemLookUpEditDefine
+            // 
+            this.repositoryItemLookUpEditDefine.AutoHeight = false;
+            this.repositoryItemLookUpEditDefine.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditDefine.DisplayMember = "NAME";
+            this.repositoryItemLookUpEditDefine.Name = "repositoryItemLookUpEditDefine";
+            this.repositoryItemLookUpEditDefine.ValueMember = "ID";
             // 
             // AssignmentPerformanceControl
             // 
@@ -146,9 +165,10 @@
             this.Name = "AssignmentPerformanceControl";
             this.Size = new System.Drawing.Size(594, 499);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tassignmentperformanceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditDefine)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -157,14 +177,14 @@
 
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.BindingSource tassignmentperformanceBindingSource;
-        private Data.DataSetSalary dataSetSalary;
         private DevExpress.XtraGrid.Columns.GridColumn colCOMPLETED;
         private DevExpress.XtraGrid.Columns.GridColumn colTARGET;
         private DevExpress.XtraGrid.Columns.GridColumn colDESCRIPTION;
-        private Data.DataSetSalaryTableAdapters.t_assignment_performanceTableAdapter t_assignment_performanceTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colDEFINE_ID;
         private DevExpress.XtraGrid.Columns.GridColumn colDEFINE_TYPE;
         private DevExpress.XtraGrid.Columns.GridColumn colDEFINE_UNIT;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditUnit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditType;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditDefine;
     }
 }

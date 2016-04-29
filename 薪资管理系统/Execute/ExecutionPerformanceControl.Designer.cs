@@ -40,6 +40,10 @@
             this.colDISMISSION_TIME = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPageEval = new DevExpress.XtraTab.XtraTabPage();
+            this.evalFormsControl1 = new SalarySystem.Execute.EvalFormsControl();
+            this.xtraTabPagePerf = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.lookUpEditEvaluator = new DevExpress.XtraEditors.LookUpEdit();
             this.dateEditEvalTIme = new DevExpress.XtraEditors.DateEdit();
@@ -51,10 +55,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.textEditEvalYear = new DevExpress.XtraEditors.TextEdit();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPageEval = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPagePerf = new DevExpress.XtraTab.XtraTabPage();
-            this.evalFormsControl1 = new SalarySystem.Execute.EvalFormsControl();
+            this.assignmentPerformanceControl1 = new SalarySystem.Execute.AssignmentPerformanceControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -64,6 +65,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmploye)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.xtraTabPageEval.SuspendLayout();
+            this.xtraTabPagePerf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditEvaluator.Properties)).BeginInit();
@@ -71,9 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEditEvalTIme.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditEvalMonth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditEvalYear.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPageEval.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -83,11 +85,11 @@
             // 
             // simpleButtonRevert
             // 
-            this.simpleButtonRevert.Location = new System.Drawing.Point(745, 9);
+            this.simpleButtonRevert.Location = new System.Drawing.Point(951, 9);
             // 
             // simpleButtonSave
             // 
-            this.simpleButtonSave.Location = new System.Drawing.Point(657, 9);
+            this.simpleButtonSave.Location = new System.Drawing.Point(863, 9);
             // 
             // panelControl2
             // 
@@ -201,6 +203,42 @@
             this.colID.FieldName = "ID";
             this.colID.Name = "colID";
             // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 140);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPageEval;
+            this.xtraTabControl1.Size = new System.Drawing.Size(614, 411);
+            this.xtraTabControl1.TabIndex = 1;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageEval,
+            this.xtraTabPagePerf});
+            // 
+            // xtraTabPageEval
+            // 
+            this.xtraTabPageEval.Controls.Add(this.evalFormsControl1);
+            this.xtraTabPageEval.Name = "xtraTabPageEval";
+            this.xtraTabPageEval.Size = new System.Drawing.Size(608, 383);
+            this.xtraTabPageEval.Text = "考核";
+            // 
+            // evalFormsControl1
+            // 
+            this.evalFormsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.evalFormsControl1.EmployeePerformance = null;
+            this.evalFormsControl1.Location = new System.Drawing.Point(0, 0);
+            this.evalFormsControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.evalFormsControl1.Name = "evalFormsControl1";
+            this.evalFormsControl1.Size = new System.Drawing.Size(608, 383);
+            this.evalFormsControl1.TabIndex = 0;
+            // 
+            // xtraTabPagePerf
+            // 
+            this.xtraTabPagePerf.Controls.Add(this.assignmentPerformanceControl1);
+            this.xtraTabPagePerf.Name = "xtraTabPagePerf";
+            this.xtraTabPagePerf.Size = new System.Drawing.Size(608, 383);
+            this.xtraTabPagePerf.Text = "业绩";
+            // 
             // panelControl3
             // 
             this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -217,7 +255,7 @@
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(613, 140);
+            this.panelControl3.Size = new System.Drawing.Size(614, 140);
             this.panelControl3.TabIndex = 0;
             // 
             // lookUpEditEvaluator
@@ -322,40 +360,14 @@
             this.textEditEvalYear.Size = new System.Drawing.Size(140, 21);
             this.textEditEvalYear.TabIndex = 0;
             // 
-            // xtraTabControl1
+            // assignmentPerformanceControl1
             // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 140);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPageEval;
-            this.xtraTabControl1.Size = new System.Drawing.Size(613, 411);
-            this.xtraTabControl1.TabIndex = 1;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPageEval,
-            this.xtraTabPagePerf});
-            // 
-            // xtraTabPageEval
-            // 
-            this.xtraTabPageEval.Controls.Add(this.evalFormsControl1);
-            this.xtraTabPageEval.Name = "xtraTabPageEval";
-            this.xtraTabPageEval.Size = new System.Drawing.Size(608, 384);
-            this.xtraTabPageEval.Text = "考核";
-            // 
-            // xtraTabPagePerf
-            // 
-            this.xtraTabPagePerf.Name = "xtraTabPagePerf";
-            this.xtraTabPagePerf.Size = new System.Drawing.Size(608, 384);
-            this.xtraTabPagePerf.Text = "业绩";
-            // 
-            // evalFormsControl1
-            // 
-            this.evalFormsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.evalFormsControl1.EmployeePerformance = null;
-            this.evalFormsControl1.Location = new System.Drawing.Point(0, 0);
-            this.evalFormsControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.evalFormsControl1.Name = "evalFormsControl1";
-            this.evalFormsControl1.Size = new System.Drawing.Size(608, 384);
-            this.evalFormsControl1.TabIndex = 0;
+            this.assignmentPerformanceControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.assignmentPerformanceControl1.EmployeePerformance = null;
+            this.assignmentPerformanceControl1.Location = new System.Drawing.Point(0, 0);
+            this.assignmentPerformanceControl1.Name = "assignmentPerformanceControl1";
+            this.assignmentPerformanceControl1.Size = new System.Drawing.Size(608, 383);
+            this.assignmentPerformanceControl1.TabIndex = 0;
             // 
             // ExecutionPerformanceControl
             // 
@@ -372,6 +384,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmploye)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPageEval.ResumeLayout(false);
+            this.xtraTabPagePerf.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -380,9 +396,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEditEvalTIme.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditEvalMonth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditEvalYear.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPageEval.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -416,5 +429,6 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageEval;
         private EvalFormsControl evalFormsControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPagePerf;
+        private AssignmentPerformanceControl assignmentPerformanceControl1;
     }
 }

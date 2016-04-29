@@ -20,9 +20,11 @@ namespace SalarySystem
         static GridViewHelper()
         {
             ChangedItemBackColor = Color.Yellow;
+            ChangedItemForeColor = Color.Red;
         }
 
         public static Color ChangedItemBackColor { get; set; }
+        public static Color ChangedItemForeColor { get; set; }
 
         public static void GerneralCustomCellDrawHandler(object sender, RowCellCustomDrawEventArgs e)
         {
@@ -35,6 +37,10 @@ namespace SalarySystem
             if (row == null || row.RowState == DataRowState.Unchanged) return;
 
             e.Appearance.BackColor = ChangedItemBackColor;
+            if (e.RowHandle == gridView.FocusedRowHandle)
+            {
+                e.Appearance.ForeColor = ChangedItemForeColor;
+            }
         }
 
         public static void CustomDrawNodeCell(object sender, CustomDrawNodeCellEventArgs e)

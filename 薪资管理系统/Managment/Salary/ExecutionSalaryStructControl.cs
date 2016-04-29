@@ -1,155 +1,133 @@
 ﻿using System;
 using System.Data;
-using System.Diagnostics;
-using DevExpress.XtraEditors.Controls;
 using SalarySystem.Data;
 using UC.Platform.Data;
 
 namespace SalarySystem.Managment.Salary
 {
-    public partial class ExecutionSalaryStructControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class ExecutionSalaryStructControl : BaseEditableControl
     {
-        private readonly DataView _detailView;
-        private readonly DataView _itemView;
-
         private readonly DataSetSalary.v_salary_struct_detailDataTable _salaryStructDetail =
             new DataSetSalary.v_salary_struct_detailDataTable();
 
-        readonly DataSetSalary.t_salary_itemDataTable _salaryItem=new DataSetSalary.t_salary_itemDataTable();
         private const string _SALARY_STRUCT_DETAIL_SQL_FORMAT =
-            "select * from v_salary_struct_detail where VERSION_ID='{0}'";
+            "select " +
+            "t.ID," +
+            "t.NAME," +
+            "t.DESCRIPTION," +
+            "t.TYPE," +
+            "t.VALUE," +
+            "t.VERSION_ID," +
+            "t.FUNC_ID," +
+            "ifnull(t1.POSITION_ID, '{0}') as POSITION_ID," +
+            "if(isnull(t1.ENABLED), false, t.ENABLED) as ENABLED" +
+            " from t_salary_item t" +
+            " left join t_position_salary_items t1 on t1.SALARY_ITEM_ID=t.ID and t1.POSITION_ID='{0}' and t.VERSION_ID=t1.VERSION_ID" +
+            " where " +
+            " t.ENABLED=true " +
+            " and (t1.POSITION_ID='{0}' or (isnull(t1.POSITION_ID) and t.POSITION_ID='9999999999'))" +
+            " and t.VERSION_ID='{1}'";
 
-        private const string _SALARY_ITEM_SQL_FORMAT = "select * from t_salary_item where ENABLED=true and VERSION_ID='{0}'";
-
-        int loadSalaryStructDetail()
+        void loadSalaryStructDetail(string positionId)
         {
-            string sql = string.Format(_SALARY_STRUCT_DETAIL_SQL_FORMAT, GlobalSettings.SalaryVersion);
-            return DBHandlerEx.FillOnce(_salaryStructDetail, sql);
-        }
-
-        int loadSalaryItem()
-        {
-            string sql = string.Format(_SALARY_ITEM_SQL_FORMAT, GlobalSettings.SalaryVersion);
-            return DBHandlerEx.FillOnce(_salaryItem, sql);
-        }
-
-        void loadData()
-        {
-            if (loadSalaryItem() < 0 || loadSalaryStructDetail() < 0)
+            string sql = string.Format(_SALARY_STRUCT_DETAIL_SQL_FORMAT, positionId, GlobalSettings.SalaryVersion);
+            var handler = DBHandlerEx.GetBuffer();
+            _salaryStructDetail.Clear();
+            try
             {
-                throw new Exception();
+                handler.Fill(_salaryStructDetail, sql);
+            }
+            finally
+            {
+                handler.FreeBuffer();
             }
         }
 
         public ExecutionSalaryStructControl()
         {
             InitializeComponent();
+        }
+
+        protected override void onControlLoad()
+        {
+            base.onControlLoad();
             GridViewHelper.SetUpEditableGridView(gridViewExecSalaryDetai, false, "薪资构成", VersionType.SALARY);
 
-            loadData();
-
             gridControlExecSalaryDetai.DataSource = null;
-            _detailView=new DataView(_salaryStructDetail);
-            _itemView = new DataView(_salaryItem);
 
-            treeListPosition.DataSource = new DataView(DataHolder.Position){RowFilter = "[ENABLED]=true"};
+            treeListPosition.DataSource = new DataView(DataHolder.Position)
+            {
+                RowFilter = string.Format("[ENABLED]=true and [ID]<>'{0}'", GlobalSettings.GENERAL_POSITION)
+            };
             gridControlExecSalaryDetai.DataSource = null;
 
             repositoryItemLookUpEditItemType.DataSource = new DataView(DataHolder.SalaryItemType);
 
-            repositoryItemLookUpEditPosition.DataSource = new DataView(DataHolder.Position);
-            repositoryItemLookUpEditLookUpPosition.DataSource = new DataView(DataHolder.Position);
-
-        }
-
-        static string getDetailViewFilter(string positionId)
-        {
-            return string.Format("[POSITION_ID]='{0}'", positionId);
-        }
-
-        static string getItemListFilter(string positionId)
-        {
-            return string.Format("[POSITION_ID]='{0}' OR [POSITION_ID]='{1}'", GlobalSettings.GENERAL_POSITION, positionId);
-        }
-
-        private void onRowChanged(object sender, DataRowChangeEventArgs e)
-        {
-            if (e.Action == DataRowAction.Add || e.Action == DataRowAction.Change || e.Action == DataRowAction.Delete)
-            {
-                simpleButtonSave.Enabled = true;
-                simpleButtonRevert.Enabled = true;
-            }
-        }
-        void control_load(object sender, EventArgs e)
-        {
+            repositoryItemLookUpEditFormular.DataSource = new DataView(DataHolder.SalaryFunction);
             _salaryStructDetail.RowChanged += onRowChanged;
             gridViewExecSalaryDetai.ExpandAllGroups();
             treeListPosition.ExpandAll();
         }
-        private void visibleChanged(object sender, EventArgs e)
+
+        protected override void onControlUnload()
         {
-            if (Visible)
+            base.onControlUnload();
+            _salaryStructDetail.RowChanged -= onRowChanged;
+        }
+
+        protected override void onControlReload()
+        {
+            base.onControlReload();
+            _salaryStructDetail.RowChanged += onRowChanged;
+            gridViewExecSalaryDetai.ExpandAllGroups();
+            treeListPosition.ExpandAll();
+        }
+
+        string PositionId
+        {
+            get
             {
-                _salaryStructDetail.RowChanged += onRowChanged;
-            }
-            else
-            {
-                _salaryStructDetail.RowChanged -= onRowChanged;
+                return treeListPosition.FocusedNode==null ?"": Convert.ToString(treeListPosition.FocusedNode.GetValue("ID"));
             }
         }
 
-        private void save_items(object sender, EventArgs e)
+        protected override void onSave()
         {
+            base.onSave();
             DataTable changedTable = _salaryStructDetail.GetChanges();
-            if (changedTable != null)
+            if (changedTable == null || changedTable.Rows.Count==0) return;
+            string delSql =
+                string.Format("delete from t_position_salary_items where POSITION_ID='{0}' and VERSION_ID='{1}'",
+                    PositionId, GlobalSettings.SalaryVersion);
+            DataSetSalary.t_position_salary_itemsDataTable positionSalaryItem = new DataSetSalary.t_position_salary_itemsDataTable();
+            foreach (DataSetSalary.v_salary_struct_detailRow row in changedTable.Rows)
             {
-                var positionSalaryItem = new DataSetSalary.t_position_salary_itemsDataTable();
-                DBHandlerEx.FillOnce(positionSalaryItem,
-                    string.Format("select * from t_position_salary_items where VERSION_ID='{0}'",
-                        GlobalSettings.SalaryVersion));
-                foreach (DataSetSalary.v_salary_struct_detailRow row in changedTable.Rows)
-                {
-                    var detail = positionSalaryItem.FindByPOSITION_IDSALARY_ITEM_ID(row.POSITION_ID,row.SALARY_ITEM_ID);
-                    if (detail != null)
-                    {
-                        detail.ENABLED = row.ENABLED;
-                        detail.VERSION_ID = GlobalSettings.SalaryVersion;
-                    }
-                    else
-                    {
-                        detail = positionSalaryItem.Newt_position_salary_itemsRow();
-                        detail.POSITION_ID = row.POSITION_ID;
-                        detail.SALARY_ITEM_ID = row.SALARY_ITEM_ID;
-                        detail.ENABLED = row.ENABLED;
-                        detail.VERSION_ID = GlobalSettings.SalaryVersion;
-                        positionSalaryItem.Addt_position_salary_itemsRow(detail);
-                    }
-                }
-                DBHandlerEx.UpdateOnce(positionSalaryItem);
+                if(!row.ENABLED) continue;
+                var detail = positionSalaryItem.Newt_position_salary_itemsRow();
+                detail.POSITION_ID = row.POSITION_ID;
+                detail.SALARY_ITEM_ID = row.ID;
+                detail.ENABLED = row.ENABLED;
+                detail.VERSION_ID = GlobalSettings.SalaryVersion;
+                positionSalaryItem.Addt_position_salary_itemsRow(detail);
+            }
+            var handler = DBHandlerEx.GetBuffer();
+            try
+            {
+                handler.ExecuteNonQuery(delSql);
+                handler.Update(positionSalaryItem);
                 _salaryStructDetail.AcceptChanges();
+                base.onSave();
             }
-            simpleButtonSave.Enabled = false;
-            simpleButtonRevert.Enabled = false;
-        }
-
-        private void abandon_items(object sender, EventArgs e)
-        {
-            _salaryStructDetail.RejectChanges();
-            simpleButtonSave.Enabled = false;
-            simpleButtonRevert.Enabled = false;
-        }
-
-        private void initNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
-        {
-            Debug.Assert(treeListPosition.FocusedNode!=null);
-
-            var row = gridViewExecSalaryDetai.GetDataRow(e.RowHandle) as DataSetSalary.v_salary_struct_detailRow;
-            if (row != null)
+            finally
             {
-                row.POSITION_ID= (string) treeListPosition.FocusedNode.GetValue("ID");
-                row.ENABLED= true;
-                row.VERSION_ID = GlobalSettings.SalaryVersion;
+                handler.FreeBuffer();
             }
+        }
+
+        protected override void onRevert()
+        {
+            base.onRevert();
+            _salaryStructDetail.RejectChanges();
         }
 
         private void focusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
@@ -159,48 +137,13 @@ namespace SalarySystem.Managment.Salary
                 gridControlExecSalaryDetai.DataSource = null;
                 return;
             }
-            var position = (string) e.Node.GetValue("ID");
-            _detailView.RowFilter = getDetailViewFilter(position);
-
-            repositoryItemGridLookUpEdit1View.ActiveFilterString = getItemListFilter(position);
+            //var position = (string) e.Node.GetValue("ID");
+            loadSalaryStructDetail(PositionId);
             if (gridControlExecSalaryDetai.DataSource == null)
             {
-                gridControlExecSalaryDetai.DataSource = _detailView;
+                gridControlExecSalaryDetai.DataSource = _salaryStructDetail;
             }
 
-        }
-
-        private void repositoryItemGridLookUpEditItem_ParseEditValue(object sender, ConvertEditValueEventArgs e)
-        {
-            if(e.Value==null || e.Value==DBNull.Value)return;
-
-            string itemId = (string) e.Value;
-            if(string.IsNullOrEmpty(itemId))return;
-            var row = gridViewExecSalaryDetai.GetDataRow(gridViewExecSalaryDetai.FocusedRowHandle) as DataSetSalary.v_salary_struct_detailRow;
-            var itemRow = _salaryItem.FindByID(itemId);
-            if (row == null) return;
-            row.NAME = itemRow.NAME;
-            row.DESCRIPTION = itemRow.DESCRIPTION;
-            row.TYPE = itemRow.TYPE;
-            row.VALUE = itemRow.VALUE;
-            row.FIT_POSITION_ID = itemRow.POSITION_ID;
-            row.FUNC_ID = itemRow.FUNC_ID;
-        }
-
-        private void gridViewExecSalaryDetai_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (gridViewExecSalaryDetai.FocusedColumn != colSALARY_ITEM_ID) return;
-            if (repositoryItemGridLookUpEditItem.DataSource == null)
-            {
-                repositoryItemGridLookUpEditItem.DataSource = _itemView;
-            }
-            var row = gridViewExecSalaryDetai.GetDataRow(gridViewExecSalaryDetai.FocusedRowHandle) as DataSetSalary.v_salary_struct_detailRow;
-            if (row == null) return;
-            if (!string.IsNullOrEmpty(row.POSITION_ID))
-            {
-                repositoryItemGridLookUpEdit1View.ActiveFilterString = string.Format("[POSITION_ID]='{0}' OR [POSITION_ID]='{1}'",
-                    row.POSITION_ID, GlobalSettings.GENERAL_POSITION);
-            }
         }
     }
 }

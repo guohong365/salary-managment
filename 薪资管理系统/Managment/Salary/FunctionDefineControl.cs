@@ -68,7 +68,9 @@ namespace SalarySystem.Managment.Salary
         private static void initNewParameterRow(object sender, InitNewRowEventArgs e)
         {
             GridView gridView = (GridView) sender;
-            var parentRow = gridView.SourceRow as DataSetSalary.t_salary_functionRow;
+            var rowView = gridView.SourceRow as DataRowView;
+            Debug.Assert(rowView!=null);
+            var parentRow = rowView.Row as DataSetSalary.t_salary_functionRow;
             var row = gridView.GetDataRow(e.RowHandle) as DataSetSalary.t_salary_function_parameterRow;
             Debug.Assert(row!=null);
             Debug.Assert(parentRow!=null);
@@ -135,7 +137,9 @@ namespace SalarySystem.Managment.Salary
         private void showingFunctionEditor(object sender, CancelEventArgs e)
         {
             var gridView = sender as GridView;
-            if (gridView == null || !gridControlFunction.MainView.Equals(gridView)) return;
+            if (gridView == null || !gridControlFunction.MainView.Equals(gridView) ||
+                gridView.IsNewItemRow(gridView.FocusedRowHandle)) return;
+            
             var row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.t_salary_functionRow;
             Debug.Assert(row!=null);
             if (row.PREDEFINED)
@@ -147,6 +151,11 @@ namespace SalarySystem.Managment.Salary
         private static void shownFunctionEditor(object sender, EventArgs e)
         {
             var gridView = (GridView) sender;
+            if (gridView.IsNewItemRow(gridView.FocusedRowHandle))
+            {
+                gridView.ActiveEditor.Properties.ReadOnly = false;
+                return;
+            }
             var row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.t_salary_functionRow;
             Debug.Assert(row!=null);
             if (row.PREDEFINED)
@@ -159,7 +168,10 @@ namespace SalarySystem.Managment.Salary
         {
             var gridView = (GridView) sender;
             Debug.Assert(gridView!=null);
-
+            if (gridView.IsNewItemRow(gridView.FocusedRowHandle))
+            {
+                return;
+            }
             var row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.t_salary_function_parameterRow;
             Debug.Assert(row!=null);
             if (gridView.FocusedColumn.FieldName != "LENGTH") return;

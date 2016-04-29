@@ -42,6 +42,7 @@
       <HintPath>..\Localization\DevExpress.Data.v10.2.resources.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.OfficeSkins.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v10.2.Core, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v10.2.Core.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.RichEdit.v10.2.Core.resources.dll</HintPath>
@@ -81,6 +82,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraNavBar.v10.2.resources.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v10.2.resources, Version=10.2.0.0, Culture=zh-CHS, PublicKeyToken=0277c9f42cc6e4bb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraPrinting.v10.2.resources.dll</HintPath>
@@ -158,6 +160,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataSetSalary.cs">
+      <DependentUpon>DataSetSalary.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data\DataSetTemplate.cs">
       <DependentUpon>DataSetTemplate.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -174,6 +180,12 @@
     <Compile Include="Managment\Salary\FunctionDefineControl.cs" />
     <Compile Include="Managment\Salary\FunctionDefineControl.Designer.cs">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Salary\SalaryDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Salary\SalaryDetailControl.Designer.cs">
+      <DependentUpon>SalaryDetailControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Schedule\AnnualScheduleItem.cs" />
     <Compile Include="Schedule\AssignmentScheduleDetailParameter.cs" />
@@ -366,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Salary\FunctionDefineControl.resx">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Salary\SalaryDetailControl.resx">
+      <DependentUpon>SalaryDetailControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Schedule\AssignmentTree2Control.resx">
       <DependentUpon>AssignmentTree2Control.cs</DependentUpon>
@@ -1010,6 +1025,7 @@
   <ItemGroup>
     <None Include="Resources\zoom +.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -59,7 +59,7 @@ namespace SalarySystem.Managment
                 new NavGroupDefine(KEY_GROUP_SALARY_STRUCTURE, new []
                 {
                     new NavItemDefine(KEY_SALARY_ITEM, typeof(SalaryItemControl), onNavItemClicked, 0),
-                    new NavItemDefine(KEY_EXECUTION_SALAY_STRUCT, typeof(AssignmentDefineControl), onNavItemClicked, 1),
+                    new NavItemDefine(KEY_EXECUTION_SALAY_STRUCT, typeof(ExecutionSalaryStructControl), onNavItemClicked, 1),
                     new NavItemDefine(KEY_SALARY_FUNCTION, typeof(FunctionDefineControl), onNavItemClicked, 2) 
 
                 }, 2) 
