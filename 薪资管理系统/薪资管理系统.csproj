@@ -173,11 +173,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetTemplate.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Execute\AssignmentPerformanceControl.cs" />
+    <Compile Include="Execute\AssignmentPerformanceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Execute\AssignmentPerformanceControl.Designer.cs">
       <DependentUpon>AssignmentPerformanceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Salary\FunctionDefineControl.cs" />
+    <Compile Include="Managment\Salary\FunctionDefineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Salary\FunctionDefineControl.Designer.cs">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>
     </Compile>
@@ -189,15 +193,21 @@
     </Compile>
     <Compile Include="Schedule\AnnualScheduleItem.cs" />
     <Compile Include="Schedule\AssignmentScheduleDetailParameter.cs" />
-    <Compile Include="Schedule\AssignmentTree2Control.cs" />
+    <Compile Include="Schedule\AssignmentTree2Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Schedule\AssignmentTree2Control.Designer.cs">
       <DependentUpon>AssignmentTree2Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="Schedule\AutoAssignmentWeightControl.cs" />
+    <Compile Include="Schedule\AutoAssignmentWeightControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Schedule\AutoAssignmentWeightControl.Designer.cs">
       <DependentUpon>AutoAssignmentWeightControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Config\ConfigManagmentControl.cs" />
+    <Compile Include="Config\ConfigManagmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Config\ConfigManagmentControl.Designer.cs">
       <DependentUpon>ConfigManagmentControl.cs</DependentUpon>
     </Compile>
@@ -207,54 +217,78 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Execute\EvalFormControl.cs" />
+    <Compile Include="Execute\EvalFormControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Execute\EvalFormControl.Designer.cs">
       <DependentUpon>EvalFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Execute\EvalFormsControl.cs" />
+    <Compile Include="Execute\EvalFormsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Execute\EvalFormsControl.Designer.cs">
       <DependentUpon>EvalFormsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Execute\EmployeePerformance.cs" />
-    <Compile Include="Execute\ExecutionPerformanceControl.cs" />
+    <Compile Include="Execute\ExecutionPerformanceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Execute\ExecutionPerformanceControl.Designer.cs">
       <DependentUpon>ExecutionPerformanceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Schedule\AssignmentScheduleControl.cs" />
+    <Compile Include="Schedule\AssignmentScheduleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Schedule\AssignmentScheduleControl.Designer.cs">
       <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\PersonalAssignmentDefineControl.cs" />
+    <Compile Include="Managment\Assignment\PersonalAssignmentDefineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Assignment\PersonalAssignmentDefineControl.Designer.cs">
       <DependentUpon>PersonalAssignmentDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\AutoAssignmentRateDefineControl.cs" />
+    <Compile Include="Managment\Assignment\AutoAssignmentRateDefineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Assignment\AutoAssignmentRateDefineControl.Designer.cs">
       <DependentUpon>AutoAssignmentRateDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\CodeTableControl.cs" />
+    <Compile Include="Managment\Basic\CodeTableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Basic\CodeTableControl.Designer.cs">
       <DependentUpon>CodeTableControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\DefineControlManager.cs" />
-    <Compile Include="Managment\Evaluation\EvaluationFormControl.cs" />
+    <Compile Include="Managment\Evaluation\EvaluationFormControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Evaluation\EvaluationFormControl.Designer.cs">
       <DependentUpon>EvaluationFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Evaluation\EvaluationItemControl.cs" />
+    <Compile Include="Managment\Evaluation\EvaluationItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Evaluation\EvaluationItemControl.Designer.cs">
       <DependentUpon>EvaluationItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Evaluation\EvaluationItemTypeControl.cs" />
+    <Compile Include="Managment\Evaluation\EvaluationItemTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Evaluation\EvaluationItemTypeControl.Designer.cs">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Execute\ExecutionControlManager.cs" />
-    <Compile Include="Managment\Salary\ExecutionSalaryStructControl.cs" />
+    <Compile Include="Managment\Salary\ExecutionSalaryStructControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Salary\ExecutionSalaryStructControl.Designer.cs">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.cs" />
+    <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.Designer.cs">
       <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
     </Compile>
@@ -263,37 +297,53 @@
     <Compile Include="NavBarControlManagerBase.cs" />
     <Compile Include="NavGroupDefine.cs" />
     <Compile Include="NavItemDefine.cs" />
-    <Compile Include="Managment\Salary\SalaryItemControl.cs" />
+    <Compile Include="Managment\Salary\SalaryItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Salary\SalaryItemControl.Designer.cs">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseEditableControl.cs" />
+    <Compile Include="BaseEditableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BaseEditableControl.Designer.cs">
       <DependentUpon>BaseEditableControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\AssignmentDefineControl.cs" />
+    <Compile Include="Managment\Assignment\AssignmentDefineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Assignment\AssignmentDefineControl.Designer.cs">
       <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Editor\IItemEditor.cs" />
-    <Compile Include="Managment\Editor\ItemControl.cs" />
+    <Compile Include="Managment\Editor\ItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Editor\ItemControl.Designer.cs">
       <DependentUpon>ItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Editor\ItemEditForm.cs" />
+    <Compile Include="Managment\Editor\ItemEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Managment\Editor\ItemEditForm.Designer.cs">
       <DependentUpon>ItemEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Editor\EditPurpose.cs" />
-    <Compile Include="Managment\Employee\EmployeeManagerControl.cs" />
+    <Compile Include="Managment\Employee\EmployeeManagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Employee\EmployeeManagerControl.Designer.cs">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Employee\Editor\EmployeePropertyControl.cs" />
+    <Compile Include="Managment\Employee\Editor\EmployeePropertyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Employee\Editor\EmployeePropertyControl.Designer.cs">
       <DependentUpon>EmployeePropertyControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
@@ -307,7 +357,9 @@
     <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.Designer.cs">
       <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Position\Editor\PositionPropertyControl.cs" />
+    <Compile Include="Managment\Position\Editor\PositionPropertyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Position\Editor\PositionPropertyControl.Designer.cs">
       <DependentUpon>PositionPropertyControl.cs</DependentUpon>
     </Compile>
@@ -317,11 +369,15 @@
     <Compile Include="Managment\Position\EmployeeControl.Designer.cs">
       <DependentUpon>EmployeeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Position\EmployeeListControl.cs" />
+    <Compile Include="Managment\Position\EmployeeListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Position\EmployeeListControl.Designer.cs">
       <DependentUpon>EmployeeListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Position\EvaluationItemsControl.cs" />
+    <Compile Include="Managment\Position\EvaluationItemsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Position\EvaluationItemsControl.Designer.cs">
       <DependentUpon>EvaluationItemsControl.cs</DependentUpon>
     </Compile>
@@ -337,15 +393,21 @@
     <Compile Include="Managment\Position\PositionSalaryLevelControl.Designer.cs">
       <DependentUpon>PositionSalaryLevelControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Position\PositionManagerControl.cs" />
+    <Compile Include="Managment\Position\PositionManagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Position\PositionManagerControl.Designer.cs">
       <DependentUpon>PositionManagerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Position\SalaryStructureControl.cs" />
+    <Compile Include="Managment\Position\SalaryStructureControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Managment\Position\SalaryStructureControl.Designer.cs">
       <DependentUpon>SalaryStructureControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="NavBarManagedControl.cs" />
+    <Compile Include="NavBarManagedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="NavBarManagedControl.Designer.cs">
       <DependentUpon>NavBarManagedControl.cs</DependentUpon>
     </Compile>
@@ -353,22 +415,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule\AnnualSchedule.cs" />
     <Compile Include="Schedule\MonthAssignmentScheduleParameter.cs" />
-    <Compile Include="Schedule\PersonalAssignmentScheduleControl.cs" />
+    <Compile Include="Schedule\PersonalAssignmentScheduleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Schedule\PersonalAssignmentScheduleControl.Designer.cs">
       <DependentUpon>PersonalAssignmentScheduleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Schedule\PersonalMonthlyAssignmentScheduleControl.cs" />
+    <Compile Include="Schedule\PersonalMonthlyAssignmentScheduleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Schedule\PersonalMonthlyAssignmentScheduleControl.Designer.cs">
       <DependentUpon>PersonalMonthlyAssignmentScheduleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Schedule\ScheduleControlManager.cs" />
     <Compile Include="Schedule\ScheduleHelper.cs" />
-    <Compile Include="Schedule\ScheduleItemControl.cs" />
+    <Compile Include="Schedule\ScheduleItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Schedule\ScheduleItemControl.Designer.cs">
       <DependentUpon>ScheduleItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Schedule\ScheduleKeys.cs" />
-    <Compile Include="Schedule\AssignmentTreeControl.cs" />
+    <Compile Include="Schedule\AssignmentTreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Schedule\AssignmentTreeControl.Designer.cs">
       <DependentUpon>AssignmentTreeControl.cs</DependentUpon>
     </Compile>
