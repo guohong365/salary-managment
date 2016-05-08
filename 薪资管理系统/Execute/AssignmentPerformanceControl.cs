@@ -1,6 +1,6 @@
-﻿using System;
-using SalarySystem.Data;
+﻿using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Execute
 {
@@ -9,7 +9,7 @@ namespace SalarySystem.Execute
         public AssignmentPerformanceControl()
         {
             InitializeComponent();
-            gridView1.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+            gridView1.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
             repositoryItemLookUpEditUnit.DataSource = DataHolder.Unit;
             repositoryItemLookUpEditType.DataSource = DataHolder.AssignmentItemType;
             loadAssignmentDefine();

@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using SalarySystem.Data;
-using SalarySystem.Managment.Editor;
 using UC.Platform.Data;
+using UC.Platform.UI.Editor;
 
 namespace SalarySystem
 {

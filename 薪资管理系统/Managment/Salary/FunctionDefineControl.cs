@@ -5,6 +5,7 @@ using System.Diagnostics;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Salary
 {
@@ -36,7 +37,7 @@ namespace SalarySystem.Managment.Salary
 
         void loadData()
         {
-            var handler=DBHandlerEx.GetBuffer();
+            DBHandlerEx handler=DBHandlerEx.GetBuffer();
             try
             {
                 handler.Fill(_salaryFunction, _FUNCTION_LOAD_SQL);
@@ -68,10 +69,10 @@ namespace SalarySystem.Managment.Salary
         private static void initNewParameterRow(object sender, InitNewRowEventArgs e)
         {
             GridView gridView = (GridView) sender;
-            var rowView = gridView.SourceRow as DataRowView;
+            DataRowView rowView = gridView.SourceRow as DataRowView;
             Debug.Assert(rowView!=null);
-            var parentRow = rowView.Row as DataSetSalary.t_salary_functionRow;
-            var row = gridView.GetDataRow(e.RowHandle) as DataSetSalary.t_salary_function_parameterRow;
+            DataSetSalary.t_salary_functionRow parentRow = rowView.Row as DataSetSalary.t_salary_functionRow;
+            DataSetSalary.t_salary_function_parameterRow row = gridView.GetDataRow(e.RowHandle) as DataSetSalary.t_salary_function_parameterRow;
             Debug.Assert(row!=null);
             Debug.Assert(parentRow!=null);
             row.FUNC_ID = parentRow.ID;
@@ -83,7 +84,7 @@ namespace SalarySystem.Managment.Salary
         private static void initNewFunctionRow(object sender, InitNewRowEventArgs e)
         {
             GridView gridView = (GridView) sender;
-            var row=gridView.GetDataRow(e.RowHandle) as DataSetSalary.t_salary_functionRow;
+            DataSetSalary.t_salary_functionRow row=gridView.GetDataRow(e.RowHandle) as DataSetSalary.t_salary_functionRow;
             Debug.Assert(row!=null);
             row.ID = Guid.NewGuid().ToString();
             row.ENABLED = true;
@@ -106,7 +107,7 @@ namespace SalarySystem.Managment.Salary
 
         protected override void onSave()
         {
-            var handler = DBHandlerEx.GetBuffer();
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
             try
             {
                 handler.BeginTransaction();
@@ -136,12 +137,11 @@ namespace SalarySystem.Managment.Salary
 
         private void showingFunctionEditor(object sender, CancelEventArgs e)
         {
-            var gridView = sender as GridView;
-            if (gridView == null || !gridControlFunction.MainView.Equals(gridView) ||
+            GridView gridView = (GridView) sender;
+            if (!gridControlFunction.MainView.Equals(gridView) ||
                 gridView.IsNewItemRow(gridView.FocusedRowHandle)) return;
             
-            var row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.t_salary_functionRow;
-            Debug.Assert(row!=null);
+            DataSetSalary.t_salary_functionRow row = (DataSetSalary.t_salary_functionRow) gridView.GetDataRow(gridView.FocusedRowHandle);
             if (row.PREDEFINED)
             {
                 if(gridView.FocusedColumn.FieldName!="SQL_STMT")
@@ -150,14 +150,13 @@ namespace SalarySystem.Managment.Salary
         }
         private static void shownFunctionEditor(object sender, EventArgs e)
         {
-            var gridView = (GridView) sender;
+            GridView gridView = (GridView) sender;
             if (gridView.IsNewItemRow(gridView.FocusedRowHandle))
             {
                 gridView.ActiveEditor.Properties.ReadOnly = false;
                 return;
             }
-            var row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.t_salary_functionRow;
-            Debug.Assert(row!=null);
+            DataSetSalary.t_salary_functionRow row = (DataSetSalary.t_salary_functionRow) gridView.GetDataRow(gridView.FocusedRowHandle);
             if (row.PREDEFINED)
             {
                 gridView.ActiveEditor.Properties.ReadOnly = true;
@@ -166,14 +165,12 @@ namespace SalarySystem.Managment.Salary
 
         private static void showingParameterEditor(object sender, CancelEventArgs e)
         {
-            var gridView = (GridView) sender;
-            Debug.Assert(gridView!=null);
+            GridView gridView = (GridView) sender;
             if (gridView.IsNewItemRow(gridView.FocusedRowHandle))
             {
                 return;
             }
-            var row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.t_salary_function_parameterRow;
-            Debug.Assert(row!=null);
+            DataSetSalary.t_salary_function_parameterRow row = (DataSetSalary.t_salary_function_parameterRow) gridView.GetDataRow(gridView.FocusedRowHandle);
             if (gridView.FocusedColumn.FieldName != "LENGTH") return;
             if(row.IsNull("TYPE")) return;
             if (DataHolder.ParameterType.FindBySYSTEM_TYPE(row.TYPE).FIXED)

@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{4E
 		init_evaluation_item_type.sql = init_evaluation_item_type.sql
 		init_position.sql = init_position.sql
 		intial.sql = intial.sql
+		ray.DotSettings = ray.DotSettings
+		resharper.DotSettings = resharper.DotSettings
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{AFCAE4BB-D10A-4F13-8A0B-1147B9E4C39F}"
@@ -35,7 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "design", "design", "{AFCAE4
 		design\薪酬管理.cdm = design\薪酬管理.cdm
 		design\薪酬管理.ldb = design\薪酬管理.ldb
 		design\薪酬管理.ldm = design\薪酬管理.ldm
-		design\薪酬管理.pdb = design\薪酬管理.pdb
 		design\薪酬管理系统.prj = design\薪酬管理系统.prj
 		design\薪酬管理系统需求分析.docx = design\薪酬管理系统需求分析.docx
 	EndProjectSection
@@ -74,7 +75,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UC.Platform.Data", "UC.Plat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{541651CA-E553-4DA6-A33F-731DBA0B2CAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UC.Platform.UI", "UC.Platform.UI\UC.Platform.UI.csproj", "{142D9E45-D317-48C2-BD14-2C3E0E4159E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UC.Platform.UI.DevExtension", "UC.Platform.UI\UC.Platform.UI.DevExtension.csproj", "{142D9E45-D317-48C2-BD14-2C3E0E4159E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.DBHandler", "Test.DBHandler\Test.DBHandler.csproj", "{00AAB59F-1B97-412D-82A8-4A67B3F9859B}"
 EndProject

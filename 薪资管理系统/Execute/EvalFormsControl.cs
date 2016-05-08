@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using DevExpress.XtraTab;
 
 namespace SalarySystem.Execute
 {
@@ -42,10 +43,10 @@ namespace SalarySystem.Execute
             foreach (DataRow row in _employeePerformance.FormsIdName.Rows)
             {
                 #region 准备control
-                var page = xtraTabControlEvalForms.TabPages.Add(Convert.ToString(row["FORM_NAME"]));
+                XtraTabPage page = xtraTabControlEvalForms.TabPages.Add(Convert.ToString(row["FORM_NAME"]));
                 page.Tag = row["FORM_ID"];
                 page.Margin=new Padding(0);
-                var control = new EvalFormControl
+                EvalFormControl control = new EvalFormControl
                 {
                     Dock = DockStyle.Fill,
                     ResultDetail = EmployeePerformance.EvaluationResults[Convert.ToString(row["FORM_ID"])],

@@ -3,6 +3,7 @@ using System.Data;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Evaluation
 {
@@ -16,7 +17,7 @@ namespace SalarySystem.Managment.Evaluation
 
         private void initNewRow(object sender, InitNewRowEventArgs e)
         {
-            var row = gridView1.GetDataRow(e.RowHandle) as DataSetSalary.t_evaluation_itemRow;
+            DataSetSalary.t_evaluation_itemRow row = gridView1.GetDataRow(e.RowHandle) as DataSetSalary.t_evaluation_itemRow;
             if(row!=null)
             {
                 row.ID = Guid.NewGuid().ToString();
@@ -46,7 +47,7 @@ namespace SalarySystem.Managment.Evaluation
             gridView1.ViewCaption = string.Format("考核项目定义（{0}）", GlobalSettings.EvaluationFullVersion);
             loadEvaluationItem();
             gridControl1.DataSource =_evaluationItem;
-            var dataView = new DataView(DataHolder.EvaluationItemType)
+            DataView dataView = new DataView(DataHolder.EvaluationItemType)
             {
                 RowFilter = "[ENABLED]=true"
             };
@@ -54,7 +55,7 @@ namespace SalarySystem.Managment.Evaluation
             dataView = new DataView(DataHolder.Position) { RowFilter = "ENABLED=true" };
             repositoryItemLookUpEditPosition.DataSource = dataView;
             gridView1.ExpandAllGroups();
-            gridView1.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+            gridView1.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
             gridView1.InitNewRow += initNewRow;
             _evaluationItem.RowChanged += onRowChanged;
         }

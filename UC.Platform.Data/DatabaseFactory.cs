@@ -91,14 +91,12 @@ namespace UC.Platform.Data
         public DbDataAdapter CreateDataAdapter(DbConnection connection)
         {
             DbDataAdapter adapter= _factory.CreateDataAdapter();
-            if (adapter != null)
-            {
-                adapter.AcceptChangesDuringUpdate = true;
-                adapter.ContinueUpdateOnError = false;
-                adapter.MissingSchemaAction = MissingSchemaAction.Add;
-                adapter.MissingMappingAction = MissingMappingAction.Passthrough;
-                adapter.SelectCommand = CreateCommand(connection);
-            }
+            if (adapter == null) return null;
+            adapter.AcceptChangesDuringUpdate = true;
+            adapter.ContinueUpdateOnError = false;
+            adapter.MissingSchemaAction = MissingSchemaAction.Add;
+            adapter.MissingMappingAction = MissingMappingAction.Passthrough;
+            adapter.SelectCommand = CreateCommand(connection);
             return adapter;
         }
 
@@ -160,6 +158,11 @@ namespace UC.Platform.Data
             {
                 return _providerName;
             }
+        }
+
+        public List<DbConnection> ConnectionPool
+        {
+            get { return _connectionPool; }
         }
 
         public bool DeriveParameters(DbCommand cmd)

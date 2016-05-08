@@ -58,10 +58,10 @@
             this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.simpleButtonRemoveItems = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonAddItems = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
+            this.panelControlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
+            this.panelControlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewFormDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationForm)).BeginInit();
@@ -79,9 +79,9 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Location = new System.Drawing.Point(0, 447);
-            this.panelControl1.Size = new System.Drawing.Size(929, 40);
-            this.panelControl1.TabIndex = 0;
+            this.panelControlButtons.Location = new System.Drawing.Point(0, 447);
+            this.panelControlButtons.Size = new System.Drawing.Size(929, 40);
+            this.panelControlButtons.TabIndex = 0;
             // 
             // simpleButtonRevert
             // 
@@ -93,10 +93,10 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.simpleButtonRemoveItems);
-            this.panelControl2.Controls.Add(this.simpleButtonAddItems);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControl2.Size = new System.Drawing.Size(40, 447);
+            this.panelControlMain.Controls.Add(this.simpleButtonRemoveItems);
+            this.panelControlMain.Controls.Add(this.simpleButtonAddItems);
+            this.panelControlMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelControlMain.Size = new System.Drawing.Size(40, 447);
             // 
             // gridViewFormDetail
             // 
@@ -331,7 +331,7 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.gridControlEvaluationForm);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControlEvaluationItems);
-            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl2);
+            this.splitContainerControl1.Panel2.Controls.Add(this.panelControlMain);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(929, 447);
             this.splitContainerControl1.SplitterPosition = 529;
@@ -477,12 +477,12 @@
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "EvaluationFormControl";
             this.Size = new System.Drawing.Size(929, 487);
-            this.Controls.SetChildIndex(this.panelControl1, 0);
+            this.Controls.SetChildIndex(this.panelControlButtons, 0);
             this.Controls.SetChildIndex(this.splitContainerControl1, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).EndInit();
+            this.panelControlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).EndInit();
+            this.panelControlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewFormDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationForm)).EndInit();

@@ -9,6 +9,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Evaluation
 {
@@ -45,37 +46,30 @@ namespace SalarySystem.Managment.Evaluation
 
         private void loadData()
         {
-            if (loadEvaluationForm() < 0 || loadEvaluationFormDetail() < 0 ||
-                loadEvaluationItem() < 0 || loadEvaluationFormItems() < 0)
-            {
-                throw new Exception("load data failed");
-            }
-        }
+          _evaluationFormDetail.Clear();
+          _evaluationForm.Clear();
+          _evaluationItem.Clear();
+          _formItems.Clear();
+          DBHandlerEx handler=DBHandlerEx.GetBuffer();
 
-        private int loadEvaluationFormItems()
-        {
+          try
+          {
             string sql = string.Format(_EVALUATION_FROM_ITEMS_SQL_FORMAT, GlobalSettings.EvaluationVersion);
-            return DBHandlerEx.FillOnce(_formItems,sql);
-        }
+            handler.Fill(_formItems, sql);
 
-        private int loadEvaluationItem()
-        {
-            string sql = string.Format(_EVALUATION_ITEM_SQL_FORMAT, GlobalSettings.EvaluationVersion);
-            return DBHandlerEx.FillOnce(_evaluationItem, sql);
-        }
+            sql = string.Format(_EVALUATION_ITEM_SQL_FORMAT, GlobalSettings.EvaluationVersion);
+            handler.Fill(_evaluationItem, sql);
 
-        private int loadEvaluationForm()
-        {
-            _evaluationForm.Clear();
-            string sql = string.Format(_EVALUATION_FORM_SQL_FORMAT, GlobalSettings.EvaluationVersion);
-            return DBHandlerEx.FillOnce(_evaluationForm, sql);
-        }
+            sql = string.Format(_EVALUATION_FORM_SQL_FORMAT, GlobalSettings.EvaluationVersion);
+            handler.Fill(_evaluationForm, sql);
 
-        private int loadEvaluationFormDetail()
-        {
-            _evaluationFormDetail.Clear();
-            string sql = string.Format(_EVALUATION_FORM_DETAIL_SQL_FROMAT, GlobalSettings.EvaluationVersion);
-            return DBHandlerEx.FillOnce(_evaluationFormDetail, sql);
+            sql = string.Format(_EVALUATION_FORM_DETAIL_SQL_FROMAT, GlobalSettings.EvaluationVersion);
+            handler.Fill(_evaluationFormDetail, sql);
+          }
+          finally
+          {
+            handler.FreeBuffer();
+          }
         }
 
         #endregion
@@ -104,10 +98,6 @@ namespace SalarySystem.Managment.Evaluation
         {
             base.onControlLoad();
             loadData();
-            if (loadEvaluationFormDetail() < 0)
-            {
-                throw new Exception("load evaluation detail failed.");
-            }
             _evaluationForm.RowChanged += onRowChanged;
             _evaluationFormDetail.RowChanged += onRowChanged;
             _formItems.RowChanged += onRowChanged;
@@ -137,8 +127,8 @@ namespace SalarySystem.Managment.Evaluation
                 RowFilter = "[ENABLED]=true"
             };
             repositoryItemLookUpEditItemPosition.DataSource = new DataView(DataHolder.Position);
-            gridViewForm.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
-            gridViewFormDetail.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+            gridViewForm.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
+            gridViewFormDetail.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
         }
 
         private static string getItemsFilter(string positionId)
@@ -151,7 +141,7 @@ namespace SalarySystem.Managment.Evaluation
             _dataSet.Tables.Add(_evaluationFormDetail);
             _dataSet.Tables.Add(_evaluationForm);
             _dataSet.Tables.Add(_evaluationItem);
-            var relation = new DataRelation("evaluation_form_detail", new[] {_evaluationForm.IDColumn},
+            DataRelation relation = new DataRelation("evaluation_form_detail", new[] {_evaluationForm.IDColumn},
                 new[] {_evaluationFormDetail.FORM_IDColumn});
             _dataSet.Relations.Add(relation);
         }
@@ -159,32 +149,32 @@ namespace SalarySystem.Managment.Evaluation
 
         private void initNewRow(object sender, InitNewRowEventArgs e)
         {
-            var row = gridViewForm.GetDataRow(e.RowHandle) as DataSetSalary.t_evaluation_formRow;
+            DataSetSalary.t_evaluation_formRow row = gridViewForm.GetDataRow(e.RowHandle) as DataSetSalary.t_evaluation_formRow;
             Debug.Assert(row != null);
             row.ID = Guid.NewGuid().ToString();
             row.VERSION_ID = GlobalSettings.EvaluationVersion;
             row.ENABLED = true;
         }
 
-        private static void cloneRow(DataSetSalary.t_evaluation_formRow formRow,
-            DataSetSalary.v_evaluation_form_detailRow detailRow, DataSetSalary.t_evaluation_itemRow itemRow)
-        {
-            detailRow.FORM_ID = formRow.ID;
-            detailRow.ITEM_ID = itemRow.ID;
-            detailRow.NAME = itemRow.NAME;
-            detailRow.DESCRIPTION = itemRow.IsDESCRIPTIONNull() ? "" : itemRow.DESCRIPTION;
-            detailRow.TYPE = itemRow.TYPE;
-            detailRow.FULL_MARK = itemRow.FULL_MARK;
-            detailRow.ENABLED = itemRow.ENABLED;
-            detailRow.VERSION_ID = itemRow.VERSION_ID;
-            detailRow.POSITION_ID = itemRow.POSITION_ID;
-            detailRow.SHOW_ORDER = 0;
-            detailRow.USED = false;
-        }
+      private static void cloneRow(DataSetSalary.t_evaluation_formRow formRow,
+        DataSetSalary.v_evaluation_form_detailRow detailRow, DataSetSalary.t_evaluation_itemRow itemRow)
+      {
+        detailRow.FORM_ID = formRow.ID;
+        detailRow.ITEM_ID = itemRow.ID;
+        detailRow.NAME = itemRow.NAME;
+        detailRow.DESCRIPTION = itemRow.IsDESCRIPTIONNull() ? "" : itemRow.DESCRIPTION;
+        detailRow.TYPE = itemRow.TYPE;
+        detailRow.FULL_MARK = itemRow.FULL_MARK;
+        detailRow.ENABLED = itemRow.ENABLED;
+        detailRow.VERSION_ID = itemRow.VERSION_ID;
+        detailRow.POSITION_ID = itemRow.POSITION_ID;
+        detailRow.SHOW_ORDER = 0;
+        detailRow.USED = false;
+      }
 
-        private void add_items(object sender, EventArgs e)
+      private void add_items(object sender, EventArgs e)
         {
-            var formRow = gridViewForm.GetDataRow(gridViewForm.FocusedRowHandle) as DataSetSalary.t_evaluation_formRow;
+            DataSetSalary.t_evaluation_formRow formRow = gridViewForm.GetDataRow(gridViewForm.FocusedRowHandle) as DataSetSalary.t_evaluation_formRow;
             if (formRow == null) return;
 
             int[] rowHandles = gridViewItem.GetSelectedRows();
@@ -199,7 +189,7 @@ namespace SalarySystem.Managment.Evaluation
                     _evaluationFormDetail.Newv_evaluation_form_detailRow();
                 cloneRow(formRow, newDetailRow, itemRow as DataSetSalary.t_evaluation_itemRow);
                 _evaluationFormDetail.Addv_evaluation_form_detailRow(newDetailRow);
-                var newFormsItem= _formItems.Newt_evaluation_form_itemsRow();
+                DataSetSalary.t_evaluation_form_itemsRow newFormsItem= _formItems.Newt_evaluation_form_itemsRow();
                 newFormsItem.EVALUATION_FORM_ID = newDetailRow.FORM_ID;
                 newFormsItem.EVALUATION_FORM_ITEM_ID = newDetailRow.ITEM_ID;
                 newFormsItem.VERSION_ID = GlobalSettings.EvaluationVersion;
@@ -213,18 +203,18 @@ namespace SalarySystem.Managment.Evaluation
 
         private void remove_items(object sender, EventArgs e)
         {
-            var gridView = gridViewForm.GetDetailView(gridViewForm.FocusedRowHandle, 0) as GridView;
-            Debug.Assert(gridView != null, "gridView != null");
+            GridView gridView = (GridView) gridViewForm.GetDetailView(gridViewForm.FocusedRowHandle, 0);
             var handles = gridView.GetSelectedRows();
-            foreach (
-                DataSetSalary.v_evaluation_form_detailRow row in
-                    from rowHandle in handles where gridView.IsDataRow(rowHandle) select gridView.GetDataRow(rowHandle))
-            {
-                var itemsRow=_formItems.FindByEVALUATION_FORM_IDEVALUATION_FORM_ITEM_ID(row.FORM_ID, row.ITEM_ID);
-                if(itemsRow==null) continue;
-                itemsRow.Delete();
-            }
-            gridView.DeleteSelectedRows();
+          foreach (
+            DataSetSalary.t_evaluation_form_itemsRow itemsRow in
+              (from rowHandle in handles where gridView.IsDataRow(rowHandle) select gridView.GetDataRow(rowHandle))
+                .Cast<DataSetSalary.v_evaluation_form_detailRow>()
+                .Select(row => _formItems.FindByEVALUATION_FORM_IDEVALUATION_FORM_ITEM_ID(row.FORM_ID, row.ITEM_ID))
+                .Where(itemsRow => itemsRow != null))
+          {
+            itemsRow.Delete();
+          }
+          gridView.DeleteSelectedRows();
         }
 
         protected override void onRevert()
@@ -238,11 +228,11 @@ namespace SalarySystem.Managment.Evaluation
         {
             if (gridViewForm.IsDataRow(rowHandle))
             {
-                var row = gridViewForm.GetDataRow(rowHandle) as DataSetSalary.t_evaluation_formRow;
+                DataSetSalary.t_evaluation_formRow row = gridViewForm.GetDataRow(rowHandle) as DataSetSalary.t_evaluation_formRow;
                 if (row != null)
                 {
                     gridViewForm.ExpandMasterRow(rowHandle);
-                    var gridView = (GridView) gridViewForm.GetDetailView(rowHandle, 0);
+                    GridView gridView = (GridView) gridViewForm.GetDetailView(rowHandle, 0);
                     string inStr = "";
                     if (gridView != null && gridView.DataRowCount > 0)
                     {
@@ -250,8 +240,7 @@ namespace SalarySystem.Managment.Evaluation
                         for (int i = 0; i < gridView.RowCount; i++)
                         {
                             if (!gridView.IsDataRow(i)) continue;
-                            var itemRow = gridView.GetDataRow(i) as DataSetSalary.v_evaluation_form_detailRow;
-                            Debug.Assert(itemRow != null, "itemRow != null");
+                            DataSetSalary.v_evaluation_form_detailRow itemRow = (DataSetSalary.v_evaluation_form_detailRow) gridView.GetDataRow(i);
                             list.Add(itemRow.ITEM_ID);
                         }
                         inStr = string.Join("','", list.ToArray());
@@ -341,18 +330,16 @@ namespace SalarySystem.Managment.Evaluation
 
         private void detailCellValueChanged(object sender, CellValueChangedEventArgs e)
         {
-            GridView gridView = sender as GridView;
-            if(gridView==null)return;
-            var row = gridView.GetDataRow(e.RowHandle) as DataSetSalary.v_evaluation_form_detailRow;
-            if(row==null) return;
+            GridView gridView = (GridView) sender;
+            DataSetSalary.v_evaluation_form_detailRow row = (DataSetSalary.v_evaluation_form_detailRow) gridView.GetDataRow(e.RowHandle);
             if(e.Column.Name==colUSED.Name)
             {
-                var item=_formItems.FindByEVALUATION_FORM_IDEVALUATION_FORM_ITEM_ID(row.FORM_ID, row.ITEM_ID);
+                DataSetSalary.t_evaluation_form_itemsRow item=_formItems.FindByEVALUATION_FORM_IDEVALUATION_FORM_ITEM_ID(row.FORM_ID, row.ITEM_ID);
                 item.ENABLED = row.USED;
             }
             if (e.Column.Name == colSHOW_ORDER.Name)
             {
-                var item = _formItems.FindByEVALUATION_FORM_IDEVALUATION_FORM_ITEM_ID(row.FORM_ID, row.ITEM_ID);
+                DataSetSalary.t_evaluation_form_itemsRow item = _formItems.FindByEVALUATION_FORM_IDEVALUATION_FORM_ITEM_ID(row.FORM_ID, row.ITEM_ID);
                 item.SHOW_ORDER = row.SHOW_ORDER;
             }
         }

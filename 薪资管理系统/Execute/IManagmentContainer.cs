@@ -1,6 +1,7 @@
 ﻿using System;
+using SalarySystem.Managment;
 
-namespace SalarySystem.Managment
+namespace SalarySystem.Execute
 {
     public delegate void ChildClosedNotification(object sender);
     public interface IManagmentControlContainer: IDisposable

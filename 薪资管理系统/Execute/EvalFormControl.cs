@@ -4,6 +4,7 @@ using System.Diagnostics;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Execute
 {
@@ -20,7 +21,7 @@ namespace SalarySystem.Execute
         {
             if (e.Column.FieldName == "MARK" || e.Column.FieldName == "RESULT_DESC")
             {
-                GridViewHelper.GerneralCustomCellDrawHandler(sender, e);
+              GridViewHelper.CustomModifiedCellDrawHandler(sender, e);
             }
         }
 
@@ -49,7 +50,7 @@ namespace SalarySystem.Execute
             GridView gridView = sender as GridView;
             Debug.Assert(gridView!=null);
 
-            var row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.v_evaluation_result_detailRow;
+            DataSetSalary.v_evaluation_result_detailRow row = gridView.GetDataRow(gridView.FocusedRowHandle) as DataSetSalary.v_evaluation_result_detailRow;
             Debug.Assert(row!=null);
 
             if (gridView.FocusedColumn.FieldName == "MARK")

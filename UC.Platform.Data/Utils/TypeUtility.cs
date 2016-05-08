@@ -98,6 +98,11 @@ namespace UC.Platform.Data.Utils
             _sqlDataTypeMap[SqlDbType.Variant] = typeof(object);
         }
 
+        public static Hashtable SQLDataTypeMap
+        {
+            get { return _sqlDataTypeMap; }
+        }
+
         public static object CreateInstanceFromName(string typeName)
         {
             Type typeFromName = GetTypeFromName(typeName);
@@ -118,11 +123,11 @@ namespace UC.Platform.Data.Utils
             return Activator.CreateInstance(typeFromName, parameters);
         }
 
-        public static Assembly GetAssembly(string assemblyName)
+        public static Assembly GetAssembly(string assemblyFullName)
         {
             try
             {
-                return Assembly.LoadWithPartialName(assemblyName);
+                return Assembly.Load(assemblyFullName);
             }
             catch
             {
@@ -164,7 +169,7 @@ namespace UC.Platform.Data.Utils
             string assemblyName = "";
             if (typeName.IndexOf(";", StringComparison.Ordinal) >= 0)
             {
-                var textArray = typeName.Split(new[] { ';' });
+                var textArray = typeName.Split(';');
                 if (textArray.Length != 2)
                 {
                     return null;

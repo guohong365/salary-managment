@@ -12,6 +12,7 @@ using SalarySystem.Managment;
 using SalarySystem.Managment.Employee;
 using SalarySystem.Managment.Position;
 using SalarySystem.Schedule;
+using UC.Platform.UI;
 
 namespace SalarySystem
 {

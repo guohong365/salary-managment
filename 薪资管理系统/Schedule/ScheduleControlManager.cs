@@ -1,4 +1,6 @@
-﻿namespace SalarySystem.Schedule
+﻿using UC.Platform.UI;
+
+namespace SalarySystem.Schedule
 {
    public class ScheduleControlManager : NavBarControlManagerBase
     {

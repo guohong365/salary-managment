@@ -1,4 +1,6 @@
-﻿namespace SalarySystem.Salary
+﻿using UC.Platform.UI;
+
+namespace SalarySystem.Salary
 {
     public partial class SalaryDetailControl : BaseEditableControl
     {

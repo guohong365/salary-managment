@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraNavBar;
-using SalarySystem.Managment.Basic;
 using SalarySystem.Schedule;
+using UC.Platform.UI;
 
 namespace SalarySystem.Config
 {

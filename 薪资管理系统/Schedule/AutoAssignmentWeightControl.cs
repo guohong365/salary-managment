@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Drawing;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Schedule
 {

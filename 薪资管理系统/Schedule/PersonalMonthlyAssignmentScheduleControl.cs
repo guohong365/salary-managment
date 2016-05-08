@@ -5,6 +5,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Schedule
 {
@@ -40,7 +41,7 @@ namespace SalarySystem.Schedule
             {
                 e.Appearance.ForeColor = Color.Teal;
             }
-            GridViewHelper.GerneralCustomCellDrawHandler(sender, e);
+            GridViewHelper.CustomModifiedCellDrawHandler(sender, e);
         }
 
         private void cellValueChanging(object sender, CellValueChangedEventArgs e)

@@ -45,10 +45,10 @@
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVERSION_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
+            this.panelControlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
+            this.panelControlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalaryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSalaryItem)).BeginInit();
@@ -60,8 +60,8 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Location = new System.Drawing.Point(0, 481);
-            this.panelControl1.Size = new System.Drawing.Size(593, 40);
+            this.panelControlButtons.Location = new System.Drawing.Point(0, 481);
+            this.panelControlButtons.Size = new System.Drawing.Size(593, 40);
             // 
             // simpleButtonRevert
             // 
@@ -73,8 +73,8 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.gridControlSalaryItem);
-            this.panelControl2.Size = new System.Drawing.Size(593, 481);
+            this.panelControlMain.Controls.Add(this.gridControlSalaryItem);
+            this.panelControlMain.Size = new System.Drawing.Size(593, 481);
             // 
             // dataSetSalaryBindingSource
             // 
@@ -251,10 +251,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "SalaryItemControl";
             this.Size = new System.Drawing.Size(593, 521);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).EndInit();
+            this.panelControlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).EndInit();
+            this.panelControlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalaryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSalaryItem)).EndInit();

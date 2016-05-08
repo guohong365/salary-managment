@@ -1,42 +1,75 @@
 ﻿using System;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using SalarySystem.Managment.Editor;
-using SalarySystem.Managment.Employee.Editor;
+using System.Data;
+using DevExpress.XtraGrid.Views.Grid;
+using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Employee
 {
-    public partial class EmployeeManagerControl : XtraUserControl
+    public partial class EmployeeManagerControl : BaseEditableControl
     {
         public EmployeeManagerControl()
         {
             InitializeComponent();
+            GridViewHelper.SetUpEditableGridView(gridViewEmployee, false, "员工管理");
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        protected override void onControlLoad()
         {
-            ItemEditForm form=new ItemEditForm(EmployeePropertyControl.GetFactory(), "新增员工", DataHolder.DataSet.t_employee.NewRow(),  (int) EditPurpose.FOR_NEW);
-            if (form.ShowDialog(this) == DialogResult.OK)
+            base.onControlLoad();
+            gridControlEmployee.DataSource = DataHolder.Employee;
+
+            repositoryItemLookUpEditPosition.DataSource = new DataView(DataHolder.Position)
             {
-                DBHandlerEx.UpdateOnce(form.Row);
-                gridControlEmployee.RefreshDataSource();
-            }
-            else
+                RowFilter = string.Format("[ENABLED]=true and [ID]<>'{0}'", GlobalSettings.GENERAL_POSITION)
+            };
+            repositoryItemLookUpEditLeader.DataSource=new DataView(DataHolder.Employee)
             {
-                DataHolder.DataSet.t_employee.RejectChanges();
+                RowFilter = "[ENABLED]=true"
+            };
+            DataHolder.Employee.RowChanged += onRowChanged;
+            gridViewEmployee.InitNewRow += initNewRow;
+        }
+
+        protected override void onControlReload()
+        {
+            base.onControlReload();
+            DataHolder.Employee.RowChanged += onRowChanged;
+        }
+
+        protected override void onControlUnload()
+        {
+            base.onControlUnload();
+            DataHolder.Employee.RowChanged -= onRowChanged;
+        }
+
+        private static void initNewRow(object sender, InitNewRowEventArgs e)
+        {
+            GridView gridView = (GridView) sender;
+            DataSetSalary.t_employeeRow row = (DataSetSalary.t_employeeRow) gridView.GetDataRow(e.RowHandle);
+            row.ENABLED = true;
+            row.ENTRY_TIME=DateTime.Now;
+        }
+
+        protected override void onRevert()
+        {
+            base.onRevert();
+            DataHolder.Employee.RejectChanges();
+        }
+
+        protected override void onSave()
+        {
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
+            try
+            {
+                handler.Update(DataHolder.Employee);
+                base.onSave();
+            }
+            finally
+            {
+                handler.FreeBuffer();
             }
         }
-
-        void modifyEmployee_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void EmployeeManagerControl_Load(object sender, EventArgs e)
-        {
-            gridControlEmployee.DataSource = DataHolder.DataSet.t_employee;
-        }
-
     }
 }

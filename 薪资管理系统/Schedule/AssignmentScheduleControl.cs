@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using DevExpress.XtraTab;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Schedule
 {

@@ -50,10 +50,10 @@
             this.colSQL_STMT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
             this.t_salary_functionTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_salary_functionTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
+            this.panelControlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
+            this.panelControlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewParameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlFunction)).BeginInit();
@@ -66,8 +66,8 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Location = new System.Drawing.Point(0, 483);
-            this.panelControl1.Size = new System.Drawing.Size(704, 40);
+            this.panelControlButtons.Location = new System.Drawing.Point(0, 483);
+            this.panelControlButtons.Size = new System.Drawing.Size(704, 40);
             // 
             // simpleButtonRevert
             // 
@@ -79,8 +79,8 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.gridControlFunction);
-            this.panelControl2.Size = new System.Drawing.Size(704, 483);
+            this.panelControlMain.Controls.Add(this.gridControlFunction);
+            this.panelControlMain.Size = new System.Drawing.Size(704, 483);
             // 
             // gridViewParameter
             // 
@@ -271,10 +271,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "FunctionDefineControl";
             this.Size = new System.Drawing.Size(704, 523);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).EndInit();
+            this.panelControlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).EndInit();
+            this.panelControlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewParameter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlFunction)).EndInit();

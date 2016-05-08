@@ -131,22 +131,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Localization\DevExpress.XtraWizard.v10.2.resources.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySQL.NET.6.6.4\lib\net40\MySql.Data.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MySql.Data.Entity, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySQL.NET.6.6.4\lib\net40\MySql.Data.Entity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MySql.Web, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySQL.NET.6.6.4\lib\net40\MySql.Web.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -164,20 +156,17 @@
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Data\DataSetTemplate.cs">
-      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\DataSetTemplate.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Execute\AssignmentPerformanceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Execute\AssignmentPerformanceControl.Designer.cs">
       <DependentUpon>AssignmentPerformanceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemControl.Designer.cs">
+      <DependentUpon>ItemControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Salary\FunctionDefineControl.cs">
       <SubType>UserControl</SubType>
@@ -185,6 +174,13 @@
     <Compile Include="Managment\Salary\FunctionDefineControl.Designer.cs">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Managment\Salary\SalaryItemGroupControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Managment\Salary\SalaryItemGroupControl.Designer.cs">
+      <DependentUpon>SalaryItemGroupControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Salary\SalaryDetail.cs" />
     <Compile Include="Salary\SalaryDetailControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -286,28 +282,17 @@
     <Compile Include="Managment\Salary\ExecutionSalaryStructControl.Designer.cs">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.cs">
+    <Compile Include="Managment\Evaluation\ExecutionEvaluationFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Evaluation\ExecuttionEvaluationFormControl.Designer.cs">
-      <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
+    <Compile Include="Managment\Evaluation\ExecutionEvaluationFormControl.Designer.cs">
+      <DependentUpon>ExecutionEvaluationFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="GridViewHelper.cs" />
-    <Compile Include="INavBarContorlManager.cs" />
-    <Compile Include="NavBarControlManagerBase.cs" />
-    <Compile Include="NavGroupDefine.cs" />
-    <Compile Include="NavItemDefine.cs" />
     <Compile Include="Managment\Salary\SalaryItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Managment\Salary\SalaryItemControl.Designer.cs">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaseEditableControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BaseEditableControl.Designer.cs">
-      <DependentUpon>BaseEditableControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Managment\Assignment\AssignmentDefineControl.cs">
       <SubType>UserControl</SubType>
@@ -315,31 +300,11 @@
     <Compile Include="Managment\Assignment\AssignmentDefineControl.Designer.cs">
       <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Editor\IItemEditor.cs" />
-    <Compile Include="Managment\Editor\ItemControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Editor\ItemControl.Designer.cs">
-      <DependentUpon>ItemControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Editor\ItemEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Managment\Editor\ItemEditForm.Designer.cs">
-      <DependentUpon>ItemEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Editor\EditPurpose.cs" />
     <Compile Include="Managment\Employee\EmployeeManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Managment\Employee\EmployeeManagerControl.Designer.cs">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Employee\Editor\EmployeePropertyControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Employee\Editor\EmployeePropertyControl.Designer.cs">
-      <DependentUpon>EmployeePropertyControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -351,65 +316,11 @@
     <Compile Include="Execute\IManagmentContainer.cs" />
     <Compile Include="Managment\IManagmentControl.cs" />
     <Compile Include="Managment\ManagmentControl.cs" />
-    <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\AppraisalIndicatorSelectForm.Designer.cs">
-      <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Position\Editor\PositionPropertyControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\Editor\PositionPropertyControl.Designer.cs">
-      <DependentUpon>PositionPropertyControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Position\EmployeeControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\EmployeeControl.Designer.cs">
-      <DependentUpon>EmployeeControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Position\EmployeeListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\EmployeeListControl.Designer.cs">
-      <DependentUpon>EmployeeListControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Position\EvaluationItemsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\EvaluationItemsControl.Designer.cs">
-      <DependentUpon>EvaluationItemsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Position\PositionAppraisalControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\PositionAppraisalControl.Designer.cs">
-      <DependentUpon>PositionAppraisalControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Position\PositionSalaryLevelControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\PositionSalaryLevelControl.Designer.cs">
-      <DependentUpon>PositionSalaryLevelControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Managment\Position\PositionManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Managment\Position\PositionManagerControl.Designer.cs">
       <DependentUpon>PositionManagerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Managment\Position\SalaryStructureControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Managment\Position\SalaryStructureControl.Designer.cs">
-      <DependentUpon>SalaryStructureControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NavBarManagedControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="NavBarManagedControl.Designer.cs">
-      <DependentUpon>NavBarManagedControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -446,8 +357,14 @@
     <EmbeddedResource Include="Execute\AssignmentPerformanceControl.resx">
       <DependentUpon>AssignmentPerformanceControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ItemControl.resx">
+      <DependentUpon>ItemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Managment\Salary\FunctionDefineControl.resx">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managment\Salary\SalaryItemGroupControl.resx">
+      <DependentUpon>SalaryItemGroupControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Salary\SalaryDetailControl.resx">
       <DependentUpon>SalaryDetailControl.cs</DependentUpon>
@@ -491,62 +408,23 @@
     <EmbeddedResource Include="Managment\Salary\ExecutionSalaryStructControl.resx">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Evaluation\ExecuttionEvaluationFormControl.resx">
-      <DependentUpon>ExecuttionEvaluationFormControl.cs</DependentUpon>
+    <EmbeddedResource Include="Managment\Evaluation\ExecutionEvaluationFormControl.resx">
+      <DependentUpon>ExecutionEvaluationFormControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Salary\SalaryItemControl.resx">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaseEditableControl.resx">
-      <DependentUpon>BaseEditableControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Managment\Assignment\AssignmentDefineControl.resx">
       <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Editor\ItemControl.resx">
-      <DependentUpon>ItemControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Editor\ItemEditForm.resx">
-      <DependentUpon>ItemEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Managment\Employee\EmployeeManagerControl.resx">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Employee\Editor\EmployeePropertyControl.resx">
-      <DependentUpon>EmployeePropertyControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\AppraisalIndicatorSelectForm.resx">
-      <DependentUpon>AppraisalIndicatorSelectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\Editor\PositionPropertyControl.resx">
-      <DependentUpon>PositionPropertyControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\EmployeeControl.resx">
-      <DependentUpon>EmployeeControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\EmployeeListControl.resx">
-      <DependentUpon>EmployeeListControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\EvaluationItemsControl.resx">
-      <DependentUpon>EvaluationItemsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\PositionAppraisalControl.resx">
-      <DependentUpon>PositionAppraisalControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\PositionSalaryLevelControl.resx">
-      <DependentUpon>PositionSalaryLevelControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Managment\Position\PositionManagerControl.resx">
       <DependentUpon>PositionManagerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\SalaryStructureControl.resx">
-      <DependentUpon>SalaryStructureControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NavBarManagedControl.resx">
-      <DependentUpon>NavBarManagedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -583,18 +461,8 @@
     <None Include="Data\DataSetSalary.xss">
       <DependentUpon>DataSetSalary.xsd</DependentUpon>
     </None>
-    <None Include="Data\DataSetTemplate.xsc">
-      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
-    </None>
-    <None Include="Data\DataSetTemplate.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetTemplate.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Data\DataSetTemplate.xss">
-      <DependentUpon>DataSetTemplate.xsd</DependentUpon>
-    </None>
-    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Model1Container.datasource" />
+    <None Include="Properties\DataSources\ModelContainer.datasource" />
     <None Include="Properties\DataSources\SalarySystem.Data.SalaryDataSet.datasource" />
     <None Include="Properties\DataSources\SalarySystem.Schedule.AnnualSchedule.datasource" />
     <None Include="Properties\DataSources\SalarySystem.Schedule.AnnualScheduleItem.datasource" />
@@ -613,6 +481,10 @@
     <ProjectReference Include="..\UC.Platform.Data\UC.Platform.Data.csproj">
       <Project>{76CFDBE4-EC84-42BE-B69C-087BF16D6BF1}</Project>
       <Name>UC.Platform.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UC.Platform.UI\UC.Platform.UI.DevExtension.csproj">
+      <Project>{142D9E45-D317-48C2-BD14-2C3E0E4159E0}</Project>
+      <Name>UC.Platform.UI.DevExtension</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -1095,7 +967,6 @@
   <ItemGroup>
     <None Include="Resources\zoom +.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

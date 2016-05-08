@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Execute
 {
@@ -161,7 +162,7 @@ namespace SalarySystem.Execute
         private void saveEvaluationResults(DBHandlerEx handler)
         {
             Debug.Assert(CurrentEmployeePerformance!=null);
-            var resultsDataTable =new DataSetSalary.t_evaluation_resultsDataTable();
+            DataSetSalary.t_evaluation_resultsDataTable resultsDataTable =new DataSetSalary.t_evaluation_resultsDataTable();
             handler.Fill(resultsDataTable,
                 string.Format("select * " +
                               "from t_evaluation_results " +
@@ -175,7 +176,7 @@ namespace SalarySystem.Execute
                               textEditEvalMonth.EditValue));
             CurrentEmployeePerformance.EvaluationResults.ToList().ForEach(result =>
             {
-                var resultDetail =(DataSetSalary.v_evaluation_result_detailDataTable) result.Value.GetChanges();
+                DataSetSalary.v_evaluation_result_detailDataTable resultDetail =(DataSetSalary.v_evaluation_result_detailDataTable) result.Value.GetChanges();
                 if(resultDetail==null || resultDetail.Rows.Count==0) return;
                 resultDetail.ToList().ForEach(detailRow =>
                 {
@@ -216,7 +217,7 @@ namespace SalarySystem.Execute
             base.onSave();
             if (CurrentEmployeePerformance == null) return;
 
-            var handler=DBHandlerEx.GetBuffer();
+            DBHandlerEx handler=DBHandlerEx.GetBuffer();
             handler.BeginTransaction();
             try
             {
@@ -243,12 +244,12 @@ namespace SalarySystem.Execute
 
         private void focusedEmployeeChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            var row = gridViewEmploye.GetDataRow(e.FocusedRowHandle) as DataSetSalary.t_employeeRow;
+            DataSetSalary.t_employeeRow row = gridViewEmploye.GetDataRow(e.FocusedRowHandle) as DataSetSalary.t_employeeRow;
             if (row == null) return;
 
             if (CurrentEmployeePerformance!=null && CurrentEmployeePerformance.IsDirty)
             {
-                var dialogResult = MessageBox.Show("数据未保存，是否保存？", "警告", MessageBoxButtons.YesNoCancel,
+                DialogResult dialogResult = MessageBox.Show("数据未保存，是否保存？", "警告", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 switch (dialogResult)
                 {
@@ -263,10 +264,10 @@ namespace SalarySystem.Execute
                         return;
                 }
             }
-            var forms = LoadFroms(row.POSITION_ID);
-            var assignmentPerformance = loadAssignmentPerformance(row.ID, Year, Month);
+            DataTable forms = LoadFroms(row.POSITION_ID);
+            DataSetSalary.t_assignment_performanceDataTable assignmentPerformance = loadAssignmentPerformance(row.ID, Year, Month);
             assignmentPerformance.RowChanged += onRowChanged;
-            var performance = new EmployeePerformance
+            EmployeePerformance performance = new EmployeePerformance
             {
                 Year = Year,
                 Month = Month,
@@ -279,7 +280,7 @@ namespace SalarySystem.Execute
             foreach (DataRow formRow in forms.Rows)
             {
                 string formId = Convert.ToString(formRow["FORM_ID"]);
-                var result = LoadEvaluationResultsDetail(Year, Month,formId, row.ID);
+                DataSetSalary.v_evaluation_result_detailDataTable result = LoadEvaluationResultsDetail(Year, Month,formId, row.ID);
                 if (result == null)
                 {
                     throw new Exception("加载考核表["+Convert.ToString(formRow["FORM_NAME"])+"]");
@@ -311,10 +312,10 @@ namespace SalarySystem.Execute
         public DataTable LoadFroms(string positionId, string versionId)
         {
             string sql = string.Format(_EVALUATION_FORMS_SQL_FORMAT, positionId, versionId);
-            var handler = DBHandlerEx.GetBuffer();
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
             try
             {
-                var table = new DataTable();
+                DataTable table = new DataTable();
                 handler.Fill(table, sql);
                 return table;
             }
@@ -361,8 +362,8 @@ namespace SalarySystem.Execute
 
         public DataSetSalary.v_evaluation_result_detailDataTable LoadEvaluationResultsDetail(int year, int month,string formId, string employeeId, string versionId)
         {
-            var resultDetail = new DataSetSalary.v_evaluation_result_detailDataTable();
-            var sql = string.Format(_EVALUATION_RESULTS_SQL_FORMAT,year, month, formId, employeeId, versionId);
+            DataSetSalary.v_evaluation_result_detailDataTable resultDetail = new DataSetSalary.v_evaluation_result_detailDataTable();
+            string sql = string.Format(_EVALUATION_RESULTS_SQL_FORMAT,year, month, formId, employeeId, versionId);
             return DBHandlerEx.FillOnce(resultDetail, sql) >= 0 ? resultDetail : null;
         }
 
@@ -384,13 +385,13 @@ namespace SalarySystem.Execute
             " and ASSIGNMENT_YEAR={1} " +
             " and ASSIGNMENT_MONTH={2}";
 
-        DataSetSalary.t_assignment_performanceDataTable loadAssignmentPerformance(string employeeId, int year, int month)
+      static DataSetSalary.t_assignment_performanceDataTable loadAssignmentPerformance(string employeeId, int year, int month)
         {
-            var sql = string.Format(_ASSIGNMENT_PERFORMANCE_SQL_F_ORMAT, employeeId, year, month);
-            var handler=DBHandlerEx.GetBuffer();
+            string sql = string.Format(_ASSIGNMENT_PERFORMANCE_SQL_F_ORMAT, employeeId, year, month);
+            DBHandlerEx handler=DBHandlerEx.GetBuffer();
             try
             {
-                var table = new DataSetSalary.t_assignment_performanceDataTable();
+                DataSetSalary.t_assignment_performanceDataTable table = new DataSetSalary.t_assignment_performanceDataTable();
                 handler.Fill(table, sql);
                 return table;
             }

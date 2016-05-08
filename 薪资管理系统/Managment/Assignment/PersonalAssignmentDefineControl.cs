@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 
 namespace SalarySystem.Managment.Assignment
 {
     public partial class PersonalAssignmentDefineControl : BaseEditableControl
     {
+      private readonly CheckedAllGridViewHelper _checkedAllGridView=new CheckedAllGridViewHelper();
         public PersonalAssignmentDefineControl()
         {
             InitializeComponent();
             //GridViewHelper.SetUpEditableGridView(gridViewPersionalAssignment, false, "岗位任务定义", VersionType.ASSIGNMENT);
+          _checkedAllGridView.BindToView(gridViewPersonalAssignment, colUSED);
         }
 
         private readonly DataSetSalary.v_personal_assignment_detailDataTable _personalAssignmentDetail =
@@ -37,7 +41,7 @@ namespace SalarySystem.Managment.Assignment
             loadData();
             _dataView=new DataView(_personalAssignmentDetail);
             _personalAssignmentDetail.RowChanged += onRowChanged;
-
+          _checkedAllGridView.GetCheckedCount += getCheckCount;
             repositoryItemLookUpEditItemType.DataSource = DataHolder.AssignmentItemType;
 
             //repositoryItemLookUpEditType.DataSource = DataHolder.AssignmentItemType;
@@ -45,10 +49,15 @@ namespace SalarySystem.Managment.Assignment
             repositoryItemLookUpEditPosition.DataSource = DataHolder.Position;
 
             gridControlPersonalAssignment.DataSource = _dataView;
-            gridViewPersonalAssignment.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+            gridViewPersonalAssignment.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
         }
 
-        static string getLoadSql()
+      private int getCheckCount(object sender)
+      {
+        return _personalAssignmentDetail.Count(item => item.USED);
+      }
+
+      static string getLoadSql()
         {
             return string.Format(_PERSONAL_ASSIGNMENT_SQL_FORMAT, GlobalSettings.AssignmentVersion);
         }
@@ -69,16 +78,16 @@ namespace SalarySystem.Managment.Assignment
         protected override void onSave()
         {
             base.onSave();
-            var positionAssignments = new DataSetSalary.t_position_assignmentsDataTable();
+            DataSetSalary.t_position_assignmentsDataTable positionAssignments = new DataSetSalary.t_position_assignmentsDataTable();
             if (DBHandlerEx.FillOnce(positionAssignments,
                 string.Format("select * from t_position_assignments where VERSION_ID={0}",
                     GlobalSettings.AssignmentVersion)) < 0)
             {
                 throw new Exception("load positionAssignments failed.");
             }
-            foreach (var detailRow in _personalAssignmentDetail)
+            foreach (DataSetSalary.v_personal_assignment_detailRow detailRow in _personalAssignmentDetail)
             {
-                var row = positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(detailRow.DEFINE_ID, detailRow.ID);
+                DataSetSalary.t_position_assignmentsRow row = positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(detailRow.DEFINE_ID, detailRow.ID);
                 if (row != null)
                 {
                     row.ENABLED = detailRow.USED;

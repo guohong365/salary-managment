@@ -3,6 +3,7 @@ using System.Data;
 using DevExpress.XtraGrid.Views.Grid;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Assignment
 {
@@ -30,7 +31,7 @@ namespace SalarySystem.Managment.Assignment
         {
             base.onControlLoad();
             loadAssignmentDefine();
-            GridViewHelper.SetUpEditableGridView(gridViewDetails, false, "任务指标定义", VersionType.ASSIGNMENT);
+            GridViewHelper.SetUpEditableGridView(gridViewDetails, false, "任务指标定义", GlobalSettings.AssignmentVersion);
             _itemView = new DataView(_assignmentDefine);
             gridControlDetail.DataSource = _itemView;
             repositoryItemLookUpEditType.DataSource = new DataView(DataHolder.AssignmentItemType);
@@ -79,7 +80,7 @@ namespace SalarySystem.Managment.Assignment
 
         private void initNewRow(object sender, InitNewRowEventArgs e)
         {
-            var row = gridViewDetails.GetDataRow(e.RowHandle) as DataSetSalary.t_assignment_defineRow;
+            DataSetSalary.t_assignment_defineRow row = gridViewDetails.GetDataRow(e.RowHandle) as DataSetSalary.t_assignment_defineRow;
             if (row == null) return;
             row.ID = Guid.NewGuid().ToString();
             row.ENABLED = true;

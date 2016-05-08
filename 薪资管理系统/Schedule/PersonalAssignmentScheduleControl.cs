@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 using DataRowState = System.Data.DataRowState;
 
 namespace SalarySystem.Schedule

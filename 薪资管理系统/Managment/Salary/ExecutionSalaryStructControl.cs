@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Salary
 {
@@ -31,7 +33,7 @@ namespace SalarySystem.Managment.Salary
         void loadSalaryStructDetail(string positionId)
         {
             string sql = string.Format(_SALARY_STRUCT_DETAIL_SQL_FORMAT, positionId, GlobalSettings.SalaryVersion);
-            var handler = DBHandlerEx.GetBuffer();
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
             _salaryStructDetail.Clear();
             try
             {
@@ -43,18 +45,25 @@ namespace SalarySystem.Managment.Salary
             }
         }
 
+      private readonly CheckedAllGridViewHelper _gridHelper = new CheckedAllGridViewHelper();
         public ExecutionSalaryStructControl()
         {
             InitializeComponent();
+            _gridHelper.BindToView(gridViewExecSalaryDetai, colENABLED);
+        }
+
+        private int getCheckedCount(object sender)
+        {
+            return _salaryStructDetail.Count(detailRow => detailRow.ENABLED);
         }
 
         protected override void onControlLoad()
         {
             base.onControlLoad();
-            GridViewHelper.SetUpEditableGridView(gridViewExecSalaryDetai, false, "薪资构成", VersionType.SALARY);
-
+            //GridViewHelper.SetUpEditableGridView(gridViewExecSalaryDetai, false, "薪资构成", VersionType.SALARY);
             gridControlExecSalaryDetai.DataSource = null;
-
+            gridViewExecSalaryDetai.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
+            _gridHelper.GetCheckedCount += getCheckedCount;
             treeListPosition.DataSource = new DataView(DataHolder.Position)
             {
                 RowFilter = string.Format("[ENABLED]=true and [ID]<>'{0}'", GlobalSettings.GENERAL_POSITION)
@@ -103,14 +112,14 @@ namespace SalarySystem.Managment.Salary
             foreach (DataSetSalary.v_salary_struct_detailRow row in changedTable.Rows)
             {
                 if(!row.ENABLED) continue;
-                var detail = positionSalaryItem.Newt_position_salary_itemsRow();
+                DataSetSalary.t_position_salary_itemsRow detail = positionSalaryItem.Newt_position_salary_itemsRow();
                 detail.POSITION_ID = row.POSITION_ID;
                 detail.SALARY_ITEM_ID = row.ID;
                 detail.ENABLED = row.ENABLED;
                 detail.VERSION_ID = GlobalSettings.SalaryVersion;
                 positionSalaryItem.Addt_position_salary_itemsRow(detail);
             }
-            var handler = DBHandlerEx.GetBuffer();
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
             try
             {
                 handler.ExecuteNonQuery(delSql);
@@ -145,5 +154,7 @@ namespace SalarySystem.Managment.Salary
             }
 
         }
+
+
     }
 }

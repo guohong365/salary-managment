@@ -56,10 +56,10 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.textEditEvalYear = new DevExpress.XtraEditors.TextEdit();
             this.assignmentPerformanceControl1 = new SalarySystem.Execute.AssignmentPerformanceControl();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
+            this.panelControlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
+            this.panelControlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmployee)).BeginInit();
@@ -80,8 +80,8 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Location = new System.Drawing.Point(0, 555);
-            this.panelControl1.Size = new System.Drawing.Size(823, 40);
+            this.panelControlButtons.Location = new System.Drawing.Point(0, 555);
+            this.panelControlButtons.Size = new System.Drawing.Size(823, 40);
             // 
             // simpleButtonRevert
             // 
@@ -93,8 +93,8 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.splitContainerControl1);
-            this.panelControl2.Size = new System.Drawing.Size(823, 555);
+            this.panelControlMain.Controls.Add(this.splitContainerControl1);
+            this.panelControlMain.Size = new System.Drawing.Size(823, 555);
             // 
             // splitContainerControl1
             // 
@@ -375,10 +375,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ExecutionPerformanceControl";
             this.Size = new System.Drawing.Size(823, 595);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).EndInit();
+            this.panelControlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).EndInit();
+            this.panelControlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmployee)).EndInit();

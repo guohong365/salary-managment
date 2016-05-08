@@ -39,10 +39,10 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.spinEditYear = new DevExpress.XtraEditors.SpinEdit();
             this.xtraTabControlAssignments = new DevExpress.XtraTab.XtraTabControl();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
+            this.panelControlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
+            this.panelControlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditMonthTo.Properties)).BeginInit();
@@ -53,8 +53,8 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Location = new System.Drawing.Point(0, 498);
-            this.panelControl1.Size = new System.Drawing.Size(689, 40);
+            this.panelControlButtons.Location = new System.Drawing.Point(0, 498);
+            this.panelControlButtons.Size = new System.Drawing.Size(689, 40);
             // 
             // simpleButtonRevert
             // 
@@ -66,9 +66,9 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.xtraTabControlAssignments);
-            this.panelControl2.Controls.Add(this.panelControl3);
-            this.panelControl2.Size = new System.Drawing.Size(689, 498);
+            this.panelControlMain.Controls.Add(this.xtraTabControlAssignments);
+            this.panelControlMain.Controls.Add(this.panelControl3);
+            this.panelControlMain.Size = new System.Drawing.Size(689, 498);
             // 
             // panelControl3
             // 
@@ -228,10 +228,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "PersonalAssignmentScheduleControl";
             this.Size = new System.Drawing.Size(689, 538);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).EndInit();
+            this.panelControlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).EndInit();
+            this.panelControlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();

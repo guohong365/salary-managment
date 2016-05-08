@@ -35,10 +35,10 @@
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
+            this.panelControlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
+            this.panelControlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEvaluationType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -46,8 +46,8 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Location = new System.Drawing.Point(0, 371);
-            this.panelControl1.Size = new System.Drawing.Size(519, 40);
+            this.panelControlButtons.Location = new System.Drawing.Point(0, 371);
+            this.panelControlButtons.Size = new System.Drawing.Size(519, 40);
             // 
             // simpleButtonRevert
             // 
@@ -59,8 +59,8 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.gridControlEvaluationType);
-            this.panelControl2.Size = new System.Drawing.Size(519, 371);
+            this.panelControlMain.Controls.Add(this.gridControlEvaluationType);
+            this.panelControlMain.Size = new System.Drawing.Size(519, 371);
             // 
             // gridControlEvaluationType
             // 
@@ -252,10 +252,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "EvaluationItemTypeControl";
             this.Size = new System.Drawing.Size(519, 411);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).EndInit();
+            this.panelControlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).EndInit();
+            this.panelControlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEvaluationType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEvaluationType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();

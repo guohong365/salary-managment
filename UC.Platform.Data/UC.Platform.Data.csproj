@@ -53,9 +53,6 @@
     <Compile Include="Utils\ByteUtility.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Utils\DataSetUtility.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Utils\ObjectUtility.cs">
       <SubType>Code</SubType>
     </Compile>

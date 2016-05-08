@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Evaluation
 {
@@ -15,7 +17,7 @@ namespace SalarySystem.Managment.Evaluation
             base.onControlLoad();
             DataHolder.EvaluationItemType.RowChanged += onRowChanged;
             gridControlEvaluationType.DataSource = DataHolder.EvaluationItemType;
-            gridViewEvaluationType.CustomDrawCell += GridViewHelper.GerneralCustomCellDrawHandler;
+            gridViewEvaluationType.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
             gridViewEvaluationType.InitNewRow += initNewRow;
         }
 
@@ -69,7 +71,7 @@ namespace SalarySystem.Managment.Evaluation
 
         private void initNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            var row = gridViewEvaluationType.GetDataRow(e.RowHandle);
+            DataRow row = gridViewEvaluationType.GetDataRow(e.RowHandle);
             row["ID"] = Guid.NewGuid().ToString();
             row["ENABLED"] = true;
         }

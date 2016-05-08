@@ -2,19 +2,20 @@
 using System.Data;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 
 namespace SalarySystem.Managment.Salary
 {
     public partial class SalaryItemControl : BaseEditableControl
     {
         private readonly DataSetSalary.t_salary_itemDataTable _salaryItem=new DataSetSalary.t_salary_itemDataTable();
-        DataSetSalary.t_salary_functionDataTable _salaryFunction=new DataSetSalary.t_salary_functionDataTable();
+      readonly DataSetSalary.t_salary_functionDataTable _salaryFunction=new DataSetSalary.t_salary_functionDataTable();
         private const string _SALARY_ITEM_SQL_FORMAT = "select * from t_salary_item where VERSION_ID={0}";
         private const string _SALARY_FUNCTION_SQL_FORMAT = "select * from t_salary_function where ENABLED=true";
         void loadData()
         {
             var sql = string.Format(_SALARY_ITEM_SQL_FORMAT,GlobalSettings.SalaryVersion);
-            var handler = DBHandlerEx.GetBuffer();
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
             try
             {
                 handler.Fill(_salaryItem, sql);
@@ -47,7 +48,7 @@ namespace SalarySystem.Managment.Salary
             };
             repositoryItemLookUpEditFunction.DataSource = _salaryFunction;
 
-            GridViewHelper.SetUpEditableGridView(gridViewSalaryItem, false, "基本薪资构成项目", VersionType.SALARY);
+            GridViewHelper.SetUpEditableGridView(gridViewSalaryItem, false, "基本薪资构成项目", GlobalSettings.SalaryVersion);
 
         }
 
@@ -88,7 +89,7 @@ namespace SalarySystem.Managment.Salary
 
         private void initNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            var row = gridViewSalaryItem.GetDataRow(e.RowHandle) as DataSetSalary.t_salary_itemRow;
+            DataSetSalary.t_salary_itemRow row = gridViewSalaryItem.GetDataRow(e.RowHandle) as DataSetSalary.t_salary_itemRow;
             if (row != null)
             {
                 row.ID = Guid.NewGuid().ToString();

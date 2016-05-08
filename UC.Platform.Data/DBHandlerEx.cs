@@ -3,16 +3,16 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
-using UC.Platform.Data.Utils;
 
 namespace UC.Platform.Data
 {
-    public sealed class DBHandlerEx
+    public sealed class DBHandlerEx : IDisposable
     {
         private static IDatabaseProviderFactory _factory;
-
         private static readonly Type _dataSetType = typeof (DataSet);
         private static readonly Type _dataTableType = typeof (DataTable);
 
@@ -21,16 +21,15 @@ namespace UC.Platform.Data
 
         private readonly DbConnection _connection;
         private readonly Hashtable _procParaeters = new Hashtable();
-        private DbTransaction _transaction;
 
         private bool _transactionOpenConnection;
 
         private DBHandlerEx()
         {
             _connection = _factory.CreateConnection();
+            _connection.Open();
         }
-
-
+        
         public DbConnection Connection
         {
             get { return _connection; }
@@ -43,17 +42,24 @@ namespace UC.Platform.Data
 
         public bool IsConnectionOpened
         {
-            get { return (_connection.State == ConnectionState.Open); }
+            get { return _connection.State == ConnectionState.Open; }
         }
 
         public IsolationLevel IsolationLevel
         {
-            get { return _transaction.IsolationLevel; }
+            get { return Transaction.IsolationLevel; }
         }
 
-        public DbTransaction Transaction
+        public DbTransaction Transaction { get; private set; }
+
+        public void Dispose()
         {
-            get { return _transaction; }
+            if (Transaction != null)
+            {
+                Transaction.Rollback();
+                Transaction.Dispose();
+            }
+            _connection.Dispose();
         }
 
         public bool BeginTransaction()
@@ -74,12 +80,12 @@ namespace UC.Platform.Data
                 {
                     _transactionOpenConnection = false;
                 }
-                _transaction = _connection.BeginTransaction(level);
+                Transaction = _connection.BeginTransaction(level);
                 return true;
             }
             catch (Exception exception)
             {
-                _transaction = null;
+                Transaction = null;
                 if (_transactionOpenConnection)
                 {
                     _connection.Close();
@@ -100,19 +106,19 @@ namespace UC.Platform.Data
             _connection.Close();
         }
 
-        public DbParameter CreateParameter()
+        public static DbParameter CreateParameter()
         {
             return _factory.CreateParameter();
         }
 
-        public DbParameter CreateParameter(string name)
+        public static DbParameter CreateParameter(string name)
         {
             DbParameter parameter = _factory.CreateParameter();
             parameter.ParameterName = name;
             return parameter;
         }
 
-        public DbParameter CreateParameter(string name, object value)
+        public static DbParameter CreateParameter(string name, object value)
         {
             DbParameter parameter = _factory.CreateParameter();
             parameter.ParameterName = name;
@@ -120,96 +126,44 @@ namespace UC.Platform.Data
             return parameter;
         }
 
-        public bool EndTransaction(bool commit)
+        public void EndTransaction(bool commit)
         {
-            if (_transaction == null)
-            {
-                return false;
-            }
+            if (Transaction == null)return;
+
             try
             {
                 if (commit)
                 {
-                    _transaction.Commit();
+                    Transaction.Commit();
                 }
                 else
                 {
-                    _transaction.Rollback();
+                    Transaction.Rollback();
                 }
-                return true;
             }
             catch (Exception exception)
             {
                 handleException(exception, commit ? "Commit" : "Rollback");
-                return false;
-            }
-            finally
-            {
-                _transaction = null;
-                if (_transactionOpenConnection)
-                {
-                    _connection.Close();
-                }
-                _transactionOpenConnection = false;
+                throw;
             }
         }
 
         public int ExecuteNonQuery(string strSql)
         {
-            return ExecuteNonQuery(_transaction, strSql);
+            return ExecuteNonQuery(Transaction, strSql);
         }
 
         public int ExecuteNonQuery(string strSql, DbParameter[] parameters)
         {
-            return ExecuteNonQuery(_transaction, strSql, parameters);
+            return ExecuteNonQuery(Transaction, strSql, parameters);
         }
 
-        public int ExecuteNonQuery(DbTransaction transaction, string strSql)
+        public static int ExecuteNonQuery(DbTransaction transaction, string strSql)
         {
             return ExecuteNonQuery(transaction, strSql, null);
-            //int num2;
-            //bool flag = false;
-            //DateTime now = DateTime.Now;
-            //DbCommand command = this.GetCommand(transaction);
-            //try
-            //{
-            //    if (command.Connection.State != ConnectionState.Open)
-            //    {
-            //        command.Connection.Open();
-            //        flag = true;
-            //    }
-            //    command.CommandType = CommandType.Text;
-            //    command.Parameters.Clear();
-            //    strSql = GetReplaceSql(strSql);
-            //    command.CommandText = strSql;
-            //    int result = command.ExecuteNonQuery();
-            //    if (PlatformConfig.DBHandlerWriteLog)
-            //    {
-            //        DBHandlerLogSink.WriteExecuteNonQueryLog(strSql, result, (TimeSpan)(DateTime.Now - now));
-            //    }
-            //    num2 = result;
-            //}
-            //catch (Exception exception)
-            //{
-            //    if (PlatformConfig.DBHandlerWriteLog)
-            //    {
-            //        DBHandlerLogSink.WriteExecuteNonQueryExceptionLog(strSql, exception, (TimeSpan)(DateTime.Now - now));
-            //    }
-            //    this.HandleException(exception, strSql);
-            //    num2 = -1;
-            //}
-            //finally
-            //{
-            //    if (flag)
-            //    {
-            //        command.Connection.Close();
-            //    }
-            //    command.Transaction = null;
-            //}
-            //return num2;
         }
 
-        public int ExecuteNonQuery(DbTransaction transaction, string strSql, DbParameter[] parameters)
+        public static int ExecuteNonQuery(DbTransaction transaction, string strSql, DbParameter[] parameters)
         {
             DbCommand command = _factory.CreateCommand(transaction);
             command.CommandType = CommandType.Text;
@@ -220,6 +174,10 @@ namespace UC.Platform.Data
             if (parameters != null)
             {
                 command.Parameters.AddRange(parameters);
+            }
+            if (command.Connection.State != ConnectionState.Open)
+            {
+                command.Connection.Open();
             }
             return command.ExecuteNonQuery();
         }
@@ -295,7 +253,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                int num = buffer.ExecuteNonQuery(transaction, strSql);
+                int num = ExecuteNonQuery(transaction, strSql);
                 return num;
             }
             catch
@@ -313,7 +271,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                int num = buffer.ExecuteNonQuery(transaction, strSql, parameters);
+                int num = ExecuteNonQuery(transaction, strSql, parameters);
                 return num;
             }
             catch
@@ -335,7 +293,7 @@ namespace UC.Platform.Data
                 var numArray = new int[strSql.Length];
                 for (int i = 0; i < strSql.Length; i++)
                 {
-                    numArray[i] = buffer.ExecuteNonQuery(transaction, strSql[i]);
+                    numArray[i] = ExecuteNonQuery(transaction, strSql[i]);
                     if (numArray[i] < 0)
                     {
                         return null;
@@ -352,40 +310,40 @@ namespace UC.Platform.Data
 
         public object ExecuteProc(string procName)
         {
-            return ExecuteProc(_transaction, procName, null, null, null);
+            return ExecuteProc(Transaction, procName, null, null, null);
         }
 
-        public object ExecuteProc(DbTransaction transaction, string procName)
+        public static object ExecuteProc(DbTransaction transaction, string procName)
         {
             return ExecuteProc(transaction, procName, null, null, null);
         }
 
         public object ExecuteProc(string procName, DbParameter[] parameters)
         {
-            return ExecuteProc(_transaction, procName, parameters, null);
+            return ExecuteProc(Transaction, procName, parameters, null);
         }
 
         public object ExecuteProc(string procName, string[] outParameters)
         {
-            return ExecuteProc(_transaction, procName, null, null, outParameters);
+            return ExecuteProc(Transaction, procName, null, null, outParameters);
         }
 
-        public object ExecuteProc(DbTransaction transaction, string procName, string[] outParameters)
+        public static object ExecuteProc(DbTransaction transaction, string procName, string[] outParameters)
         {
             return ExecuteProc(transaction, procName, null, null, outParameters);
         }
 
         public object ExecuteProc(string procName, DbParameter[] parameters, string[] outParameters)
         {
-            return ExecuteProc(_transaction, procName, parameters, outParameters);
+            return ExecuteProc(Transaction, procName, parameters, outParameters);
         }
 
         public object ExecuteProc(string procName, string[] parametersName, object[] parameters)
         {
-            return ExecuteProc(_transaction, procName, parametersName, parameters, null);
+            return ExecuteProc(Transaction, procName, parametersName, parameters, null);
         }
 
-        public object ExecuteProc(DbTransaction transaction, string procName, DbParameter[] parameters,
+        public static object ExecuteProc(DbTransaction transaction, string procName, DbParameter[] parameters,
             string[] outParameters)
         {
             DbCommand command = _factory.CreateCommand(transaction);
@@ -418,10 +376,10 @@ namespace UC.Platform.Data
 
         public object ExecuteProc(string procName, string[] parametersName, object[] parameters, string[] outParameters)
         {
-            return ExecuteProc(_transaction, procName, parametersName, parameters, outParameters);
+            return ExecuteProc(Transaction, procName, parametersName, parameters, outParameters);
         }
 
-        public object ExecuteProc(DbTransaction transaction, string procName, string[] parametersName,
+        public static object ExecuteProc(DbTransaction transaction, string procName, string[] parametersName,
             object[] parameters, string[] outParameters)
         {
             if ((parametersName != null) && (parametersName.Length > 0))
@@ -450,7 +408,7 @@ namespace UC.Platform.Data
                     DbParameter parameter = cmd.Parameters[parametersName[i]];
                     if (parameter != null)
                     {
-                        if ((parameters[i] == null) || ((parameters[i] as string) == ""))
+                        if ((parameters[i] == null) || (parameters[i] as string == ""))
                         {
                             parameter.Value = DBNull.Value;
                         }
@@ -477,7 +435,7 @@ namespace UC.Platform.Data
                         DbParameter parameter2 = cmd.Parameters[outParameters[j]];
                         if (parameter2 != null)
                         {
-                            objArray[j + 1] = (parameter2.Value == DBNull.Value) ? null : parameter2.Value;
+                            objArray[j + 1] = parameter2.Value == DBNull.Value ? null : parameter2.Value;
                         }
                     }
                 }
@@ -509,7 +467,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                object obj2 = buffer.ExecuteProc(transaction, procName);
+                object obj2 = ExecuteProc(transaction, procName);
                 return obj2;
             }
             catch
@@ -563,7 +521,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                object obj2 = buffer.ExecuteProc(transaction, procName, parameters, null);
+                object obj2 = ExecuteProc(transaction, procName, parameters, null);
                 return obj2;
             }
             catch
@@ -581,7 +539,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                object obj2 = buffer.ExecuteProc(transaction, procName, outParameters);
+                object obj2 = ExecuteProc(transaction, procName, outParameters);
                 return obj2;
             }
             catch
@@ -638,7 +596,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                object obj2 = buffer.ExecuteProc(transaction, procName, parameters, outParameters);
+                object obj2 = ExecuteProc(transaction, procName, parameters, outParameters);
                 return obj2;
             }
             catch
@@ -657,7 +615,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                object obj2 = buffer.ExecuteProc(transaction, procName, parametersName, parameters, null);
+                object obj2 = ExecuteProc(transaction, procName, parametersName, parameters, null);
                 return obj2;
             }
             catch
@@ -696,7 +654,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                object obj2 = buffer.ExecuteProc(transaction, procName, parametersName, parameters, outParameters);
+                object obj2 = ExecuteProc(transaction, procName, parametersName, parameters, outParameters);
                 return obj2;
             }
             catch
@@ -709,12 +667,12 @@ namespace UC.Platform.Data
             }
         }
 
-        public DbDataReader ExecuteReader(string strSql)
+        public static DbDataReader ExecuteReader(string strSql)
         {
             return ExecuteReader(strSql, CommandBehavior.Default);
         }
 
-        public DbDataReader ExecuteReader(string strSql, CommandBehavior behavior)
+        public static DbDataReader ExecuteReader(string strSql, CommandBehavior behavior)
         {
             DbCommand command = _factory.CreateCommand((DbConnection) null);
             command.CommandType = CommandType.Text;
@@ -725,20 +683,20 @@ namespace UC.Platform.Data
 
         public object ExecuteScalar(string strSql)
         {
-            return ExecuteScalar(_transaction, strSql);
+            return ExecuteScalar(Transaction, strSql);
         }
 
         public object ExecuteScalar(string strSql, DbParameter[] parameters)
         {
-            return ExecuteScalar(_transaction, strSql, parameters);
+            return ExecuteScalar(Transaction, strSql, parameters);
         }
 
-        public object ExecuteScalar(DbTransaction transaction, string strSql)
+        public static object ExecuteScalar(DbTransaction transaction, string strSql)
         {
             return ExecuteScalar(transaction, strSql, null);
         }
 
-        public object ExecuteScalar(DbTransaction transaction, string strSql, DbParameter[] parameters)
+        public static object ExecuteScalar(DbTransaction transaction, string strSql, DbParameter[] parameters)
         {
             DbCommand command = _factory.CreateCommand(transaction);
             command.CommandType = CommandType.Text;
@@ -792,7 +750,7 @@ namespace UC.Platform.Data
             DBHandlerEx buffer = GetBuffer();
             try
             {
-                object obj2 = buffer.ExecuteScalar(transaction, strSql);
+                object obj2 = ExecuteScalar(transaction, strSql);
                 return obj2;
             }
             catch
@@ -808,79 +766,46 @@ namespace UC.Platform.Data
 
         public DataSet Fill(string strSql)
         {
-            var dataSet = new DataSet();
-            if (Fill(dataSet, strSql) < 0)
-            {
-                return null;
-            }
-            return dataSet;
+            DataSet dataSet = new DataSet();
+            return Fill(dataSet, strSql) < 0 ? null : dataSet;
         }
 
         public int Fill(DataSet dataSet, string strSql)
         {
-            if (dataSet.GetType() == _dataSetType)
-            {
-                return FillNoName(dataSet, strSql);
-            }
-            return Fill(dataSet.Tables[0], strSql);
+            return dataSet.GetType() == _dataSetType ? FillNoName(dataSet, strSql) : Fill(dataSet.Tables[0], strSql);
         }
 
         public int Fill(DataSet dataSet, string strSql, DbParameter[] parameters)
         {
-            if (dataSet.GetType() == _dataSetType)
-            {
-                return FillNoName(dataSet, strSql, parameters);
-            }
-            return Fill(dataSet.Tables[0], strSql, parameters);
+            return dataSet.GetType() == _dataSetType ? FillNoName(dataSet, strSql, parameters) : Fill(dataSet.Tables[0], strSql, parameters);
         }
 
         public int Fill(DataTable dataTable, string strSql)
         {
-            return Fill(_transaction, dataTable, strSql);
+            return Fill(Transaction, dataTable, strSql);
         }
 
         public int Fill(DataTable dataTable, string strSql, DbParameter[] parameters)
         {
-            return Fill(_transaction, dataTable, strSql, parameters);
+            return Fill(Transaction, dataTable, strSql, parameters);
         }
 
         public DataSet Fill(DbTransaction transaction, string strSql)
         {
-            var dataSet = new DataSet();
-            if (Fill(transaction, dataSet, strSql) < 0)
-            {
-                return null;
-            }
-            return dataSet;
+            DataSet dataSet = new DataSet();
+            return Fill(transaction, dataSet, strSql) < 0 ? null : dataSet;
         }
 
         public DataSet Fill(string strSql, string tableName)
         {
-            DataTable table;
-            DataSet dataSetByName = DataSetUtility.GetDataSetByName(tableName);
-            if (dataSetByName != null)
-            {
-                table = dataSetByName.Tables[tableName];
-            }
-            else
-            {
-                dataSetByName = new DataSet();
-                table = dataSetByName.Tables.Add(tableName);
-            }
-            if (Fill(table, strSql) < 0)
-            {
-                return null;
-            }
-            return dataSetByName;
+            DataSet dataSetByName = new DataSet();
+            DataTable table = dataSetByName.Tables.Add(tableName);
+            return Fill(table, strSql) < 0 ? null : dataSetByName;
         }
 
         public int Fill(DataSet dataSet, int tableIndex, string strSql)
         {
-            if (dataSet.GetType() == _dataSetType)
-            {
-                return FillNoName(dataSet, strSql);
-            }
-            return Fill(dataSet.Tables[tableIndex], strSql);
+            return dataSet.GetType() == _dataSetType ? FillNoName(dataSet, strSql) : Fill(dataSet.Tables[tableIndex], strSql);
         }
 
         public int Fill(DataSet dataSet, string tableName, string strSql)
@@ -913,17 +838,15 @@ namespace UC.Platform.Data
 
         public int Fill(DbTransaction transaction, DataTable dataTable, string strSql, DbParameter[] parameters)
         {
-            if (dataTable == null)
-            {
-                return -1;
-            }
+            Debug.Assert(dataTable!=null);
+
             if ((dataTable.DataSet == null) || (dataTable.DataSet.GetType() == _dataSetType))
             {
                 return FillNoName(transaction, dataTable, strSql);
             }
+
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, dataTable.TableName);
             installAdapter(transaction, dataAdapter);
-            //strSql = GetReplaceSql(strSql);
             dataAdapter.SelectCommand.Parameters.Clear();
             dataAdapter.SelectCommand.CommandText = strSql;
             if (parameters != null)
@@ -940,42 +863,18 @@ namespace UC.Platform.Data
 
         public DataSet Fill(DbTransaction transaction, string strSql, string tableName)
         {
-            DataTable table;
-            DataSet dataSetByName = DataSetUtility.GetDataSetByName(tableName);
-            if (dataSetByName != null)
-            {
-                table = dataSetByName.Tables[tableName];
-            }
-            else
-            {
-                dataSetByName = new DataSet();
-                table = dataSetByName.Tables.Add(tableName);
-            }
-            if (Fill(transaction, table, strSql) < 0)
-            {
-                return null;
-            }
-            return dataSetByName;
+            DataSet dataSetByName =  new DataSet();
+            DataTable table = dataSetByName.Tables.Add(tableName);
+            
+            return Fill(transaction, table, strSql) < 0 ? null : dataSetByName;
         }
 
         public DataSet Fill(string strSql, string tableName, string strNamespace)
         {
-            DataTable table;
-            DataSet dataSetByName = DataSetUtility.GetDataSetByName(strNamespace, tableName);
-            if (dataSetByName != null)
-            {
-                table = dataSetByName.Tables[tableName];
-            }
-            else
-            {
-                dataSetByName = new DataSet();
-                table = dataSetByName.Tables.Add(tableName);
-            }
-            if (Fill(table, strSql) < 0)
-            {
-                return null;
-            }
-            return dataSetByName;
+            DataSet dataSetByName = new DataSet();
+            DataTable table = dataSetByName.Tables.Add(tableName);
+
+            return Fill(table, strSql) < 0 ? null : dataSetByName;
         }
 
         public int Fill(DbTransaction transaction, DataSet dataSet, int tableIndex, string strSql)
@@ -999,22 +898,10 @@ namespace UC.Platform.Data
 
         public DataSet Fill(DbTransaction transaction, string strSql, string tableName, string strNamespace)
         {
-            DataTable table;
-            DataSet dataSetByName = DataSetUtility.GetDataSetByName(strNamespace, tableName);
-            if (dataSetByName != null)
-            {
-                table = dataSetByName.Tables[tableName];
-            }
-            else
-            {
-                dataSetByName = new DataSet();
-                table = dataSetByName.Tables.Add(tableName);
-            }
-            if (Fill(transaction, table, strSql) < 0)
-            {
-                return null;
-            }
-            return dataSetByName;
+            DataSet dataSetByName = new DataSet();
+            DataTable table = dataSetByName.Tables.Add(tableName);
+
+            return Fill(transaction, table, strSql) < 0 ? null : dataSetByName;
         }
 
         public bool FillDataSetSchema(DataSet ds, string[] tableNames)
@@ -1026,7 +913,7 @@ namespace UC.Platform.Data
                 {
                     return false;
                 }
-                DataTable[] tableArray = dataAdapter.FillSchema(ds, SchemaType.Source);
+                var tableArray = dataAdapter.FillSchema(ds, SchemaType.Source);
                 if ((tableArray == null) || (tableArray.Length < 1))
                 {
                     return false;
@@ -1055,27 +942,27 @@ namespace UC.Platform.Data
 
         public int FillNoName(DataSet dataSet, string strSql)
         {
-            return FillNoName(_transaction, dataSet, null, strSql);
+            return FillNoName(Transaction, dataSet, null, strSql);
         }
 
         public int FillNoName(DataSet dataSet, string strSql, DbParameter[] parameters)
         {
-            return FillNoName(_transaction, dataSet, strSql, parameters);
+            return FillNoName(Transaction, dataSet, strSql, parameters);
         }
 
         public int FillNoName(DataTable dataTable, string strSql)
         {
-            return FillNoName(_transaction, dataTable, strSql);
+            return FillNoName(Transaction, dataTable, strSql);
         }
 
         public int FillNoName(DataTable dataTable, string strSql, DbParameter[] parameters)
         {
-            return FillNoName(_transaction, dataTable, strSql, parameters);
+            return FillNoName(Transaction, dataTable, strSql, parameters);
         }
 
         public int FillNoName(DataSet dataSet, string tableName, string strSql)
         {
-            return FillNoName(_transaction, dataSet, tableName, strSql);
+            return FillNoName(Transaction, dataSet, tableName, strSql);
         }
 
         public int FillNoName(DbTransaction transaction, DataSet dataSet, string strSql)
@@ -1259,7 +1146,7 @@ namespace UC.Platform.Data
                 int num = buffer.Fill(dataTable, strSql);
                 return num;
             }
-            catch(Exception e)
+            catch
             {
                 return -1;
             }
@@ -1371,7 +1258,7 @@ namespace UC.Platform.Data
             {
                 return -1;
             }
-            finally 
+            finally
             {
                 buffer.FreeBuffer();
             }
@@ -1488,66 +1375,43 @@ namespace UC.Platform.Data
         }
 
 
-        private void freeAdapter(DbDataAdapter adapter)
+        private static void freeAdapter(DbDataAdapter adapter)
         {
-            if (adapter.SelectCommand != null)
-            {
-                adapter.SelectCommand.Transaction = null;
-                adapter.SelectCommand.Connection = _connection;
-            }
-            if (adapter.InsertCommand != null)
-            {
-                adapter.InsertCommand.Transaction = null;
-                adapter.InsertCommand.Connection = _connection;
-            }
-            if (adapter.UpdateCommand != null)
-            {
-                adapter.UpdateCommand.Transaction = null;
-                adapter.UpdateCommand.Connection = _connection;
-            }
-            if (adapter.DeleteCommand != null)
-            {
-                adapter.DeleteCommand.Transaction = null;
-                adapter.DeleteCommand.Connection = _connection;
-            }
+            adapter.Dispose();
         }
 
-        public bool FreeBuffer()
+        public void FreeBuffer()
         {
-            return FreeBuffer(false);
+            FreeBuffer(false);
         }
 
-        public bool FreeBuffer(bool commit)
+        public void FreeBuffer(bool commit)
         {
-            try
+            if (Transaction != null)
             {
-                if (_transaction != null)
-                {
-                    EndTransaction(commit);
-                }
-                if (_connection != null && _connection.State == ConnectionState.Open)
-                {
-                    _connection.Close();
-                }
-                return true;
+                EndTransaction(commit);
             }
-            catch
-            {
-                return false;
-            }
+            Dispose();
         }
-
+    
         public static DBHandlerEx GetBuffer()
         {
             return new DBHandlerEx();
         }
 
-        public DbDataAdapter GetDataAdapter(string tableName)
+        public static DBHandlerEx GetBuffer(IsolationLevel level)
         {
-            return GetDataAdapter(_transaction, tableName);
+            var handler=new DBHandlerEx();
+            handler.BeginTransaction(level);
+            return handler;
         }
 
-        public DbDataAdapter GetDataAdapter(DbTransaction transaction, string tableName)
+        public DbDataAdapter GetDataAdapter(string tableName)
+        {
+            return GetDataAdapter(Transaction, tableName);
+        }
+
+        public static DbDataAdapter GetDataAdapter(DbTransaction transaction, string tableName)
         {
             return _factory.CreateDataAdapter(tableName, transaction);
         }
@@ -1559,16 +1423,16 @@ namespace UC.Platform.Data
             {
                 return null;
             }
-            var dataSet = new DataSet("DataSet_" + tableName.ToUpper());
-            DataTable[] tableArray = dataAdapter.FillSchema(dataSet, SchemaType.Source);
-            if ((tableArray == null) || (tableArray.Length < 1))
+            using (DataSet dataSet = new DataSet("DataSet_" + tableName.ToUpper()))
             {
-                return null;
+                var tableArray = dataAdapter.FillSchema(dataSet, SchemaType.Source);
+                if ((tableArray == null) || (tableArray.Length < 1))
+                    return null;
+                tableArray[0].TableName = tableName;
+                DataSet set3 = dataSet.Clone();
+                freeAdapter(dataAdapter);
+                return set3;
             }
-            tableArray[0].TableName = tableName;
-            DataSet set3 = dataSet.Clone();
-            freeAdapter(dataAdapter);
-            return set3;
         }
 
         public static DataSet GetDataSetOnce(string tableName)
@@ -1592,19 +1456,14 @@ namespace UC.Platform.Data
 
         public static string GetException()
         {
-            return (Thread.GetData(_exceptionSlot) as string);
+            return Thread.GetData(_exceptionSlot) as string;
         }
+
 
         public Hashtable GetProcedureParameters(string procName, out DbParameter[] parameters)
         {
-            return GetProcedureParameters(_factory, procName, out parameters);
-        }
-
-        public Hashtable GetProcedureParameters(IDatabaseProviderFactory factory, string procName,
-            out DbParameter[] parameters)
-        {
             string text = procName.ToUpper();
-            var command = _procParaeters[text] as DbCommand;
+            DbCommand command = _procParaeters[text] as DbCommand;
             if (command == null)
             {
                 command = _factory.DeriveParameters(procName);
@@ -1616,7 +1475,7 @@ namespace UC.Platform.Data
                 _procParaeters[text] = command;
             }
             parameters = _factory.CreateParameters(command.Parameters.Count);
-            var hashtable = new Hashtable();
+            Hashtable hashtable = new Hashtable();
             for (int i = 0; i < parameters.Length; i++)
             {
                 DbParameter parameter = command.Parameters[i];
@@ -1642,12 +1501,12 @@ namespace UC.Platform.Data
 
         public static DataSet GetRegisterDataSet(string tableName)
         {
-            var type = _dataSetTypeTable[tableName.ToUpper()] as Type;
+            Type type = _dataSetTypeTable[tableName.ToUpper()] as Type;
             if (type == null)
             {
                 return null;
             }
-            return (Activator.CreateInstance(type) as DataSet);
+            return Activator.CreateInstance(type) as DataSet;
         }
 
         private static void handleException(Exception exp)
@@ -1657,7 +1516,7 @@ namespace UC.Platform.Data
 
         private static void handleException(Exception exp, string message)
         {
-            Thread.SetData(_exceptionSlot, exp.Message + "\r\n" + message);
+            Thread.SetData(_exceptionSlot, string.Format("{0}\r\n{1}", exp.Message, message));
         }
 
         private void installAdapter(DbTransaction transaction, DbDataAdapter adapter)
@@ -1665,7 +1524,7 @@ namespace UC.Platform.Data
             if (adapter.SelectCommand != null)
             {
                 adapter.SelectCommand.Transaction = transaction;
-                if ((transaction == null) || (transaction == _transaction))
+                if ((transaction == null) || (transaction == Transaction))
                 {
                     adapter.SelectCommand.Connection = _connection;
                 }
@@ -1677,7 +1536,7 @@ namespace UC.Platform.Data
             if (adapter.InsertCommand != null)
             {
                 adapter.InsertCommand.Transaction = transaction;
-                if ((transaction == null) || (transaction == _transaction))
+                if ((transaction == null) || (transaction == Transaction))
                 {
                     adapter.InsertCommand.Connection = _connection;
                 }
@@ -1689,7 +1548,7 @@ namespace UC.Platform.Data
             if (adapter.UpdateCommand != null)
             {
                 adapter.UpdateCommand.Transaction = transaction;
-                if ((transaction == null) || (transaction == _transaction))
+                if ((transaction == null) || (transaction == Transaction))
                 {
                     adapter.UpdateCommand.Connection = _connection;
                 }
@@ -1701,7 +1560,7 @@ namespace UC.Platform.Data
             if (adapter.DeleteCommand != null)
             {
                 adapter.DeleteCommand.Transaction = transaction;
-                if ((transaction == null) || (transaction == _transaction))
+                if ((transaction == null) || (transaction == Transaction))
                 {
                     adapter.DeleteCommand.Connection = _connection;
                 }
@@ -1758,12 +1617,9 @@ namespace UC.Platform.Data
             }
             try
             {
-                foreach (Type type in asm.GetTypes())
+                foreach (Type type in asm.GetTypes().Where(type => type.IsSubclassOf(_dataSetType) && (type.Namespace == nameSpace)))
                 {
-                    if (type.IsSubclassOf(_dataSetType) && (type.Namespace == nameSpace))
-                    {
-                        RegisterDataSet(type);
-                    }
+                    RegisterDataSet(type);
                 }
                 return true;
             }
@@ -1812,7 +1668,7 @@ namespace UC.Platform.Data
 
         public int Update(DataRow dataRow)
         {
-            return Update(_transaction, new[] {dataRow});
+            return Update(Transaction, new[] {dataRow});
         }
 
         public int Update(DataSet dataSet)
@@ -1826,12 +1682,12 @@ namespace UC.Platform.Data
 
         public int Update(DataTable dataTable)
         {
-            return Update(_transaction, dataTable);
+            return Update(Transaction, dataTable);
         }
 
         public int Update(DataRow[] dataRows)
         {
-            return Update(_transaction, dataRows);
+            return Update(Transaction, dataRows);
         }
 
         public int Update(DataSet dataSet, int tableIndex)
@@ -1891,7 +1747,7 @@ namespace UC.Platform.Data
         public int Update(DbTransaction transaction, DataTable dataTable)
         {
             //TODO: DataSet为啥不能为空
-            if ((dataTable == null)) // || (dataTable.DataSet == null))
+            if (dataTable == null) // || (dataTable.DataSet == null))
             {
                 return -2;
             }
@@ -2142,29 +1998,29 @@ namespace UC.Platform.Data
 
         public int UpdateToTable(DataRow dataRow, string tableName)
         {
-            return UpdateToTable(_transaction, new[] {dataRow}, tableName);
+            return UpdateToTable(Transaction, new[] {dataRow}, tableName);
         }
 
         public int UpdateToTable(DataSet dataSet, string tableName)
         {
-            return UpdateToTable(_transaction, dataSet, 0, tableName);
+            return UpdateToTable(Transaction, dataSet, 0, tableName);
         }
 
         public int UpdateToTable(DataRow[] dataRows, string tableName)
         {
-            return UpdateToTable(_transaction, dataRows, tableName);
+            return UpdateToTable(Transaction, dataRows, tableName);
         }
 
         public int UpdateToTable(DataTable dataTable, string tableName)
         {
-            return UpdateToTable(_transaction, dataTable, tableName);
+            return UpdateToTable(Transaction, dataTable, tableName);
         }
 
         public int UpdateToTable(DataSet dataSet, int tableIndex, string tableName)
         {
             if ((dataSet.Tables.Count > tableIndex) && (tableIndex >= 0))
             {
-                return UpdateToTable(_transaction, dataSet.Tables[tableIndex], tableName);
+                return UpdateToTable(Transaction, dataSet.Tables[tableIndex], tableName);
             }
             return -1;
         }
@@ -2176,7 +2032,7 @@ namespace UC.Platform.Data
             {
                 return -1;
             }
-            return UpdateToTable(_transaction, dataSet, index, tableName);
+            return UpdateToTable(Transaction, dataSet, index, tableName);
         }
 
         public int UpdateToTable(DbTransaction transaction, DataRow dataRow, string tableName)

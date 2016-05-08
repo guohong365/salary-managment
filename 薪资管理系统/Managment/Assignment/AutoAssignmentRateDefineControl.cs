@@ -10,6 +10,7 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using SalarySystem.Data;
 using UC.Platform.Data;
+using UC.Platform.UI;
 using CellValueChangedEventArgs = DevExpress.XtraTreeList.CellValueChangedEventArgs;
 
 namespace SalarySystem.Managment.Assignment
@@ -68,7 +69,7 @@ namespace SalarySystem.Managment.Assignment
             focusedAssignmentDefinChanged(gridViewAssignmentDefine, new FocusedRowChangedEventArgs(-1, 0));
             repositoryItemLookUpEditFitPosition.DataSource = DataHolder.Position;
             repositoryItemLookUpEditFitPosition.DataSource = DataHolder.Position;
-            treeList1.CustomDrawNodeCell += GridViewHelper.CustomDrawNodeCell;
+            treeList1.CustomDrawNodeCell += TreeListHelper.CustomDrawModifiedNodeCellHandler;
         }
 
         protected override void onControlReload()
@@ -86,16 +87,16 @@ namespace SalarySystem.Managment.Assignment
 
         private static void saveOneAssignmentDefine(DBHandlerEx handler, DataSetSalary.v_team_assignment_detailDataTable dataTable, string defineId)
         {
-            var positionAssignments=new DataSetSalary.t_position_assignmentsDataTable();
+            DataSetSalary.t_position_assignmentsDataTable positionAssignments=new DataSetSalary.t_position_assignmentsDataTable();
             if (
                 handler.Fill(positionAssignments,
                     string.Format("select * from t_position_assignments where ASSIGNMENT_ID='{0}'", defineId)) < 0)
             {
                 throw new Exception();
             }
-            foreach (var row in dataTable)
+            foreach (DataSetSalary.v_team_assignment_detailRow row in dataTable)
             {
-                var dataRow = positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(defineId, row.ID);
+                DataSetSalary.t_position_assignmentsRow dataRow = positionAssignments.FindByASSIGNMENT_IDPOSITION_ID(defineId, row.ID);
                 if (dataRow != null)
                 {
                     dataRow.WEIGHT = 100;
@@ -120,7 +121,7 @@ namespace SalarySystem.Managment.Assignment
 
         protected override void onSave()
         {
-            var handler = DBHandlerEx.GetBuffer();
+            DBHandlerEx handler = DBHandlerEx.GetBuffer();
             try
             {
                 _details.ToList().ForEach(item => saveOneAssignmentDefine(handler,item.Value, item.Key));
@@ -195,7 +196,7 @@ namespace SalarySystem.Managment.Assignment
         private void loadAssignmentDetail(string defineId)
         {
             string sql = string.Format("select * from v_team_assignment_detail where DEFINE_ID='{0}'", defineId);
-            var dataTable = new DataSetSalary.v_team_assignment_detailDataTable();
+            DataSetSalary.v_team_assignment_detailDataTable dataTable = new DataSetSalary.v_team_assignment_detailDataTable();
             DBHandlerEx.FillOnce(dataTable, sql);
             _details.Add(defineId, dataTable);
         }
