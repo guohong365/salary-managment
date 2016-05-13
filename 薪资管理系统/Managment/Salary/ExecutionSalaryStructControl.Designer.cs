@@ -44,7 +44,6 @@
       this.colFUNC_ID = new DevExpress.XtraGrid.Columns.GridColumn();
       this.repositoryItemLookUpEditFormular = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
       this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
-      this.v_salary_struct_detailTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.v_salary_struct_detailTableAdapter();
       ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
       this.panelControlButtons.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
@@ -249,7 +248,6 @@
       // 
       // v_salary_struct_detailTableAdapter
       // 
-      this.v_salary_struct_detailTableAdapter.ClearBeforeFill = true;
       // 
       // ExecutionSalaryStructControl
       // 
@@ -285,7 +283,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditFormular;
         private System.Windows.Forms.BindingSource vsalarystructdetailBindingSource;
         private Data.DataSetSalary dataSetSalary;
-        private Data.DataSetSalaryTableAdapters.v_salary_struct_detailTableAdapter v_salary_struct_detailTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colENABLED;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME1;
         private DevExpress.XtraGrid.Columns.GridColumn colTYPE;

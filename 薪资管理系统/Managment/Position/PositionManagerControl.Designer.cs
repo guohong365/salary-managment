@@ -35,7 +35,6 @@
             this.列DESCRIPTION = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.tpositionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
-            this.t_positionTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_positionTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
             this.panelControlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
@@ -192,7 +191,6 @@
             // 
             // t_positionTableAdapter
             // 
-            this.t_positionTableAdapter.ClearBeforeFill = true;
             // 
             // PositionManagerControl
             // 
@@ -219,7 +217,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn 列DESCRIPTION;
         private System.Windows.Forms.BindingSource tpositionBindingSource;
         private Data.DataSetSalary dataSetSalary;
-        private Data.DataSetSalaryTableAdapters.t_positionTableAdapter t_positionTableAdapter;
 
 
     }

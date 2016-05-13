@@ -49,7 +49,6 @@
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSQL_STMT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
-            this.t_salary_functionTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_salary_functionTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
             this.panelControlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
@@ -263,7 +262,6 @@
             // 
             // t_salary_functionTableAdapter
             // 
-            this.t_salary_functionTableAdapter.ClearBeforeFill = true;
             // 
             // FunctionDefineControl
             // 
@@ -292,7 +290,6 @@
         private DevExpress.XtraGrid.GridControl gridControlFunction;
         private System.Windows.Forms.BindingSource tsalaryfunctionBindingSource;
         private Data.DataSetSalary dataSetSalary;
-        private Data.DataSetSalaryTableAdapters.t_salary_functionTableAdapter t_salary_functionTableAdapter;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewParameter;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewFunction;

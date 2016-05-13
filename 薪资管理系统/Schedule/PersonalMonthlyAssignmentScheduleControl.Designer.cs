@@ -43,7 +43,6 @@
             this.colCOMPLETED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUNIT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEditUnit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.v_personal_assignment_scheduleTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.v_personal_assignment_scheduleTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vpersonalassignmentscheduleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
@@ -187,7 +186,6 @@
             // 
             // v_personal_assignment_scheduleTableAdapter
             // 
-            this.v_personal_assignment_scheduleTableAdapter.ClearBeforeFill = true;
             // 
             // PersonalMonthlyAssignmentScheduleControl
             // 
@@ -223,6 +221,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCOMPLETED;
         private DevExpress.XtraGrid.Columns.GridColumn colUNIT_ID;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditUnit;
-        private Data.DataSetSalaryTableAdapters.v_personal_assignment_scheduleTableAdapter v_personal_assignment_scheduleTableAdapter;
     }
 }

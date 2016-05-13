@@ -114,7 +114,7 @@ namespace SalarySystem.Managment.Salary
                 if(!row.ENABLED) continue;
                 DataSetSalary.t_position_salary_itemsRow detail = positionSalaryItem.Newt_position_salary_itemsRow();
                 detail.POSITION_ID = row.POSITION_ID;
-                detail.SALARY_ITEM_ID = row.ID;
+                detail.SALARY_ITEM_ID = row.SALARY_ITEM_ID;
                 detail.ENABLED = row.ENABLED;
                 detail.VERSION_ID = GlobalSettings.SalaryVersion;
                 positionSalaryItem.Addt_position_salary_itemsRow(detail);

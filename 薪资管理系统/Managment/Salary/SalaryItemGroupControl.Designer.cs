@@ -42,7 +42,6 @@
             this.colID1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSHOW_ORDER = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.t_salary_itemTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_salary_itemTableAdapter();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
             this.panelControlButtons.SuspendLayout();
@@ -193,7 +192,6 @@
             // 
             // t_salary_itemTableAdapter
             // 
-            this.t_salary_itemTableAdapter.ClearBeforeFill = true;
             // 
             // colID
             // 
@@ -234,7 +232,6 @@
         private Data.DataSetSalary dataSetSalary;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewLookupItem;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME1;
-        private Data.DataSetSalaryTableAdapters.t_salary_itemTableAdapter t_salary_itemTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colID1;
     }

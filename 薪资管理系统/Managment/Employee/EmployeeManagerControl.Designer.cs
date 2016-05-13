@@ -49,7 +49,6 @@ namespace SalarySystem.Managment.Employee
             this.gridColumnDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnEnabled = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemDateEditLeaveTime = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            this.t_employeeTableAdapter = new SalarySystem.Data.DataSetSalaryTableAdapters.t_employeeTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlButtons)).BeginInit();
             this.panelControlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMain)).BeginInit();
@@ -273,7 +272,6 @@ namespace SalarySystem.Managment.Employee
             // 
             // t_employeeTableAdapter
             // 
-            this.t_employeeTableAdapter.ClearBeforeFill = true;
             // 
             // EmployeeManagerControl
             // 
@@ -319,7 +317,6 @@ namespace SalarySystem.Managment.Employee
         private System.Windows.Forms.BindingSource temployeeBindingSource;
         private Data.DataSetSalary dataSetSalary;
         private DevExpress.XtraGrid.Columns.GridColumn colGENDER;
-        private Data.DataSetSalaryTableAdapters.t_employeeTableAdapter t_employeeTableAdapter;
 
     }
 }
