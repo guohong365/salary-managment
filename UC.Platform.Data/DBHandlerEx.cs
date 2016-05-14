@@ -846,7 +846,7 @@ namespace UC.Platform.Data
             }
 
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, dataTable.TableName);
-            installAdapter(transaction, dataAdapter);
+            _installAdapter(transaction, dataAdapter);
             dataAdapter.SelectCommand.Parameters.Clear();
             dataAdapter.SelectCommand.CommandText = strSql;
             if (parameters != null)
@@ -857,7 +857,7 @@ namespace UC.Platform.Data
                 }
             }
             int result = dataAdapter.Fill(dataTable);
-            freeAdapter(dataAdapter);
+            _freeAdapter(dataAdapter);
             return result;
         }
 
@@ -919,7 +919,7 @@ namespace UC.Platform.Data
                     return false;
                 }
                 tableArray[0].TableName = text;
-                freeAdapter(dataAdapter);
+                _freeAdapter(dataAdapter);
             }
             return true;
         }
@@ -978,7 +978,7 @@ namespace UC.Platform.Data
             }
             DbDataAdapter adapter = _factory.CreateDataAdapter();
             adapter.SelectCommand.Connection = _factory.CreateConnection();
-            installAdapter(transaction, adapter);
+            _installAdapter(transaction, adapter);
             //strSql = GetReplaceSql(strSql);
             adapter.SelectCommand.Parameters.Clear();
             adapter.SelectCommand.CommandText = strSql;
@@ -990,7 +990,7 @@ namespace UC.Platform.Data
                 }
             }
             int result = adapter.Fill(dataSet);
-            freeAdapter(adapter);
+            _freeAdapter(adapter);
             return result;
         }
 
@@ -1005,7 +1005,7 @@ namespace UC.Platform.Data
             adapter.SelectCommand.CommandText = strSql;
             adapter.SelectCommand.CommandType = CommandType.Text;
 
-            installAdapter(transaction, adapter);
+            _installAdapter(transaction, adapter);
             //strSql = GetReplaceSql(strSql);
             adapter.SelectCommand.Parameters.Clear();
             adapter.SelectCommand.CommandText = strSql;
@@ -1018,7 +1018,7 @@ namespace UC.Platform.Data
             }
 
             int result = adapter.Fill(dataTable);
-            freeAdapter(adapter);
+            _freeAdapter(adapter);
             return result;
         }
 
@@ -1038,12 +1038,12 @@ namespace UC.Platform.Data
                 return FillNoName(transaction, dataSet, strSql);
             }
             DbDataAdapter adapter = GetDataAdapter(transaction, tableName);
-            installAdapter(transaction, adapter);
+            _installAdapter(transaction, adapter);
             DataTable dataTable = dataSet.Tables[tableName] ?? dataSet.Tables.Add(tableName);
             //strSql = GetReplaceSql(strSql);
             adapter.SelectCommand.CommandText = strSql;
             int result = adapter.Fill(dataTable);
-            freeAdapter(adapter);
+            _freeAdapter(adapter);
             return result;
         }
 
@@ -1375,7 +1375,7 @@ namespace UC.Platform.Data
         }
 
 
-        private static void freeAdapter(DbDataAdapter adapter)
+        private static void _freeAdapter(DbDataAdapter adapter)
         {
             adapter.Dispose();
         }
@@ -1430,7 +1430,7 @@ namespace UC.Platform.Data
                     return null;
                 tableArray[0].TableName = tableName;
                 DataSet set3 = dataSet.Clone();
-                freeAdapter(dataAdapter);
+                _freeAdapter(dataAdapter);
                 return set3;
             }
         }
@@ -1519,7 +1519,7 @@ namespace UC.Platform.Data
             Thread.SetData(_exceptionSlot, string.Format("{0}\r\n{1}", exp.Message, message));
         }
 
-        private void installAdapter(DbTransaction transaction, DbDataAdapter adapter)
+        private void _installAdapter(DbTransaction transaction, DbDataAdapter adapter)
         {
             if (adapter.SelectCommand != null)
             {
@@ -1729,9 +1729,9 @@ namespace UC.Platform.Data
             }
             string tableName = dataRows[0].Table.TableName;
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, tableName);
-            installAdapter(transaction, dataAdapter);
+            _installAdapter(transaction, dataAdapter);
             int result = dataAdapter.Update(dataRows);
-            freeAdapter(dataAdapter);
+            _freeAdapter(dataAdapter);
             return result;
         }
 
@@ -1752,9 +1752,9 @@ namespace UC.Platform.Data
                 return -2;
             }
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, dataTable.TableName);
-            installAdapter(transaction, dataAdapter);
+            _installAdapter(transaction, dataAdapter);
             int result = dataAdapter.Update(dataTable);
-            freeAdapter(dataAdapter);
+            _freeAdapter(dataAdapter);
             return result;
         }
 
@@ -2051,9 +2051,9 @@ namespace UC.Platform.Data
             {
                 return -1;
             }
-            installAdapter(transaction, dataAdapter);
+            _installAdapter(transaction, dataAdapter);
             int result = dataAdapter.Update(dataRows);
-            freeAdapter(dataAdapter);
+            _freeAdapter(dataAdapter);
             return result;
         }
 
@@ -2069,9 +2069,9 @@ namespace UC.Platform.Data
                 return -1;
             }
             DbDataAdapter dataAdapter = GetDataAdapter(transaction, tableName);
-            installAdapter(transaction, dataAdapter);
+            _installAdapter(transaction, dataAdapter);
             int result = dataAdapter.Update(dataTable);
-            freeAdapter(dataAdapter);
+            _freeAdapter(dataAdapter);
             return result;
         }
 
