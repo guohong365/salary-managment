@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraNavBar;
+using SalarySystem.Salary;
 using SalarySystem.Schedule;
 using UC.Platform.UI;
 

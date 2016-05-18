@@ -1,4 +1,5 @@
-﻿using SalarySystem.Data;
+﻿using System;
+using SalarySystem.Data;
 using UC.Platform.Data;
 using UC.Platform.UI;
 
@@ -9,14 +10,22 @@ namespace SalarySystem.Execute
         public AssignmentPerformanceControl()
         {
             InitializeComponent();
-            gridView1.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
-            repositoryItemLookUpEditUnit.DataSource = DataHolder.Unit;
-            repositoryItemLookUpEditType.DataSource = DataHolder.AssignmentItemType;
-            loadAssignmentDefine();
-            repositoryItemLookUpEditDefine.DataSource = _assignmentDefine;
+          this.Load += controlLoad;
+            
         }
-        
-        readonly DataSetSalary.t_assignment_defineDataTable _assignmentDefine=new DataSetSalary.t_assignment_defineDataTable();
+
+      private void controlLoad(object sender, EventArgs e)
+      {
+        if(DesignMode) return;
+        gridView1.CustomDrawCell += GridViewHelper.CustomModifiedCellDrawHandler;
+        repositoryItemLookUpEditUnit.DataSource = DataHolder.Unit;
+        repositoryItemLookUpEditType.DataSource = DataHolder.AssignmentItemType;
+        loadAssignmentDefine();
+        repositoryItemLookUpEditDefine.DataSource = _assignmentDefine;
+      }
+
+
+      readonly DataSetSalary.t_assignment_defineDataTable _assignmentDefine=new DataSetSalary.t_assignment_defineDataTable();
 
         void loadAssignmentDefine()
         {

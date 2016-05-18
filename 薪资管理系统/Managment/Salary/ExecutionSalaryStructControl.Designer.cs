@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-      this.components = new System.ComponentModel.Container();
       this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
       this.treeListPosition = new DevExpress.XtraTreeList.TreeList();
       this.colNAME = new DevExpress.XtraTreeList.Columns.TreeListColumn();
       this.gridControlExecSalaryDetai = new DevExpress.XtraGrid.GridControl();
-      this.vsalarystructdetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
-      this.dataSetSalary = new SalarySystem.Data.DataSetSalary();
       this.gridViewExecSalaryDetai = new DevExpress.XtraGrid.Views.Grid.GridView();
       this.colENABLED = new DevExpress.XtraGrid.Columns.GridColumn();
+      this.repositoryItemCheckEditEnabled = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
       this.colNAME1 = new DevExpress.XtraGrid.Columns.GridColumn();
       this.colTYPE = new DevExpress.XtraGrid.Columns.GridColumn();
       this.repositoryItemLookUpEditItemType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -52,14 +50,13 @@
       this.splitContainerControl1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.treeListPosition)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridControlExecSalaryDetai)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.vsalarystructdetailBindingSource)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewExecSalaryDetai)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditEnabled)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemType)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditFormular)).BeginInit();
       this.SuspendLayout();
       // 
-      // panelControl1
+      // panelControlButtons
       // 
       this.panelControlButtons.Location = new System.Drawing.Point(0, 448);
       this.panelControlButtons.Size = new System.Drawing.Size(760, 35);
@@ -76,7 +73,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.simpleButtonSave.Location = new System.Drawing.Point(599, 6);
       // 
-      // panelControl2
+      // panelControlMain
       // 
       this.panelControlMain.Controls.Add(this.splitContainerControl1);
       this.panelControlMain.Size = new System.Drawing.Size(760, 448);
@@ -84,13 +81,13 @@
       // splitContainerControl1
       // 
       this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainerControl1.Location = new System.Drawing.Point(2, 2);
+      this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
       this.splitContainerControl1.Name = "splitContainerControl1";
       this.splitContainerControl1.Panel1.Controls.Add(this.treeListPosition);
       this.splitContainerControl1.Panel1.Text = "Panel1";
       this.splitContainerControl1.Panel2.Controls.Add(this.gridControlExecSalaryDetai);
       this.splitContainerControl1.Panel2.Text = "Panel2";
-      this.splitContainerControl1.Size = new System.Drawing.Size(756, 444);
+      this.splitContainerControl1.Size = new System.Drawing.Size(760, 448);
       this.splitContainerControl1.SplitterPosition = 220;
       this.splitContainerControl1.TabIndex = 0;
       this.splitContainerControl1.Text = "splitContainerControl1";
@@ -108,7 +105,7 @@
       this.treeListPosition.OptionsView.ShowIndicator = false;
       this.treeListPosition.ParentFieldName = "LEADER_ID";
       this.treeListPosition.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.ShowForFocusedRow;
-      this.treeListPosition.Size = new System.Drawing.Size(220, 444);
+      this.treeListPosition.Size = new System.Drawing.Size(220, 448);
       this.treeListPosition.TabIndex = 0;
       this.treeListPosition.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.focusedNodeChanged);
       // 
@@ -124,28 +121,18 @@
       // 
       // gridControlExecSalaryDetai
       // 
-      this.gridControlExecSalaryDetai.DataSource = this.vsalarystructdetailBindingSource;
       this.gridControlExecSalaryDetai.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridControlExecSalaryDetai.Location = new System.Drawing.Point(0, 0);
       this.gridControlExecSalaryDetai.MainView = this.gridViewExecSalaryDetai;
       this.gridControlExecSalaryDetai.Name = "gridControlExecSalaryDetai";
       this.gridControlExecSalaryDetai.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEditItemType,
-            this.repositoryItemLookUpEditFormular});
-      this.gridControlExecSalaryDetai.Size = new System.Drawing.Size(531, 444);
+            this.repositoryItemLookUpEditFormular,
+            this.repositoryItemCheckEditEnabled});
+      this.gridControlExecSalaryDetai.Size = new System.Drawing.Size(535, 448);
       this.gridControlExecSalaryDetai.TabIndex = 0;
       this.gridControlExecSalaryDetai.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewExecSalaryDetai});
-      // 
-      // vsalarystructdetailBindingSource
-      // 
-      this.vsalarystructdetailBindingSource.DataMember = "v_salary_struct_detail";
-      this.vsalarystructdetailBindingSource.DataSource = this.dataSetSalary;
-      // 
-      // dataSetSalary
-      // 
-      this.dataSetSalary.DataSetName = "DataSetSalary";
-      this.dataSetSalary.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
       // 
       // gridViewExecSalaryDetai
       // 
@@ -164,6 +151,7 @@
       this.colENABLED.AppearanceHeader.Options.UseTextOptions = true;
       this.colENABLED.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
       this.colENABLED.Caption = "启用";
+      this.colENABLED.ColumnEdit = this.repositoryItemCheckEditEnabled;
       this.colENABLED.FieldName = "ENABLED";
       this.colENABLED.MaxWidth = 80;
       this.colENABLED.Name = "colENABLED";
@@ -172,6 +160,14 @@
       this.colENABLED.Visible = true;
       this.colENABLED.VisibleIndex = 0;
       this.colENABLED.Width = 50;
+      // 
+      // repositoryItemCheckEditEnabled
+      // 
+      this.repositoryItemCheckEditEnabled.AutoHeight = false;
+      this.repositoryItemCheckEditEnabled.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+      this.repositoryItemCheckEditEnabled.Name = "repositoryItemCheckEditEnabled";
+      this.repositoryItemCheckEditEnabled.ValueChecked = ((long)(1));
+      this.repositoryItemCheckEditEnabled.ValueUnchecked = ((long)(0));
       // 
       // colNAME1
       // 
@@ -246,9 +242,6 @@
       this.colDESCRIPTION.Visible = true;
       this.colDESCRIPTION.VisibleIndex = 5;
       // 
-      // v_salary_struct_detailTableAdapter
-      // 
-      // 
       // ExecutionSalaryStructControl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -263,9 +256,8 @@
       this.splitContainerControl1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.treeListPosition)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridControlExecSalaryDetai)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.vsalarystructdetailBindingSource)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.dataSetSalary)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gridViewExecSalaryDetai)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditEnabled)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditItemType)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditFormular)).EndInit();
       this.ResumeLayout(false);
@@ -281,13 +273,12 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewExecSalaryDetai;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditItemType;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditFormular;
-        private System.Windows.Forms.BindingSource vsalarystructdetailBindingSource;
-        private Data.DataSetSalary dataSetSalary;
         private DevExpress.XtraGrid.Columns.GridColumn colENABLED;
         private DevExpress.XtraGrid.Columns.GridColumn colNAME1;
         private DevExpress.XtraGrid.Columns.GridColumn colTYPE;
         private DevExpress.XtraGrid.Columns.GridColumn colVALUE;
         private DevExpress.XtraGrid.Columns.GridColumn colFUNC_ID;
         private DevExpress.XtraGrid.Columns.GridColumn colDESCRIPTION;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditEnabled;
     }
 }

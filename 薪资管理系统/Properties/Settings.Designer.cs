@@ -43,5 +43,13 @@ namespace SalarySystem.Properties {
                 return ((string)(this["salaryConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Data.Common.DbProviderFactoriesConfigurationHandler Setting {
+            get {
+                return ((global::System.Data.Common.DbProviderFactoriesConfigurationHandler)(this["Setting"]));
+            }
+        }
     }
 }

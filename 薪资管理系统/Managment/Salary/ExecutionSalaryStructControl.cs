@@ -9,8 +9,7 @@ namespace SalarySystem.Managment.Salary
 {
     public partial class ExecutionSalaryStructControl : BaseEditableControl
     {
-        private readonly DataSetSalary.v_salary_struct_detailDataTable _salaryStructDetail =
-            new DataSetSalary.v_salary_struct_detailDataTable();
+      private readonly DataTable _salaryStructDetail = new DataTable("t_salary_item");
 
         private const string _SALARY_STRUCT_DETAIL_SQL_FORMAT =
             "select " +
@@ -54,10 +53,10 @@ namespace SalarySystem.Managment.Salary
 
         private int getCheckedCount(object sender)
         {
-            return _salaryStructDetail.Count(detailRow => detailRow.ENABLED);
+          return _salaryStructDetail.Rows.Cast<DataRow>().Count(row => Convert.ToBoolean(row["ENABLED"]));
         }
 
-        protected override void onControlLoad()
+      protected override void onControlLoad()
         {
             base.onControlLoad();
             //GridViewHelper.SetUpEditableGridView(gridViewExecSalaryDetai, false, "薪资构成", VersionType.SALARY);
@@ -109,13 +108,13 @@ namespace SalarySystem.Managment.Salary
                 string.Format("delete from t_position_salary_items where POSITION_ID='{0}' and VERSION_ID='{1}'",
                     PositionId, GlobalSettings.SalaryVersion);
             DataSetSalary.t_position_salary_itemsDataTable positionSalaryItem = new DataSetSalary.t_position_salary_itemsDataTable();
-            foreach (DataSetSalary.v_salary_struct_detailRow row in changedTable.Rows)
+            foreach (DataRow row in changedTable.Rows)
             {
-                if(!row.ENABLED) continue;
+                if(!Convert.ToBoolean(row["ENABLED"])) continue;
                 DataSetSalary.t_position_salary_itemsRow detail = positionSalaryItem.Newt_position_salary_itemsRow();
-                detail.POSITION_ID = row.POSITION_ID;
-                detail.SALARY_ITEM_ID = row.SALARY_ITEM_ID;
-                detail.ENABLED = row.ENABLED;
+                detail.POSITION_ID = Convert.ToString(row["POSITION_ID"]);
+                detail.SALARY_ITEM_ID = Convert.ToString(row["SALARY_ITEM_ID"]);
+                detail.ENABLED = Convert.ToBoolean(row["ENABLED"]);
                 detail.VERSION_ID = GlobalSettings.SalaryVersion;
                 positionSalaryItem.Addt_position_salary_itemsRow(detail);
             }
@@ -152,7 +151,6 @@ namespace SalarySystem.Managment.Salary
             {
                 gridControlExecSalaryDetai.DataSource = _salaryStructDetail;
             }
-
         }
 
 

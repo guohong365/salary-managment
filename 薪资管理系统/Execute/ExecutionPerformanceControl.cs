@@ -290,7 +290,7 @@ namespace SalarySystem.Execute
             }
             CurrentEmployeePerformance = performance;
             evalFormsControl1.EmployeePerformance = CurrentEmployeePerformance;
-            assignmentPerformanceControl1.EmployeePerformance = CurrentEmployeePerformance;
+            //assignmentPerformanceControl1.EmployeePerformance = CurrentEmployeePerformance;
             //var ctrl = new AssignmentPerformanceControl
             //{
             //    EmployeePerformance = CurrentEmployeePerformance,

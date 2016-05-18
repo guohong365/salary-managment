@@ -11,6 +11,7 @@ using SalarySystem.Execute;
 using SalarySystem.Managment;
 using SalarySystem.Managment.Employee;
 using SalarySystem.Managment.Position;
+using SalarySystem.Salary;
 using SalarySystem.Schedule;
 using UC.Platform.UI;
 
@@ -138,7 +139,7 @@ namespace SalarySystem
         {
             if (!takeCachedPage("工资明细"))
             {
-                addControl("工资明细", new AssignmentPerformanceControl());
+                addControl("工资明细", new SalaryDetailControl());
             }
         }
     }
