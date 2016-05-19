@@ -244,16 +244,16 @@
     <Compile Include="ItemControl.Designer.cs">
       <DependentUpon>ItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Salary\FunctionDefineControl.cs">
+    <Compile Include="Definition\Salary\FunctionDefineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Salary\FunctionDefineControl.Designer.cs">
+    <Compile Include="Definition\Salary\FunctionDefineControl.Designer.cs">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Salary\SalaryItemGroupControl.cs">
+    <Compile Include="Definition\Salary\SalaryItemGroupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Salary\SalaryItemGroupControl.Designer.cs">
+    <Compile Include="Definition\Salary\SalaryItemGroupControl.Designer.cs">
       <DependentUpon>SalaryItemGroupControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Salary\SalaryDetail.cs" />
@@ -309,72 +309,72 @@
     <Compile Include="Schedule\AssignmentScheduleControl.Designer.cs">
       <DependentUpon>AssignmentScheduleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\PersonalAssignmentDefineControl.cs">
+    <Compile Include="Definition\Assignment\PersonalAssignmentDefineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Assignment\PersonalAssignmentDefineControl.Designer.cs">
+    <Compile Include="Definition\Assignment\PersonalAssignmentDefineControl.Designer.cs">
       <DependentUpon>PersonalAssignmentDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\AutoAssignmentRateDefineControl.cs">
+    <Compile Include="Definition\Assignment\AutoAssignmentRateDefineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Assignment\AutoAssignmentRateDefineControl.Designer.cs">
+    <Compile Include="Definition\Assignment\AutoAssignmentRateDefineControl.Designer.cs">
       <DependentUpon>AutoAssignmentRateDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Basic\CodeTableControl.cs">
+    <Compile Include="Definition\Basic\CodeTableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Basic\CodeTableControl.Designer.cs">
+    <Compile Include="Definition\Basic\CodeTableControl.Designer.cs">
       <DependentUpon>CodeTableControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\DefineControlManager.cs" />
-    <Compile Include="Managment\Evaluation\EvaluationFormControl.cs">
+    <Compile Include="Definition\DefineControlManager.cs" />
+    <Compile Include="Definition\Evaluation\EvaluationFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Evaluation\EvaluationFormControl.Designer.cs">
+    <Compile Include="Definition\Evaluation\EvaluationFormControl.Designer.cs">
       <DependentUpon>EvaluationFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Evaluation\EvaluationItemControl.cs">
+    <Compile Include="Definition\Evaluation\EvaluationItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Evaluation\EvaluationItemControl.Designer.cs">
+    <Compile Include="Definition\Evaluation\EvaluationItemControl.Designer.cs">
       <DependentUpon>EvaluationItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Evaluation\EvaluationItemTypeControl.cs">
+    <Compile Include="Definition\Evaluation\EvaluationItemTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Evaluation\EvaluationItemTypeControl.Designer.cs">
+    <Compile Include="Definition\Evaluation\EvaluationItemTypeControl.Designer.cs">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Execute\ExecutionControlManager.cs" />
-    <Compile Include="Managment\Salary\ExecutionSalaryStructControl.cs">
+    <Compile Include="Definition\Salary\ExecutionSalaryStructControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Salary\ExecutionSalaryStructControl.Designer.cs">
+    <Compile Include="Definition\Salary\ExecutionSalaryStructControl.Designer.cs">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Evaluation\ExecutionEvaluationFormControl.cs">
+    <Compile Include="Definition\Evaluation\ExecutionEvaluationFormControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Evaluation\ExecutionEvaluationFormControl.Designer.cs">
+    <Compile Include="Definition\Evaluation\ExecutionEvaluationFormControl.Designer.cs">
       <DependentUpon>ExecutionEvaluationFormControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Salary\SalaryItemControl.cs">
+    <Compile Include="Definition\Salary\SalaryItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Salary\SalaryItemControl.Designer.cs">
+    <Compile Include="Definition\Salary\SalaryItemControl.Designer.cs">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Assignment\AssignmentDefineControl.cs">
+    <Compile Include="Definition\Assignment\AssignmentDefineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Assignment\AssignmentDefineControl.Designer.cs">
+    <Compile Include="Definition\Assignment\AssignmentDefineControl.Designer.cs">
       <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Managment\Employee\EmployeeManagerControl.cs">
+    <Compile Include="Definition\Employee\EmployeeManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Employee\EmployeeManagerControl.Designer.cs">
+    <Compile Include="Definition\Employee\EmployeeManagerControl.Designer.cs">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -385,12 +385,12 @@
     </Compile>
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="Execute\IManagmentContainer.cs" />
-    <Compile Include="Managment\IManagmentControl.cs" />
-    <Compile Include="Managment\ManagmentControl.cs" />
-    <Compile Include="Managment\Position\PositionManagerControl.cs">
+    <Compile Include="Definition\IManagmentControl.cs" />
+    <Compile Include="Definition\ManagmentControl.cs" />
+    <Compile Include="Definition\Position\PositionManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Managment\Position\PositionManagerControl.Designer.cs">
+    <Compile Include="Definition\Position\PositionManagerControl.Designer.cs">
       <DependentUpon>PositionManagerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -431,10 +431,10 @@
     <EmbeddedResource Include="ItemControl.resx">
       <DependentUpon>ItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Salary\FunctionDefineControl.resx">
+    <EmbeddedResource Include="Definition\Salary\FunctionDefineControl.resx">
       <DependentUpon>FunctionDefineControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Salary\SalaryItemGroupControl.resx">
+    <EmbeddedResource Include="Definition\Salary\SalaryItemGroupControl.resx">
       <DependentUpon>SalaryItemGroupControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Salary\SalaryDetailControl.resx">
@@ -461,40 +461,40 @@
     <EmbeddedResource Include="Execute\ExecutionPerformanceControl.resx">
       <DependentUpon>ExecutionPerformanceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Assignment\PersonalAssignmentDefineControl.resx">
+    <EmbeddedResource Include="Definition\Assignment\PersonalAssignmentDefineControl.resx">
       <DependentUpon>PersonalAssignmentDefineControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Assignment\AutoAssignmentRateDefineControl.resx">
+    <EmbeddedResource Include="Definition\Assignment\AutoAssignmentRateDefineControl.resx">
       <DependentUpon>AutoAssignmentRateDefineControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Evaluation\EvaluationFormControl.resx">
+    <EmbeddedResource Include="Definition\Evaluation\EvaluationFormControl.resx">
       <DependentUpon>EvaluationFormControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Evaluation\EvaluationItemControl.resx">
+    <EmbeddedResource Include="Definition\Evaluation\EvaluationItemControl.resx">
       <DependentUpon>EvaluationItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Evaluation\EvaluationItemTypeControl.resx">
+    <EmbeddedResource Include="Definition\Evaluation\EvaluationItemTypeControl.resx">
       <DependentUpon>EvaluationItemTypeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Salary\ExecutionSalaryStructControl.resx">
+    <EmbeddedResource Include="Definition\Salary\ExecutionSalaryStructControl.resx">
       <DependentUpon>ExecutionSalaryStructControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Evaluation\ExecutionEvaluationFormControl.resx">
+    <EmbeddedResource Include="Definition\Evaluation\ExecutionEvaluationFormControl.resx">
       <DependentUpon>ExecutionEvaluationFormControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Salary\SalaryItemControl.resx">
+    <EmbeddedResource Include="Definition\Salary\SalaryItemControl.resx">
       <DependentUpon>SalaryItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Assignment\AssignmentDefineControl.resx">
+    <EmbeddedResource Include="Definition\Assignment\AssignmentDefineControl.resx">
       <DependentUpon>AssignmentDefineControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Employee\EmployeeManagerControl.resx">
+    <EmbeddedResource Include="Definition\Employee\EmployeeManagerControl.resx">
       <DependentUpon>EmployeeManagerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Managment\Position\PositionManagerControl.resx">
+    <EmbeddedResource Include="Definition\Position\PositionManagerControl.resx">
       <DependentUpon>PositionManagerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

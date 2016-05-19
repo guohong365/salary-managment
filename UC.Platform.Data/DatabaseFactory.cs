@@ -27,6 +27,14 @@ namespace UC.Platform.Data
       _connectionString = connectionString;
       _factory = DbProviderFactories.GetFactory(providerName);
     }
+    public DatabaseFactory(string driverAssembly, string factoryTypeName, string connectionString)
+    {
+      Assembly assembly = Assembly.LoadFile(driverAssembly);
+      Type factroyType = assembly.GetType(factoryTypeName);
+      object factory = Activator.CreateInstance(factroyType);
+      _connectionString = connectionString;
+      _factory = factory as DbProviderFactory;
+    }
 
     public DbCommand CreateCommand(DbTransaction transaction)
     {

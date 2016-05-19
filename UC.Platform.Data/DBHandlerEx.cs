@@ -1669,6 +1669,22 @@ namespace UC.Platform.Data
       }
     }
 
+    public static bool Initializer(string driverAssambly, string providerType, string connectionString)
+    {
+      try
+      {
+        _factory = new DatabaseFactory(driverAssambly, providerType, connectionString);
+        return true;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+        _factory = null;
+        return false;
+
+      }
+    }
+
 
 
     public int Update(DataRow dataRow)

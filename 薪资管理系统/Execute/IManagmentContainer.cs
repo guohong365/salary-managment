@@ -1,5 +1,5 @@
 ﻿using System;
-using SalarySystem.Managment;
+using SalarySystem.Definition;
 
 namespace SalarySystem.Execute
 {
